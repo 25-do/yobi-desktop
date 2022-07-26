@@ -1,0 +1,52 @@
+Date : 2022-04-07 07:38:41
+Directory : f:\pr\Stats-Production\UIC
+Total : 28 files,  31811 codes, 0 comments, 598 blanks, all 32409 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| XML      |         28 |     31,811 |          0 |        598 |     32,409 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                   | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                      |         28 |     31,811 |          0 |        598 |     32,409 |
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                               | language | code       | comment    | blank      | total      |
++--------------------------------------------------------+----------+------------+------------+------------+------------+
+| f:\pr\Stats-Production\UIC\Fixedexpenseedit.ui         | XML      |        264 |          0 |          4 |        268 |
+| f:\pr\Stats-Production\UIC\add_ledger.ui               | XML      |        598 |          0 |         40 |        638 |
+| f:\pr\Stats-Production\UIC\addstock.ui                 | XML      |        721 |          0 |          3 |        724 |
+| f:\pr\Stats-Production\UIC\bizdetail.ui                | XML      |        183 |          0 |          3 |        186 |
+| f:\pr\Stats-Production\UIC\coa.ui                      | XML      |        655 |          0 |         40 |        695 |
+| f:\pr\Stats-Production\UIC\currentassetsedit.ui        | XML      |        264 |          0 |          4 |        268 |
+| f:\pr\Stats-Production\UIC\customer.ui                 | XML      |      1,303 |          0 |         42 |      1,345 |
+| f:\pr\Stats-Production\UIC\fixedassetsedit.ui          | XML      |        264 |          0 |          4 |        268 |
+| f:\pr\Stats-Production\UIC\fixedexpenseadd.ui          | XML      |        221 |          0 |          3 |        224 |
+| f:\pr\Stats-Production\UIC\income_edit.ui              | XML      |        260 |          0 |          4 |        264 |
+| f:\pr\Stats-Production\UIC\journalentry.ui             | XML      |        629 |          0 |         40 |        669 |
+| f:\pr\Stats-Production\UIC\login.ui                    | XML      |        372 |          0 |          1 |        373 |
+| f:\pr\Stats-Production\UIC\longtermliabilitiesedit.ui  | XML      |        264 |          0 |          4 |        268 |
+| f:\pr\Stats-Production\UIC\main.ui                     | XML      |     17,711 |          0 |        169 |     17,880 |
+| f:\pr\Stats-Production\UIC\profile.ui                  | XML      |        931 |          0 |         41 |        972 |
+| f:\pr\Stats-Production\UIC\purchase_order.ui           | XML      |        584 |          0 |         40 |        624 |
+| f:\pr\Stats-Production\UIC\resources.qrc               | XML      |        267 |          0 |          1 |        268 |
+| f:\pr\Stats-Production\UIC\sales_return.ui             | XML      |        922 |          0 |         38 |        960 |
+| f:\pr\Stats-Production\UIC\salesadd.ui                 | XML      |        195 |          0 |          3 |        198 |
+| f:\pr\Stats-Production\UIC\salesedit.ui                | XML      |        271 |          0 |          3 |        274 |
+| f:\pr\Stats-Production\UIC\shorttermliabilitiesedit.ui | XML      |        264 |          0 |          4 |        268 |
+| f:\pr\Stats-Production\UIC\splash.ui                   | XML      |        193 |          0 |          7 |        200 |
+| f:\pr\Stats-Production\UIC\stockturnover.ui            | XML      |        525 |          0 |          3 |        528 |
+| f:\pr\Stats-Production\UIC\taxedit.ui                  | XML      |        220 |          0 |          1 |        221 |
+| f:\pr\Stats-Production\UIC\taxsettingsui.ui            | XML      |      1,883 |          0 |         50 |      1,933 |
+| f:\pr\Stats-Production\UIC\update.ui                   | XML      |      1,485 |          0 |         41 |      1,526 |
+| f:\pr\Stats-Production\UIC\variableexpenseedit.ui      | XML      |        264 |          0 |          4 |        268 |
+| f:\pr\Stats-Production\UIC\varibleexp_explained.ui     | XML      |         98 |          0 |          1 |         99 |
+| Total                                                  |          |     31,811 |          0 |        598 |     32,409 |
++--------------------------------------------------------+----------+------------+------------+------------+------------+

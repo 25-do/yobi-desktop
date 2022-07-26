@@ -1,0 +1,133 @@
+from widgets import *
+from PySide6.QtWidgets import *
+from PySide6.QtGui import QFont
+
+
+
+def resize_tables(self):
+    self.ui.tableWidget_6.setFont((QFont("Times", 11)))
+    self.ui.tableWidget_6.setColumnWidth(0, 80)
+    self.ui.tableWidget_6.setColumnWidth(1, 80)
+    self.ui.tableWidget_6.setColumnWidth(2, 200)
+    self.ui.tableWidget_6.setColumnWidth(3, 100)
+    self.ui.tableWidget_6.setColumnWidth(4, 100)
+    self.ui.tableWidget_6.setColumnWidth(5, 100)
+    self.ui.tableWidget_6.setColumnWidth(6, 100)
+    self.ui.tableWidget_6.setColumnWidth(7, 100)
+    self.ui.tableWidget_6.setColumnWidth(8, 100)
+    self.ui.tableWidget_6.setColumnWidth(9, 100)
+    self.ui.tableWidget_6.setColumnWidth(10, 90)
+    self.ui.tableWidget_6.setColumnWidth(11, 40)
+    self.ui.tableWidget_6.setColumnWidth(12, 40)
+
+    self.ui.tableWidget_11.setFont((QFont("Times", 11)))
+    self.ui.tableWidget_11.setColumnWidth(0, 50)
+    self.ui.tableWidget_11.setColumnWidth(1, 200)
+    self.ui.tableWidget_11.setColumnWidth(2, 180)
+    self.ui.tableWidget_11.setColumnWidth(3, 200)
+    self.ui.tableWidget_11.setColumnWidth(4, 200)
+    self.ui.tableWidget_11.setColumnWidth(5, 180)
+    self.ui.tableWidget_11.setColumnWidth(6, 90)
+    self.ui.tableWidget_11.setColumnWidth(7, 30)
+    self.ui.tableWidget_11.setColumnWidth(8, 30)
+
+    self.ui.tableWidget_13.setFont((QFont("Times", 11)))
+    self.ui.tableWidget_13.setColumnWidth(0, 150)
+    self.ui.tableWidget_13.setColumnWidth(1, 100)
+    self.ui.tableWidget_13.setColumnWidth(2, 110)
+    self.ui.tableWidget_13.setColumnWidth(3, 110)
+    self.ui.tableWidget_13.setColumnWidth(4, 210)
+    self.ui.tableWidget_13.setColumnWidth(5, 100)
+
+    #stock tabel
+    self.ui.tableWidget_4.setFont((QFont("Times", 11)))
+    self.ui.tableWidget_4.setColumnWidth(0, 80)
+    self.ui.tableWidget_4.setColumnWidth(1, 80)
+    self.ui.tableWidget_4.setColumnWidth(2, 200)
+    self.ui.tableWidget_4.setColumnWidth(3, 100)
+    self.ui.tableWidget_4.setColumnWidth(4, 100)
+    self.ui.tableWidget_4.setColumnWidth(5, 100)
+    self.ui.tableWidget_4.setColumnWidth(6, 100)
+    self.ui.tableWidget_4.setColumnWidth(7, 100)
+    self.ui.tableWidget_4.setColumnWidth(8, 100)
+    self.ui.tableWidget_4.setColumnWidth(9, 100)
+    self.ui.tableWidget_4.setColumnWidth(10, 90)
+    self.ui.tableWidget_4.setColumnWidth(11, 200)
+    self.ui.tableWidget_4.setColumnWidth(12, 200)
+
+
+    self.ui.tableWidget_16.setFont((QFont("Times", 11)))
+    self.ui.tableWidget_16.setColumnWidth(0, 200)
+    self.ui.tableWidget_16.setColumnWidth(1, 250)
+    self.ui.tableWidget_16.setColumnWidth(2, 200)
+    self.ui.tableWidget_16.setColumnWidth(3, 100)
+    self.ui.tableWidget_16.setColumnWidth(4, 200)
+    self.ui.tableWidget_16.setColumnWidth(5, 100)
+
+    self.ui.tableWidget_7.setFont((QFont("Times", 11)))
+    self.ui.tableWidget_7.setColumnWidth(0, 200)
+    self.ui.tableWidget_7.setColumnWidth(1, 350)
+    self.ui.tableWidget_7.setColumnWidth(2, 200)
+
+    self.ui.tableWidget_15.setColumnWidth(0, 200)
+    self.ui.tableWidget_15.setColumnWidth(1, 200)
+    self.ui.tableWidget_15.setColumnWidth(2, 200)
+    self.ui.tableWidget_15.setColumnWidth(3, 200)
+    self.ui.tableWidget_15.setColumnWidth(4, 100)
+
+    self.ui.tableWidget_14.setColumnWidth(0, 50)
+    self.ui.tableWidget_14.setColumnWidth(1, 150)
+    self.ui.tableWidget_14.setColumnWidth(2, 150)
+    self.ui.tableWidget_14.setColumnWidth(3, 150)
+    self.ui.tableWidget_14.setColumnWidth(4, 150)
+    self.ui.tableWidget_14.setColumnWidth(6, 150)
+    self.ui.tableWidget_14.setColumnWidth(7, 100)
+    self.ui.tableWidget_14.setColumnWidth(8, 100)
+    self.ui.tableWidget_14.setColumnWidth(9, 70)
+   
+    
+
+    self.ui.fixed_assets_tb_2.setColumnWidth(0, 450)
+    self.ui.fixed_assets_tb_2.setColumnWidth(1, 450)
+
+    self.ui.tableWidget_14.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+    # Table streching
+    self.ui.tableWidget_14.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_6.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_11.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_4.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_5.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_12.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_13.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_15.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_16.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_2.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_3.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_4.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_5.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_6.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_7.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_8.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    #self.ui.tableAsset.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.fixed_assets_tb.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.fixed_assets_tb_2.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_25.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_26.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_27.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_28.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_24.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_30.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_34.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_31.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_32.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_33.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_39.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_36.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_38.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_40.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_41.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_37.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    
+
+

@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="images">
+    <file>Capture.svg</file>
+    <file>images/images/accounting.png</file>
+    <file>images/images/crm (1).png</file>
+    <file>images/images/crm.png</file>
+    <file>images/images/hr.png</file>
+    <file>images/images/payment-terminal.png</file>
+    <file>images/images/user.png</file>
+    <file>yobi.svg</file>
+  </qresource>
+</RCC>

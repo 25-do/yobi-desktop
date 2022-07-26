@@ -1,0 +1,28 @@
+## How Does Triple-Entry Accounting Work?
+“It’s tough to lie when everybody is watching.”- Ian Grigg
+An outstanding concept conceived by the late Yuji Ijiri, a professor at Carnegie Mellon University, Triple-Entry Accounting presents a framework for a new and complex way to do accounting. The concept has come into focus in recent years when Ian Grigg who associated it with blockchain technology and popularized it as he believed that accounting should no longer be completely private.
+It is very essential to understand what is a blockchain and how does it work? In simple terms, blockchain refers to a digital ledger that is distributed among multiple locations in order to ensure security and ease of access globally. At present, this technology is primarily used for bitcoin and other cryptocurrencies and has just penetrated the accounting processes but domain experts opine that it’s only a matter of time till it will entirely disrupt the accounting processes.
+The term Triple-Entry Accounting is somewhat misleading as there isn’t any third entry; instead, a third component is added to the debit and credit system. The common thread or the binding component is Blockchain that links the books together and helps in linking two separate double entries and can potentially be viewed for external auditing purposes.
+So, instead of individual firms having their own books for the transaction, they go through a contract which evidently includes every aspect of a transaction; what the product was, who is the seller, who is the buyer, etc. and above all, it’s digitally signed.
+In the Triple-Entry Accounting system, all accounting entries are cryptographically sealed by a third entry and thus, it works as a deterrent towards manipulations and financial fraud. In traditional Double-Entry Accounting a company’s ledger can be compromised by any of the weak human links, may be an employee or a bookkeeper or even an auditor. But this unique system of Triple-Entry Accounting leaves no space for any corrupt, weak human link as it is immutable.
+As blockchains are completely automated and decentralized, once an entry is recorded, it cannot be edited, altered or removed. The highest level of encryption technology ensures the accuracy of each transaction, digitally signed, leaving no gaps for errors and at the same time verifiable by all.
+The transactions recorded on the blockchain using triple entry simplifies the entire double-entry accounting process as once a transaction is recorded on the blockchain by one of the two accountants, the other party can also view the particular double entry, easily review it, and have it recorded automatically in its own books.
+Thus, Triple-Entry Accounting is set to potentially revolutionize the future of bookkeeping as Blockchain accounting will literally halve the double-entry transactions recorded. This will assist the bookkeepers greatly by saving their time and providing them the opportunity to focus more on value-added roles within the profession.
+
+
+# Benefits Associated With Triple-Entry Accounting.
+● Benefit #1: It takes the dependency out from the Auditors to ensure consistency.
+● Benefit #2: It introduces a public ledger where all participating entities mandatorily host all accounting entries.
+● Benefit #3: It thereby establishes a self-regulated and shared environment amongst all stakeholders.
+● Benefit #4: It thus, ensures that the larger purpose of bookkeeping and auditing doesn’t suffer because of errors or omissions, immaterial of whether caused intentionally or unintentionally.
+● Benefit #5: Being tamper-proof, it brings around trust into the books.
+● Benefit #6: Triple-Entry Accounting allows reconciling the balance, the transaction, and the reporting process.
+● Benefit #7: By keeping a non-biased record, Triple-Entry Accounting reduces the chances of errors, frauds or manipulations.
+Benefit #8: With this system of accounting, there is a perfect audit trail as it creates an immutable history of all the exchanges within the system.
+Future of Triple-Entry Accounting
+“Last but not least, with triple entry accounting, for the very first time, we can seamlessly follow the world’s money.”- David Hartley
+Triple-Entry Accounting is a logical solution to keep the distrust and skepticism at bay and to regain the trust and faith of stakeholders in companies. There are quite a few entities that are adopting Triple-Entry Accounting but at the moment are not able to reach the optimum performance level because self-auditing ledgers need many participants.
+Explaining this fundamental factor David Hartley says, “It’s the same problem as the first telephone. It only makes sense if there are enough others.”
+David Hartley bets on the usefulness of the system and points out that, “Especially multinational companies will save a lot of time and money when creating audit documents. The audit itself is also accelerated.”
+Thus, the Triple-Entry Accounting system undoubtedly has considerable benefits and as a ledger that shows up the entire string of transactions, whether bills generated or paid, etc. it would prove to be an excellent audit record. A real-time status update is another major benefit at the same time accessibility from anywhere at any time is a much-needed convenience.
+Today the companies may not be prepared for this disruption but gradually this unique technology will evolve and shall witness widespread adoption, this is just the beginning of a new era in accounting!
