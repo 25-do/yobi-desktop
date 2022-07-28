@@ -206,7 +206,8 @@ def add_invoice(self):
     self.posksh = float(''.join(map(str, self.posksh)))
     self.totalksh = float(str(self.ui.lineEdit_8.text()))
     
-    discount = float(str(self.ui.lineEdit_13.text()))
+    discount = self.c.execute("SELECT SUM(discount) FROM pos_table").fetchone()
+    discount = float(''.join(map(str, discount)))
 
     client_name = str(self.ui.lineEdit_14.text())
     self.total = self.c.execute("SELECT SUM(totalvat) FROM pos_table").fetchone()
@@ -215,11 +216,13 @@ def add_invoice(self):
 
     # sub_total = self.totalksh
     total_amount = (self.total + self.posksh)
+
     discount2 = (discount / 100 * total_amount)
     grand_total = (total_amount - discount2)
-    
+    total_no_tax = (self.poksh - discount2)
     amount_paid = float(str(self.ui.lineEdit_8.text()))
     due = (grand_total - amount_paid)
+    due2 = (total_no_tax - amount_paid)
     if due < 0:
         QMessageBox.warning(
             QMessageBox(),
@@ -254,8 +257,8 @@ def add_invoice(self):
 
         try:
             self.c.execute(
-                "INSERT INTO orders(uuid, created, sale_no, updated, terms, item_code, discount,  paid_amount, code, client_name, grand_total, total_amount, sub_total, payment_type, payment_status,  order_date, due, invoice_status, markdown_notes ) "
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "INSERT INTO orders(uuid, created, sale_no, updated, terms, item_code, discount,  paid_amount, code, client_name, grand_total, total_amount, sub_total, payment_type, payment_status,  order_date, due, invoice_status, markdown_notes, ledger_uuid) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (
                     invoice_uuid,
                     created,
@@ -275,7 +278,8 @@ def add_invoice(self):
                     order_date,
                     due,
                     invoice_status,
-                    markdown_notes
+                    markdown_notes,
+                    ledger_uuid
                     ))
             self.connection.commit()
             
@@ -307,7 +311,7 @@ def add_invoice(self):
                     journal_uuid,
                     ledger_uuid,
                     'Product Sales',
-                    due,
+                    due2,
                     description,
                     credit,
                     order_date))
@@ -324,7 +328,7 @@ def add_invoice(self):
                     journal_uuid,
                     ledger_uuid,
                     'Product Sales',
-                    amount_paid,
+                    total_no_tax,
                     description2,
                     credit,
                     order_date))

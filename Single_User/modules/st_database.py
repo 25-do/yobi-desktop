@@ -19,7 +19,7 @@ def stats_database(self):
     # cusr.execute("CREATE TABLE IF NOT EXISTS sales(id_4 INTEGER PRIMARY KEY, name TEXT, KSH INTEGER, description TEXT, debit INTEGER, credit INTEGER,saledate TIMESTAMP)")
     cusr.execute("CREATE TABLE IF NOT EXISTS transactions(uuid TEXT, updated TIMESTAMP, created TIMESTAMP, coa_id TEXT, id_4 INTEGER PRIMARY KEY, journal_entry_id TEXT, ledger_id TEXT, name TEXT, KSH INTEGER, description TEXT, tx_type TEXT, transactionsdate TIMESTAMP, user_uuid TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS journal_entries(id TEXT, ledger_id TEXT, activity TEXT, description TEXT, posted TEXT, locked TEXT, journal_entrydate TIMESTAMP, user_uuid TEXT)")
-    cusr.execute("CREATE TABLE IF NOT EXISTS ledgers(id TEXT, name TEXT, locked TEXT, active TEXT, ledger_date TIMESTAMP, user_uuid TEXT)")
+    cusr.execute("CREATE TABLE IF NOT EXISTS ledgers(id TEXT, lg_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, locked TEXT, active TEXT, ledger_date TIMESTAMP, user_uuid TEXT)")
 
     cusr.execute("CREATE TABLE IF NOT EXISTS account_payable(id_17 INTEGER PRIMARY KEY, name TEXT, KSH INTEGER, description TEXT, debit INTEGER, credit INTEGER, ledgerdate TIMESTAMP, user_uuid TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS stock(UPC TEXT NOT NULL, name TEXT, Buying_price INTEGER NOT NULL, selling_price INTEGER NOT NULL, Quantity INTEGER NOT NULL, Supplier TEXT, category TEXT, reoder INTEGER, uom TEXT, Discount TEXT, vat INTEGER NOT NULL, stockdate TIMESTAMP, sold INTEGER, user_uuid TEXT)")
@@ -28,7 +28,7 @@ def stats_database(self):
 
     cusr.execute("CREATE TABLE IF NOT EXISTS most_sold(UPC TEXT , name TEXT, KSH TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS sales_count(count INTEGER)")
-    cusr.execute("CREATE TABLE IF NOT EXISTS pos_table(sale_no INTEGER, UPC TEXT, name TEXT, category TEXT, Quantity INTEGER, KSH INTEGER, KSH2 INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, sale_date TIMESTAMP)")
+    cusr.execute("CREATE TABLE IF NOT EXISTS pos_table(sale_no INTEGER, UPC TEXT, name TEXT, discount INTEGER, category TEXT, Quantity INTEGER, KSH INTEGER, KSH2 INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, sale_date TIMESTAMP)")
     cusr.execute("CREATE TABLE IF NOT EXISTS sales(sale_no INTEGER, UPC TEXT, name TEXT, category TEXT, Quantity INTEGER, KSH INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, sale_date TIMESTAMP)")
     cusr.execute("CREATE TABLE IF NOT EXISTS sales_report(sale_no INTEGER, UPC TEXT, name TEXT, category TEXT, Quantity INTEGER, KSH INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, sale_date TIMESTAMP)")
 
@@ -36,10 +36,10 @@ def stats_database(self):
     cusr.execute("CREATE TABLE IF NOT EXISTS recip_detail(id_17 INTEGER PRIMARY KEY, business_name TEXT NOT NULL, pobox TEXT, contact TEXT, email TEXT, street_address TEXT, notes TEXT, footer TEXT, currency TEXT, profile_photo BLOB)")
     cusr.execute("CREATE TABLE IF NOT EXISTS tax_table(tax_name TEXT, tax_percentage INTEGER, tax_agent TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS clients(id_10 INTEGER PRIMARY KEY,  name TEXT, telno TEXT , address TEXT, email TEXT, date TIMESTAMP, balance INTEGER)")
-    cusr.execute("CREATE TABLE IF NOT EXISTS orders(uuid TEXT, created TIMESTAMP, sale_no TEXT, updated TIMESTAMP, terms TEXT, id_13 INTEGER PRIMARY KEY AUTOINCREMENT, item_code TEXT NOT NULL, discount INTEGER,  paid_amount INTEGER NOT NULL, code TEXT, client_name TEXT NOT NULL, grand_total INTEGER, total_amount INTEGER, sub_total INTEGER, payment_type Text, payment_status Text,  order_date TIMESTAMP, due INTEGER, invoice_status TEXT, markdown_notes TEXT, user_uuid TEXT)")
+    cusr.execute("CREATE TABLE IF NOT EXISTS orders(uuid TEXT, created TIMESTAMP, sale_no TEXT, updated TIMESTAMP, terms TEXT, id_13 INTEGER PRIMARY KEY AUTOINCREMENT, item_code TEXT NOT NULL, discount INTEGER,  paid_amount INTEGER NOT NULL, code TEXT, client_name TEXT NOT NULL, grand_total INTEGER, total_amount INTEGER, sub_total INTEGER, payment_type Text, payment_status Text,  order_date TIMESTAMP, due INTEGER, invoice_status TEXT, markdown_notes TEXT, ledger_uuid TEXT, user_uuid TEXT)")
 
     cusr.execute("CREATE TABLE IF NOT EXISTS payment(code TEXT,  client_name TEXT, payment_date TIMESTAMP , paid INTEGER, due INTEGER)")
-    cusr.execute("CREATE TABLE IF NOT EXISTS chart_of_accounts(coa_id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT, role TEXT, account TEXT, balance_type TEXT, locked INTEGER, active INTEGER)")
+    cusr.execute("CREATE TABLE IF NOT EXISTS chart_of_accounts(code TEXT, role TEXT, account TEXT, balance_type TEXT, locked INTEGER, active INTEGER)")
     cusr.execute("CREATE TABLE IF NOT EXISTS currency(currency TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS debt_payment(code TEXT,  supplier_name TEXT, payment_date TIMESTAMP , paid INTEGER, due INTEGER)")
     cusr.execute("CREATE TABLE IF NOT EXISTS income(name TEXT,  amount INTEGER, debit INTEGER, credit INTEGER, description TEXT , income_date TIMESTAMP)")

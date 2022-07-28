@@ -183,6 +183,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_52.clicked.connect(self.buttonClick)
         self.ui.pushButton_130.clicked.connect(self.buttonClick)
         self.ui.pushButton_158.clicked.connect(self.buttonClick)
+        self.ui.pushButton_165.clicked.connect(self.buttonClick)
     
         st_database.stats_database(self)
         
@@ -660,6 +661,9 @@ class MainWindow(QMainWindow):
         if btnName == "pushButton_130":
             self.ui.stackedWidget_3.setCurrentWidget(
                 self.ui.page_28)  # SET PAGE
+        if btnName == "pushButton_165":
+            self.ui.stackedWidget_3.setCurrentWidget(
+                self.ui.page_28)  # SET PAGE
         if btnName == "pushButton_129":
             Entrance()
         if btnName == "btn_logout":
@@ -748,7 +752,7 @@ class MainWindow(QMainWindow):
             database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
-            res = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=?", ("revenue",)).fetchone()
+            res = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", ("revenue", "credit")).fetchone()
             res = (''.join(map(str, res)))
             if res == str(None):
                 res = 0.0
@@ -1567,7 +1571,34 @@ class MainWindow(QMainWindow):
                     col,)), (currentcode,)).fetchone()
             var_t = (''.join(map(str, var_t)))
             combo.setCurrentText(var_t)
-        
+    def update_ledger_page(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_61)
+        database_connection = sqlite3.connect(
+            pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        row = self.ui.tableWidget_25.currentRow()
+        currentcode = (self.ui.tableWidget_25.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        column_list = ["name"]
+        line_edits = [
+            self.ui.lineEdit_94]
+        for col, edits in zip(column_list, line_edits):
+            var_y = cusr.execute(
+                "SELECT %s FROM ledgers WHERE lg_id=? " %
+                (str(
+                    col,)), (currentcode,)).fetchone()
+            var_y = (''.join(map(str, var_y)))
+            edits.setText((var_y))
+        check1 = cusr.execute("SELECT locked FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        check1 = (''.join(map(str, check1)))
+        check2 = cusr.execute("SELECT active FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        check2 = (''.join(map(str, check2)))
+        if check1 == "1":
+            self.ui.checkBox_6.isChecked(True)
+        elif check2 == "1":
+            self.ui.checkBox_7.isChecked(True)
+        else:
+            pass
 
     def reloder_payment(self):
         row = self.ui.tableWidget_6.currentRow()
@@ -2258,7 +2289,7 @@ class MainWindow(QMainWindow):
                 description]
             for col, ed in zip(column_list, edits):
                 cusr.execute(
-                    "UPDATE chart_of_accounts SET %s=? WHERE coa_id=?" %
+                    "UPDATE chart_of_accounts SET %s=? WHERE code=?" %
                     (str(
                         col,)), (ed, currentcode))
             QMessageBox.information(
@@ -3910,6 +3941,8 @@ class MainWindow(QMainWindow):
                     "SELECT (Quantity - ?) FROM stock WHERE UPC=? ", (quantity, itemid)).fetchone()
                 var_j = cusr.execute(
                     "SELECT category FROM stock WHERE UPC=? ", (itemid,)).fetchone()
+                disc = cusr.execute(
+                    "SELECT Discount FROM stock WHERE UPC=? ", (itemid,)).fetchone()
                 var_x = cusr.execute(
                     "SELECT name FROM stock WHERE UPC=? ",
                     (itemid,
@@ -3930,6 +3963,7 @@ class MainWindow(QMainWindow):
                 # removes the brackets from the name queryed
                 var_x = (''.join(map(str, var_x)))
                 var_j = (''.join(map(str, var_j)))
+                disc = (''.join(map(str, disc)))
                 b = float(''.join(map(str, b)))
                 b2 = (''.join(map(str, b2)))
                 tp = babel.numbers.format_currency(
@@ -3944,10 +3978,11 @@ class MainWindow(QMainWindow):
                 totalvat = ((var_q / 100 * b))
                 sale_date = date.today()
                 self.pos = cusr.execute(
-                    "INSERT INTO pos_table(sale_no, UPC, name, category, Quantity, KSH, KSH2, VAT, totalvat, taxcode, sale_date) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO pos_table(sale_no, UPC, name, discount, category, Quantity, KSH, KSH2, VAT, totalvat, taxcode, sale_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                     (sale_no,
                      itemid,
                      var_x,
+                     disc,
                      var_j,
                      quantity,
                      b,
@@ -4648,6 +4683,10 @@ class AddLedger(QDialog):
                 combo2 = "1"
             else:
                 combo2 = "0"
+            if combo2.isChecked() == True and combo1.isChecked() == True:
+                combo2 = "1"
+            elif combo2.isChecked() == False and combo1.isChecked() == False:
+                combo2 = "1"
 
             print(combo1)
             print(combo2)

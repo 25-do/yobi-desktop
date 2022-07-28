@@ -239,18 +239,19 @@ def revenuet(self):
     qdate = self.ui.dateEdit_5.date()
     order_date2 = qdate.toPython()
     alltb = self.c.execute(
-        "SELECT name, amount FROM income WHERE income_date BETWEEN ? AND ?",
+        "SELECT name, KSH FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
         (order_date,
-         order_date2)).fetchall()
+         order_date2, "revenue", "credit")).fetchall()
     self.c.execute(
-        "INSERT INTO report_printing SELECT name, amount FROM income WHERE income_date BETWEEN ? AND ?",
+        "INSERT INTO report_printing SELECT name, amount FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
         (order_date,
-         order_date2))
+         order_date2, "revenue", "credit"))
     self.connection.commit()
     total_income = self.c.execute(
-        "SELECT SUM(amount) FROM income WHERE income_date BETWEEN ? AND ?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
         (order_date,
-         order_date2)).fetchone()
+         order_date2,
+         "revenue", "credit")).fetchone()
     total_income = (''.join(map(str, total_income)))
 
     revenue = QtWidgets.QTreeWidgetItem(self.ui.treeWidget, ['revenue'])
@@ -271,30 +272,19 @@ def sales(self):
 
     qdate = self.ui.dateEdit_5.date()
     sale_date2 = qdate.toPython()
-    alltb = self.c.execute(
-        "SELECT SUM(paid) FROM payment WHERE payment_date BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchone()
-    revenue_from_transactions = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
+    sales_rev = self.c.execute(
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=?",
         (sale_date,
-         sale_date2)).fetchone()
+         sale_date2, "Product Sales")).fetchone()
     self.c.execute('INSERT INTO report_printing VALUES (?,?)', ('Sales', ' '))
     self.connection.commit()
-    print(type((alltb)))
-    total_sales = self.c.execute(
-        "SELECT SUM(paid_amount) FROM orders WHERE order_date BETWEEN ? AND ?",
-        (sale_date,
-         sale_date2)).fetchone()
-    total_sales = float(''.join(map(str, total_sales)))
-    alltb = (''.join(map(str, alltb)))
 
-    if alltb == str(None):
-        alltb = 0
+    if sales_rev == str(None):
+        sales_rev = 0
     else:
-        alltb = float(''.join(map(str, alltb)))
+        sales_rev = float(''.join(map(str, sales_rev)))
 
-    total_revenue = str(total_sales + alltb)
+    total_revenue = str(sales_rev)
 
     sale = QtWidgets.QTreeWidgetItem(self.ui.treeWidget, ['Sales'])
     total_revenue1 = babel.numbers.format_currency(
