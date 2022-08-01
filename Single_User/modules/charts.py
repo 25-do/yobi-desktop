@@ -217,8 +217,8 @@ def pie2(self):
     date_y = datetime.date.today()
     year_td = date_y.strftime("%Y")
     income = self.c.execute(
-        "SELECT SUM(amount) FROM income WHERE strftime('%Y', income_date)=?",
-        (str(year_td),
+        "SELECT SUM(KSH) FROM transactions WHERE strftime('%Y', transactionsdate)=? AND coa_id=?",
+        (str(year_td), "revenue"
          )).fetchone()
     income = (''.join(map(str, income)))
     if income == str(None):
@@ -227,48 +227,16 @@ def pie2(self):
         income = float(''.join(map(str, income)))
 
     var_expe = self.c.execute(
-        "SELECT SUM(KSH) FROM var_expe WHERE strftime('%Y', vardate)=?",
-        (str(year_td),
-         )).fetchone()
+        "SELECT SUM(KSH) FROM transactions WHERE strftime('%Y', transactionsdate)=? AND coa_id=? AND coa_id=?",
+        (str(year_td), "fixedexpenses", "expenses")).fetchone()
     var_expe = (''.join(map(str, var_expe)))
     if var_expe == str(None):
         var_expe = 0.0
     else:
         var_expe = float(''.join(map(str, var_expe)))
 
-    fix_expe = self.c.execute(
-        "SELECT SUM(KSH) FROM fix_expe WHERE strftime('%Y', fixdate)=?",
-        (str(year_td),
-         )).fetchone()
-    fix_expe = (''.join(map(str, fix_expe)))
-    if fix_expe == str(None):
-        fix_expe = 0.0
-    else:
-        fix_expe = float(''.join(map(str, fix_expe)))
-
-    total_paid = self.c.execute(
-        "SELECT SUM(paid) FROM payment WHERE strftime('%Y', payment_date)=?",
-        (str(year_td),
-         )).fetchone()
-    total_paid = (''.join(map(str, total_paid)))
-    if total_paid == str(None):
-        total_paid = 0.0
-    else:
-        total_paid = float(''.join(map(str, total_paid)))
-
-    amount_paid = self.c.execute(
-        "SELECT SUM(paid_amount) FROM orders WHERE strftime('%Y', order_date)=?",
-        (str(year_td),
-         )).fetchone()
-    amount_paid = (''.join(map(str, amount_paid)))
-
-    if amount_paid == str(None):
-        amount_paid = 0.0
-    else:
-        amount_paid = float(''.join(map(str, amount_paid)))
-
-    td = float(amount_paid + total_paid + income)
-    expe = float(fix_expe + var_expe)
+    td = float(income)
+    expe = float(var_expe)
 
     pieseries = QtCharts.QPieSeries()  # Define PieSeries
     pieseries.append("Total Revenue", td)  # insert the first element
@@ -336,9 +304,9 @@ def create_bar2(self):
 
     for month_list in month_list_2:
         income = self.c.execute(
-            "SELECT SUM(amount) FROM income WHERE strftime('%Y', income_date)=? AND strftime('%m', income_date)=?",
+            "SELECT SUM(KSH) FROM transactions WHERE strftime('%Y', transactionsdate)=? AND strftime('%m', transactionsdate)=? AND coa_id=?",
             (str(year_td),
-             month_list)).fetchone()
+             month_list, 'revenue')).fetchone()
         income = (''.join(map(str, income)))
         if income == str(None):
             income = 0.0
@@ -346,9 +314,9 @@ def create_bar2(self):
             income = float(''.join(map(str, income)))
 
         var_expe = self.c.execute(
-            "SELECT SUM(KSH) FROM var_expe WHERE strftime('%Y', vardate)=? AND strftime('%m', vardate)=?",
+            "SELECT SUM(KSH) FROM transactions WHERE strftime('%Y', transactionsdate)=? AND strftime('%m', transactionsdate)=? AND coa_id=?",
             (str(year_td),
-             month_list)).fetchone()
+             month_list, "expenses")).fetchone()
         var_expe = (''.join(map(str, var_expe)))
         if var_expe == str(None):
             var_expe = 0.0
@@ -356,37 +324,16 @@ def create_bar2(self):
             var_expe = float(''.join(map(str, var_expe)))
 
         fix_expe = self.c.execute(
-            "SELECT SUM(KSH) FROM fix_expe WHERE strftime('%Y', fixdate)=? AND strftime('%m', fixdate)=?",
+            "SELECT SUM(KSH) FROM transactions WHERE strftime('%Y', transactionsdate)=? AND strftime('%m', transactionsdate)=? AND coa_id=?",
             (str(year_td),
-             month_list)).fetchone()
+             month_list, "fixedexpenses")).fetchone()
         fix_expe = (''.join(map(str, fix_expe)))
         if fix_expe == str(None):
             fix_expe = 0.0
         else:
             fix_expe = float(''.join(map(str, fix_expe)))
 
-        total_paid = self.c.execute(
-            "SELECT SUM(paid) FROM payment WHERE strftime('%Y', payment_date)=? AND strftime('%m', payment_date)=?",
-            (str(year_td),
-             month_list)).fetchone()
-        total_paid = (''.join(map(str, total_paid)))
-        if total_paid == str(None):
-            total_paid = 0.0
-        else:
-            total_paid = float(''.join(map(str, total_paid)))
-
-        amount_paid = self.c.execute(
-            "SELECT SUM(paid_amount) FROM orders WHERE strftime('%Y', order_date)=? AND strftime('%m', order_date)=?",
-            (str(year_td),
-             month_list)).fetchone()
-        amount_paid = (''.join(map(str, amount_paid)))
-
-        if amount_paid == str(None):
-            amount_paid = 0.0
-        else:
-            amount_paid = float(''.join(map(str, amount_paid)))
-
-        td = float(amount_paid + total_paid + income)
+        td = float(income)
         expe = float(fix_expe + var_expe)
         empty2.append(expe)
         empty.append(td)

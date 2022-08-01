@@ -212,6 +212,8 @@ def add_invoice(self):
     client_name = str(self.ui.lineEdit_14.text())
     self.total = self.c.execute("SELECT SUM(totalvat) FROM pos_table").fetchone()
     self.total = float(''.join(map(str, self.total)))
+    print(f"........./...POS............../")
+    print(f"TOTAL DISCOUNT ---> {discount}")
     
 
     # sub_total = self.totalksh
@@ -219,9 +221,12 @@ def add_invoice(self):
 
     discount2 = (discount / 100 * total_amount)
     grand_total = (total_amount - discount2)
-    total_no_tax = (self.poksh - discount2)
+    print(f"DISCOUNT ON product ---> {discount2}")
+    print(f"Grand TOTAL AFTER DEDUCTION OF DISCOUNT ---> {grand_total}")
+    total_no_tax = (self.posksh - discount2)
     amount_paid = float(str(self.ui.lineEdit_8.text()))
     due = (grand_total - amount_paid)
+    print(f"DUE AMOUNT ---> {due}")
     due2 = (total_no_tax - amount_paid)
     if due < 0:
         QMessageBox.warning(
@@ -438,14 +443,17 @@ def orders_label(self):
         td = (amount_paid + total_paid)
 
         total_revenue2 = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE coa_id=?", ("revenue",)).fetchone()
+            "SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND name=?", ("revenue", "Product Sales")).fetchone()
         total_revenue2 = (''.join(map(str, total_revenue2)))
+
+        total_revenue = self.c.execute(
+            "SELECT SUM(KSH) FROM transactions WHERE coa_id=?", ("revenue",)).fetchone()
+        total_revenue = (''.join(map(str, total_revenue)))
 
         if total_revenue2 == str(None):
             total_revenue2 = 0.0
         else:
             total_revenue2 = float(''.join(map(str, total_revenue2)))
-        total_revenue = (td + total_revenue2)
 
         tp = babel.numbers.format_currency(
             decimal.Decimal(all_due_orders), cash_label, locale='en_US')

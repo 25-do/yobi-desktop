@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QTableWidgetItem
 from main import *
 import pandas as pd
 import os
+import unittest
 basepath = os.path.expanduser('~/Documents')
 pathtodb = str(basepath)
 newpath = (pathtodb + "\\yobi")
@@ -430,18 +431,18 @@ def general_report(self):
     qdate = self.ui.dateEdit_17.date()
     order_date2 = qdate.toPython()
     result = self.c.execute(
-        "SELECT * FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
+        "SELECT uuid, name, KSH, tx_type, description, transactionsdate FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
         (order_date,
          order_date2)).fetchall()
     cr = self.c.execute(
-        "SELECT SUM(credit) FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
         (order_date,
-         order_date2)).fetchone()
+         order_date2, "credit")).fetchone()
     cr = float(''.join(map(str, cr)))
     dr = self.c.execute(
-        "SELECT SUM(debit) FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
         (order_date,
-         order_date2)).fetchone()
+         order_date2, "debit")).fetchone()
     dr = float(''.join(map(str, dr)))
     dr1 = babel.numbers.format_currency(
         decimal.Decimal(dr), cash_label, locale='en_US')
@@ -454,7 +455,7 @@ def general_report(self):
     else:
         self.ui.label_231.setText(" not balanced")
 
-    print(result)
+    
     self.ui.tableWidget_21.setRowCount(0)
     for row_number, row_data in enumerate(result):
         self.ui.tableWidget_21.insertRow(row_number)
@@ -660,9 +661,9 @@ def net_pr(self):
              order_date2)).fetchone()
 
         total_income = self.c.execute(
-            "SELECT SUM(amount) FROM income WHERE income_date BETWEEN ? AND ?",
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
             (order_date,
-             order_date2)).fetchone()
+             order_date2, "revenue")).fetchone()
         total_income = float(''.join(map(str, total_income)))
 
         total_sales = self.c.execute(
@@ -671,26 +672,17 @@ def net_pr(self):
              order_date2)).fetchone()
         total_sales = float(''.join(map(str, total_sales)))
         fix_sum = self.c.execute(
-            "SELECT SUM(KSH) FROM fix_expe WHERE fixdate BETWEEN ? AND ?",
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND coa_id=?",
             (order_date,
-             order_date2)).fetchone()
+             order_date2, "fixedexpenses", "expenses")).fetchone()
 
-        var_sum = self.c.execute(
-            "SELECT SUM(KSH) FROM var_expe WHERE vardate BETWEEN ? AND ?",
-            (order_date,
-             order_date2)).fetchone()
         paid = (''.join(map(str, paid)))
         fix_sum = (''.join(map(str, fix_sum)))
-        var_sum = (''.join(map(str, var_sum)))
-        if var_sum == str(None):
-            var_sum = 0.0
-        else:
-            var_sum = float(''.join(map(str, var_sum)))
         if fix_sum == str(None):
             fix_sum = 0.0
         else:
             fix_sum = float(''.join(map(str, fix_sum)))
-        l = int(fix_sum + var_sum)
+        l = int(fix_sum)
 
         alltb = (''.join(map(str, alltb)))
 

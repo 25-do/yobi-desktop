@@ -31,7 +31,7 @@ def get_selected_row_details(self):
     due_orders = float(''.join(map(str, due_orders)))
     ledger_uuid = self.c.execute(
         "SELECT ledger_uuid FROM orders WHERE code=?", (currentcode,)).fetchone()
-    ledger_uuid = float(''.join(map(str, ledger_uuid)))
+    ledger_uuid = (''.join(map(str, ledger_uuid)))
 
     paid = float(str(self.ui.lineEdit_17.text()))
     due = (due_orders - paid)

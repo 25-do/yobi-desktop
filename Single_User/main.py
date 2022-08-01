@@ -181,9 +181,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_99.clicked.connect(self.buttonClick)
         self.ui.pushButton_122.clicked.connect(self.buttonClick)
         self.ui.pushButton_52.clicked.connect(self.buttonClick)
-        self.ui.pushButton_130.clicked.connect(self.buttonClick)
         self.ui.pushButton_158.clicked.connect(self.buttonClick)
-        self.ui.pushButton_165.clicked.connect(self.buttonClick)
     
         st_database.stats_database(self)
         
@@ -239,6 +237,9 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_67.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_15))
+        self.ui.pushButton_158.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_57))
         self.ui.pushButton_125.clicked.connect(
             lambda: self.ui.stackedWidget_4.setCurrentWidget(
                 self.ui.page_45))
@@ -248,6 +249,12 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_126.clicked.connect(
             lambda: self.ui.stackedWidget_4.setCurrentWidget(
                 self.ui.page_47))
+        self.ui.pushButton_165.clicked.connect(
+            lambda: self.ui.stackedwidget_3.setCurrentWidget(
+                self.ui.page_28))
+        self.ui.pushButton_130.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_2))
         self.ui.pushButton_11.clicked.connect(self.delete)
  
         self.ui.client_btn.clicked.connect(insert11)
@@ -291,6 +298,7 @@ class MainWindow(QMainWindow):
         self.addstock2()
         self.delete_uom_btn()
         self.delete_tx_btn()
+        self.delete_ledger_btn()
         # self.receipt()
         self.Netprofit_Margin()
         self.Margin()
@@ -393,6 +401,7 @@ class MainWindow(QMainWindow):
         self.coa()
         self.search_sup_btn()
         self.update_transactions_btn()
+        self.update_coa_btn()
         self.gr_repobtn()
         self.combo()
         self.reoder_limit()
@@ -403,6 +412,7 @@ class MainWindow(QMainWindow):
         self.save_payment_btn()
         self.add_ledger_btn()
         self.update_supplier_btn()
+        self.update_uom_btn()
         self.lock_invoice_ledger_btn()
         # self.sales()
         self.stock_report_btn()
@@ -437,6 +447,7 @@ class MainWindow(QMainWindow):
         # imageconversion.select_image(self)
         self.combo_pay()
         self.update_order_btn()
+        self.update_ledger_btn()
         self.inventory()
         self.order_btn()
         self.ui.comboBox_4.addItems(["cash", "cheque", "credit card"])
@@ -658,12 +669,6 @@ class MainWindow(QMainWindow):
         if btnName == "pushButton_30":
             self.ui.stackedWidget_2.setCurrentWidget(
                 self.ui.page_22)  # SET PAGE
-        if btnName == "pushButton_130":
-            self.ui.stackedWidget_3.setCurrentWidget(
-                self.ui.page_28)  # SET PAGE
-        if btnName == "pushButton_165":
-            self.ui.stackedWidget_3.setCurrentWidget(
-                self.ui.page_28)  # SET PAGE
         if btnName == "pushButton_129":
             Entrance()
         if btnName == "btn_logout":
@@ -942,7 +947,7 @@ class MainWindow(QMainWindow):
         
     def load_ledgers(self):
         database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-        query = "SELECT name, ledger_date FROM ledgers ORDER BY id DESC"
+        query = "SELECT lg_id, name, ledger_date FROM ledgers ORDER BY id DESC"
         result = database_connection.execute(query).fetchall()
 
         self.ui.tableWidget_25.setRowCount(0)
@@ -967,8 +972,23 @@ class MainWindow(QMainWindow):
                                 "QPushButton:hover {\n"
                                 "	background-color: rgb(85, 170, 255);\n"
                                 "}")
-                self.ui.tableWidget_25.setCellWidget(row_number, 3, rtn)
+                edit = QPushButton("Edit")
+                font = QtGui.QFont()
+                font.setPointSize(9)
+                font.setBold(True)
+                # font.setWeight(75)
+                edit.setFont(font)
+                edit.setStyleSheet(u"QPushButton{\n"
+                                "\n"
+                                "border-radius : 20px;\n"
+                                "}\n"
+                                "QPushButton:hover {\n"
+                                "	background-color: rgb(85, 170, 255);\n"
+                                "}")
+                self.ui.tableWidget_25.setCellWidget(row_number, 4, rtn)
+                self.ui.tableWidget_25.setCellWidget(row_number, 3, edit)
                 rtn.clicked.connect(self.all_journal_entries)
+                edit.clicked.connect(self.set_ledger_update_page)
     def back_ledgers_btn(self):
         self.ui.pushButton_52.clicked.connect(self.back_ledgers)
 
@@ -1264,6 +1284,8 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_160.clicked.connect(self.delete_uom)
     def delete_tx_btn(self):
         self.ui.pushButton_164.clicked.connect(self.delete_tx)
+    def delete_ledger_btn(self):
+        self.ui.pushButton_169.clicked.connect(self.delete_ledger)
 
 
     def delete_uom(self):
@@ -1279,6 +1301,22 @@ class MainWindow(QMainWindow):
         uom.load_uom(self)
         self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_57)
+        cusr.close()
+        database_connection.close()
+
+
+    def delete_ledger(self):
+        row = self.ui.tableWidget_25.currentRow()
+        currentcode = (self.ui.tableWidget_25.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        database_connection = sqlite3.connect(
+            pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        cusr.execute("DELETE from ledgers WHERE lg_id=?", (currentcode,))
+        database_connection.commit()
+        self.load_ledgers()
+        self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_62)
         cusr.close()
         database_connection.close()
     def delete_tx(self):
@@ -1331,18 +1369,18 @@ class MainWindow(QMainWindow):
         database_connection.close()
 
     def coa_load(self):
-        """loads all list of accounts to table fixed_assets_tb_2 and setting details button 
+        """loads all list of accounts to table chart_of_accounts_tb and setting details button 
         to the table
         """
         database_connection = sqlite3.connect(
             pathtodb + "\\yobi\\yobi_database.db")
         query = "SELECT code, role, account, balance_type FROM chart_of_accounts"
         result = database_connection.execute(query).fetchall()
-        self.ui.fixed_assets_tb_2.setRowCount(0)
+        self.ui.chart_of_accounts_tb.setRowCount(0)
         for row_number, row_data in enumerate(result):
-            self.ui.fixed_assets_tb_2.insertRow(row_number)
+            self.ui.chart_of_accounts_tb.insertRow(row_number)
             for column_number, data in enumerate(row_data):
-                self.ui.fixed_assets_tb_2.setItem(
+                self.ui.chart_of_accounts_tb.setItem(
                     row_number, column_number, QTableWidgetItem(str(data)))
                 details_btn = QPushButton("Details")
                 font = QtGui.QFont()
@@ -1357,7 +1395,8 @@ class MainWindow(QMainWindow):
                               "QPushButton:hover {\n"
                               "	background-color: rgb(85, 170, 255);\n"
                               "}")
-                edit_btn = QPushButton("Details")
+                
+                edit_btn = QPushButton()
                 font = QtGui.QFont()
                 font.setPointSize(9)
                 font.setBold(True)
@@ -1370,8 +1409,16 @@ class MainWindow(QMainWindow):
                               "QPushButton:hover {\n"
                               "	background-color: rgb(85, 170, 255);\n"
                               "}")
-                self.ui.fixed_assets_tb_2.setCellWidget(row_number, 4, details_btn)
-                self.ui.fixed_assets_tb_2.setCellWidget(row_number, 5, edit_btn)
+                icon5 = QIcon()
+                icon5.addFile(
+                    u":/icons/images/icons/cil-pen-alt.png",
+                    QSize(),
+                    QIcon.Normal,
+                    QIcon.Off)
+                edit_btn.setIcon(icon5)
+                edit_btn.setIconSize(QSize(40, 40))
+                self.ui.chart_of_accounts_tb.setCellWidget(row_number, 4, details_btn)
+                self.ui.chart_of_accounts_tb.setCellWidget(row_number, 5, edit_btn)
                 details_btn.clicked.connect(self.account_trans_list_report)
                 edit_btn.clicked.connect(self.update_coa_page)
 
@@ -1383,11 +1430,11 @@ class MainWindow(QMainWindow):
         database_connection = sqlite3.connect(
             pathtodb + "\\yobi\\yobi_database.db")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_31)
-        row = self.ui.fixed_assets_tb_2.currentRow()
-        currentcode = (self.ui.fixed_assets_tb_2.item(row, 0).text()) # get the text or data of the first cell in the current row
+        row = self.ui.chart_of_accounts_tb.currentRow()
+        currentcode = (self.ui.chart_of_accounts_tb.item(row, 0).text()) # get the text or data of the first cell in the current row
         currentcode = (''.join(map(str, currentcode)))
 
-        currentcode2 = (self.ui.fixed_assets_tb_2.item(row, 1).text()) # get the text or data of the first cell in the current row
+        currentcode2 = (self.ui.chart_of_accounts_tb.item(row, 1).text()) # get the text or data of the first cell in the current row
         currentcode2 = (''.join(map(str, currentcode2)))
         account_name = database_connection.execute("SELECT account from chart_of_accounts WHERE code=?", (currentcode,)).fetchone()
         account_name = (''.join(map(str, account_name)))
@@ -1546,9 +1593,18 @@ class MainWindow(QMainWindow):
         database_connection = sqlite3.connect(
             pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
-        row = self.ui.fixed_assets_tb_2.currentRow()
-        currentcode = (self.ui.fixed_assets_tb_2.item(row, 0).text())
+        row = self.ui.chart_of_accounts_tb.currentRow()
+        currentcode = (self.ui.chart_of_accounts_tb.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode)))
+        combo1 = cusr.execute("SELECT locked FROM chart_of_accounts WHERE code=?", (currentcode,)).fetchone()
+        combo1 = (''.join(map(str, combo1)))
+        combo2 = cusr.execute("SELECT active FROM chart_of_accounts WHERE code=?", (currentcode,)).fetchone()
+        combo2 = (''.join(map(str, combo2)))
+    
+        if combo1 == "1":
+            self.ui.checkBox_5.setChecked(True)
+        else:
+            self.ui.checkBox_2.setChecked(True)
         column_list = ["account", "code"]
         column_list2 = ["role", "balance_type"]
         line_edits = [
@@ -1571,34 +1627,7 @@ class MainWindow(QMainWindow):
                     col,)), (currentcode,)).fetchone()
             var_t = (''.join(map(str, var_t)))
             combo.setCurrentText(var_t)
-    def update_ledger_page(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_61)
-        database_connection = sqlite3.connect(
-            pathtodb + "\\yobi\\yobi_database.db")
-        cusr = database_connection.cursor()
-        row = self.ui.tableWidget_25.currentRow()
-        currentcode = (self.ui.tableWidget_25.item(row, 0).text())
-        currentcode = (''.join(map(str, currentcode)))
-        column_list = ["name"]
-        line_edits = [
-            self.ui.lineEdit_94]
-        for col, edits in zip(column_list, line_edits):
-            var_y = cusr.execute(
-                "SELECT %s FROM ledgers WHERE lg_id=? " %
-                (str(
-                    col,)), (currentcode,)).fetchone()
-            var_y = (''.join(map(str, var_y)))
-            edits.setText((var_y))
-        check1 = cusr.execute("SELECT locked FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
-        check1 = (''.join(map(str, check1)))
-        check2 = cusr.execute("SELECT active FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
-        check2 = (''.join(map(str, check2)))
-        if check1 == "1":
-            self.ui.checkBox_6.isChecked(True)
-        elif check2 == "1":
-            self.ui.checkBox_7.isChecked(True)
-        else:
-            pass
+    
 
     def reloder_payment(self):
         row = self.ui.tableWidget_6.currentRow()
@@ -1926,9 +1955,13 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_163.clicked.connect(self.tx_back)
     def update_order_btn(self):
         self.ui.orders_update_btn.clicked.connect(self.update_orders)
+    def update_ledger_btn(self):
+        self.ui.pushButton_168.clicked.connect(self.update_ledger)
 
     def update_supplier_btn(self):
         self.ui.pushButton_79.clicked.connect(self.update_supplier)
+    def update_uom_btn(self):
+        self.ui.pushButton_159.clicked.connect(self.update_uom)
 
     def update_client_btn(self):
         self.ui.pushButton_81.clicked.connect(self.update_client)
@@ -1973,7 +2006,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_136.clicked.connect(self.update_department)
     def update_transactions_btn(self):
         self.ui.pushButton_162.clicked.connect(self.update_transactions)
-    def update_update_coa_btn(self):
+    def update_coa_btn(self):
         self.ui.pushButton_49.clicked.connect(self.update_coa)
     def update_position_btn(self):
         self.ui.pushButton_138.clicked.connect(self.update_position)
@@ -2134,31 +2167,34 @@ class MainWindow(QMainWindow):
             plaintextedit=None
         )
     def uom_update_page(self):
+
         database_connection = sqlite3.connect(
             pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_58)
+        row = self.ui.tableWidget_42.currentRow()
+        currentcode = (self.ui.tableWidget_42.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
         var_uom = cusr.execute("SELECT is_active FROM uom").fetchall()
         uom = [item for t in var_uom for item in t]
         self.completer2 = QCompleter(uom)
         self.ui.lineEdit_89.setCompleter(self.completer2)
-        UPDATE_PAGE_SetWidgetsData.update_page_set_data_widgets(
-            stacked_Widget = self.ui.stackedWidget,
-            page = self.ui.page_58,
-            table_Widget = self.ui.tableWidget_42,
-            row_num = 0,
-            line_edits = [
+        column_list = [
+                        "name", 
+                        "unit_abbr",
+                        "is_active"]
+        line_edits = [
                 self.ui.lineEdit_87,
                 self.ui.lineEdit_88,
                 self.ui.lineEdit_89
-                ],
-            sqlquery = "SELECT %s FROM uom WHERE uom_id=? ",
-            column_list = [
-                        "name", 
-                        "unit_abbr",
-                        "is_active"],
-            plaintexteditsql=None,
-            plaintextedit=None
-        )
+                ]
+        for col, edits in zip(column_list, line_edits):
+            var_y = cusr.execute(
+                "SELECT %s FROM uom WHERE uom_id=? " %
+                (str(
+                    col,)), (currentcode,)).fetchone()
+            var_y = (''.join(map(str, var_y)))
+            edits.setText((var_y))
 
     def update_position(self):
         logging.basicConfig(level=logging.INFO)
@@ -2270,38 +2306,51 @@ class MainWindow(QMainWindow):
             #         'Error',
             #         'Could not update client.')
     def update_coa(self):
-        logging.basicConfig(level=logging.INFO)
-        with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
-            row = self.ui.fixed_assets_tb_2.currentRow()
-            currentcode = (self.ui.fixed_assets_tb_2.item(row, 0).text())
-            currentcode = (''.join(map(str, currentcode)))
-            amount = str(self.ui.lineEdit_93.text())
-            description = str(self.ui.lineEdit_92.text())
+        # logging.basicConfig(level=logging.INFO)
+        # with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
+        database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        row = self.ui.chart_of_accounts_tb.currentRow()
+        currentcode = (self.ui.chart_of_accounts_tb.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        amount = str(self.ui.lineEdit_93.text())
+        code = str(self.ui.lineEdit_92.text())
 
-            acc = str(self.ui.comboBox_48.currentText())
-            txtype= str(self.ui.comboBox_50.currentText())
+        acc = str(self.ui.comboBox_48.currentText())
+        txtype= str(self.ui.comboBox_50.currentText())
 
-            column_list = ["account", "code", "role", "balance_type"]
-            edits = [ 
-                acc,
-                txtype,
-                amount,
-                description]
-            for col, ed in zip(column_list, edits):
-                cusr.execute(
-                    "UPDATE chart_of_accounts SET %s=? WHERE code=?" %
-                    (str(
-                        col,)), (ed, currentcode))
-            QMessageBox.information(
-                QMessageBox(),
-                'Successful',
-                'transaction is updated.')
-                
-            # except Exception:
-            #     QMessageBox.warning(
-            #         QMessageBox(),
-            #         'Error',
-            #         'Could not update client.')
+        column_list = ["role", "account", "code", "balance_type"]
+        edits = [ 
+            acc,
+            amount,
+            code,
+            txtype]
+        for col, ed in zip(column_list, edits):
+            cusr.execute(
+                "UPDATE chart_of_accounts SET %s=? WHERE code=?" %
+                (str(
+                    col,)), (ed, currentcode))
+            database_connection.commit()
+        if self.ui.checkBox_5.isChecked() == True:
+            cusr.execute("UPDATE chart_of_accounts SET locked=? WHERE code=?", ("1", currentcode))
+            database_connection.commit()
+            cusr.execute("UPDATE chart_of_accounts SET active=? WHERE code=?", ("0", currentcode))
+            database_connection.commit()
+        else:
+            cusr.execute("UPDATE chart_of_accounts SET active=? WHERE code=?", ("1", currentcode))
+            database_connection.commit()
+            cusr.execute("UPDATE chart_of_accounts SET locked=? WHERE code=?", ("0", currentcode))
+            database_connection.commit()
+        QMessageBox.information(
+            QMessageBox(),
+            'Successful',
+            'transaction is updated.')
+            
+        # except Exception:
+        #     QMessageBox.warning(
+        #         QMessageBox(),
+        #         'Error',
+        #         'Could not update client.')
 
 
     def update_employee(self):
@@ -2751,6 +2800,20 @@ class MainWindow(QMainWindow):
             name = str(self.ui.comboBox_19.currentText())
 
             cusr.execute("INSERT INTO bill_item(created, updated, uuid, bill_uuid, name, amount) VALUES (?,?,?,?,?,?)", (created, updated, uuid_1, bill_uuid, name, amount))
+            # self.c.execute(
+            #         "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            #         (uuid1,
+            #         created,
+            #         updated,
+            #         "currentassets",
+            #         journal_uuid,
+            #         ledger_uuid,
+            #         name,
+            #         due,
+            #         description,
+            #         debit,
+            #         order_date))
+            # self.connection.commit()
             #cusr.execute("INSERT INTO ledgers(uuid, created, updated, po_item_status, quantity, unit_cost, total_amount, bill_model_id, invoice_model_id, item_model_id, po_model_id, po_quantity, po_total_amount, po_unit_cost) VALUES (?,?,?,?,?,?,?,?,?,?,?)",(
             #     uuid,
             #     created,
@@ -2920,6 +2983,27 @@ class MainWindow(QMainWindow):
             edits.setAlignment(QtCore.Qt.AlignCenter)
             edits.setFont(QFont("Times", 20))
         self.load_purchase_order_tb()
+
+    def set_ledger_update_page(self):
+        database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_62)
+        row = self.ui.tableWidget_25.currentRow()
+        currentcode = (self.ui.tableWidget_25.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        combo1 = cusr.execute("SELECT locked FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        combo1 = (''.join(map(str, combo1)))
+        combo2 = cusr.execute("SELECT active FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        combo2 = (''.join(map(str, combo2)))
+        name = cusr.execute("SELECT name FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        name = (''.join(map(str, name)))
+        if combo1 == "1":
+            self.ui.checkBox_8.setChecked(True)
+        else:
+            self.ui.checkBox_9.setChecked(True)
+        self.ui.lineEdit_95.setText((name))
+
         
 
     def load_purchase_order_tb(self):
@@ -3043,6 +3127,44 @@ class MainWindow(QMainWindow):
                 QMessageBox(),
                 'Error',
                 'Could not update Supplier.')
+    def update_uom(self):
+        try:
+            supplier_name = str(str(self.ui.lineEdit_46.text()))
+            #code = str(self.ui.lineEdit.text())
+            name = str(self.ui.lineEdit_87.text())
+            abbr = str(str(self.ui.lineEdit_88.text()))
+            status = str(str(self.ui.lineEdit_89.text()))
+
+            database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            row = self.ui.tableWidget_42.currentRow()
+            currentcode = (self.ui.tableWidget_42.item(row, 0).text())
+            currentcode = (''.join(map(str, currentcode)))
+            column_list = [
+                        "name", 
+                        "unit_abbr",
+                        "is_active"]
+            edits = [
+                name,
+                abbr,
+                status
+                ]
+            for col, ed in zip(column_list, edits):
+                cusr.execute(
+                    "UPDATE uom SET %s=? WHERE uom_id=?" %
+                    (str(
+                        col,)), (ed, currentcode))
+                database_connection.commit()
+            QMessageBox.information(
+                QMessageBox(),
+                'Successful',
+                'Unit is updated Successfully.')
+        except Exception:
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'Could not update Unit.')
 
     def update_client(self):
         try:
@@ -3082,6 +3204,43 @@ class MainWindow(QMainWindow):
                 QMessageBox(),
                 'Error',
                 'Could not update client.')
+    def update_ledger(self):
+        try:
+            sub_total2 = str(str(self.ui.lineEdit_95.text()))
+            database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            row = self.ui.tableWidget_25.currentRow()
+            currentcode = (self.ui.tableWidget_25.item(row, 0).text())
+            currentcode = (''.join(map(str, currentcode)))
+
+            column_list = [
+                "name"]
+            edits = [sub_total2]
+            for col, ed in zip(column_list, edits):
+                cusr.execute(
+                    "UPDATE ledgers SET %s=? WHERE lg_id=?" %
+                    (str(col,)), (ed, currentcode))
+                database_connection.commit()
+            if self.ui.checkBox_8.isChecked() == True:
+                cusr.execute("UPDATE ledgers SET locked=? WHERE lg_id=?", ("1", currentcode))
+                database_connection.commit()
+                cusr.execute("UPDATE ledgers SET active=? WHERE lg_id=?", ("0", currentcode))
+                database_connection.commit()
+            else:
+                cusr.execute("UPDATE ledgers SET active=? WHERE lg_id=?", ("1", currentcode))
+                database_connection.commit()
+                cusr.execute("UPDATE ledgers SET locked=? WHERE lg_id=?", ("0", currentcode))
+                database_connection.commit()
+            QMessageBox.information(
+                QMessageBox(),
+                'Successful',
+                'ledger is updated.')
+        except Exception:
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'Could not update ledger.')
 
     def return_order_btn(self):
         self.ui.pushButton_32.clicked.connect(self.ord_return)
@@ -3946,11 +4105,11 @@ class MainWindow(QMainWindow):
                 var_x = cusr.execute(
                     "SELECT name FROM stock WHERE UPC=? ",
                     (itemid,
-                     )).fetchone()  # querys the name of item being sold
+                        )).fetchone()  # querys the name of item being sold
                 b = cusr.execute(
                     "SELECT (selling_price *?) FROM stock WHERE UPC=? ",
                     (quantity,
-                     itemid)).fetchone()
+                        itemid)).fetchone()
                 b2 = cusr.execute(
                     "SELECT selling_price FROM stock WHERE UPC=? ", (itemid,)).fetchone()
                 var_f = cusr.execute(
@@ -3980,17 +4139,17 @@ class MainWindow(QMainWindow):
                 self.pos = cusr.execute(
                     "INSERT INTO pos_table(sale_no, UPC, name, discount, category, Quantity, KSH, KSH2, VAT, totalvat, taxcode, sale_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                     (sale_no,
-                     itemid,
-                     var_x,
-                     disc,
-                     var_j,
-                     quantity,
-                     b,
-                     b2,
-                     var_q,
-                     totalvat,
-                     var_f,
-                     sale_date))
+                        itemid,
+                        var_x,
+                        disc,
+                        var_j,
+                        quantity,
+                        b,
+                        b2,
+                        var_q,
+                        totalvat,
+                        var_f,
+                        sale_date))
                 cusr.execute(
                     "INSERT INTO most_sold(UPC, name, KSH) VALUES (?,?,?)", (itemid, var_x, tp))
                 var_t = cusr.execute(
@@ -3999,18 +4158,21 @@ class MainWindow(QMainWindow):
                 self.itemposappend(itemid)
                 database_connection.commit()
                 self.load_postable_data()
+            
+                discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
+                discount = float(''.join(map(str, discount)))
+                
                 self.total = cusr.execute(
                     "SELECT SUM(totalvat) FROM pos_table").fetchone()
                 self.total = float(''.join(map(str, self.total)))
                 self.totalksh = cusr.execute(
                     "SELECT SUM(KSH) FROM pos_table").fetchone()
                 self.totalksh = float(''.join(map(str, self.totalksh))) 
-                grand = self.total + self.totalksh
-                # self.ui.label_171.setText(str(self.total))
-                # self.ui.label_171.setFont(QFont("Times", 21))
-                # self.ui.label_171.setStyleSheet("QLabel { color : white; }")
+                grand = (self.total + self.totalksh)
+                discount2 = (discount / 100 * grand)
+                grand_total = (grand - discount2)
                 np = babel.numbers.format_currency(decimal.Decimal(
-                    grand), cash_label, locale='en_US')
+                    grand_total), cash_label, locale='en_US')
                 self.ui.label_123.setText(str(np))
                 self.ui.label_123.setFont(QFont("Times", 21))
                 self.ui.label_123.setStyleSheet("QLabel { color : white; }")
@@ -4671,25 +4833,27 @@ class AddLedger(QDialog):
             """
             
             ledger_name = self.ui.lineEdit_22.text()
-            combo1 = self.ui.checkBox
-            combo2 = self.ui.checkBox_2
+            # combo1 = self.ui.checkBox
+            # combo2 = self.ui.checkBox_2
             ledger_date = date.today()
             ledger_uuid = uuid.uuid4().hex
-            if combo1.isChecked() == True:
-                combo1 = "1"
-            else:
-                combo1="0"
-            if combo2.isChecked() == True:
-                combo2 = "1"
-            else:
+            if self.ui.checkBox.isChecked() == True:
                 combo2 = "0"
-            if combo2.isChecked() == True and combo1.isChecked() == True:
+                combo1="1"
+            elif self.ui.checkBox_2.isChecked() == False and self.ui.checkBox.isChecked() == False:
                 combo2 = "1"
-            elif combo2.isChecked() == False and combo1.isChecked() == False:
+                combo1="0"
+            elif self.ui.checkBox_2.isChecked() == True and self.ui.checkBox.isChecked() == True:
                 combo2 = "1"
+                combo1="0"
 
-            print(combo1)
-            print(combo2)
+            elif self.ui.checkBox_2.isChecked() == True:
+                combo2 = "1"
+                combo1="0"
+            else:
+                combo2 = "1"
+            
+
             database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
@@ -5392,11 +5556,26 @@ class coa(QDialog):
             name = str(self.ui.lineEdit_22.text())
             role = str(self.ui.lineEdit.text())
             coa_uuid = uuid.uuid4().hex
+            if self.ui.checkBox.isChecked() == True:
+                combo2 = "0"
+                combo1="1"
+            elif self.ui.checkBox_2.isChecked() == False and self.ui.checkBox.isChecked() == False:
+                combo2 = "1"
+                combo1="0"
+            elif self.ui.checkBox_2.isChecked() == True and self.ui.checkBox.isChecked() == True:
+                combo2 = "1"
+                combo1="0"
+
+            elif self.ui.checkBox_2.isChecked() == True:
+                combo2 = "1"
+                combo1="0"
+            else:
+                combo2 = "1"
             database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
             cusr.execute(
-                "INSERT INTO chart_of_accounts(id, code, role, account, balance_type) VALUES (?,?,?,?,?)", (coa_uuid, code, role, name, balance_ty))
+                "INSERT INTO chart_of_accounts(id, code, role, account, balance_type, locked, active) VALUES (?,?,?,?,?,?,?)", (coa_uuid, code, role, name, balance_ty, combo1,combo2))
             database_connection.commit()
             QMessageBox.information(
                 QMessageBox(),
