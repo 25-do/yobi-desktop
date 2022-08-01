@@ -15,5 +15,5 @@ def load_uom(self):
         tablename = self.ui.tableWidget_42,
         column_num = [3], 
         funccalled = [ self.uom_update_page],  
-        sqlquery = "SELECT name, unit_abbr FROM uom",
+        sqlquery = "SELECT uom_id, name, unit_abbr FROM uom",
         btn_name = ["update"])

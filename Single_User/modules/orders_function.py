@@ -447,7 +447,7 @@ def orders_label(self):
         total_revenue2 = (''.join(map(str, total_revenue2)))
 
         total_revenue = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE coa_id=?", ("revenue",)).fetchone()
+            "SELECT SUM(KSH) FROM transactions WHERE coa_id=? ", ("revenue",)).fetchone()
         total_revenue = (''.join(map(str, total_revenue)))
 
         if total_revenue2 == str(None):
@@ -471,7 +471,7 @@ def orders_label(self):
             "QLabel { color : rgb(203, 203, 203); }")
 
         b = babel.numbers.format_currency(
-            decimal.Decimal(total_revenue), cash_label, locale='en_US')
+            decimal.Decimal(total_revenue2), cash_label, locale='en_US')
         self.ui.label_77.setText(str(b))
         self.ui.label_77.setFont(QFont("Times", 23))
         self.ui.label_77.setStyleSheet(

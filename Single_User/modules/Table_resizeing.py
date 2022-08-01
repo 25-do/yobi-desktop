@@ -87,8 +87,6 @@ def resize_tables(self):
    
     
 
-    self.ui.fixed_assets_tb_2.setColumnWidth(0, 450)
-    self.ui.fixed_assets_tb_2.setColumnWidth(1, 450)
 
     self.ui.tableWidget_14.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
@@ -109,7 +107,7 @@ def resize_tables(self):
     self.ui.tableWidget_8.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     #self.ui.tableAsset.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.fixed_assets_tb.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-    self.ui.fixed_assets_tb_2.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.chart_of_accounts_tb.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.tableWidget_25.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.tableWidget_26.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.tableWidget_27.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -126,6 +124,7 @@ def resize_tables(self):
     self.ui.tableWidget_40.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.tableWidget_41.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.tableWidget_37.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_42.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     
 
 
