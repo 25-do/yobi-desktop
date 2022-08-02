@@ -28,7 +28,7 @@ def stats_database(self):
 
     cusr.execute("CREATE TABLE IF NOT EXISTS most_sold(UPC TEXT , name TEXT, KSH TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS sales_count(count INTEGER)")
-    cusr.execute("CREATE TABLE IF NOT EXISTS pos_table(sale_no INTEGER, UPC TEXT, name TEXT, discount INTEGER, category TEXT, Quantity INTEGER, KSH INTEGER, KSH2 INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, sale_date TIMESTAMP)")
+    cusr.execute("CREATE TABLE IF NOT EXISTS pos_table(sale_no INTEGER, UPC TEXT, name TEXT, discount INTEGER, category TEXT, Quantity INTEGER, KSH INTEGER, KSH2 INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, buying_price INTEGER, sale_date TIMESTAMP)")
     cusr.execute("CREATE TABLE IF NOT EXISTS sales(sale_no INTEGER, UPC TEXT, name TEXT, category TEXT, Quantity INTEGER, KSH INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, sale_date TIMESTAMP)")
     cusr.execute("CREATE TABLE IF NOT EXISTS sales_report(sale_no INTEGER, UPC TEXT, name TEXT, category TEXT, Quantity INTEGER, KSH INTEGER, VAT INTEGER, totalvat INTEGER, taxcode TEXT, sale_date TIMESTAMP)")
 

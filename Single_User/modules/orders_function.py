@@ -208,6 +208,8 @@ def add_invoice(self):
     
     discount = self.c.execute("SELECT SUM(discount) FROM pos_table").fetchone()
     discount = float(''.join(map(str, discount)))
+    buying_price = self.c.execute("SELECT SUM(buying_price) FROM pos_table").fetchone()
+    buying_price = float(''.join(map(str, buying_price)))
 
     client_name = str(self.ui.lineEdit_14.text())
     self.total = self.c.execute("SELECT SUM(totalvat) FROM pos_table").fetchone()
@@ -220,6 +222,7 @@ def add_invoice(self):
     total_amount = (self.total + self.posksh)
 
     discount2 = (discount / 100 * total_amount)
+    discount2 = (discount / 100 * self.posksh)
     grand_total = (total_amount - discount2)
     print(f"DISCOUNT ON product ---> {discount2}")
     print(f"Grand TOTAL AFTER DEDUCTION OF DISCOUNT ---> {grand_total}")
@@ -249,7 +252,7 @@ def add_invoice(self):
         invoice_status = str(self.ui.comboBox_21.currentText())
         ledger_uuid = uuid.uuid4().hex
         invoice_uuid = uuid.uuid4().hex
-        combo1,combo2 = '0', '0'
+        combo1,combo2 = '0', '1'
         invoice_number = ('INVOICE-' + (''.join(random.choices(string.ascii_uppercase, k=12))))
         date_1 = date.today()
         created = dt.today()
@@ -258,6 +261,8 @@ def add_invoice(self):
         uuid1 = uuid.uuid4().hex
         uuid2 = uuid.uuid4().hex
         uuid3 = uuid.uuid4().hex
+        uuid6 = uuid.uuid4().hex
+        uuid8 = uuid.uuid4().hex
         markdown_notes = self.ui.plainTextEdit_5.document().toPlainText()
 
         try:
@@ -351,6 +356,34 @@ def add_invoice(self):
                         description2,
                         debit,
                         order_date))
+                self.connection.commit()
+                self.c.execute(
+                "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    (uuid8,
+                    created,
+                    updated,
+                    "currentassets",
+                    journal_uuid,
+                    ledger_uuid,
+                    "inventory",
+                    buying_price,
+                    description,
+                    "credit",
+                    order_date))
+                self.connection.commit()
+                self.c.execute(
+                    "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    (uuid6,
+                    created,
+                    updated,
+                    "expenses",
+                    journal_uuid,
+                    ledger_uuid,
+                    "cost of goods sold",
+                    buying_price,
+                    description,
+                    "debit",
+                    order_date))
                 self.connection.commit()
                 self.c.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, "other", description, "1", "0", order_date))
                 self.connection.commit()
@@ -564,6 +597,11 @@ def items_worth(self):
 def return_order(self):
     self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
     self.c = self.connection.cursor()
+    row = self.ui.tableWidget_6.currentRow()
+    currentcode = (self.ui.tableWidget_6.item(row, 0).text())
+    currentcode = (''.join(map(str, currentcode)))
+    ledger_uuid = self.c.execute("SELECT ledger_uuid FROM orders WHERE item_code=?", (currentcode,)).fetchone()
+    ledger_uuid = (''.join(map(str, ledger_uuid)))
 
     oreder_code = str(self.ui.lineEdit_28.text())
     item_name = str(self.ui.lineEdit_29.text())
@@ -571,36 +609,64 @@ def return_order(self):
     quantity = float(self.ui.lineEdit_31.text())
     total_amount = float(self.ui.lineEdit_32.text())
     return_date = date.today()
+    uuid1 = uuid.uuid4().hex
+    uuid2 = uuid.uuid4().hex
     name = ("Return of order" + oreder_code)
     paid = 0
+    created = dt.today()
+    updated = dt.today()
+    journal_uuid = uuid.uuid4().hex
+
 
     try:
-        self.c.execute(
-            "INSERT INTO sales_returns(order_code ,  item_name , description , quantity , total_amount  , return_date  ) "
-            "VALUES (?,?,?,?,?,?)", (oreder_code, item_name, description, quantity, total_amount, return_date))
-        self.connection.commit()
         self.c.execute(
             "UPDATE stock SET Quantity=(Quantity+?) WHERE name=?",
             (quantity,
              item_name))
         self.connection.commit()
         if total_amount > 0:
+            self.c.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, "other", description, "1", "0", return_date))
+            self.connection.commit()
             self.c.execute(
-                "INSERT INTO income(name,  amount, debit, credit, description, income_date) VALUES (?,?,?,?,?,?)",
-                (name,
+                "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (uuid1,
+                created,
+                updated,
+                "revenue",
+                journal_uuid,
+                ledger_uuid,
+                "Sales Returns and Allowances",
                  total_amount,
-                 total_amount,
-                 paid,
                  description,
+                 "debit",
                  return_date))
             self.connection.commit()
             self.c.execute(
-                "INSERT INTO transactions(name, KSH, description, debit, credit, transactionsdate) VALUES (?,?,?,?,?,?)",
-                (name,
+                "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (uuid2,
+                created,
+                updated,
+                "currentassets",
+                journal_uuid,
+                ledger_uuid,
+                "inventory",
+                 total_amount,
                  description,
+                 "debit",
+                 return_date))
+            self.connection.commit()
+            self.c.execute(
+                "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (uuid2,
+                created,
+                updated,
+                "expenses",
+                journal_uuid,
+                ledger_uuid,
+                "cost of goods sold",
                  total_amount,
-                 paid,
-                 total_amount,
+                 description,
+                 "credit",
                  return_date))
             self.connection.commit()
         else:

@@ -406,6 +406,7 @@ class MainWindow(QMainWindow):
         self.combo()
         self.reoder_limit()
         self.profit_lossbtn()
+        self.sales_returns_journal_entries_button()
         self.recip_detail()
         # self.receiptload()
         self.keystroke()
@@ -792,6 +793,8 @@ class MainWindow(QMainWindow):
 
     def pay_supplier_button(self):
         self.ui.pushButton_72.clicked.connect(self.pay_supplier)
+    def sales_returns_journal_entries_button(self):
+        self.ui.pushButton_48.clicked.connect(self.sales_returns_journal_entries)
 
     def pay_supplier(self):
         payment.supllier_payment(self)
@@ -1019,6 +1022,40 @@ class MainWindow(QMainWindow):
         row = self.ui.tableWidget_25.currentRow()
         currentcode = (self.ui.tableWidget_25.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode)))
+        b = cusr.execute('SELECT id FROM ledgers WHERE lg_id=?', (currentcode,)).fetchone()
+        b = (''.join(map(str, b)))
+        # self.ledger_id.append(b)
+        ledger_id.append(b)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_33)
+        result = database_connection.execute("SELECT id, description, journal_entrydate, activity  FROM journal_entries WHERE ledger_id=?", (b,)).fetchall()
+
+        self.ui.tableWidget_26.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_26.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_26.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
+                btn = QPushButton("TXS")
+                font = QtGui.QFont()
+                font.setPointSize(9)
+                font.setBold(True)
+                # font.setWeight(75)
+                btn.setFont(font)
+                btn.setStyleSheet("QPushButton{\n"
+                                "    background-color: rgb(0, 255, 0);;\n"
+                                "border-radius : 25px;\n"
+                                "color : rgb(7, 7, 7); \n"
+                                "}")
+                self.ui.tableWidget_26.setCellWidget(row_number, 4, btn)
+                btn.clicked.connect(self.jouranal_entry_transaction)
+    def sales_returns_journal_entries(self):
+        database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+
+        currentcode = str(self.ui.lineEdit_28.text())
         b = cusr.execute('SELECT id FROM ledgers WHERE name=?', (currentcode,)).fetchone()
         b = (''.join(map(str, b)))
         # self.ledger_id.append(b)
@@ -4100,6 +4137,8 @@ class MainWindow(QMainWindow):
                     "SELECT (Quantity - ?) FROM stock WHERE UPC=? ", (quantity, itemid)).fetchone()
                 var_j = cusr.execute(
                     "SELECT category FROM stock WHERE UPC=? ", (itemid,)).fetchone()
+                buying_price = cusr.execute(
+                    "SELECT Buying_price FROM stock WHERE UPC=? ", (itemid,)).fetchone()
                 disc = cusr.execute(
                     "SELECT Discount FROM stock WHERE UPC=? ", (itemid,)).fetchone()
                 var_x = cusr.execute(
@@ -4122,6 +4161,7 @@ class MainWindow(QMainWindow):
                 # removes the brackets from the name queryed
                 var_x = (''.join(map(str, var_x)))
                 var_j = (''.join(map(str, var_j)))
+                buying_price = float(''.join(map(str, buying_price)))
                 disc = (''.join(map(str, disc)))
                 b = float(''.join(map(str, b)))
                 b2 = (''.join(map(str, b2)))
@@ -4137,7 +4177,7 @@ class MainWindow(QMainWindow):
                 totalvat = ((var_q / 100 * b))
                 sale_date = date.today()
                 self.pos = cusr.execute(
-                    "INSERT INTO pos_table(sale_no, UPC, name, discount, category, Quantity, KSH, KSH2, VAT, totalvat, taxcode, sale_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO pos_table(sale_no, UPC, name, discount, category, Quantity, KSH, KSH2, VAT, totalvat, taxcode, buying_price, sale_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (sale_no,
                         itemid,
                         var_x,
@@ -4149,6 +4189,7 @@ class MainWindow(QMainWindow):
                         var_q,
                         totalvat,
                         var_f,
+                        buying_price,
                         sale_date))
                 cusr.execute(
                     "INSERT INTO most_sold(UPC, name, KSH) VALUES (?,?,?)", (itemid, var_x, tp))
@@ -5752,8 +5793,11 @@ class stockAdd(QDialog):
         cusr = database_connection.cursor()
         var_x = cusr.execute("SELECT tax_name FROM tax_table").fetchall()
         var_y = [item for t in var_x for item in t]
+        var_uom = cusr.execute("SELECT name FROM uom").fetchall()
+        var_m = [item for z in var_uom for item in z]
         self.completer = QCompleter(var_y)
         self.ui.lineEdit_29.setCompleter(self.completer)
+        self.ui.comboBox.addItems(var_m)
 
     def add_stock(self):
         UPC = self.ui.lineEdit_28.text()
@@ -5766,6 +5810,7 @@ class stockAdd(QDialog):
         Supplier = self.ui.lineEdit_25.text()
         reoder = self.ui.lineEdit_27.text()
         vat = self.ui.lineEdit_29.text()
+        uom = str(self.ui.comboBox.currentText())
         stockdate = date.today()
         sold = 0.0
         database_connection = sqlite3.connect(
@@ -5778,8 +5823,8 @@ class stockAdd(QDialog):
         else:
             try:
                 cusr.execute(
-                    "INSERT INTO stock(UPC, name, Buying_price, selling_price, Quantity, category, Supplier, reoder, Discount, vat, stockdate, sold ) "
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO stock(UPC, name, Buying_price, selling_price, Quantity, category, Supplier, reoder, uom, Discount, vat, stockdate, sold ) "
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (UPC,
                      name,
                      Buying_price,
@@ -5788,6 +5833,7 @@ class stockAdd(QDialog):
                      category,
                      Supplier,
                      reoder,
+                     uom,
                      Discount,
                      vat,
                      stockdate,

@@ -302,9 +302,9 @@ def sales_returns(self):
     qdate = self.ui.dateEdit_5.date()
     order_date2 = qdate.toPython()
     alltb = self.c.execute(
-        "SELECT SUM(total_amount) FROM sales_returns WHERE return_date BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchone()
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            (order_date,
+            order_date2, "Sales Returns and Allowances")).fetchone()
 
     alltb = (''.join(map(str, alltb)))
 
@@ -406,10 +406,9 @@ def salereturns_report(self):
     qdate = self.ui.dateEdit_9.date()
     order_date2 = qdate.toPython()
     result = self.c.execute(
-        "SELECT * FROM sales_returns WHERE return_date BETWEEN ? AND ?",
+        "SELECT * FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
         (order_date,
-         order_date2)).fetchall()
-
+         order_date2, "Sales Returns and Allowances")).fetchall()
     print(result)
     self.ui.tableWidget_10.setRowCount(0)
     for row_number, row_data in enumerate(result):
@@ -553,9 +552,10 @@ def export_table_sales_return(self):
     qdate = self.ui.dateEdit_9.date()
     order_date2 = qdate.toPython()
     self.c.execute(
-        "INSERT INTO sales_returns_report SELECT * FROM sales_returns WHERE return_date BETWEEN ? AND ?",
+        "INSERT INTO sales_returns_report SELECT * FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
         (order_date,
-         order_date2)).fetchall()
+         order_date2, "Sales Returns and Allowances")).fetchall()
+         
     df = pd.read_sql_query(
         "SELECT * FROM sales_returns_report",
         self.connection)
@@ -599,27 +599,14 @@ def gross_pr(self):
     qdate = self.ui.dateEdit_5.date()
     order_date2 = qdate.toPython()
     alltb = self.c.execute(
-        "SELECT SUM(total_amount) FROM sales_returns WHERE return_date BETWEEN ? AND ?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
         (order_date,
-         order_date2)).fetchone()
+         order_date2, "Sales Returns and Allowances")).fetchone()
 
-    paid = self.c.execute(
-        "SELECT SUM(paid) FROM payment WHERE payment_date BETWEEN ? AND ?",
+    sales_rev = self.c.execute(
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=?",
         (order_date,
-         order_date2)).fetchone()
-
-    total_income = self.c.execute(
-        "SELECT SUM(amount) FROM income WHERE income_date BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchone()
-    total_income = float(''.join(map(str, total_income)))
-
-    total_sales = self.c.execute(
-        "SELECT SUM(paid_amount) FROM orders WHERE order_date BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchone()
-    total_sales = float(''.join(map(str, total_sales)))
-    paid = (''.join(map(str, paid)))
+         order_date, "Product Sales")).fetchone()
 
     alltb = (''.join(map(str, alltb)))
     if alltb == str(None):
@@ -627,12 +614,12 @@ def gross_pr(self):
     else:
         alltb = float(''.join(map(str, alltb)))
 
-    if paid == str(None):
-        paid = 0
+    if sales_rev == str(None):
+        sales_rev = 0
     else:
-        paid = float(''.join(map(str, paid)))
+        sales_rev = float(''.join(map(str, sales_rev)))
 
-    gross_profit = ((total_income + total_sales + paid) - alltb)
+    gross_profit = ((sales_rev) - alltb)
     gross = QtWidgets.QTreeWidgetItem(self.ui.treeWidget, ['Gross Profit'])
     total_income7 = babel.numbers.format_currency(
         decimal.Decimal(gross_profit), cash_label, locale='en_US')
@@ -651,9 +638,9 @@ def net_pr(self):
         qdate = self.ui.dateEdit_5.date()
         order_date2 = qdate.toPython()
         alltb = self.c.execute(
-            "SELECT SUM(total_amount) FROM sales_returns WHERE return_date BETWEEN ? AND ?",
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
             (order_date,
-             order_date2)).fetchone()
+            order_date2, "Sales Returns and Allowances")).fetchone()
 
         paid = self.c.execute(
             "SELECT SUM(paid) FROM payment WHERE payment_date BETWEEN ? AND ?",

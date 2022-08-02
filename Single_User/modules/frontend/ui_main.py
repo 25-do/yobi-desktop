@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainigqrVM.ui'
+## Form generated from reading UI file 'mainUOsYel.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -2495,57 +2495,30 @@ class Ui_MainWindow(object):
         self.page_8.setObjectName(u"page_8")
         self.gridLayout_34 = QGridLayout(self.page_8)
         self.gridLayout_34.setObjectName(u"gridLayout_34")
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.label_95 = QLabel(self.page_8)
+        self.label_95.setObjectName(u"label_95")
 
-        self.gridLayout_34.addItem(self.horizontalSpacer, 3, 3, 1, 1)
+        self.gridLayout_34.addWidget(self.label_95, 5, 0, 1, 1)
 
-        self.label_62 = QLabel(self.page_8)
-        self.label_62.setObjectName(u"label_62")
+        self.pushButton_68 = QPushButton(self.page_8)
+        self.pushButton_68.setObjectName(u"pushButton_68")
+        self.pushButton_68.setMinimumSize(QSize(45, 45))
+        self.pushButton_68.setMaximumSize(QSize(30, 16777215))
+        self.pushButton_68.setStyleSheet(u"\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(85, 170, 255);\n"
+"}")
+        self.pushButton_68.setIcon(icon10)
+        self.pushButton_68.setIconSize(QSize(26, 30))
 
-        self.gridLayout_34.addWidget(self.label_62, 3, 0, 1, 1)
-
-        self.label_103 = QLabel(self.page_8)
-        self.label_103.setObjectName(u"label_103")
-
-        self.gridLayout_34.addWidget(self.label_103, 6, 0, 1, 1)
-
-        self.label_61 = QLabel(self.page_8)
-        self.label_61.setObjectName(u"label_61")
-
-        self.gridLayout_34.addWidget(self.label_61, 2, 0, 1, 1)
+        self.gridLayout_34.addWidget(self.pushButton_68, 0, 0, 1, 1)
 
         self.lineEdit_28 = QLineEdit(self.page_8)
         self.lineEdit_28.setObjectName(u"lineEdit_28")
         self.lineEdit_28.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+        self.lineEdit_28.setReadOnly(True)
 
         self.gridLayout_34.addWidget(self.lineEdit_28, 2, 1, 1, 1)
-
-        self.label_70 = QLabel(self.page_8)
-        self.label_70.setObjectName(u"label_70")
-
-        self.gridLayout_34.addWidget(self.label_70, 4, 0, 1, 1)
-
-        self.lineEdit_30 = QLineEdit(self.page_8)
-        self.lineEdit_30.setObjectName(u"lineEdit_30")
-        self.lineEdit_30.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.gridLayout_34.addWidget(self.lineEdit_30, 4, 1, 1, 1)
-
-        self.lineEdit_31 = QLineEdit(self.page_8)
-        self.lineEdit_31.setObjectName(u"lineEdit_31")
-        self.lineEdit_31.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.gridLayout_34.addWidget(self.lineEdit_31, 5, 1, 1, 1)
-
-        self.lineEdit_29 = QLineEdit(self.page_8)
-        self.lineEdit_29.setObjectName(u"lineEdit_29")
-        self.lineEdit_29.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.gridLayout_34.addWidget(self.lineEdit_29, 3, 1, 1, 1)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_34.addItem(self.horizontalSpacer_2, 3, 2, 1, 1)
 
         self.lineEdit_32 = QLineEdit(self.page_8)
         self.lineEdit_32.setObjectName(u"lineEdit_32")
@@ -2553,10 +2526,50 @@ class Ui_MainWindow(object):
 
         self.gridLayout_34.addWidget(self.lineEdit_32, 6, 1, 1, 1)
 
-        self.label_95 = QLabel(self.page_8)
-        self.label_95.setObjectName(u"label_95")
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_34.addWidget(self.label_95, 5, 0, 1, 1)
+        self.gridLayout_34.addItem(self.horizontalSpacer, 3, 3, 1, 1)
+
+        self.lineEdit_30 = QLineEdit(self.page_8)
+        self.lineEdit_30.setObjectName(u"lineEdit_30")
+        self.lineEdit_30.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_34.addWidget(self.lineEdit_30, 4, 1, 1, 1)
+
+        self.label_61 = QLabel(self.page_8)
+        self.label_61.setObjectName(u"label_61")
+
+        self.gridLayout_34.addWidget(self.label_61, 2, 0, 1, 1)
+
+        self.label_4 = QLabel(self.page_8)
+        self.label_4.setObjectName(u"label_4")
+
+        self.gridLayout_34.addWidget(self.label_4, 1, 0, 1, 1)
+
+        self.lineEdit_31 = QLineEdit(self.page_8)
+        self.lineEdit_31.setObjectName(u"lineEdit_31")
+        self.lineEdit_31.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_34.addWidget(self.lineEdit_31, 5, 1, 1, 1)
+
+        self.pushButton_32 = QPushButton(self.page_8)
+        self.pushButton_32.setObjectName(u"pushButton_32")
+        self.pushButton_32.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_32.setIcon(icon9)
+
+        self.gridLayout_34.addWidget(self.pushButton_32, 7, 1, 1, 1)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_34.addItem(self.horizontalSpacer_2, 3, 2, 1, 1)
+
+        self.pushButton_48 = QPushButton(self.page_8)
+        self.pushButton_48.setObjectName(u"pushButton_48")
+        self.pushButton_48.setMinimumSize(QSize(80, 0))
+        self.pushButton_48.setMaximumSize(QSize(89, 16777215))
+        self.pushButton_48.setStyleSheet(u"background-color: rgb(0, 198, 0);")
+
+        self.gridLayout_34.addWidget(self.pushButton_48, 1, 3, 1, 1)
 
         self.tableWidget_9 = QTableWidget(self.page_8)
         if (self.tableWidget_9.columnCount() < 8):
@@ -2582,30 +2595,30 @@ class Ui_MainWindow(object):
 
         self.gridLayout_34.addWidget(self.tableWidget_9, 8, 0, 1, 4)
 
-        self.label_4 = QLabel(self.page_8)
-        self.label_4.setObjectName(u"label_4")
+        self.label_103 = QLabel(self.page_8)
+        self.label_103.setObjectName(u"label_103")
 
-        self.gridLayout_34.addWidget(self.label_4, 1, 0, 1, 1)
+        self.gridLayout_34.addWidget(self.label_103, 6, 0, 1, 1)
 
-        self.pushButton_32 = QPushButton(self.page_8)
-        self.pushButton_32.setObjectName(u"pushButton_32")
-        self.pushButton_32.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_32.setIcon(icon9)
+        self.label_70 = QLabel(self.page_8)
+        self.label_70.setObjectName(u"label_70")
 
-        self.gridLayout_34.addWidget(self.pushButton_32, 7, 1, 1, 1)
+        self.gridLayout_34.addWidget(self.label_70, 4, 0, 1, 1)
 
-        self.pushButton_68 = QPushButton(self.page_8)
-        self.pushButton_68.setObjectName(u"pushButton_68")
-        self.pushButton_68.setMinimumSize(QSize(45, 45))
-        self.pushButton_68.setMaximumSize(QSize(30, 16777215))
-        self.pushButton_68.setStyleSheet(u"\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(85, 170, 255);\n"
-"}")
-        self.pushButton_68.setIcon(icon10)
-        self.pushButton_68.setIconSize(QSize(26, 30))
+        self.label_62 = QLabel(self.page_8)
+        self.label_62.setObjectName(u"label_62")
 
-        self.gridLayout_34.addWidget(self.pushButton_68, 0, 0, 1, 1)
+        self.gridLayout_34.addWidget(self.label_62, 3, 0, 1, 1)
+
+        self.lineEdit_29 = QLineEdit(self.page_8)
+        self.lineEdit_29.setObjectName(u"lineEdit_29")
+        self.lineEdit_29.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_34.addWidget(self.lineEdit_29, 3, 1, 1, 1)
+
+        self.horizontalSpacer_58 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_34.addItem(self.horizontalSpacer_58, 2, 2, 1, 1)
 
         self.stackedWidget.addWidget(self.page_8)
         self.page_20 = QWidget()
@@ -6894,21 +6907,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_114.addItem(self.horizontalSpacer_48, 1, 1, 1, 1)
 
-        self.tableWidget_42 = QTableWidget(self.page_57)
-        if (self.tableWidget_42.columnCount() < 4):
-            self.tableWidget_42.setColumnCount(4)
-        __qtablewidgetitem183 = QTableWidgetItem()
-        self.tableWidget_42.setHorizontalHeaderItem(0, __qtablewidgetitem183)
-        __qtablewidgetitem184 = QTableWidgetItem()
-        self.tableWidget_42.setHorizontalHeaderItem(1, __qtablewidgetitem184)
-        __qtablewidgetitem185 = QTableWidgetItem()
-        self.tableWidget_42.setHorizontalHeaderItem(2, __qtablewidgetitem185)
-        __qtablewidgetitem186 = QTableWidgetItem()
-        self.tableWidget_42.setHorizontalHeaderItem(3, __qtablewidgetitem186)
-        self.tableWidget_42.setObjectName(u"tableWidget_42")
-
-        self.gridLayout_114.addWidget(self.tableWidget_42, 2, 0, 1, 2)
-
         self.pushButton_150 = QPushButton(self.page_57)
         self.pushButton_150.setObjectName(u"pushButton_150")
         self.pushButton_150.setMinimumSize(QSize(40, 40))
@@ -6990,6 +6988,21 @@ class Ui_MainWindow(object):
 
 
         self.gridLayout_114.addWidget(self.frame_111, 1, 2, 1, 1)
+
+        self.tableWidget_42 = QTableWidget(self.page_57)
+        if (self.tableWidget_42.columnCount() < 4):
+            self.tableWidget_42.setColumnCount(4)
+        __qtablewidgetitem183 = QTableWidgetItem()
+        self.tableWidget_42.setHorizontalHeaderItem(0, __qtablewidgetitem183)
+        __qtablewidgetitem184 = QTableWidgetItem()
+        self.tableWidget_42.setHorizontalHeaderItem(1, __qtablewidgetitem184)
+        __qtablewidgetitem185 = QTableWidgetItem()
+        self.tableWidget_42.setHorizontalHeaderItem(2, __qtablewidgetitem185)
+        __qtablewidgetitem186 = QTableWidgetItem()
+        self.tableWidget_42.setHorizontalHeaderItem(3, __qtablewidgetitem186)
+        self.tableWidget_42.setObjectName(u"tableWidget_42")
+
+        self.gridLayout_114.addWidget(self.tableWidget_42, 2, 0, 1, 3)
 
         self.stackedWidget.addWidget(self.page_57)
         self.page_58 = QWidget()
@@ -10939,7 +10952,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(39)
+        self.stackedWidget.setCurrentIndex(5)
         self.stackedWidget_3.setCurrentIndex(0)
         self.stackedWidget_2.setCurrentIndex(6)
         self.stackedWidget_5.setCurrentIndex(2)
@@ -11136,11 +11149,12 @@ class Ui_MainWindow(object):
         self.pushButton_83.setText("")
         self.pushButton_161.setText(QCoreApplication.translate("MainWindow", u"back", None))
         self.label_373.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_62.setText(QCoreApplication.translate("MainWindow", u"item name", None))
-        self.label_103.setText(QCoreApplication.translate("MainWindow", u"Total amount", None))
-        self.label_61.setText(QCoreApplication.translate("MainWindow", u"order code", None))
-        self.label_70.setText(QCoreApplication.translate("MainWindow", u"Description", None))
         self.label_95.setText(QCoreApplication.translate("MainWindow", u"Quantity", None))
+        self.pushButton_68.setText("")
+        self.label_61.setText(QCoreApplication.translate("MainWindow", u"order code", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">sales return</span></p></body></html>", None))
+        self.pushButton_32.setText(QCoreApplication.translate("MainWindow", u"save", None))
+        self.pushButton_48.setText(QCoreApplication.translate("MainWindow", u"Journal Entries", None))
         ___qtablewidgetitem30 = self.tableWidget_9.horizontalHeaderItem(0)
         ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Order code", None));
         ___qtablewidgetitem31 = self.tableWidget_9.horizontalHeaderItem(1)
@@ -11157,9 +11171,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem36.setText(QCoreApplication.translate("MainWindow", u"Edit", None));
         ___qtablewidgetitem37 = self.tableWidget_9.horizontalHeaderItem(7)
         ___qtablewidgetitem37.setText(QCoreApplication.translate("MainWindow", u"Delete", None));
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">sales return</span></p></body></html>", None))
-        self.pushButton_32.setText(QCoreApplication.translate("MainWindow", u"save", None))
-        self.pushButton_68.setText("")
+        self.label_103.setText(QCoreApplication.translate("MainWindow", u"Total amount", None))
+        self.label_70.setText(QCoreApplication.translate("MainWindow", u"Description", None))
+        self.label_62.setText(QCoreApplication.translate("MainWindow", u"item name", None))
         self.label_154.setText(QCoreApplication.translate("MainWindow", u"email", None))
         self.label_169.setText("")
         self.label_153.setText(QCoreApplication.translate("MainWindow", u"telno", None))
@@ -11739,6 +11753,10 @@ class Ui_MainWindow(object):
         self.label_179.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:700;\">TOTAL ITEMS</span></p></body></html>", None))
         self.label_181.setText("")
         self.label_182.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:700;\">TOTAL COGS</span></p></body></html>", None))
+        self.pushButton_150.setText("")
+        self.label_367.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt;\">Unit Of Measure</span></p></body></html>", None))
+        self.comboBox_42.setCurrentText("")
+        self.pushButton_154.setText("")
         ___qtablewidgetitem181 = self.tableWidget_42.horizontalHeaderItem(0)
         ___qtablewidgetitem181.setText(QCoreApplication.translate("MainWindow", u"ID", None));
         ___qtablewidgetitem182 = self.tableWidget_42.horizontalHeaderItem(1)
@@ -11747,10 +11765,6 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem183.setText(QCoreApplication.translate("MainWindow", u"Unit Abbreviation", None));
         ___qtablewidgetitem184 = self.tableWidget_42.horizontalHeaderItem(3)
         ___qtablewidgetitem184.setText(QCoreApplication.translate("MainWindow", u"Edit", None));
-        self.pushButton_150.setText("")
-        self.label_367.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt;\">Unit Of Measure</span></p></body></html>", None))
-        self.comboBox_42.setCurrentText("")
-        self.pushButton_154.setText("")
         self.label_370.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">UOM Abbreviation</span></p></body></html>", None))
         self.label_368.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Name</span></p></body></html>", None))
         self.label_369.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">Status</span></p></body></html>", None))

@@ -52,6 +52,36 @@ QLineEdit:hover {
 QLineEdit:focus {
 	border: 2px solid rgb(91, 101, 124);
 }
+QComboBox{
+	
+	background-color: rgb(0, 0, 0);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 25px; 
+	border-left-width: 3px;
+	border-left-color: rgba(39, 44, 54, 150);
+	border-left-style: solid;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;	
+	background-image: url(:/icons/images/icons/cil-arrow-bottom.png);
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+QComboBox QAbstractItemView {	
+	color: rgb(253, 253, 253);
+	background-color: rgb(33, 37, 43);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}
 </string>
    </property>
    <property name="frameShape">
@@ -79,6 +109,53 @@ QLineEdit:focus {
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600; color:#cfcfcf;&quot;&gt;Add item&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
+    </item>
+    <item row="0" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="maximumSize">
+         <size>
+          <width>20</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string extracomment="close"/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+
+border-radius : 10px;
+}
+QPushButton:hover {
+	
+	background-color: rgb(97, 97, 97);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>:/icons/images/icons/icon_close.png</normaloff>:/icons/images/icons/icon_close.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_161">
@@ -122,6 +199,13 @@ color: rgb(255, 255, 255);</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(27, 27, 27);
 color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Unit Of Measure</string>
       </property>
      </widget>
     </item>
@@ -666,57 +750,17 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="maximumSize">
-         <size>
-          <width>20</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="toolTip">
-         <string extracomment="close"/>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-
-border-radius : 10px;
-}
-QPushButton:hover {
-	
-	background-color: rgb(97, 97, 97);
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>:/icons/images/icons/icon_close.png</normaloff>:/icons/images/icons/icon_close.png</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="13" column="0">
-     <widget class="QLabel" name="label">
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Unit Of Measure</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Unit of measure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QComboBox" name="comboBox">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>

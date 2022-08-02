@@ -38,10 +38,8 @@ def get_selected_row_details(self):
 
     qdate = self.ui.dateEdit_3.date()
     order_date = qdate.toPython()
-    debit = 0
     cash = float(str(self.ui.lineEdit_17.text()))
     description = (client_nm + " " + "paid" + " " + str(paid))
-    name = ("Debitor")
     created = dt.today()
     updated = dt.today()
     journal_uuid = uuid.uuid4().hex
@@ -56,14 +54,6 @@ def get_selected_row_details(self):
         self.c.execute(
             "INSERT INTO payment(code,  client_name, payment_date , paid , due ) "
             "VALUES (?,?,?,?,?)", (currentcode, client_nm, order_date, paid, due))
-        self.c.execute(
-            "INSERT INTO income(name,  amount, debit, credit, description, income_date) VALUES (?,?,?,?,?,?)",
-            (name,
-             cash,
-             debit,
-             paid,
-             description,
-             order_date))
         self.connection.commit()
         self.c.execute(
             "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
@@ -995,6 +985,7 @@ def add_coa(self):
                 ('7800', 'fixedexpenses', 'utilities bills(cabel)', 'debit', 0, 1),
                 ('6000', 'expenses', 'Default Purchase Expense', 'debit', 0, 1),
                 ('6010', 'expenses', 'Advertising Expense', 'debit', 0, 1),
+                ('6011', 'expenses', 'cost of goods sold', 'debit', 0, 1),
                 ('6050', 'expenses', 'Amortization Expense', 'debit', 0, 1),
                 ('6300', 'expenses', 'Charitable Contributions Expense', 'debit', 0, 1),
                 ('6100', 'expenses', 'Auto Expense', 'debit', 0, 1),

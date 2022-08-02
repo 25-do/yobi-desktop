@@ -2031,7 +2031,7 @@ p, li { white-space: pre-wrap; }
                          <string notr="true">background: transparent;</string>
                         </property>
                         <property name="currentIndex">
-                         <number>30</number>
+                         <number>5</number>
                         </property>
                         <widget class="QWidget" name="home">
                          <property name="maximumSize">
@@ -4904,6 +4904,65 @@ QPushButton:hover {
                         </widget>
                         <widget class="QWidget" name="page_8">
                          <layout class="QGridLayout" name="gridLayout_34">
+                          <item row="5" column="0">
+                           <widget class="QLabel" name="label_95">
+                            <property name="text">
+                             <string>Quantity</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="QPushButton" name="pushButton_68">
+                            <property name="minimumSize">
+                             <size>
+                              <width>45</width>
+                              <height>45</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="../resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-arrow-circle-left.png</normaloff>:/icons/images/icons/cil-arrow-circle-left.png</iconset>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>26</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="1">
+                           <widget class="QLineEdit" name="lineEdit_28">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(27, 27, 27);</string>
+                            </property>
+                            <property name="readOnly">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="1">
+                           <widget class="QLineEdit" name="lineEdit_32">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(27, 27, 27);</string>
+                            </property>
+                           </widget>
+                          </item>
                           <item row="3" column="3">
                            <spacer name="horizontalSpacer">
                             <property name="orientation">
@@ -4917,17 +4976,10 @@ QPushButton:hover {
                             </property>
                            </spacer>
                           </item>
-                          <item row="3" column="0">
-                           <widget class="QLabel" name="label_62">
-                            <property name="text">
-                             <string>item name</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="6" column="0">
-                           <widget class="QLabel" name="label_103">
-                            <property name="text">
-                             <string>Total amount</string>
+                          <item row="4" column="1">
+                           <widget class="QLineEdit" name="lineEdit_30">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(27, 27, 27);</string>
                             </property>
                            </widget>
                           </item>
@@ -4938,24 +4990,10 @@ QPushButton:hover {
                             </property>
                            </widget>
                           </item>
-                          <item row="2" column="1">
-                           <widget class="QLineEdit" name="lineEdit_28">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(27, 27, 27);</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="4" column="0">
-                           <widget class="QLabel" name="label_70">
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_4">
                             <property name="text">
-                             <string>Description</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="4" column="1">
-                           <widget class="QLineEdit" name="lineEdit_30">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(27, 27, 27);</string>
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;sales return&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                             </property>
                            </widget>
                           </item>
@@ -4966,10 +5004,17 @@ QPushButton:hover {
                             </property>
                            </widget>
                           </item>
-                          <item row="3" column="1">
-                           <widget class="QLineEdit" name="lineEdit_29">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(27, 27, 27);</string>
+                          <item row="7" column="1">
+                           <widget class="QPushButton" name="pushButton_32">
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string>save</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="../resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-save.png</normaloff>:/icons/images/icons/cil-save.png</iconset>
                             </property>
                            </widget>
                           </item>
@@ -4986,17 +5031,25 @@ QPushButton:hover {
                             </property>
                            </spacer>
                           </item>
-                          <item row="6" column="1">
-                           <widget class="QLineEdit" name="lineEdit_32">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(27, 27, 27);</string>
+                          <item row="1" column="3">
+                           <widget class="QPushButton" name="pushButton_48">
+                            <property name="minimumSize">
+                             <size>
+                              <width>80</width>
+                              <height>0</height>
+                             </size>
                             </property>
-                           </widget>
-                          </item>
-                          <item row="5" column="0">
-                           <widget class="QLabel" name="label_95">
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(0, 198, 0);</string>
+                            </property>
                             <property name="text">
-                             <string>Quantity</string>
+                             <string>Journal Entries</string>
                             </property>
                            </widget>
                           </item>
@@ -5047,61 +5100,46 @@ QPushButton:hover {
                             </column>
                            </widget>
                           </item>
-                          <item row="1" column="0">
-                           <widget class="QLabel" name="label_4">
+                          <item row="6" column="0">
+                           <widget class="QLabel" name="label_103">
                             <property name="text">
-                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;sales return&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             <string>Total amount</string>
                             </property>
                            </widget>
                           </item>
-                          <item row="7" column="1">
-                           <widget class="QPushButton" name="pushButton_32">
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
+                          <item row="4" column="0">
+                           <widget class="QLabel" name="label_70">
                             <property name="text">
-                             <string>save</string>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="../resources.qrc">
-                              <normaloff>:/icons/images/icons/cil-save.png</normaloff>:/icons/images/icons/cil-save.png</iconset>
+                             <string>Description</string>
                             </property>
                            </widget>
                           </item>
-                          <item row="0" column="0">
-                           <widget class="QPushButton" name="pushButton_68">
-                            <property name="minimumSize">
-                             <size>
-                              <width>45</width>
-                              <height>45</height>
-                             </size>
+                          <item row="3" column="0">
+                           <widget class="QLabel" name="label_62">
+                            <property name="text">
+                             <string>item name</string>
                             </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>30</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="1">
+                           <widget class="QLineEdit" name="lineEdit_29">
                             <property name="styleSheet">
-                             <string notr="true">
-QPushButton:hover {
-	background-color: rgb(85, 170, 255);
-}</string>
-                            </property>
-                            <property name="text">
-                             <string/>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="../resources.qrc">
-                              <normaloff>:/icons/images/icons/cil-arrow-circle-left.png</normaloff>:/icons/images/icons/cil-arrow-circle-left.png</iconset>
-                            </property>
-                            <property name="iconSize">
-                             <size>
-                              <width>26</width>
-                              <height>30</height>
-                             </size>
+                             <string notr="true">background-color: rgb(27, 27, 27);</string>
                             </property>
                            </widget>
+                          </item>
+                          <item row="2" column="2">
+                           <spacer name="horizontalSpacer_58">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
                           </item>
                          </layout>
                         </widget>
