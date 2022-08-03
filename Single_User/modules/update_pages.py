@@ -1,5 +1,6 @@
 import logging
 import os
+import sqlite3
 from modules.contextmanager.contex_manager import SQLite_CONTEX_MANAGER
 basepath = os.path.expanduser('~/Documents')
 pathtodb = str(basepath)
@@ -33,20 +34,21 @@ class UPDATE_PAGE_SetWidgetsData:
             >>>     plaintextedit=None) 
     """
     def update_page_set_data_widgets(stacked_Widget, page, table_Widget, row_num:int, line_edits:list, sqlquery:str, column_list:list, plaintexteditsql:str=None, plaintextedit:str=None) -> None:
-        logging.basicConfig(level=logging.INFO)
-        with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\stats\\yobi_database.db") as cusr:
-            stacked_Widget.setCurrentWidget(page)
-            row = table_Widget.currentRow()
-            currentcode = (table_Widget.item(row, row_num).text())
-            currentcode = (''.join(map(str, currentcode)))
-            for col, edits in zip(column_list, line_edits):
-                var_y = cusr.execute(
-                    sqlquery %
-                    (str(
-                        col,)), (currentcode,)).fetchone()
-                var_y = (''.join(map(str, var_y)))
-                edits.setText((var_y))
-            if plaintextedit != None:
-                notes = cusr.execute(plaintexteditsql, (currentcode,)).fetchone()
-                notes = (''.join(map(str, notes)))
-                plaintextedit.insertPlainText(notes)
+        database_connection = sqlite3.connect(
+            pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        stacked_Widget.setCurrentWidget(page)
+        row = table_Widget.currentRow()
+        currentcode = (table_Widget.item(row, row_num).text())
+        currentcode = (''.join(map(str, currentcode)))
+        for col, edits in zip(column_list, line_edits):
+            var_y = cusr.execute(
+                sqlquery %
+                (str(
+                    col,)), (currentcode,)).fetchone()
+            var_y = (''.join(map(str, var_y)))
+            edits.setText((var_y))
+        if plaintextedit != None:
+            notes = cusr.execute(plaintexteditsql, (currentcode,)).fetchone()
+            notes = (''.join(map(str, notes)))
+            plaintextedit.insertPlainText(notes)

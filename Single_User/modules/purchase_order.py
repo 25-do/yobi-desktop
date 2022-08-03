@@ -50,7 +50,7 @@ class PurchaseOrder:
         currentcode = (self.ui.tableWidget_27.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode)))
         
-        result = self.connection.execute("SELECT name , cogs, quantity, amount FROM purchase_order_items WHERE purchase_order_uuid=?", (currentcode,)).fetchall()
+        result = self.connection.execute("SELECT  name , cogs, quantity, amount FROM purchase_order_items WHERE purchase_order_uuid=?", (currentcode,)).fetchall()
     
         self.ui.tableWidget_29.setRowCount(0)
         for row_number, row_data in enumerate(result):
@@ -72,6 +72,6 @@ class PurchaseOrder:
                                 "border-radius : 25px;\n"
                                 "color : rgb(7, 7, 7); \n"
                                 "}")
-                self.ui.tableWidget_29.setCellWidget(row_number, 4, btn)
-                # btn.clicked.connect(self.details_page)
+                self.ui.tableWidget_29.setCellWidget(row_number, 5, btn)
+                btn.clicked.connect(self.delete_purchase_order)
     

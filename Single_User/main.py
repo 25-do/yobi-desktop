@@ -55,6 +55,7 @@ from circular_progress import CircularProgress
 from modules import hrms
 from modules.entrance import Ui_Entrance
 from modules.frontend.ui_login_admin import Ui_Login_Admin_In
+from modules.frontend.ui_login_hr import Ui_Singnup
 from modules.frontend.ui_logout import  Ui_logout
 from modules.frontend.ui_department import  Ui_Departments
 from modules.frontend.ui_position import  Ui_Position
@@ -79,6 +80,7 @@ jumper = 10
 user_UUID = []
 auto_num = []
 ledger_id = []
+invoice_id = []
 who_is_logged = []
 jr_id_lst = []
 current_bill_code_fromTable = []
@@ -231,6 +233,9 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_27.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page))
+        self.ui.pushButton_76.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_34))
         self.ui.pushButton_15.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_15))
@@ -303,9 +308,6 @@ class MainWindow(QMainWindow):
         self.Netprofit_Margin()
         self.Margin()
         self.prof_edit()
-        self.ui.lineEdit_13.setValidator(QtGui.QIntValidator())
-        # self.ui.lineEdit_12.setValidator(QtGui.QIntValidator())
-        # self.ui.lineEdit_8.setValidator(QtGui.QIntValidator())
         self.ui.lineEdit_20.setValidator(QtGui.QIntValidator())
         self.ui.lineEdit_36.setValidator(QtGui.QIntValidator())
         self.ui.lineEdit_34.setValidator(QtGui.QIntValidator())
@@ -406,6 +408,7 @@ class MainWindow(QMainWindow):
         self.combo()
         self.reoder_limit()
         self.profit_lossbtn()
+        self.po_details_page_btn()
         self.sales_returns_journal_entries_button()
         self.recip_detail()
         # self.receiptload()
@@ -453,6 +456,8 @@ class MainWindow(QMainWindow):
         self.order_btn()
         self.ui.comboBox_4.addItems(["cash", "cheque", "credit card"])
         self.ui.comboBox_5.addItems(["Fully paid", "Installments", "Not Paid"])
+        self.ui.comboBox_49.addItems(["cash", "cheque", "credit card"])
+        self.ui.comboBox_51.addItems(["Fully paid", "Installments", "Not Paid"])
         self.export_table_orders_btn()
         self.refersh_everything()
         self.clientbtn()
@@ -805,6 +810,8 @@ class MainWindow(QMainWindow):
 
     def profit_lossbtn(self):
         self.ui.pushButton_9.clicked.connect(self.profit_loss)
+    def po_details_page_btn(self):
+        self.ui.pushButton_77.clicked.connect(self.details_page)
 
     def gr_repobtn(self):
         self.ui.pushButton_57.clicked.connect(self.gr_repo)
@@ -1340,6 +1347,22 @@ class MainWindow(QMainWindow):
                 self.ui.page_57)
         cusr.close()
         database_connection.close()
+    def delete_purchase_order(self):
+        row = self.ui.tableWidget_27.currentRow()
+        currentcode = (self.ui.tableWidget_27.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        row2 = self.ui.tableWidget_29.currentRow()
+        currentcode2 = (self.ui.tableWidget_29.item(row2, 1).text())
+        currentcode2 = (''.join(map(str, currentcode2)))
+
+        database_connection = sqlite3.connect(
+            pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        cusr.execute("DELETE from purchase_order_items WHERE purchase_order_uuid=? AND po_items_id=?", (currentcode, currentcode2))
+        database_connection.commit()
+        PurchaseOrder.purchase_order_items_load_table(self)
+        cusr.close()
+        database_connection.close()
 
 
     def delete_ledger(self):
@@ -1489,6 +1512,7 @@ class MainWindow(QMainWindow):
 
 
     def update_orders_page(self):
+        invoice_id.clear()
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_17)
         self.ui.lineEdit_3.setValidator(QtGui.QIntValidator())
         self.ui.lineEdit_19.setValidator(QtGui.QIntValidator())
@@ -1499,6 +1523,7 @@ class MainWindow(QMainWindow):
         row = self.ui.tableWidget_6.currentRow()
         currentcode = (self.ui.tableWidget_6.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode)))
+        invoice_id.append(currentcode)
         print('this is the order number code', currentcode)
         print("this is currentcode", currentcode)
         d = "discount"
@@ -1508,20 +1533,28 @@ class MainWindow(QMainWindow):
             "grand_total",
             "total_amount",
             "sub_total",
-            "payment_type",
-            "payment_status",
             "order_date ",
             "due"]
+        column_list2 = [
+            "payment_type",
+            "payment_status",
+            "terms",
+            "invoice_status"
+        ]
         line_edits = [
             self.ui.lineEdit_4,
             self.ui.lineEdit_2,
             self.ui.lineEdit_3,
             self.ui.lineEdit_5,
             self.ui.lineEdit_19,
-            self.ui.lineEdit_23,
-            self.ui.lineEdit_22,
             self.ui.lineEdit_24,
             self.ui.lineEdit_25]
+        combos = [
+            self.ui.comboBox_49,
+            self.ui.comboBox_51,
+            self.ui.comboBox_20,
+            self.ui.comboBox_21
+            ]
         for col, edits in zip(column_list, line_edits):
             print(col)
             var_y = cusr.execute(
@@ -1531,6 +1564,13 @@ class MainWindow(QMainWindow):
             print(var_y)
             var_y = (''.join(map(str, var_y)))
             edits.setText((var_y))
+        for col, combo in zip(column_list2, combos):
+            var_t = cusr.execute(
+                "SELECT %s FROM orders WHERE code=? " %
+                (str(
+                    col,)), (currentcode,)).fetchone()
+            var_t = (''.join(map(str, var_t)))
+            combo.setCurrentText(var_t)
 
     def update_supplier_page(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_26)
@@ -2495,7 +2535,26 @@ class MainWindow(QMainWindow):
                     push.clicked.connect(self.bill_update_page)
 
     def uppdate_purchase_page_order(self):
+        self.ui.plainTextEdit_4.clear()
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_36)
+        database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        row = self.ui.tableWidget_27.currentRow()
+        currentcode = (self.ui.tableWidget_27.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        po_title = cusr.execute("SELECT po_title FROM purchaseorder WHERE po_number=?", (currentcode,)).fetchone()
+        po_title = (''.join(map(str, po_title)))
+        po_notes = cusr.execute("SELECT notes FROM purchaseorder WHERE po_number=?", (currentcode,)).fetchone()
+        po_notes = (''.join(map(str, po_notes)))
+        po_status = cusr.execute("SELECT po_status FROM purchaseorder WHERE po_number=?", (currentcode,)).fetchone()
+        po_status = (''.join(map(str, po_status)))
+        fulfilled = cusr.execute("SELECT fulfilled FROM purchaseorder WHERE po_number=?", (currentcode,)).fetchone()
+        fulfilled = (''.join(map(str, fulfilled)))
+        self.ui.lineEdit_6.setText(po_title)
+        self.ui.comboBox_13.setCurrentText(po_status)
+        self.ui.plainTextEdit_4.insertPlainText(po_notes)
+        if fulfilled == "1":
+            self.ui.checkBox.setChecked(True)
         PurchaseOrder.purchase_order_items_load_table(self)
 
     def create_bill_from_purchase_order(self):
@@ -2537,6 +2596,7 @@ class MainWindow(QMainWindow):
               quantity,
               amount)))
         database_connection.commit()
+        PurchaseOrder.purchase_order_items_load_table(self)
 
 
     def uppdate_purchase_order(self):
@@ -2995,6 +3055,7 @@ class MainWindow(QMainWindow):
             #  bills.Bill.BILL_UPDATE_page(self)
 
     def details_page(self):
+        self.ui.plainTextEdit_8.clear()
         database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
@@ -3019,6 +3080,9 @@ class MainWindow(QMainWindow):
             edits.setText((var_y))
             edits.setAlignment(QtCore.Qt.AlignCenter)
             edits.setFont(QFont("Times", 20))
+        po_notes = cusr.execute("SELECT notes FROM purchaseorder WHERE po_number=?", (currentcode,)).fetchone()
+        po_notes = (''.join(map(str, po_notes)))
+        self.ui.plainTextEdit_8.insertPlainText(po_notes)
         self.load_purchase_order_tb()
 
     def set_ledger_update_page(self):
@@ -3082,16 +3146,19 @@ class MainWindow(QMainWindow):
             grand_total = float(str(self.ui.lineEdit_3.text()))
             total_amount = float(str(self.ui.lineEdit_5.text()))
             sub_total = float(str(self.ui.lineEdit_19.text()))
-            payment_type = str(self.ui.lineEdit_23.text())
-            payment_status = str(self.ui.lineEdit_22.text())
+            payment_type = str(self.ui.comboBox_49.currentText())
+            payment_status = str(self.ui.comboBox_51.currentText())
+            terms = str(self.ui.comboBox_20.currentText())
+            status = str(self.ui.comboBox_21.currentText())
             order_date = str(self.ui.lineEdit_24.text())
             due = float(str(self.ui.lineEdit_25.text()))
             database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
-            row = self.ui.tableWidget_6.currentRow()
-            currentcode = (self.ui.tableWidget_6.item(row, 0).text())
-            currentcode = (''.join(map(str, currentcode)))
+            # row = self.ui.tableWidget_6.currentRow()
+            # currentcode = (self.ui.tableWidget_6.item(row, 0).text())
+            # currentcode = (''.join(map(str, currentcode)))
+            currentcode = invoice_id[0]
             column_list = [
                 "discount",
                 "client_name",
@@ -3101,9 +3168,12 @@ class MainWindow(QMainWindow):
                 "payment_type",
                 "payment_status",
                 "order_date ",
-                "due"]
+                "due",
+                "terms",
+                "invoice_status"
+                ]
             edits = [discount, client_name, grand_total, total_amount,
-                     sub_total, payment_type, payment_status, order_date, due]
+                        sub_total, payment_type, payment_status, order_date, due, terms, status]
             for col, ed in zip(column_list, edits):
                 cusr.execute(
                     "UPDATE orders SET %s=? WHERE code=?" %
@@ -4751,7 +4821,6 @@ class MainWindow(QMainWindow):
         """
         dlg = AddPurchaseOrder(self)
         dlg.exec()
-        self.load_purchase_order_tb()
         PurchaseOrder.purchase_order_load_table(self)
     def add_bill(self):
         """calls the AddJournalEntry dialouge
@@ -6721,6 +6790,58 @@ class Admin_Login(QMainWindow):
             pass_hash = cusr.execute("SELECT hash FROM admin").fetchone()
             pass_hash = (''.join(map(str, pass_hash)))
             check_password = str(hashlib.sha512(password.encode('utf-8')+pass_salt.encode('utf-8')).hexdigest())
+
+            if check_username == username and check_password == pass_hash:
+                database_connection.close()
+                self.close()
+                Entrance().close()
+                b = 'admin'
+                who_is_logged.insert(0, b)
+                who_is_logged.insert(1, user)
+                print(";:::::::::::::", who_is_logged[0])
+
+                MainWindow()
+                
+                
+            else:
+                # SET STYLESHEET
+                self.ui.username.setStyleSheet("#username:focus { border: 3px solid rgb(255, 0, 127); }")
+                self.ui.password.setStyleSheet("#password:focus { border: 3px solid rgb(255, 0, 127); }")
+                self.shacke_window()
+class SignUp(QMainWindow):
+
+    def __init__(self):
+        QMainWindow.__init__(self)
+        # Create an instance of the GUI
+        self.ui = Ui_Singnup()
+        # Run the .setupUi() method to show the GUI
+        self.ui.setupUi(self)
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.ui.username.keyReleaseEvent = self.check_login
+        self.ui.password.keyReleaseEvent = self.check_login
+
+    def check_login(self, event):
+        if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
+            username = self.ui.username.text()
+            password = self.ui.password.text()
+            reqUrl = "http://localhost:8080/authe/"
+
+            headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Content-Type": "application/json" 
+            }
+
+            payload = json.dumps({
+                "username": "zam",
+                "email":"zam@gmail.com",
+                "password" : "123456"
+            })
+
+            response = requests.request("POST", reqUrl, data=payload,  headers=headersList)
+
+            print(response.text)
 
             if check_username == username and check_password == pass_hash:
                 database_connection.close()

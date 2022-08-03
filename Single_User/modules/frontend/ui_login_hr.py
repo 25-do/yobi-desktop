@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'loginIVeNGq.ui'
+## Form generated from reading UI file 'login_hrDEkPxt.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -15,19 +15,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QLabel, QLineEdit,
+    QMainWindow, QSizePolicy, QVBoxLayout, QWidget)
 from . res import *
 
-class Ui_Login(object):
-    def setupUi(self, Login):
-        if not Login.objectName():
-            Login.setObjectName(u"Login")
-        Login.resize(300, 420)
-        Login.setMinimumSize(QSize(300, 420))
-        Login.setMaximumSize(QSize(300, 420))
-        Login.setStyleSheet(u"#bg {\n"
+class Ui_Singnup(object):
+    def setupUi(self, Singnup):
+        if not Singnup.objectName():
+            Singnup.setObjectName(u"Singnup")
+        Singnup.resize(300, 420)
+        Singnup.setMinimumSize(QSize(300, 420))
+        Singnup.setMaximumSize(QSize(300, 420))
+        Singnup.setStyleSheet(u"#bg {\n"
 "	background-color: rgb(0, 0, 0);\n"
 "	border-radius: 10px;\n"
 "}\n"
@@ -55,7 +54,7 @@ class Ui_Login(object):
 "	border: 3px solid rgb(189, 255, 0);\n"
 "	background-color: rgb(14, 14, 15);\n"
 "}")
-        self.centralwidget = QWidget(Login)
+        self.centralwidget = QWidget(Singnup)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(0)
@@ -67,7 +66,7 @@ class Ui_Login(object):
         self.bg.setFrameShadow(QFrame.Raised)
         self.frame_widgets = QFrame(self.bg)
         self.frame_widgets.setObjectName(u"frame_widgets")
-        self.frame_widgets.setGeometry(QRect(0, -370, 280, 720))
+        self.frame_widgets.setGeometry(QRect(0, -369, 280, 720))
         self.frame_widgets.setMinimumSize(QSize(280, 720))
         self.frame_widgets.setFrameShape(QFrame.NoFrame)
         self.frame_widgets.setFrameShadow(QFrame.Raised)
@@ -84,38 +83,18 @@ class Ui_Login(object):
 
         self.verticalLayout_2.addWidget(self.preloader)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer)
-
-        self.logo = QFrame(self.frame_widgets)
-        self.logo.setObjectName(u"logo")
-        self.logo.setMinimumSize(QSize(0, 260))
-        self.logo.setStyleSheet(u"#logo {\n"
-"	border-radius: 10px;\n"
-"	background-image: url(:/images_svg/images/images_svg/logo_home.svg);\n"
-"	background-position: center;\n"
-"	background-repeat: no-repeat;\n"
-"}")
-        self.logo.setFrameShape(QFrame.NoFrame)
-        self.logo.setFrameShadow(QFrame.Raised)
-        self.gridLayout = QGridLayout(self.logo)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.label = QLabel(self.logo)
-        self.label.setObjectName(u"label")
-        self.label.setPixmap(QPixmap(u":/images/yobi.svg"))
-        self.label.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-
-
-        self.verticalLayout_2.addWidget(self.logo)
-
         self.user_description = QLabel(self.frame_widgets)
         self.user_description.setObjectName(u"user_description")
         self.user_description.setStyleSheet(u"background: transparent;")
 
         self.verticalLayout_2.addWidget(self.user_description)
+
+        self.label = QLabel(self.frame_widgets)
+        self.label.setObjectName(u"label")
+        self.label.setMinimumSize(QSize(0, 20))
+        self.label.setMaximumSize(QSize(16777215, 20))
+
+        self.verticalLayout_2.addWidget(self.label)
 
         self.username = QLineEdit(self.frame_widgets)
         self.username.setObjectName(u"username")
@@ -132,29 +111,21 @@ class Ui_Login(object):
 
         self.verticalLayout_2.addWidget(self.password)
 
-        self.pushButton = QPushButton(self.frame_widgets)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setStyleSheet(u"background-color: rgb(0, 0, 0);\n"
-"color: rgb(0, 0, 255);")
-
-        self.verticalLayout_2.addWidget(self.pushButton)
-
 
         self.verticalLayout.addWidget(self.bg)
 
-        Login.setCentralWidget(self.centralwidget)
+        Singnup.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(Login)
+        self.retranslateUi(Singnup)
 
-        QMetaObject.connectSlotsByName(Login)
+        QMetaObject.connectSlotsByName(Singnup)
     # setupUi
 
-    def retranslateUi(self, Login):
-        Login.setWindowTitle(QCoreApplication.translate("Login", u"Login. PyBlackBOX", None))
+    def retranslateUi(self, Singnup):
+        Singnup.setWindowTitle(QCoreApplication.translate("Singnup", u"Login. PyBlackBOX", None))
+        self.user_description.setText(QCoreApplication.translate("Singnup", u"<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; color:#ffffff;\">SIGNUP</span></p></body></html>", None))
         self.label.setText("")
-        self.user_description.setText("")
-        self.username.setPlaceholderText(QCoreApplication.translate("Login", u"Username", None))
-        self.password.setPlaceholderText(QCoreApplication.translate("Login", u"Password", None))
-        self.pushButton.setText(QCoreApplication.translate("Login", u"Sign up", None))
+        self.username.setPlaceholderText(QCoreApplication.translate("Singnup", u"Email", None))
+        self.password.setPlaceholderText(QCoreApplication.translate("Singnup", u"Password", None))
     # retranslateUi
 

@@ -197,7 +197,7 @@ QLabel {
            <string notr="true">background: transparent;</string>
           </property>
           <property name="text">
-           <string>Login (pass: 123456):</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -239,6 +239,17 @@ QLabel {
           </property>
           <property name="placeholderText">
            <string>Password</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(0, 0, 255);</string>
+          </property>
+          <property name="text">
+           <string>Sign up</string>
           </property>
          </widget>
         </item>
