@@ -11,12 +11,12 @@ def convertToBinaryData(self, filename):
         blobData = file.read()
     return blobData
 
-def insertBLOB(self, imagepath):
+def insertBLOB(self):
     try:
         self.connection = sqlite3.connect(pathtodb + "\yobi\yobi_database.db")
         self.c = self.connection.cursor()
         
-        profile_photo = convertToBinaryData(self, imagepath)
+        profile_photo = ""#convertToBinaryData(self, imagepath)
         pobox = (str(self.ui.lineEdit_41.text()))
         contact = (str(self.ui.lineEdit_42.text()))
         business_name = (str(self.ui.lineEdit_40.text()))

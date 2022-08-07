@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'updatesgLSOj.ui'
+## Form generated from reading UI file 'updateeKhAiN.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.0
+## Created by: Qt User Interface Compiler version 6.2.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,21 +15,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QFormLayout, QFrame,
-    QHBoxLayout, QLabel, QLineEdit, QPushButton,
-    QSizePolicy, QSpacerItem)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
+    QGridLayout, QHBoxLayout, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QSpacerItem, QWidget)
 from . resources_rc import *
 
 class Ui_Dialog8(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(572, 659)
-        Dialog.setMaximumSize(QSize(572, 742))
+        Dialog.resize(658, 511)
+        Dialog.setMaximumSize(QSize(658, 824))
         Dialog.setStyleSheet(u"background-color: rgb(0, 0, 12);")
         self.frame_18 = QFrame(Dialog)
         self.frame_18.setObjectName(u"frame_18")
-        self.frame_18.setGeometry(QRect(0, 0, 581, 741))
+        self.frame_18.setGeometry(QRect(0, 0, 651, 647))
         self.frame_18.setMaximumSize(QSize(800, 800))
         self.frame_18.setStyleSheet(u"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "\n"
@@ -553,116 +553,13 @@ class Ui_Dialog8(object):
 "")
         self.frame_18.setFrameShape(QFrame.StyledPanel)
         self.frame_18.setFrameShadow(QFrame.Raised)
-        self.formLayout = QFormLayout(self.frame_18)
-        self.formLayout.setObjectName(u"formLayout")
-        self.formLayout.setHorizontalSpacing(91)
-        self.formLayout.setVerticalSpacing(19)
-        self.formLayout.setContentsMargins(-1, -1, -1, 5)
-        self.label_159 = QLabel(self.frame_18)
-        self.label_159.setObjectName(u"label_159")
-
-        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.label_159)
-
-        self.lineEdit_19 = QLineEdit(self.frame_18)
-        self.lineEdit_19.setObjectName(u"lineEdit_19")
-        self.lineEdit_19.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.lineEdit_19)
-
-        self.label_152 = QLabel(self.frame_18)
-        self.label_152.setObjectName(u"label_152")
-
-        self.formLayout.setWidget(6, QFormLayout.LabelRole, self.label_152)
-
-        self.lineEdit_12 = QLineEdit(self.frame_18)
-        self.lineEdit_12.setObjectName(u"lineEdit_12")
-        self.lineEdit_12.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.lineEdit_12)
-
-        self.label_153 = QLabel(self.frame_18)
-        self.label_153.setObjectName(u"label_153")
-
-        self.formLayout.setWidget(8, QFormLayout.LabelRole, self.label_153)
-
-        self.lineEdit_13 = QLineEdit(self.frame_18)
-        self.lineEdit_13.setObjectName(u"lineEdit_13")
-        self.lineEdit_13.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(8, QFormLayout.FieldRole, self.lineEdit_13)
-
-        self.label_154 = QLabel(self.frame_18)
-        self.label_154.setObjectName(u"label_154")
-
-        self.formLayout.setWidget(10, QFormLayout.LabelRole, self.label_154)
-
-        self.lineEdit_14 = QLineEdit(self.frame_18)
-        self.lineEdit_14.setObjectName(u"lineEdit_14")
-        self.lineEdit_14.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(10, QFormLayout.FieldRole, self.lineEdit_14)
-
-        self.label_155 = QLabel(self.frame_18)
-        self.label_155.setObjectName(u"label_155")
-
-        self.formLayout.setWidget(12, QFormLayout.LabelRole, self.label_155)
-
-        self.lineEdit_15 = QLineEdit(self.frame_18)
-        self.lineEdit_15.setObjectName(u"lineEdit_15")
-        self.lineEdit_15.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(12, QFormLayout.FieldRole, self.lineEdit_15)
-
-        self.label_156 = QLabel(self.frame_18)
-        self.label_156.setObjectName(u"label_156")
-
-        self.formLayout.setWidget(14, QFormLayout.LabelRole, self.label_156)
-
-        self.lineEdit_16 = QLineEdit(self.frame_18)
-        self.lineEdit_16.setObjectName(u"lineEdit_16")
-        self.lineEdit_16.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(14, QFormLayout.FieldRole, self.lineEdit_16)
-
-        self.label_157 = QLabel(self.frame_18)
-        self.label_157.setObjectName(u"label_157")
-
-        self.formLayout.setWidget(16, QFormLayout.LabelRole, self.label_157)
-
-        self.lineEdit_17 = QLineEdit(self.frame_18)
-        self.lineEdit_17.setObjectName(u"lineEdit_17")
-        self.lineEdit_17.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(16, QFormLayout.FieldRole, self.lineEdit_17)
-
-        self.label_158 = QLabel(self.frame_18)
-        self.label_158.setObjectName(u"label_158")
-
-        self.formLayout.setWidget(18, QFormLayout.LabelRole, self.label_158)
-
-        self.lineEdit_18 = QLineEdit(self.frame_18)
-        self.lineEdit_18.setObjectName(u"lineEdit_18")
-        self.lineEdit_18.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(18, QFormLayout.FieldRole, self.lineEdit_18)
-
-        self.lineEdit_20 = QLineEdit(self.frame_18)
-        self.lineEdit_20.setObjectName(u"lineEdit_20")
-        self.lineEdit_20.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(20, QFormLayout.FieldRole, self.lineEdit_20)
-
-        self.lineEdit_11 = QLineEdit(self.frame_18)
-        self.lineEdit_11.setObjectName(u"lineEdit_11")
-        self.lineEdit_11.setStyleSheet(u"background-color: rgb(27, 27, 27);")
-
-        self.formLayout.setWidget(22, QFormLayout.FieldRole, self.lineEdit_11)
-
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.gridLayout_2 = QGridLayout(self.frame_18)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout.addItem(self.horizontalSpacer)
+        self.gridLayout.addItem(self.horizontalSpacer, 0, 0, 1, 1)
 
         self.pushButton = QPushButton(self.frame_18)
         self.pushButton.setObjectName(u"pushButton")
@@ -679,10 +576,26 @@ class Ui_Dialog8(object):
         icon.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton.setIcon(icon)
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
 
 
-        self.formLayout.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout)
+        self.gridLayout_2.addLayout(self.gridLayout, 0, 1, 1, 1)
+
+        self.label_148 = QLabel(self.frame_18)
+        self.label_148.setObjectName(u"label_148")
+
+        self.gridLayout_2.addWidget(self.label_148, 1, 0, 1, 1)
+
+        self.label_149 = QLabel(self.frame_18)
+        self.label_149.setObjectName(u"label_149")
+
+        self.gridLayout_2.addWidget(self.label_149, 2, 0, 1, 1)
+
+        self.lineEdit_9 = QLineEdit(self.frame_18)
+        self.lineEdit_9.setObjectName(u"lineEdit_9")
+        self.lineEdit_9.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_9, 2, 1, 1, 1)
 
         self.pushButton_3 = QPushButton(self.frame_18)
         self.pushButton_3.setObjectName(u"pushButton_3")
@@ -729,33 +642,127 @@ class Ui_Dialog8(object):
         self.pushButton_3.setIcon(icon1)
         self.pushButton_3.setIconSize(QSize(33, 26))
 
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.pushButton_3)
+        self.gridLayout_2.addWidget(self.pushButton_3, 3, 1, 1, 1)
 
-        self.lineEdit_9 = QLineEdit(self.frame_18)
-        self.lineEdit_9.setObjectName(u"lineEdit_9")
-        self.lineEdit_9.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+        self.label_159 = QLabel(self.frame_18)
+        self.label_159.setObjectName(u"label_159")
 
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.lineEdit_9)
+        self.gridLayout_2.addWidget(self.label_159, 4, 0, 1, 1)
 
-        self.label_149 = QLabel(self.frame_18)
-        self.label_149.setObjectName(u"label_149")
+        self.lineEdit_19 = QLineEdit(self.frame_18)
+        self.lineEdit_19.setObjectName(u"lineEdit_19")
+        self.lineEdit_19.setStyleSheet(u"background-color: rgb(27, 27, 27);")
 
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_149)
+        self.gridLayout_2.addWidget(self.lineEdit_19, 4, 1, 1, 1)
 
-        self.label_148 = QLabel(self.frame_18)
-        self.label_148.setObjectName(u"label_148")
+        self.label_152 = QLabel(self.frame_18)
+        self.label_152.setObjectName(u"label_152")
 
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_148)
+        self.gridLayout_2.addWidget(self.label_152, 5, 0, 1, 1)
+
+        self.lineEdit_12 = QLineEdit(self.frame_18)
+        self.lineEdit_12.setObjectName(u"lineEdit_12")
+        self.lineEdit_12.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_12, 5, 1, 1, 1)
+
+        self.label_153 = QLabel(self.frame_18)
+        self.label_153.setObjectName(u"label_153")
+
+        self.gridLayout_2.addWidget(self.label_153, 6, 0, 1, 1)
+
+        self.lineEdit_13 = QLineEdit(self.frame_18)
+        self.lineEdit_13.setObjectName(u"lineEdit_13")
+        self.lineEdit_13.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_13, 6, 1, 1, 1)
+
+        self.label_154 = QLabel(self.frame_18)
+        self.label_154.setObjectName(u"label_154")
+
+        self.gridLayout_2.addWidget(self.label_154, 7, 0, 1, 1)
+
+        self.lineEdit_14 = QLineEdit(self.frame_18)
+        self.lineEdit_14.setObjectName(u"lineEdit_14")
+        self.lineEdit_14.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_14, 7, 1, 1, 1)
+
+        self.label = QLabel(self.frame_18)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout_2.addWidget(self.label, 8, 0, 1, 1)
+
+        self.comboBox = QComboBox(self.frame_18)
+        self.comboBox.setObjectName(u"comboBox")
+
+        self.gridLayout_2.addWidget(self.comboBox, 8, 1, 1, 1)
+
+        self.label_155 = QLabel(self.frame_18)
+        self.label_155.setObjectName(u"label_155")
+
+        self.gridLayout_2.addWidget(self.label_155, 9, 0, 1, 1)
+
+        self.lineEdit_15 = QLineEdit(self.frame_18)
+        self.lineEdit_15.setObjectName(u"lineEdit_15")
+        self.lineEdit_15.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_15, 9, 1, 1, 1)
+
+        self.label_156 = QLabel(self.frame_18)
+        self.label_156.setObjectName(u"label_156")
+
+        self.gridLayout_2.addWidget(self.label_156, 10, 0, 1, 1)
+
+        self.lineEdit_16 = QLineEdit(self.frame_18)
+        self.lineEdit_16.setObjectName(u"lineEdit_16")
+        self.lineEdit_16.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_16, 10, 1, 1, 1)
+
+        self.label_157 = QLabel(self.frame_18)
+        self.label_157.setObjectName(u"label_157")
+
+        self.gridLayout_2.addWidget(self.label_157, 11, 0, 1, 1)
+
+        self.lineEdit_17 = QLineEdit(self.frame_18)
+        self.lineEdit_17.setObjectName(u"lineEdit_17")
+        self.lineEdit_17.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_17, 11, 1, 1, 1)
+
+        self.label_158 = QLabel(self.frame_18)
+        self.label_158.setObjectName(u"label_158")
+
+        self.gridLayout_2.addWidget(self.label_158, 12, 0, 1, 1)
+
+        self.lineEdit_18 = QLineEdit(self.frame_18)
+        self.lineEdit_18.setObjectName(u"lineEdit_18")
+        self.lineEdit_18.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_18, 12, 1, 1, 1)
 
         self.label_160 = QLabel(self.frame_18)
         self.label_160.setObjectName(u"label_160")
 
-        self.formLayout.setWidget(20, QFormLayout.LabelRole, self.label_160)
+        self.gridLayout_2.addWidget(self.label_160, 13, 0, 1, 1)
+
+        self.lineEdit_20 = QLineEdit(self.frame_18)
+        self.lineEdit_20.setObjectName(u"lineEdit_20")
+        self.lineEdit_20.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_20, 13, 1, 1, 1)
 
         self.label_151 = QLabel(self.frame_18)
         self.label_151.setObjectName(u"label_151")
 
-        self.formLayout.setWidget(22, QFormLayout.LabelRole, self.label_151)
+        self.gridLayout_2.addWidget(self.label_151, 14, 0, 1, 1)
+
+        self.lineEdit_11 = QLineEdit(self.frame_18)
+        self.lineEdit_11.setObjectName(u"lineEdit_11")
+        self.lineEdit_11.setStyleSheet(u"background-color: rgb(27, 27, 27);")
+
+        self.gridLayout_2.addWidget(self.lineEdit_11, 14, 1, 1, 1)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -892,7 +899,11 @@ class Ui_Dialog8(object):
         self.horizontalLayout_2.addItem(self.horizontalSpacer_4)
 
 
-        self.formLayout.setLayout(25, QFormLayout.FieldRole, self.horizontalLayout_2)
+        self.gridLayout_2.addLayout(self.horizontalLayout_2, 15, 1, 1, 1)
+
+        self.verticalSpacer = QSpacerItem(20, 125, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_2.addItem(self.verticalSpacer, 16, 1, 1, 1)
 
 
         self.retranslateUi(Dialog)
@@ -902,21 +913,22 @@ class Ui_Dialog8(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.label_159.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d8d8d8;\">UPC</span></p></body></html>", None))
-        self.label_152.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c8c8c8;\">Selling price</span></p></body></html>", None))
-        self.label_153.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c1c1c1;\">Buying price</span></p></body></html>", None))
-        self.label_154.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c8c8c8;\">Quantity</span></p></body></html>", None))
-        self.label_155.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d5d5d5;\">Discount</span></p></body></html>", None))
-        self.label_156.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d8d8d8;\">Supplier</span></p></body></html>", None))
-        self.label_157.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c7c7c7;\">category</span></p></body></html>", None))
-        self.label_158.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d8d8d8;\">Reoder limit</span></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.pushButton.setToolTip("")
 #endif // QT_CONFIG(tooltip)
         self.pushButton.setText("")
-        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"search", None))
-        self.label_149.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#bcbcbc;\">Name</span></p></body></html>", None))
         self.label_148.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; color:#cfcfcf;\">Update</span></p></body></html>", None))
+        self.label_149.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#bcbcbc;\">Name</span></p></body></html>", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"search", None))
+        self.label_159.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d8d8d8;\">UPC</span></p></body></html>", None))
+        self.label_152.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c8c8c8;\">Selling price</span></p></body></html>", None))
+        self.label_153.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c1c1c1;\">Buying price</span></p></body></html>", None))
+        self.label_154.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c8c8c8;\">Quantity</span></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"Unit Of Measure", None))
+        self.label_155.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d5d5d5;\">Discount</span></p></body></html>", None))
+        self.label_156.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d8d8d8;\">Supplier</span></p></body></html>", None))
+        self.label_157.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#c7c7c7;\">category</span></p></body></html>", None))
+        self.label_158.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#d8d8d8;\">Reoder limit</span></p></body></html>", None))
         self.label_160.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#bfbfbf;\">TAX</span></p></body></html>", None))
         self.label_151.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#bfbfbf;\">item name</span></p></body></html>", None))
         self.pushButton_7.setText(QCoreApplication.translate("Dialog", u"Update", None))

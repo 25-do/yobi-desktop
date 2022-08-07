@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>572</width>
-    <height>659</height>
+    <width>658</width>
+    <height>511</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>572</width>
-    <height>742</height>
+    <width>658</width>
+    <height>824</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -27,8 +27,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>581</width>
-     <height>741</height>
+     <width>651</width>
+     <height>647</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -551,145 +551,10 @@ Button */
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <layout class="QFormLayout" name="formLayout">
-    <property name="horizontalSpacing">
-     <number>91</number>
-    </property>
-    <property name="verticalSpacing">
-     <number>19</number>
-    </property>
-    <property name="bottomMargin">
-     <number>5</number>
-    </property>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_159">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d8d8d8;&quot;&gt;UPC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QLineEdit" name="lineEdit_19">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_152">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c8c8c8;&quot;&gt;Selling price&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_12">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_153">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c1c1c1;&quot;&gt;Buying price&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QLineEdit" name="lineEdit_13">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="label_154">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c8c8c8;&quot;&gt;Quantity&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1">
-     <widget class="QLineEdit" name="lineEdit_14">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="0">
-     <widget class="QLabel" name="label_155">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d5d5d5;&quot;&gt;Discount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="1">
-     <widget class="QLineEdit" name="lineEdit_15">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="0">
-     <widget class="QLabel" name="label_156">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d8d8d8;&quot;&gt;Supplier&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="1">
-     <widget class="QLineEdit" name="lineEdit_16">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="0">
-     <widget class="QLabel" name="label_157">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c7c7c7;&quot;&gt;category&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="1">
-     <widget class="QLineEdit" name="lineEdit_17">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="18" column="0">
-     <widget class="QLabel" name="label_158">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d8d8d8;&quot;&gt;Reoder limit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="18" column="1">
-     <widget class="QLineEdit" name="lineEdit_18">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="20" column="1">
-     <widget class="QLineEdit" name="lineEdit_20">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="22" column="1">
-     <widget class="QLineEdit" name="lineEdit_11">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(27, 27, 27);</string>
-      </property>
-     </widget>
-    </item>
+   <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -702,7 +567,7 @@ Button */
         </property>
        </spacer>
       </item>
-      <item>
+      <item row="0" column="1">
        <widget class="QPushButton" name="pushButton">
         <property name="maximumSize">
          <size>
@@ -727,12 +592,33 @@ QPushButton:hover {
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resources.qrc">
+         <iconset>
           <normaloff>:/icons/images/icons/icon_close.png</normaloff>:/icons/images/icons/icon_close.png</iconset>
         </property>
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_148">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600; color:#cfcfcf;&quot;&gt;Update&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_149">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#bcbcbc;&quot;&gt;Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lineEdit_9">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
     </item>
     <item row="3" column="1">
      <widget class="QPushButton" name="pushButton_3">
@@ -957,42 +843,157 @@ QPushButton:hover {
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_9">
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_159">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d8d8d8;&quot;&gt;UPC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="lineEdit_19">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(27, 27, 27);</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_149">
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_152">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#bcbcbc;&quot;&gt;Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c8c8c8;&quot;&gt;Selling price&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_148">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600; color:#cfcfcf;&quot;&gt;Update&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="lineEdit_12">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
       </property>
      </widget>
     </item>
-    <item row="20" column="0">
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_153">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c1c1c1;&quot;&gt;Buying price&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="lineEdit_13">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_154">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c8c8c8;&quot;&gt;Quantity&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLineEdit" name="lineEdit_14">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Unit Of Measure</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QComboBox" name="comboBox"/>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="label_155">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d5d5d5;&quot;&gt;Discount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QLineEdit" name="lineEdit_15">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0">
+     <widget class="QLabel" name="label_156">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d8d8d8;&quot;&gt;Supplier&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QLineEdit" name="lineEdit_16">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_157">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#c7c7c7;&quot;&gt;category&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QLineEdit" name="lineEdit_17">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_158">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#d8d8d8;&quot;&gt;Reoder limit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QLineEdit" name="lineEdit_18">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
      <widget class="QLabel" name="label_160">
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#bfbfbf;&quot;&gt;TAX&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="22" column="0">
+    <item row="13" column="1">
+     <widget class="QLineEdit" name="lineEdit_20">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
      <widget class="QLabel" name="label_151">
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#bfbfbf;&quot;&gt;item name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="25" column="1">
+    <item row="14" column="1">
+     <widget class="QLineEdit" name="lineEdit_11">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 27, 27);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <spacer name="horizontalSpacer_2">
@@ -1514,6 +1515,22 @@ QPushButton:disabled {
        </spacer>
       </item>
      </layout>
+    </item>
+    <item row="16" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>125</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>

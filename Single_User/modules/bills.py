@@ -70,6 +70,27 @@ class Bill:
                     column_number,
                     QTableWidgetItem(
                         str(data)))
+    def bill_po_items_load_table(self):
+        database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        row = self.ui.tableWidget_30.currentRow()
+        currentcode = (self.ui.tableWidget_30.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        currentcode3 = cusr.execute("SELECT purchase_order_uuid FROM bill WHERE bill_number=?", (currentcode,)).fetchone()
+        currentcode3 = (''.join(map(str, currentcode3)))
+        result = cusr.execute("SELECT name, amount, quantity FROM purchase_order_items WHERE purchase_order_uuid=?", (currentcode3,)).fetchall()
+        print("##", result)
+
+        self.ui.tableWidget_31.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_31.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_31.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
 
     def bill_transaction_load_table(self):
         try:
@@ -140,6 +161,7 @@ class Bill:
 
             currentcode2 = (self.ui.tableWidget_30.item(row, 0).text())
             currentcode2 = (''.join(map(str, currentcode2)))
+            self.ui.comboBox_52.setCurrentText(currentcode2)
 
             self.ui.label_275.setText(currentcode)
             self.ui.label_275.setAlignment(QtCore.Qt.AlignCenter)
@@ -174,6 +196,7 @@ class Bill:
             bill_status = (''.join(map(str, bill_status)))
             notes = cusr.execute("SELECT markdown_notes FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
             notes = (''.join(map(str, notes)))
+
             
             # paid_date = cusr.execute("SELECT paid_date FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
             # paid_date = (''.join(map(str, paid_date)))
@@ -185,7 +208,13 @@ class Bill:
                 amount_due = 0.0
             if external_refrence == str(None):
                 external_refrence = 0.0
-            self.ui.lineEdit_45.setText(amount_paid)
+            np = babel.numbers.format_currency(
+            decimal.Decimal(amount_paid), cash_label, locale='en_US')
+
+            self.ui.label_382.setText(np)
+            self.ui.label_382.setAlignment(QtCore.Qt.AlignCenter)
+            self.ui.label_382.setFont(QtGui.QFont("Times", 11))
+
             self.ui.lineEdit_58.setText(amount_due)
             self.ui.lineEdit_59.setText(external_refrence)
             self.ui.comboBox_17.setCurrentText(terms_bill)
@@ -220,8 +249,9 @@ class Bill:
             self.ui.label_298.setText("PO")
             self.ui.label_298.setAlignment(QtCore.Qt.AlignCenter)
             self.ui.label_298.setFont(QtGui.QFont("Times", 20))
+            Bill.bill_po_items_load_table(self)
         else:
-            print("not purchase order")
+            Bill.bill_items_load_table(self)
         column_list = ["addr1", "tel1", "email"]
         labels = [
             self.ui.label_254,
@@ -257,13 +287,10 @@ class Bill:
 
         amount_due = cusr.execute("SELECT amount_due FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
         amount_due = float(''.join(map(str, amount_due)))
-        amount_p = cusr.execute("SELECT amount_paid FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
-        amount_p = float(''.join(map(str, amount_p)))
-        amount_due1 = (amount_due - amount_p)
 
 
         np2 = babel.numbers.format_currency(
-            decimal.Decimal(amount_due1), cash_label, locale='en_US')
+            decimal.Decimal(amount_due), cash_label, locale='en_US')
             
 
         self.ui.label_241.setText(stauts)
@@ -279,7 +306,7 @@ class Bill:
         Bill.prepaid_expenses(self)
         Bill.BILL_TRANSACTIONS_details_page_table(self)
         self.ui.textEdit_4.insertPlainText(notes)
-        Bill.bill_items_load_table(self)
+        
         Bill.bill_transaction_load_table(self)
 
     def unearned_account(self):

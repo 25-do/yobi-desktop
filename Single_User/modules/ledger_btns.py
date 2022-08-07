@@ -51,6 +51,9 @@ class LEDGERBUTTONS:
             QMessageBox.warning(
                 QMessageBox(), 'Error', error_message)
         else:
+            database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
             combo2 = status # post the ledger by default
             cusr.execute("UPDATE ledgers SET active=? WHERE name=? ", (combo2, currentcode)).fetchone()
             database_connection.commit()
