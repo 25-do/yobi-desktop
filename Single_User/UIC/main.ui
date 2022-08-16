@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>1397</width>
-    <height>732</height>
+    <height>745</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -2022,7 +2022,7 @@ p, li { white-space: pre-wrap; }
                          <string notr="true">background: transparent;</string>
                         </property>
                         <property name="currentIndex">
-                         <number>32</number>
+                         <number>20</number>
                         </property>
                         <widget class="QWidget" name="home">
                          <property name="maximumSize">
@@ -2372,6 +2372,87 @@ border-radius: 15px;
 }</string>
                                  </property>
                                  <layout class="QGridLayout" name="gridLayout_6">
+                                  <item row="4" column="0" colspan="2">
+                                   <widget class="QFrame" name="frame_21">
+                                    <property name="minimumSize">
+                                     <size>
+                                      <width>0</width>
+                                      <height>101</height>
+                                     </size>
+                                    </property>
+                                    <property name="maximumSize">
+                                     <size>
+                                      <width>16777215</width>
+                                      <height>88</height>
+                                     </size>
+                                    </property>
+                                    <property name="styleSheet">
+                                     <string notr="true">QFrame{
+	background-color: rgb(29, 29, 29);
+border-radius: 15px;
+	
+
+}</string>
+                                    </property>
+                                    <property name="frameShape">
+                                     <enum>QFrame::StyledPanel</enum>
+                                    </property>
+                                    <property name="frameShadow">
+                                     <enum>QFrame::Raised</enum>
+                                    </property>
+                                    <layout class="QGridLayout" name="gridLayout_28">
+                                     <item row="1" column="0" colspan="2">
+                                      <widget class="QLabel" name="label_35">
+                                       <property name="text">
+                                        <string/>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="0" column="1">
+                                      <widget class="QLabel" name="label_34">
+                                       <property name="text">
+                                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#ffffff;&quot;&gt;profit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="0" column="0">
+                                      <widget class="QLabel" name="label_33">
+                                       <property name="maximumSize">
+                                        <size>
+                                         <width>16777215</width>
+                                         <height>23</height>
+                                        </size>
+                                       </property>
+                                       <property name="styleSheet">
+                                        <string notr="true"/>
+                                       </property>
+                                       <property name="text">
+                                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#b8b89f;&quot;&gt;NET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                    </layout>
+                                   </widget>
+                                  </item>
+                                  <item row="0" column="0" colspan="2">
+                                   <widget class="QLabel" name="label_19">
+                                    <property name="minimumSize">
+                                     <size>
+                                      <width>0</width>
+                                      <height>20</height>
+                                     </size>
+                                    </property>
+                                    <property name="maximumSize">
+                                     <size>
+                                      <width>16777215</width>
+                                      <height>40</height>
+                                     </size>
+                                    </property>
+                                    <property name="text">
+                                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Most sold&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                    </property>
+                                   </widget>
+                                  </item>
                                   <item row="1" column="0" colspan="2">
                                    <widget class="QTableWidget" name="tableWidget_7">
                                     <property name="minimumSize">
@@ -2660,31 +2741,12 @@ border-radius: 15px;
                                     </column>
                                    </widget>
                                   </item>
-                                  <item row="0" column="0" colspan="2">
-                                   <widget class="QLabel" name="label_19">
-                                    <property name="minimumSize">
-                                     <size>
-                                      <width>0</width>
-                                      <height>20</height>
-                                     </size>
-                                    </property>
-                                    <property name="maximumSize">
-                                     <size>
-                                      <width>16777215</width>
-                                      <height>40</height>
-                                     </size>
-                                    </property>
-                                    <property name="text">
-                                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Most sold&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                    </property>
-                                   </widget>
-                                  </item>
-                                  <item row="2" column="0" colspan="2">
+                                  <item row="3" column="0" colspan="2">
                                    <widget class="QFrame" name="frame_20">
                                     <property name="minimumSize">
                                      <size>
                                       <width>0</width>
-                                      <height>88</height>
+                                      <height>78</height>
                                      </size>
                                     </property>
                                     <property name="maximumSize">
@@ -2708,6 +2770,13 @@ border-radius: 15px;
                                      <enum>QFrame::Raised</enum>
                                     </property>
                                     <layout class="QGridLayout" name="gridLayout_29">
+                                     <item row="0" column="1">
+                                      <widget class="QLabel" name="label_32">
+                                       <property name="text">
+                                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#ffffff;&quot;&gt;profit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                       </property>
+                                      </widget>
+                                     </item>
                                      <item row="0" column="0">
                                       <widget class="QLabel" name="label_22">
                                        <property name="maximumSize">
@@ -2717,17 +2786,10 @@ border-radius: 15px;
                                         </size>
                                        </property>
                                        <property name="styleSheet">
-                                        <string notr="true">background-color: rgb(51, 51, 51);</string>
+                                        <string notr="true"/>
                                        </property>
                                        <property name="text">
                                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#b8b89f;&quot;&gt;GROSS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                       </property>
-                                      </widget>
-                                     </item>
-                                     <item row="0" column="1">
-                                      <widget class="QLabel" name="label_32">
-                                       <property name="text">
-                                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#ffffff;&quot;&gt;profit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                        </property>
                                       </widget>
                                      </item>
@@ -2741,27 +2803,16 @@ border-radius: 15px;
                                     </layout>
                                    </widget>
                                   </item>
-                                  <item row="3" column="0" colspan="2">
-                                   <widget class="QFrame" name="frame_21">
+                                  <item row="2" column="0" colspan="2">
+                                   <widget class="QFrame" name="frame_32">
                                     <property name="minimumSize">
                                      <size>
                                       <width>0</width>
-                                      <height>101</height>
-                                     </size>
-                                    </property>
-                                    <property name="maximumSize">
-                                     <size>
-                                      <width>16777215</width>
-                                      <height>88</height>
+                                      <height>80</height>
                                      </size>
                                     </property>
                                     <property name="styleSheet">
-                                     <string notr="true">QFrame{
-	background-color: rgb(29, 29, 29);
-border-radius: 15px;
-	
-
-}</string>
+                                     <string notr="true">background-color: rgb(51, 51, 51);</string>
                                     </property>
                                     <property name="frameShape">
                                      <enum>QFrame::StyledPanel</enum>
@@ -2769,34 +2820,53 @@ border-radius: 15px;
                                     <property name="frameShadow">
                                      <enum>QFrame::Raised</enum>
                                     </property>
-                                    <layout class="QGridLayout" name="gridLayout_28">
-                                     <item row="1" column="0" colspan="2">
-                                      <widget class="QLabel" name="label_35">
+                                    <layout class="QGridLayout" name="gridLayout_123">
+                                     <item row="1" column="1">
+                                      <widget class="QPushButton" name="pushButton_127">
                                        <property name="text">
-                                        <string/>
+                                        <string>Clients</string>
                                        </property>
                                       </widget>
                                      </item>
-                                     <item row="0" column="1">
-                                      <widget class="QLabel" name="label_34">
+                                     <item row="1" column="2">
+                                      <widget class="QPushButton" name="pushButton_171">
                                        <property name="text">
-                                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#ffffff;&quot;&gt;profit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                        <string>Bills</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="2" column="1">
+                                      <widget class="QPushButton" name="pushButton_145">
+                                       <property name="text">
+                                        <string>purchase orders</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="1" column="0">
+                                      <widget class="QPushButton" name="pushButton_105">
+                                       <property name="text">
+                                        <string>Vendors</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="2" column="2">
+                                      <widget class="QPushButton" name="pushButton_172">
+                                       <property name="text">
+                                        <string>Ledgers</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="2" column="0">
+                                      <widget class="QPushButton" name="pushButton_144">
+                                       <property name="text">
+                                        <string>Invoice</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="0" column="0">
-                                      <widget class="QLabel" name="label_33">
-                                       <property name="maximumSize">
-                                        <size>
-                                         <width>16777215</width>
-                                         <height>23</height>
-                                        </size>
-                                       </property>
-                                       <property name="styleSheet">
-                                        <string notr="true">background-color: rgb(51, 51, 51);</string>
-                                       </property>
+                                      <widget class="QLabel" name="label_384">
                                        <property name="text">
-                                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#b8b89f;&quot;&gt;NET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                        <string>Quick Links</string>
                                        </property>
                                       </widget>
                                      </item>
@@ -3027,8 +3097,8 @@ p, li { white-space: pre-wrap; }
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>401</width>
-                                  <height>183</height>
+                                  <width>92</width>
+                                  <height>30</height>
                                  </rect>
                                 </property>
                                </widget>
@@ -3726,7 +3796,7 @@ border-radius : 15px;
                              <item row="0" column="0">
                               <widget class="QLabel" name="label_59">
                                <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;TOTAL REVENUE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;TOTAL SALES REVENUE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                </property>
                               </widget>
                              </item>
@@ -3888,11 +3958,6 @@ alternate-background-color: rgb(43, 43, 43);
                             <column>
                              <property name="text">
                               <string>Grand Total</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>total amount</string>
                              </property>
                             </column>
                             <column>
@@ -4419,6 +4484,39 @@ QPushButton:disabled {
                         </widget>
                         <widget class="QWidget" name="page_21">
                          <layout class="QGridLayout" name="gridLayout_60">
+                          <item row="0" column="0">
+                           <widget class="QPushButton" name="pushButton_83">
+                            <property name="minimumSize">
+                             <size>
+                              <width>45</width>
+                              <height>45</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>76</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="../resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-arrow-circle-left.png</normaloff>:/icons/images/icons/cil-arrow-circle-left.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_119">
+                            <property name="text">
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Vendors&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                            </property>
+                           </widget>
+                          </item>
                           <item row="2" column="1">
                            <layout class="QHBoxLayout" name="horizontalLayout_18">
                             <property name="spacing">
@@ -4717,74 +4815,6 @@ background-color: rgb(50, 50, 50);
                             </item>
                            </layout>
                           </item>
-                          <item row="3" column="0" colspan="2">
-                           <widget class="QTableWidget" name="tableWidget_14">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(29, 29, 29);
-alternate-background-color: rgb(43, 43, 43);
-</string>
-                            </property>
-                            <property name="alternatingRowColors">
-                             <bool>true</bool>
-                            </property>
-                            <attribute name="verticalHeaderVisible">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderHighlightSections">
-                             <bool>true</bool>
-                            </attribute>
-                            <column>
-                             <property name="text">
-                              <string>ID</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Supplier name</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Adress</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Contacts</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Email</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Bills</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>date</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>pay</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Edit</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>delete</string>
-                             </property>
-                            </column>
-                           </widget>
-                          </item>
                           <item row="2" column="0">
                            <widget class="QFrame" name="frame_53">
                             <property name="frameShape">
@@ -4854,40 +4884,214 @@ QPushButton:hover {
                                </property>
                               </widget>
                              </item>
+                             <item row="0" column="2">
+                              <spacer name="horizontalSpacer_59">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
                             </layout>
                            </widget>
                           </item>
-                          <item row="1" column="0">
-                           <widget class="QLabel" name="label_119">
-                            <property name="text">
-                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Supplier&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="0">
-                           <widget class="QPushButton" name="pushButton_83">
+                          <item row="3" column="0">
+                           <widget class="QTableWidget" name="tableWidget_14">
                             <property name="minimumSize">
                              <size>
-                              <width>45</width>
-                              <height>45</height>
+                              <width>759</width>
+                              <height>0</height>
                              </size>
                             </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>76</width>
-                              <height>16777215</height>
-                             </size>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(29, 29, 29);
+alternate-background-color: rgb(43, 43, 43);
+</string>
                             </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
+                            <property name="alternatingRowColors">
+                             <bool>true</bool>
                             </property>
-                            <property name="text">
-                             <string/>
+                            <property name="showGrid">
+                             <bool>false</bool>
                             </property>
-                            <property name="icon">
-                             <iconset resource="../resources.qrc">
-                              <normaloff>:/icons/images/icons/cil-arrow-circle-left.png</normaloff>:/icons/images/icons/cil-arrow-circle-left.png</iconset>
+                            <property name="gridStyle">
+                             <enum>Qt::NoPen</enum>
                             </property>
+                            <attribute name="verticalHeaderVisible">
+                             <bool>false</bool>
+                            </attribute>
+                            <attribute name="verticalHeaderHighlightSections">
+                             <bool>true</bool>
+                            </attribute>
+                            <column>
+                             <property name="text">
+                              <string/>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>Supplier name</string>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>Bills</string>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>Edit</string>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>delete</string>
+                             </property>
+                            </column>
+                            <column>
+                             <property name="text">
+                              <string>Details</string>
+                             </property>
+                            </column>
+                           </widget>
+                          </item>
+                          <item row="3" column="1">
+                           <widget class="QFrame" name="frame_58">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(29, 29, 29);</string>
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QGridLayout" name="gridLayout_120">
+                             <item row="5" column="0">
+                              <widget class="QLabel" name="label_387">
+                               <property name="text">
+                                <string>Address2</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="7" column="0">
+                              <widget class="QLabel" name="label_385">
+                               <property name="text">
+                                <string>website</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="0">
+                              <widget class="QLabel" name="label_391">
+                               <property name="text">
+                                <string>phone number 1</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="0">
+                              <widget class="QLabel" name="label_388">
+                               <property name="text">
+                                <string>Address1</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="8" column="0">
+                              <widget class="QLabel" name="label_392">
+                               <property name="text">
+                                <string>country</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="6" column="0">
+                              <widget class="QLabel" name="label_386">
+                               <property name="text">
+                                <string>email</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="0">
+                              <widget class="QLabel" name="label_389">
+                               <property name="text">
+                                <string>phone number 2</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="0">
+                              <widget class="QLabel" name="label_390">
+                               <property name="text">
+                                <string>Name :</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="1">
+                              <widget class="QLabel" name="label_394">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="1">
+                              <widget class="QLabel" name="label_395">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="1">
+                              <widget class="QLabel" name="label_396">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="5" column="1">
+                              <widget class="QLabel" name="label_397">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="1">
+                              <widget class="QLabel" name="label_398">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="6" column="1">
+                              <widget class="QLabel" name="label_399">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="7" column="1">
+                              <widget class="QLabel" name="label_400">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="8" column="1">
+                              <widget class="QLabel" name="label_401">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="0" colspan="2">
+                              <widget class="QLabel" name="label_393">
+                               <property name="text">
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;VENDOR INFO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                           </item>
                          </layout>
@@ -7332,6 +7536,126 @@ background-color: rgb(50, 50, 50);
                               <string>Transactions</string>
                              </property>
                             </column>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="page_63">
+                         <layout class="QGridLayout" name="gridLayout_121">
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_402">
+                            <property name="text">
+                             <string>Description</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1" colspan="2">
+                           <widget class="QLineEdit" name="lineEdit_22"/>
+                          </item>
+                          <item row="3" column="0">
+                           <widget class="QCheckBox" name="checkBox_4">
+                            <property name="text">
+                             <string>Posted</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="3">
+                           <spacer name="horizontalSpacer_61">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                             <enum>QSizePolicy::Minimum</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>676</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item row="2" column="0">
+                           <widget class="QLabel" name="label_403">
+                            <property name="text">
+                             <string>Activity</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="1">
+                           <spacer name="verticalSpacer_23">
+                            <property name="orientation">
+                             <enum>Qt::Vertical</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>20</width>
+                              <height>205</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item row="0" column="2">
+                           <spacer name="verticalSpacer_18">
+                            <property name="orientation">
+                             <enum>Qt::Vertical</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>20</width>
+                              <height>205</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item row="5" column="1" colspan="2">
+                           <widget class="QFrame" name="frame_60">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_48">
+                             <item>
+                              <widget class="QPushButton" name="pushButton_173">
+                               <property name="text">
+                                <string>Save</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../resources.qrc">
+                                 <normaloff>:/icons/images/icons/cil-save.png</normaloff>:/icons/images/icons/cil-save.png</iconset>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_174">
+                               <property name="text">
+                                <string>cancel</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_175">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(240, 0, 0);</string>
+                               </property>
+                               <property name="text">
+                                <string>Delete</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item row="2" column="1" colspan="2">
+                           <widget class="QComboBox" name="comboBox_53"/>
+                          </item>
+                          <item row="4" column="0">
+                           <widget class="QCheckBox" name="checkBox_10">
+                            <property name="text">
+                             <string>Locked</string>
+                            </property>
                            </widget>
                           </item>
                          </layout>
@@ -11132,7 +11456,7 @@ QPushButton:disabled {
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
                             <property name="currentIndex">
-                             <number>6</number>
+                             <number>4</number>
                             </property>
                             <widget class="QWidget" name="page_11">
                              <layout class="QGridLayout" name="gridLayout_7">
@@ -11177,8 +11501,17 @@ QPushButton:disabled {
                               </item>
                               <item row="4" column="0" colspan="8">
                                <widget class="QTreeWidget" name="treeWidget">
+                                <property name="styleSheet">
+                                 <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                                </property>
+                                <property name="alternatingRowColors">
+                                 <bool>true</bool>
+                                </property>
                                 <property name="indentation">
                                  <number>20</number>
+                                </property>
+                                <property name="animated">
+                                 <bool>true</bool>
                                 </property>
                                 <attribute name="headerDefaultSectionSize">
                                  <number>200</number>
@@ -11320,14 +11653,26 @@ QPushButton:hover {
                              <layout class="QGridLayout" name="gridLayout_43">
                               <item row="3" column="0" colspan="6">
                                <widget class="QTableWidget" name="tableWidget_10">
+                                <property name="styleSheet">
+                                 <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                                </property>
+                                <property name="alternatingRowColors">
+                                 <bool>true</bool>
+                                </property>
+                                <property name="gridStyle">
+                                 <enum>Qt::NoPen</enum>
+                                </property>
+                                <attribute name="verticalHeaderVisible">
+                                 <bool>false</bool>
+                                </attribute>
                                 <column>
                                  <property name="text">
-                                  <string>Order code </string>
+                                  <string>name </string>
                                  </property>
                                 </column>
                                 <column>
                                  <property name="text">
-                                  <string>Item name </string>
+                                  <string> Total amount </string>
                                  </property>
                                 </column>
                                 <column>
@@ -11337,12 +11682,7 @@ QPushButton:hover {
                                 </column>
                                 <column>
                                  <property name="text">
-                                  <string>Quantity</string>
-                                 </property>
-                                </column>
-                                <column>
-                                 <property name="text">
-                                  <string> Total amount </string>
+                                  <string>Tx type</string>
                                  </property>
                                 </column>
                                 <column>
@@ -11558,6 +11898,18 @@ QPushButton:hover {
                               </item>
                               <item row="5" column="0" colspan="6">
                                <widget class="QTableWidget" name="tableWidget_19">
+                                <property name="styleSheet">
+                                 <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                                </property>
+                                <property name="alternatingRowColors">
+                                 <bool>true</bool>
+                                </property>
+                                <property name="gridStyle">
+                                 <enum>Qt::NoPen</enum>
+                                </property>
+                                <attribute name="verticalHeaderVisible">
+                                 <bool>false</bool>
+                                </attribute>
                                 <column>
                                  <property name="text">
                                   <string>UPC</string>
@@ -11740,6 +12092,15 @@ QPushButton:hover {
                                 <layout class="QGridLayout" name="gridLayout_50">
                                  <item row="3" column="0" colspan="6">
                                   <widget class="QTableWidget" name="tableWidget_20">
+                                   <property name="styleSheet">
+                                    <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                                   </property>
+                                   <property name="alternatingRowColors">
+                                    <bool>true</bool>
+                                   </property>
+                                   <property name="gridStyle">
+                                    <enum>Qt::NoPen</enum>
+                                   </property>
                                    <column>
                                     <property name="text">
                                      <string>Sale No.</string>
@@ -12070,6 +12431,15 @@ QPushButton:hover {
                                  </item>
                                  <item row="3" column="0" colspan="6">
                                   <widget class="QTableWidget" name="tableWidget_21">
+                                   <property name="styleSheet">
+                                    <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                                   </property>
+                                   <property name="alternatingRowColors">
+                                    <bool>true</bool>
+                                   </property>
+                                   <property name="gridStyle">
+                                    <enum>Qt::NoPen</enum>
+                                   </property>
                                    <column>
                                     <property name="text">
                                      <string>ID</string>
@@ -12325,6 +12695,15 @@ QPushButton:hover {
                                  </item>
                                  <item row="3" column="0" colspan="5">
                                   <widget class="QTableWidget" name="tableWidget_22">
+                                   <property name="styleSheet">
+                                    <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                                   </property>
+                                   <property name="alternatingRowColors">
+                                    <bool>true</bool>
+                                   </property>
+                                   <property name="gridStyle">
+                                    <enum>Qt::NoPen</enum>
+                                   </property>
                                    <column>
                                     <property name="text">
                                      <string>Code</string>
@@ -15610,7 +15989,7 @@ QPushButton:hover {
                           <item row="1" column="0">
                            <widget class="QStackedWidget" name="stackedWidget_5">
                             <property name="currentIndex">
-                             <number>1</number>
+                             <number>0</number>
                             </property>
                             <widget class="QWidget" name="page_54">
                              <layout class="QGridLayout" name="gridLayout_111">

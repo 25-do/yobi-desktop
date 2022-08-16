@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'login_hrDEkPxt.ui'
+## Form generated from reading UI file 'login_hrNzIfnq.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -103,6 +103,20 @@ class Ui_Singnup(object):
 
         self.verticalLayout_2.addWidget(self.username)
 
+        self.username_3 = QLineEdit(self.frame_widgets)
+        self.username_3.setObjectName(u"username_3")
+        self.username_3.setMinimumSize(QSize(0, 30))
+        self.username_3.setMaximumSize(QSize(16777215, 40))
+
+        self.verticalLayout_2.addWidget(self.username_3)
+
+        self.username_2 = QLineEdit(self.frame_widgets)
+        self.username_2.setObjectName(u"username_2")
+        self.username_2.setMinimumSize(QSize(0, 30))
+        self.username_2.setMaximumSize(QSize(16777215, 40))
+
+        self.verticalLayout_2.addWidget(self.username_2)
+
         self.password = QLineEdit(self.frame_widgets)
         self.password.setObjectName(u"password")
         self.password.setMinimumSize(QSize(0, 30))
@@ -126,6 +140,9 @@ class Ui_Singnup(object):
         self.user_description.setText(QCoreApplication.translate("Singnup", u"<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; color:#ffffff;\">SIGNUP</span></p></body></html>", None))
         self.label.setText("")
         self.username.setPlaceholderText(QCoreApplication.translate("Singnup", u"Email", None))
+        self.username_3.setPlaceholderText(QCoreApplication.translate("Singnup", u"username", None))
+        self.username_2.setText("")
+        self.username_2.setPlaceholderText(QCoreApplication.translate("Singnup", u"Phone Number", None))
         self.password.setPlaceholderText(QCoreApplication.translate("Singnup", u"Password", None))
     # retranslateUi
 

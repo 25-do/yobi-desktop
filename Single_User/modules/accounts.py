@@ -142,17 +142,19 @@ def profit_loss_account(self):
         (order_date,
          order_date2)).fetchone()
     fix_sum = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
         (order_date,
          order_date2,
-         "fixedexpenses"
+         "fixedexpenses",
+         "debit"
          )).fetchone()
 
     var_sum = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
         (order_date,
          order_date2,
-         "expenses"
+         "expenses",
+         "debit"
          )).fetchone()
     self.c.execute(
         "INSERT INTO report_printing SELECT name, KSH FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
@@ -162,7 +164,7 @@ def profit_loss_account(self):
          ))
     self.connection.commit()
     self.c.execute(
-        "INSERT INTO report_printing SELECT name, KSH FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
+        "INSERT INTO report_printing SELECT name, KSH FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
         (order_date,
          order_date2,
          "expenses"
@@ -244,7 +246,7 @@ def revenuet(self):
         (order_date,
          order_date2, "revenue", "credit")).fetchall()
     self.c.execute(
-        "INSERT INTO report_printing SELECT name, amount FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
+        "INSERT INTO report_printing SELECT name, KSH FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
         (order_date,
          order_date2, "revenue", "credit"))
     self.connection.commit()
@@ -274,9 +276,9 @@ def sales(self):
     qdate = self.ui.dateEdit_5.date()
     sale_date2 = qdate.toPython()
     sales_rev = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=? AND tx_type=?",
         (sale_date,
-         sale_date2, "Product Sales")).fetchone()
+         sale_date2, "Product Sales", "credit")).fetchone()
     self.c.execute('INSERT INTO report_printing VALUES (?,?)', ('Sales', ' '))
     self.connection.commit()
 
@@ -302,9 +304,9 @@ def sales_returns(self):
     qdate = self.ui.dateEdit_5.date()
     order_date2 = qdate.toPython()
     alltb = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
-            order_date2, "Sales Returns and Allowances")).fetchone()
+            order_date2, "Sales Returns and Allowances", "credit")).fetchone()
 
     alltb = (''.join(map(str, alltb)))
 
@@ -334,17 +336,23 @@ def sales_reports(self):
         "SELECT * FROM sales WHERE sale_date BETWEEN ? AND ?",
         (order_date,
          order_date2)).fetchall()
+    if result == []:
+        QMessageBox.warning(
+            QMessageBox(),
+            'Error',
+            'no results found .')
+    else:
 
-    print(result)
-    self.ui.tableWidget_20.setRowCount(0)
-    for row_number, row_data in enumerate(result):
-        self.ui.tableWidget_20.insertRow(row_number)
-        for column_number, data in enumerate(row_data):
-            self.ui.tableWidget_20.setItem(
-                row_number,
-                column_number,
-                QTableWidgetItem(
-                    str(data)))
+        print(result)
+        self.ui.tableWidget_20.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_20.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_20.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
 
 
 def stock_reports(self):
@@ -359,17 +367,22 @@ def stock_reports(self):
         "SELECT UPC , name , Buying_price , selling_price , Quantity , Supplier, category, reoder , vat, stockdate FROM stock WHERE stockdate BETWEEN ? AND ?",
         (order_date,
          order_date2)).fetchall()
-
-    print(result)
-    self.ui.tableWidget_19.setRowCount(0)
-    for row_number, row_data in enumerate(result):
-        self.ui.tableWidget_19.insertRow(row_number)
-        for column_number, data in enumerate(row_data):
-            self.ui.tableWidget_19.setItem(
-                row_number,
-                column_number,
-                QTableWidgetItem(
-                    str(data)))
+    if result == []:
+        QMessageBox.warning(
+            QMessageBox(),
+            'Error',
+            'no results found .')
+    else:
+        print(result)
+        self.ui.tableWidget_19.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_19.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_19.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
 
 
 def orrders_report(self):
@@ -384,17 +397,22 @@ def orrders_report(self):
         "SELECT code, client_name, grand_total, total_amount, payment_status,  order_date, due FROM orders WHERE order_date BETWEEN ? AND ?",
         (order_date,
          order_date2)).fetchall()
-
-    print(result)
-    self.ui.tableWidget_22.setRowCount(0)
-    for row_number, row_data in enumerate(result):
-        self.ui.tableWidget_22.insertRow(row_number)
-        for column_number, data in enumerate(row_data):
-            self.ui.tableWidget_22.setItem(
-                row_number,
-                column_number,
-                QTableWidgetItem(
-                    str(data)))
+    if result == []:
+        QMessageBox.warning(
+            QMessageBox(),
+            'Error',
+            'no results found .')
+    else:
+        print(result)
+        self.ui.tableWidget_22.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_22.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_22.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
 
 
 def salereturns_report(self):
@@ -406,19 +424,24 @@ def salereturns_report(self):
     qdate = self.ui.dateEdit_9.date()
     order_date2 = qdate.toPython()
     result = self.c.execute(
-        "SELECT * FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+        "SELECT name, KSH, description, tx_type, transactionsdate FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=?",
         (order_date,
          order_date2, "Sales Returns and Allowances")).fetchall()
-    print(result)
-    self.ui.tableWidget_10.setRowCount(0)
-    for row_number, row_data in enumerate(result):
-        self.ui.tableWidget_10.insertRow(row_number)
-        for column_number, data in enumerate(row_data):
-            self.ui.tableWidget_10.setItem(
-                row_number,
-                column_number,
-                QTableWidgetItem(
-                    str(data)))
+    if result == []:
+        QMessageBox.warning(
+            QMessageBox(),
+            'Error',
+            'no results found .')
+    else:
+        self.ui.tableWidget_10.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_10.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_10.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
 
 
 def general_report(self):
@@ -433,37 +456,52 @@ def general_report(self):
         "SELECT uuid, name, KSH, tx_type, description, transactionsdate FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
         (order_date,
          order_date2)).fetchall()
-    cr = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
-        (order_date,
-         order_date2, "credit")).fetchone()
-    cr = float(''.join(map(str, cr)))
-    dr = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
-        (order_date,
-         order_date2, "debit")).fetchone()
-    dr = float(''.join(map(str, dr)))
-    dr1 = babel.numbers.format_currency(
-        decimal.Decimal(dr), cash_label, locale='en_US')
-    cr1 = babel.numbers.format_currency(
-        decimal.Decimal(cr), cash_label, locale='en_US')
-    self.ui.label_230.setText(str(cr1))
-    self.ui.label_228.setText(str(dr1))
-    if dr == cr:
-        self.ui.label_231.setText("Balanced")
+    if result == []:
+        QMessageBox.warning(
+            QMessageBox(),
+            'Error',
+            'no results found .')
     else:
-        self.ui.label_231.setText(" not balanced")
 
-    
-    self.ui.tableWidget_21.setRowCount(0)
-    for row_number, row_data in enumerate(result):
-        self.ui.tableWidget_21.insertRow(row_number)
-        for column_number, data in enumerate(row_data):
-            self.ui.tableWidget_21.setItem(
-                row_number,
-                column_number,
-                QTableWidgetItem(
-                    str(data)))
+        cr = self.c.execute(
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
+            (order_date,
+            order_date2, "credit")).fetchone()
+        cr = (''.join(map(str, cr)))
+        if cr == str(None):
+            cr = 0
+        else:
+            cr = float(''.join(map(str, cr)))
+        dr = self.c.execute(
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
+            (order_date,
+            order_date2, "debit")).fetchone()
+        dr = (''.join(map(str, dr)))
+        if dr == str(None):
+            dr = 0
+        else:
+            dr = float(''.join(map(str, dr)))
+        dr1 = babel.numbers.format_currency(
+            decimal.Decimal(dr), cash_label, locale='en_US')
+        cr1 = babel.numbers.format_currency(
+            decimal.Decimal(cr), cash_label, locale='en_US')
+        self.ui.label_230.setText(str(cr1))
+        self.ui.label_228.setText(str(dr1))
+        if dr == cr:
+            self.ui.label_231.setText("Balanced")
+        else:
+            self.ui.label_231.setText(" not balanced")
+
+        
+        self.ui.tableWidget_21.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_21.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_21.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
 
 
 def export_table_sales(self):
@@ -599,14 +637,15 @@ def gross_pr(self):
     qdate = self.ui.dateEdit_5.date()
     order_date2 = qdate.toPython()
     alltb = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
         (order_date,
-         order_date2, "Sales Returns and Allowances")).fetchone()
+         order_date2, "Sales Returns and Allowances", "credit")).fetchone()
 
     sales_rev = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=? AND tx_type=?",
         (order_date,
-         order_date, "Product Sales")).fetchone()
+         order_date, "Product Sales", "credit")).fetchone()
+    sales_rev = (''.join(map(str, sales_rev)))
 
     alltb = (''.join(map(str, alltb)))
     if alltb == str(None):
@@ -638,9 +677,9 @@ def net_pr(self):
         qdate = self.ui.dateEdit_5.date()
         order_date2 = qdate.toPython()
         alltb = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
-            order_date2, "Sales Returns and Allowances")).fetchone()
+            order_date2, "Sales Returns and Allowances", "credit")).fetchone()
 
         paid = self.c.execute(
             "SELECT SUM(paid) FROM payment WHERE payment_date BETWEEN ? AND ?",
@@ -648,9 +687,9 @@ def net_pr(self):
              order_date2)).fetchone()
 
         total_income = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
-             order_date2, "revenue")).fetchone()
+             order_date2, "revenue", "credit")).fetchone()
         total_income = float(''.join(map(str, total_income)))
 
         total_sales = self.c.execute(
@@ -659,9 +698,9 @@ def net_pr(self):
              order_date2)).fetchone()
         total_sales = float(''.join(map(str, total_sales)))
         fix_sum = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND coa_id=?",
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND coa_id=? AND tx_type=?",
             (order_date,
-             order_date2, "fixedexpenses", "expenses")).fetchone()
+             order_date2, "fixedexpenses", "expenses", "debit")).fetchone()
 
         paid = (''.join(map(str, paid)))
         fix_sum = (''.join(map(str, fix_sum)))

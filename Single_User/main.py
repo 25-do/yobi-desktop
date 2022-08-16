@@ -10,6 +10,7 @@ import sys
 import os
 import sqlite3
 import csv
+from time import time
 import uuid
 import hashlib
 from datetime import datetime as dt
@@ -85,6 +86,7 @@ who_is_logged = []
 jr_id_lst = []
 current_bill_code_fromTable = []
 purchase_order_bill_uuid = []
+purchase_order_bill_items_amount = []
 basepath = os.path.expanduser('~/Documents')
 pathtodb = str(basepath)
 newpath = (pathtodb + "\\yobi")
@@ -245,6 +247,9 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_158.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_57))
+        self.ui.pushButton_170.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_32))
         self.ui.pushButton_125.clicked.connect(
             lambda: self.ui.stackedWidget_4.setCurrentWidget(
                 self.ui.page_45))
@@ -338,6 +343,7 @@ class MainWindow(QMainWindow):
         self.prev()
         self.search_client_btn()
         self.search_ledger_btn()
+        self.update_journal_btn()
         self.search_bills_btn()
         self.search_purchase_orders_btn()
         self.payment_reload()
@@ -345,6 +351,7 @@ class MainWindow(QMainWindow):
         self.scroll()
         self.unlock_bill_ledger_btn()
         self.add_journalentry_btn()
+        self.journals_back_btn()
         self.sum_fix_exp()
         self.sum_var_exp()
         self.total_liability()
@@ -460,6 +467,11 @@ class MainWindow(QMainWindow):
         self.ui.comboBox_5.addItems(["Fully paid", "Installments", "Not Paid"])
         self.ui.comboBox_49.addItems(["cash", "cheque", "credit card"])
         self.ui.comboBox_51.addItems(["Fully paid", "Installments", "Not Paid"])
+        self.ui.comboBox_53.addItems([
+        'Operating',
+        'Financing',
+        'Investing',
+        'other'])
         self.export_table_orders_btn()
         self.refersh_everything()
         self.clientbtn()
@@ -1045,8 +1057,90 @@ class MainWindow(QMainWindow):
                                 "border-radius : 25px;\n"
                                 "color : rgb(7, 7, 7); \n"
                                 "}")
-                self.ui.tableWidget_26.setCellWidget(row_number, 4, btn)
+                details = QPushButton("Update")
+                font = QtGui.QFont()
+                font.setPointSize(9)
+                font.setBold(True)
+                # font.setWeight(75)
+                details.setFont(font)
+                details.setStyleSheet("QPushButton{\n"
+                                "    background-color: rgb(0, 255, 0);;\n"
+                                "border-radius : 25px;\n"
+                                "color : rgb(7, 7, 7); \n"
+                                "}")
+                self.ui.tableWidget_26.setCellWidget(row_number, 5, btn)
+                self.ui.tableWidget_26.setCellWidget(row_number, 4, details)
                 btn.clicked.connect(self.jouranal_entry_transaction)
+                details.clicked.connect(self.set_ledger_update_page)
+
+    def all_journal_entries_back(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_62)
+        database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        row = self.ui.tableWidget_25.currentRow()
+        currentcode = (self.ui.tableWidget_25.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        b = cusr.execute('SELECT id FROM ledgers WHERE lg_id=?', (currentcode,)).fetchone()
+        b = (''.join(map(str, b)))
+        # self.ledger_id.append(b)
+        ledger_id.append(b)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_33)
+        result = database_connection.execute("SELECT id, description, journal_entrydate, activity  FROM journal_entries WHERE ledger_id=?", (b,)).fetchall()
+
+        self.ui.tableWidget_26.setRowCount(0)
+        for row_number, row_data in enumerate(result):
+            self.ui.tableWidget_26.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget_26.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
+                btn = QPushButton("TXS")
+                font = QtGui.QFont()
+                font.setPointSize(9)
+                font.setBold(True)
+                # font.setWeight(75)
+                btn.setFont(font)
+                btn.setStyleSheet("QPushButton{\n"
+                                "    background-color: rgb(0, 255, 0);;\n"
+                                "border-radius : 25px;\n"
+                                "color : rgb(7, 7, 7); \n"
+                                "}")
+                details = QPushButton("Update")
+                font = QtGui.QFont()
+                font.setPointSize(9)
+                font.setBold(True)
+                # font.setWeight(75)
+                details.setFont(font)
+                details.setStyleSheet("QPushButton{\n"
+                                "    background-color: rgb(0, 255, 0);;\n"
+                                "border-radius : 25px;\n"
+                                "color : rgb(7, 7, 7); \n"
+                                "}")
+                self.ui.tableWidget_26.setCellWidget(row_number, 5, btn)
+                self.ui.tableWidget_26.setCellWidget(row_number, 4, details)
+                btn.clicked.connect(self.jouranal_entry_transaction)
+                details.clicked.connect(self.set_ledger_update_page)
+    def jouranal_entry_update(self):
+        database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_62)
+        row = self.ui.tableWidget_26.currentRow()
+        currentcode = (self.ui.tableWidget_26.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        combo1 = cusr.execute("SELECT locked FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        combo1 = (''.join(map(str, combo1)))
+        combo2 = cusr.execute("SELECT active FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        combo2 = (''.join(map(str, combo2)))
+        name = cusr.execute("SELECT name FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        name = (''.join(map(str, name)))
+        if combo1 == "1":
+            self.ui.checkBox_8.setChecked(True)
+        else:
+            self.ui.checkBox_9.setChecked(True)
+        self.ui.lineEdit_95.setText((name))
     def sales_returns_journal_entries(self):
         database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
@@ -1599,6 +1693,41 @@ class MainWindow(QMainWindow):
             var_y = (''.join(map(str, var_y)))
             edits.setText((var_y))
 
+    def details_supplier_page(self):
+        database_connection = sqlite3.connect(
+            pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        row = self.ui.tableWidget_14.currentRow()
+        currentcode = (self.ui.tableWidget_14.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        column_list = [
+                "name",
+                "tel1",
+                "tel2",
+                "email",
+                "addr1",
+                "addr2",
+                "site",
+                "country"]
+        line_edits = [
+            self.ui.label_394,
+            self.ui.label_395,
+            self.ui.label_396,
+            self.ui.label_398,
+            self.ui.label_397,
+            self.ui.label_399,
+            self.ui.label_400,
+            self.ui.label_401
+            ]
+        for col, edits in zip(column_list, line_edits):
+            var_y = cusr.execute(
+                "SELECT %s FROM supplier WHERE id_14=? " %
+                (str(
+                    col,)), (currentcode,)).fetchone()
+            var_y = (''.join(map(str, var_y)))
+            edits.setText((var_y))
+            edits.setFont(QFont("Times", 14))
+
     def update_client_page(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_29)
         database_connection = sqlite3.connect(
@@ -1841,15 +1970,15 @@ class MainWindow(QMainWindow):
         qdate = self.ui.dateEdit_14.date()
         order_date2 = qdate.toPython()
         alltb = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
-            order_date2, "Sales Returns and Allowances")).fetchone()
+            order_date2, "Sales Returns and Allowances", "credit")).fetchone()
 
         total_income = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
-             order_date2, "revenue")).fetchone()
-        total_income = float(''.join(map(str, total_income)))
+             oyrder_date2, "revenue", "credit")).fetchone()
+        total_income = (''.join(map(str, total_income)))
         alltb = (''.join(map(str, alltb)))
         if alltb == str(None):
             alltb = 0
@@ -1858,58 +1987,90 @@ class MainWindow(QMainWindow):
         if total_income == str(None):
             total_income = 0
         else:
-            paid = float(''.join(map(str, paid)))
+            total_income = (''.join(map(str, total_income)))
         gross_profit = (total_income - alltb)
         total_revenue = (total_income)
         total_fix_expe = cusr.execute(
-            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
             order_date2,
             "fixedexpenses"
+            "debit"
             )).fetchone()
-        total_fix_expe = float(''.join(map(str, total_fix_expe)))
+        total_fix_expe = (''.join(map(str, total_fix_expe)))
+        
+        if total_fix_expe == str(None):
+            total_fix_expe = 0
+        else:
+            total_fix_expe = float(''.join(map(str, total_fix_expe)))
         var_a = cusr.execute(
-            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
             order_date2,
-            "expenses"
+            "expenses",
+            "debit"
             )).fetchone()
-        var_a = float(''.join(map(str, var_a)))
+        var_a = (''.join(map(str, var_a)))
+        if var_a == str(None):
+            var_a = 0
+        else:
+            var_a = float(''.join(map(str, var_a)))
+
         var_b = cusr.execute(
-            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
             order_date2,
-            "currentassets"
+            "currentassets",
+            "debit"
             )).fetchone()
-        var_b = float(''.join(map(str, var_b)))
+        var_b = (''.join(map(str, var_b)))
+        if var_b == str(None):
+            var_b = 0
+        else:
+            var_b = float(''.join(map(str, var_b)))
         var_l = cusr.execute(
-            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
             order_date2,
-            "fixedassets"
+            "fixedassets",
+            "debit"
             )).fetchone()
-        var_l = float(''.join(map(str, var_l)))
+        var_l = (''.join(map(str, var_l)))
+        if var_l == str(None):
+            var_l = 0
+        else:
+            var_l = float(''.join(map(str, var_l)))
         var_d = cusr.execute(
-            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
             order_date2,
-            "Longtermliabilities"
+            "Longtermliabilities",
+            "credit"
             )).fetchone()
-        var_d = float(''.join(map(str, var_d)))
+        var_d = (''.join(map(str, var_d)))
+        if var_d == str(None):
+            var_d = 0
+        else:
+            var_d = float(''.join(map(str, var_d)))
         var_e = cusr.execute(
-            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
+            "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
              order_date2,
-            "currentliabilities"
+            "currentliabilities",
+            "credit"
             )).fetchone()
-        var_e = float(''.join(map(str, var_e)))
+        var_e = (''.join(map(str, var_e)))
+        if var_e == str(None):
+            var_e = 0
+        else:
+            var_e = float(''.join(map(str, var_e)))
         total_assets = (var_b + var_l)
         total_lib = (var_d + var_e)
         total_expenses = (total_fix_expe + var_a)
         working_capital = (var_b - var_e)
         capital_employed = (var_l + working_capital)
         debt_ratio = (total_lib / total_assets)
-        current_ratio = (var_b + var_e)
+        current_ratio = (var_b / var_e)
         net_profit = (total_revenue - total_expenses)
         var_sum1 = babel.numbers.format_currency(
             decimal.Decimal(total_fix_expe), cash_label, locale='en_US')
@@ -1963,9 +2124,9 @@ class MainWindow(QMainWindow):
             decimal.Decimal(net_profit), cash_label, locale='en_US')
         self.ui.label_266.setText(str(var_sum13))
         self.ui.label_266.setFont(QFont("Times", 20))
-        self.ui.label_270.setText(str(round(current_ratio)))
+        self.ui.label_270.setText(str(round(current_ratio, 2)))
         self.ui.label_270.setFont(QFont("Times", 20))
-        self.ui.label_271.setText(str(round(debt_ratio)))
+        self.ui.label_271.setText(str(round(debt_ratio,2)))
         self.ui.label_271.setFont(QFont("Times", 20))
         print("this is", total_fix_expe)
 
@@ -2025,10 +2186,14 @@ class MainWindow(QMainWindow):
 
     def tx_back_btn(self):
         self.ui.pushButton_163.clicked.connect(self.tx_back)
+    def journals_back_btn(self):
+        self.ui.pushButton_174.clicked.connect(self.all_journal_entries_back)
     def update_order_btn(self):
         self.ui.orders_update_btn.clicked.connect(self.update_orders)
     def update_ledger_btn(self):
         self.ui.pushButton_168.clicked.connect(self.update_ledger)
+    def update_journal_btn(self):
+        self.ui.pushButton_173.clicked.connect(self.update_journal)
 
     def update_supplier_btn(self):
         self.ui.pushButton_79.clicked.connect(self.update_supplier)
@@ -2127,7 +2292,7 @@ class MainWindow(QMainWindow):
             
         except Exception:
             print("transactions loading")
-
+    
     def employee_profile_page(self):
         logging.basicConfig(level=logging.INFO)
         with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
@@ -2382,49 +2547,50 @@ class MainWindow(QMainWindow):
     def update_coa(self):
         # logging.basicConfig(level=logging.INFO)
         # with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
-        database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-        cusr = database_connection.cursor()
-        row = self.ui.chart_of_accounts_tb.currentRow()
-        currentcode = (self.ui.chart_of_accounts_tb.item(row, 0).text())
-        currentcode = (''.join(map(str, currentcode)))
-        amount = str(self.ui.lineEdit_93.text())
-        code = str(self.ui.lineEdit_92.text())
+        try:
+            database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            row = self.ui.chart_of_accounts_tb.currentRow()
+            currentcode = (self.ui.chart_of_accounts_tb.item(row, 0).text())
+            currentcode = (''.join(map(str, currentcode)))
+            amount = str(self.ui.lineEdit_93.text())
+            code = str(self.ui.lineEdit_92.text())
 
-        acc = str(self.ui.comboBox_48.currentText())
-        txtype= str(self.ui.comboBox_50.currentText())
+            acc = str(self.ui.comboBox_48.currentText())
+            txtype= str(self.ui.comboBox_50.currentText())
 
-        column_list = ["role", "account", "code", "balance_type"]
-        edits = [ 
-            acc,
-            amount,
-            code,
-            txtype]
-        for col, ed in zip(column_list, edits):
-            cusr.execute(
-                "UPDATE chart_of_accounts SET %s=? WHERE code=?" %
-                (str(
-                    col,)), (ed, currentcode))
-            database_connection.commit()
-        if self.ui.checkBox_5.isChecked() == True:
-            cusr.execute("UPDATE chart_of_accounts SET locked=? WHERE code=?", ("1", currentcode))
-            database_connection.commit()
-            cusr.execute("UPDATE chart_of_accounts SET active=? WHERE code=?", ("0", currentcode))
-            database_connection.commit()
-        else:
-            cusr.execute("UPDATE chart_of_accounts SET active=? WHERE code=?", ("1", currentcode))
-            database_connection.commit()
-            cusr.execute("UPDATE chart_of_accounts SET locked=? WHERE code=?", ("0", currentcode))
-            database_connection.commit()
-        QMessageBox.information(
-            QMessageBox(),
-            'Successful',
-            'transaction is updated.')
+            column_list = ["role", "account", "code", "balance_type"]
+            edits = [ 
+                acc,
+                amount,
+                code,
+                txtype]
+            for col, ed in zip(column_list, edits):
+                cusr.execute(
+                    "UPDATE chart_of_accounts SET %s=? WHERE code=?" %
+                    (str(
+                        col,)), (ed, currentcode))
+                database_connection.commit()
+            if self.ui.checkBox_5.isChecked() == True:
+                cusr.execute("UPDATE chart_of_accounts SET locked=? WHERE code=?", ("1", currentcode))
+                database_connection.commit()
+                cusr.execute("UPDATE chart_of_accounts SET active=? WHERE code=?", ("0", currentcode))
+                database_connection.commit()
+            else:
+                cusr.execute("UPDATE chart_of_accounts SET active=? WHERE code=?", ("1", currentcode))
+                database_connection.commit()
+                cusr.execute("UPDATE chart_of_accounts SET locked=? WHERE code=?", ("0", currentcode))
+                database_connection.commit()
+            QMessageBox.information(
+                QMessageBox(),
+                'Successful',
+                'account is updated.')
             
-        # except Exception:
-        #     QMessageBox.warning(
-        #         QMessageBox(),
-        #         'Error',
-        #         'Could not update client.')
+        except Exception:
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'code already taken unique code is required')
 
 
     def update_employee(self):
@@ -2553,16 +2719,10 @@ class MainWindow(QMainWindow):
         PurchaseOrder.purchase_order_items_load_table(self)
 
     def create_bill_from_purchase_order(self):
-        database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-        cusr = database_connection.cursor()
         row = self.ui.tableWidget_27.currentRow()
         currentcode = (self.ui.tableWidget_27.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode)))
-
         purchase_order_bill_uuid.append(currentcode)
-        
-        po_status = str(self.ui.comboBox_17.currentText())
-        status = str(self.ui.comboBox_17.currentText())
         if self.ui.comboBox_13.itemText(self.ui.comboBox_13.currentIndex()) == 'Approved' and self.ui.comboBox_16.itemText(self.ui.comboBox_16.currentIndex()) == 'ordered':
             self.add_bill()
 
@@ -2939,7 +3099,7 @@ class MainWindow(QMainWindow):
                         currentcode
                         ))
             database_connection.commit()
-            cusr.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger, "other", "bill payment", "1", "0", paid_date))
+            cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger, "other", "bill payment", "1", "0", paid_date))
             database_connection.commit()
             cusr.execute(
                     "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
@@ -2996,7 +3156,7 @@ class MainWindow(QMainWindow):
         try:
             cusr.execute("INSERT INTO bill_item(created, updated, uuid, bill_uuid, name, amount) VALUES (?,?,?,?,?,?)", (created, updated, uuid_1, bill_uuid, name, amount))
             database_connection.commit()
-            cusr.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, b, "other", "bill items", "1", "0", created))
+            cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(b, "other", "bill items", "1", "0", created))
             database_connection.commit()
             cusr.execute(
                     "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
@@ -3062,7 +3222,7 @@ class MainWindow(QMainWindow):
         self.ui.comboBox_21.addItems(status)
         expense = "expenses"
         e = self.c.execute(
-            "SELECT account FROM chart_of_accounts WHERE role=?", (expense,)).fetchall()
+            "SELECT account FROM chart_of_accounts WHERE role=? AND active=?", (expense, "1")).fetchall()
         b = [item for t in e for item in t]
         stock = self.c.execute(
             "SELECT name FROM stock ").fetchall()
@@ -3089,6 +3249,11 @@ class MainWindow(QMainWindow):
 
             currentcode2 = (self.ui.tableWidget_30.item(row, 0).text())
             currentcode2 = (''.join(map(str, currentcode2)))
+            is_purchase_order = cusr.execute("SELECT ispurchase_order FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
+            is_purchase_order = (''.join(map(str, is_purchase_order)))
+            po_uuid = cusr.execute("SELECT purchase_order_uuid FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
+            po_uuid = (''.join(map(str, po_uuid)))
+            
 
             self.ui.label_275.setText(currentcode)
             self.ui.label_275.setAlignment(QtCore.Qt.AlignCenter)
@@ -3116,8 +3281,7 @@ class MainWindow(QMainWindow):
             amount_due = cusr.execute("SELECT SUM(amount) FROM bill_item WHERE bill_uuid=?", (current,)).fetchone()
             amount_due = (''.join(map(str, amount_due)))
             
-            external_refrence = cusr.execute("SELECT xref FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
-            external_refrence = (''.join(map(str, external_refrence)))
+            
             external_refrence = cusr.execute("SELECT xref FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
             external_refrence = (''.join(map(str, external_refrence)))
             terms_bill = cusr.execute("SELECT terms FROM bill WHERE bill_number=?", (currentcode2,)).fetchone()
@@ -3143,7 +3307,12 @@ class MainWindow(QMainWindow):
             self.ui.label_382.setText(np)
             self.ui.label_382.setAlignment(QtCore.Qt.AlignCenter)
             self.ui.label_382.setFont(QtGui.QFont("Times", 11))
-            self.ui.lineEdit_58.setText(amount_due)
+            po_amount = cusr.execute("SELECT SUM(amount) FROM purchase_order_items WHERE purchase_order_uuid=?", (po_uuid,)).fetchone()
+            po_amount = (''.join(map(str, po_amount)))
+            if is_purchase_order == "1":
+                self.ui.lineEdit_58.setText(po_amount)
+            else:
+                self.ui.lineEdit_58.setText(amount_due)
             self.ui.lineEdit_59.setText(external_refrence)
             self.ui.comboBox_17.setCurrentText(terms_bill)
             self.ui.comboBox_18.setCurrentText(bill_status)
@@ -3195,21 +3364,24 @@ class MainWindow(QMainWindow):
         database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_62)
-        row = self.ui.tableWidget_25.currentRow()
-        currentcode = (self.ui.tableWidget_25.item(row, 0).text())
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_63)
+        row = self.ui.tableWidget_26.currentRow()
+        currentcode = (self.ui.tableWidget_26.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode)))
-        combo1 = cusr.execute("SELECT locked FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        combo1 = cusr.execute("SELECT posted FROM journal_entries WHERE id=?", (currentcode,)).fetchone()
         combo1 = (''.join(map(str, combo1)))
-        combo2 = cusr.execute("SELECT active FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        combo2 = cusr.execute("SELECT locked FROM journal_entries WHERE id=?", (currentcode,)).fetchone()
         combo2 = (''.join(map(str, combo2)))
-        name = cusr.execute("SELECT name FROM ledgers WHERE lg_id=?", (currentcode,)).fetchone()
+        name = cusr.execute("SELECT description FROM journal_entries WHERE id=?", (currentcode,)).fetchone()
         name = (''.join(map(str, name)))
+        activity = cusr.execute("SELECT activity FROM journal_entries WHERE id=?", (currentcode,)).fetchone()
+        activity = (''.join(map(str, activity)))
         if combo1 == "1":
-            self.ui.checkBox_8.setChecked(True)
+            self.ui.checkBox_4.setChecked(True)
         else:
-            self.ui.checkBox_9.setChecked(True)
-        self.ui.lineEdit_95.setText((name))
+            self.ui.checkBox_10.setChecked(True)
+        self.ui.lineEdit_22.setText((name))
+        self.ui.comboBox_53.setCurrentText((activity))
 
         
 
@@ -3440,6 +3612,11 @@ class MainWindow(QMainWindow):
                 database_connection.commit()
                 cusr.execute("UPDATE ledgers SET active=? WHERE lg_id=?", ("0", currentcode))
                 database_connection.commit()
+            elif self.ui.checkBox_9.isChecked() == True:
+                cusr.execute("UPDATE ledgers SET locked=? WHERE lg_id=?", ("0", currentcode))
+                database_connection.commit()
+                cusr.execute("UPDATE ledgers SET active=? WHERE lg_id=?", ("1", currentcode))
+                database_connection.commit()
             else:
                 cusr.execute("UPDATE ledgers SET active=? WHERE lg_id=?", ("1", currentcode))
                 database_connection.commit()
@@ -3454,6 +3631,44 @@ class MainWindow(QMainWindow):
                 QMessageBox(),
                 'Error',
                 'Could not update ledger.')
+    def update_journal(self):
+        # try:
+        database_connection = sqlite3.connect(
+            pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        row = self.ui.tableWidget_26.currentRow()
+        currentcode = (self.ui.tableWidget_26.item(row, 0).text())
+        currentcode = (''.join(map(str, currentcode)))
+        desc = str(self.ui.lineEdit_22.text())
+        act = str(self.ui.comboBox_53.currentText())
+        cusr.execute("UPDATE journal_entries SET description=? WHERE id=?", (desc, currentcode))
+        database_connection.commit()
+        cusr.execute("UPDATE journal_entries SET activity=? WHERE id=?", (act, currentcode))
+        database_connection.commit()
+        if self.ui.checkBox_4.isChecked() == True:
+            cusr.execute("UPDATE journal_entries SET locked=? WHERE id=?", ("0", currentcode))
+            database_connection.commit()
+            cusr.execute("UPDATE journal_entries SET posted=? WHERE id=?", ("1", currentcode))
+            database_connection.commit()
+        elif self.ui.checkBox_10.isChecked() == True:
+            cusr.execute("UPDATE journal_entries SET locked=? WHERE id=?", ("1", currentcode))
+            database_connection.commit()
+            cusr.execute("UPDATE journal_entries SET posted=? WHERE id=?", ("0", currentcode))
+            database_connection.commit()
+        else:
+            cusr.execute("UPDATE journal_entries SET posted=? WHERE id=?", ("1", currentcode))
+            database_connection.commit()
+            cusr.execute("UPDATE journal_entries SET locked=? WHERE id=?", ("0", currentcode))
+            database_connection.commit()
+        #     QMessageBox.information(
+        #         QMessageBox(),
+        #         'Successful',
+        #         'journal is updated.')
+        # except Exception:
+        #     QMessageBox.warning(
+        #         QMessageBox(),
+        #         'Error',
+        #         'Could not journal ledger.')
 
     def return_order_btn(self):
         self.ui.pushButton_32.clicked.connect(self.ord_return)
@@ -4037,17 +4252,17 @@ class MainWindow(QMainWindow):
         if self.ui.comboBox_2.itemText(
                 self.ui.comboBox_2.currentIndex()) == "code":
             result = cusr.execute(
-                "SELECT code, client_name, grand_total, total_amount, payment_status,  order_date, due FROM orders WHERE code=?",
+                "SELECT code, client_name, grand_total, payment_status,  order_date, due FROM orders WHERE code=?",
                 (category,
                  ))
         elif self.ui.comboBox_2.itemText(self.ui.comboBox_2.currentIndex()) == "client name":
             result = cusr.execute(
-                "SELECT code, client_name, grand_total, total_amount, payment_status,  order_date, due FROM orders WHERE client_name=?",
+                "SELECT code, client_name, grand_total, payment_status,  order_date, due FROM orders WHERE client_name=?",
                 (category,
                  ))
         elif self.ui.comboBox_2.itemText(self.ui.comboBox_2.currentIndex()) == "All":
             result = cusr.execute(
-                "SELECT code, client_name, grand_total, total_amount, payment_status,  order_date, due FROM orders ORDER BY id_13 DESC LIMIT 100 ")
+                "SELECT code, client_name, grand_total, payment_status,  order_date, due FROM orders ORDER BY id_13 DESC LIMIT 100 ")
         self.ui.tableWidget_6.setRowCount(0)
         for row_number, row_data in enumerate(result):
             self.ui.tableWidget_6.insertRow(row_number)
@@ -4116,10 +4331,10 @@ class MainWindow(QMainWindow):
                 deletebtn.setIcon(icon7)
                 deletebtn.setIconSize(QSize(40, 40))
                 btn.clicked.connect(self.btn_triger)
-                self.ui.tableWidget_6.setCellWidget(row_number, 7, btn)
-                self.ui.tableWidget_6.setCellWidget(row_number, 8, self.push)
-                self.ui.tableWidget_6.setCellWidget(row_number, 9, deletebtn)
-                self.ui.tableWidget_6.setCellWidget(row_number, 10, rtn)
+                self.ui.tableWidget_6.setCellWidget(row_number, 6, btn)
+                self.ui.tableWidget_6.setCellWidget(row_number, 7, self.push)
+                self.ui.tableWidget_6.setCellWidget(row_number, 8, deletebtn)
+                self.ui.tableWidget_6.setCellWidget(row_number, 9, rtn)
                 deletebtn.clicked.connect(self.deleteorders)
                 self.push.clicked.connect(self.update_orders_page)
                 rtn.clicked.connect(self.set_return_orders)
@@ -4191,16 +4406,16 @@ class MainWindow(QMainWindow):
         if self.ui.comboBox_9.itemText(
                 self.ui.comboBox_9.currentIndex()) == "supplier name":
             result = database_connection.execute(
-                "SELECT * FROM supplier WHERE name=?", (category,))
+                "SELECT id_14, name FROM supplier WHERE name=?", (category,))
         elif self.ui.comboBox_9.itemText(self.ui.comboBox_9.currentIndex()) == "adress":
             result = database_connection.execute(
-                "SELECT * FROM supplier WHERE addr1=?", (category,))
+                "SELECT id_14, name FROM supplier WHERE addr1=?", (category,))
         elif self.ui.comboBox_9.itemText(self.ui.comboBox_9.currentIndex()) == "email":
             result = database_connection.execute(
-                "SELECT * FROM supplier WHERE email=?", (category,))
+                "SELECT id_14, name FROM supplier WHERE email=?", (category,))
         elif self.ui.comboBox_9.itemText(self.ui.comboBox_9.currentIndex()) == "contacts":
             result = database_connection.execute(
-                "SELECT * FROM supplier WHERE tel1=?", (category,))
+                "SELECT id_14, name FROM supplier WHERE tel1=?", (category,))
         self.ui.tableWidget_14.setRowCount(0)
         for row_number, row_data in enumerate(result):
             self.ui.tableWidget_14.insertRow(row_number)
@@ -4210,26 +4425,37 @@ class MainWindow(QMainWindow):
                     column_number,
                     QTableWidgetItem(
                         str(data)))
-                btn = QPushButton("$$$")
+                btn = QPushButton("Bills")
                 font = QtGui.QFont()
                 font.setPointSize(9)
                 font.setBold(True)
                 # font.setWeight(75)
                 btn.setFont(font)
                 btn.setStyleSheet("QPushButton{\n"
-                                  "    background-color: rgb(0, 255, 0);;\n"
-                                  "border-radius : 25px;\n"
-                                  "color : rgb(7, 7, 7); \n"
-                                  "}")
+                                "    background-color: rgb(0, 255, 0);;\n"
+                                "border-radius : 25px;\n"
+                                "color : rgb(7, 7, 7); \n"
+                                "}")
+                details = QPushButton("Details")
+                font = QtGui.QFont()
+                font.setPointSize(9)
+                font.setBold(True)
+                # font.setWeight(75)
+                details.setFont(font)
+                details.setStyleSheet("QPushButton{\n"
+                                "    background-color: rgb(0, 255, 0);;\n"
+                                "border-radius : 25px;\n"
+                                "color : rgb(7, 7, 7); \n"
+                                "}")
                 self.push = QPushButton()
-                self.push.setStyleSheet(
-                    u"QPushButton{\n"
-                    "\n"
-                    "border-radius : 20px;\n"
-                    "}\n"
-                    "QPushButton:hover {\n"
-                    "	background-color: rgb(85, 170, 255);\n"
-                    "}")
+
+                self.push.setStyleSheet(u"QPushButton{\n"
+                                        "\n"
+                                        "border-radius : 20px;\n"
+                                        "}\n"
+                                        "QPushButton:hover {\n"
+                                        "	background-color: rgb(85, 170, 255);\n"
+                                        "}")
                 icon9 = QIcon()
                 icon9.addFile(
                     u":/icons/images/icons/cil-pen-alt.png",
@@ -4238,19 +4464,44 @@ class MainWindow(QMainWindow):
                     QIcon.Off)
                 self.push.setIcon(icon9)
                 self.push.setIconSize(QSize(40, 40))
-                edit = QPushButton()
-                edit.setStyleSheet(u"QPushButton{\n"
-                                   "\n"
-                                   "border-radius : 20px;\n"
-                                   "}\n"
-                                   "QPushButton:hover {\n"
-                                   "	background-color: rgb(85, 170, 255);\n"
-                                   "}")
-                self.ui.tableWidget_14.setCellWidget(row_number, 7, btn)
-                self.ui.tableWidget_14.setCellWidget(row_number, 8, self.push)
-                btn.clicked.connect(self.supplier_payment_page)
-                self.push.clicked.connect(self.update_supplier_page)
 
+                edit = QPushButton()
+
+                edit.setStyleSheet(u"QPushButton{\n"
+                                "\n"
+                                "border-radius : 20px;\n"
+                                "}\n"
+                                "QPushButton:hover {\n"
+                                "	background-color: rgb(85, 170, 255);\n"
+                                "}")
+
+                deletebtn = QPushButton()
+
+                deletebtn.setStyleSheet(u"QPushButton{\n"
+                                        "\n"
+                                        "border-radius : 20px;\n"
+                                        "}\n"
+                                        "QPushButton:hover {\n"
+                                        "	background-color: rgb(85, 170, 255);\n"
+                                        "}")
+                icon7 = QIcon()
+                icon7.addFile(
+                    u":/icons/images/icons/cil-remove.png",
+                    QSize(),
+                    QIcon.Normal,
+                    QIcon.Off)
+                deletebtn.setIcon(icon7)
+                deletebtn.setIconSize(QSize(40, 40))
+
+                self.ui.tableWidget_14.setCellWidget(row_number, 2, btn)
+                self.ui.tableWidget_14.setCellWidget(row_number, 3, self.push)
+                self.ui.tableWidget_14.setCellWidget(row_number, 4, deletebtn)
+                self.ui.tableWidget_14.setCellWidget(row_number, 5, details)
+
+                btn.clicked.connect(self.vendor_bills)
+                self.push.clicked.connect(self.update_supplier_page)
+                deletebtn.clicked.connect(self.delete_supplier)
+                details.clicked.connect(self.details_supplier_page)
     def vendor_bills(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_37)
         row = self.ui.tableWidget_14.currentRow()
@@ -4374,148 +4625,150 @@ class MainWindow(QMainWindow):
 
     def pointofsale_addto_postable(self):
         itemid = str(self.ui.comboBox_12.currentText())
-        database_connection = sqlite3.connect(
-            pathtodb + "\\yobi\\yobi_database.db")
-        cusr = database_connection.cursor()
-        upc_pos = cusr.execute("SELECT UPC FROM pos_table").fetchall()
-        sale_no = int(str(self.ui.lineEdit_33.text()))
-        upc_list = [item for t in upc_pos for item in t]
-        out_of_stock = cusr.execute(
-                "SELECT Quantity FROM stock WHERE UPC=? ", (itemid,)).fetchone()
-        out_of_stock = int(''.join(map(str, out_of_stock)))
-        if out_of_stock < 0:
-            QMessageBox.warning(QMessageBox(), 'Error', 'The item is out of stock.')
+        if itemid == "":
+            QMessageBox.warning(QMessageBox(), 'Error', 'no items to be invoiced')
         else:
-            if itemid in upc_list:
-                QMessageBox.warning(QMessageBox(), 'Error', 'item already exists.')
+            database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            upc_pos = cusr.execute("SELECT UPC FROM pos_table").fetchall()
+            sale_no = int(str(self.ui.lineEdit_33.text()))
+            upc_list = [item for t in upc_pos for item in t]
+            out_of_stock = cusr.execute(
+                    "SELECT Quantity FROM stock WHERE UPC=? ", (itemid,)).fetchone()
+            out_of_stock = int(''.join(map(str, out_of_stock)))
+            if out_of_stock < 0:
+                QMessageBox.warning(QMessageBox(), 'Error', 'The item is out of stock.')
             else:
-                # try:
-                # item id from stock
-                # items quantity in stock table at quantity column
-                quantity = float(str(self.ui.lineEdit_7.text()))
-                quantity2 = int(str(self.ui.lineEdit_7.text()))
-                self.posappend(itemid)
-                var_y = cusr.execute(
-                    "SELECT (Quantity - ?) FROM stock WHERE UPC=? ", (quantity, itemid)).fetchone()
-                var_j = cusr.execute(
-                    "SELECT category FROM stock WHERE UPC=? ", (itemid,)).fetchone()
-                buying_price = cusr.execute(
-                    "SELECT Buying_price FROM stock WHERE UPC=? ", (itemid,)).fetchone()
-                disc = cusr.execute(
-                    "SELECT Discount FROM stock WHERE UPC=? ", (itemid,)).fetchone()
-                var_x = cusr.execute(
-                    "SELECT name FROM stock WHERE UPC=? ",
-                    (itemid,
-                        )).fetchone()  # querys the name of item being sold
-                b = cusr.execute(
-                    "SELECT (selling_price *?) FROM stock WHERE UPC=? ",
-                    (quantity,
-                        itemid)).fetchone()
-                b2 = cusr.execute(
-                    "SELECT selling_price FROM stock WHERE UPC=? ", (itemid,)).fetchone()
-                var_f = cusr.execute(
-                    "SELECT vat FROM stock WHERE UPC=?", (itemid,)).fetchone()
-                var_f = (''.join(map(str, var_f)))
-                var_q = cusr.execute(
-                    "SELECT tax_percentage FROM tax_table WHERE tax_name=?", (var_f,)).fetchone()
-                var_q = float(''.join(map(str, var_q)))
-                var_y = float(''.join(map(str, var_y)))
-                # removes the brackets from the name queryed
-                var_x = (''.join(map(str, var_x)))
-                var_j = (''.join(map(str, var_j)))
-                buying_price = float(''.join(map(str, buying_price)))
-                disc = (''.join(map(str, disc)))
-                b = float(''.join(map(str, b)))
-                b2 = (''.join(map(str, b2)))
-                tp = babel.numbers.format_currency(
-                    decimal.Decimal(float(b)), cash_label, locale='en_US')
-                # totalvat = cusr.execute(
-                #     "SELECT (? / (?+100)*100)*(?/100)FROM stock WHERE UPC=?",
-                #     (b,
-                #      var_q,
-                #      var_q,
-                #      itemid)).fetchone()
-                # totalvat = float(''.join(map(str, totalvat)))
-                totalvat = ((var_q / 100 * b))
-                sale_date = date.today()
-                self.pos = cusr.execute(
-                    "INSERT INTO pos_table(sale_no, UPC, name, discount, category, Quantity, KSH, KSH2, VAT, totalvat, taxcode, buying_price, sale_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    (sale_no,
-                        itemid,
-                        var_x,
-                        disc,
-                        var_j,
-                        quantity,
-                        b,
-                        b2,
-                        var_q,
-                        totalvat,
-                        var_f,
-                        buying_price,
-                        sale_date))
-                cusr.execute(
-                    "INSERT INTO most_sold(UPC, name, KSH) VALUES (?,?,?)", (itemid, var_x, tp))
-                self.point_OS[itemid] = quantity2
-                # var_t = cusr.execute(
-                #     "UPDATE stock SET Quantity=? WHERE UPC=? ", (var_y, itemid)).fetchone()
-                self.kshposappend(b)
-                self.itemposappend(itemid)
-                database_connection.commit()
-                self.load_postable_data()
-            
-                discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
-                discount = float(''.join(map(str, discount)))
+                if itemid in upc_list:
+                    QMessageBox.warning(QMessageBox(), 'Error', 'item already exists.')
+                else:
+                    # try:
+                    # item id from stock
+                    # items quantity in stock table at quantity column
+                    quantity = float(str(self.ui.lineEdit_7.text()))
+                    quantity2 = int(str(self.ui.lineEdit_7.text()))
+                    self.posappend(itemid)
+                    var_y = cusr.execute(
+                        "SELECT (Quantity - ?) FROM stock WHERE UPC=? ", (quantity, itemid)).fetchone()
+                    var_j = cusr.execute(
+                        "SELECT category FROM stock WHERE UPC=? ", (itemid,)).fetchone()
+                    buying_price = cusr.execute(
+                        "SELECT Buying_price FROM stock WHERE UPC=? ", (itemid,)).fetchone()
+                    disc = cusr.execute(
+                        "SELECT Discount FROM stock WHERE UPC=? ", (itemid,)).fetchone()
+                    var_x = cusr.execute(
+                        "SELECT name FROM stock WHERE UPC=? ",
+                        (itemid,
+                            )).fetchone()  # querys the name of item being sold
+                    b = cusr.execute(
+                        "SELECT (selling_price *?) FROM stock WHERE UPC=? ",
+                        (quantity,
+                            itemid)).fetchone()
+                    b2 = cusr.execute(
+                        "SELECT selling_price FROM stock WHERE UPC=? ", (itemid,)).fetchone()
+                    var_f = cusr.execute(
+                        "SELECT vat FROM stock WHERE UPC=?", (itemid,)).fetchone()
+                    var_f = (''.join(map(str, var_f)))
+                    var_q = cusr.execute(
+                        "SELECT tax_percentage FROM tax_table WHERE tax_name=?", (var_f,)).fetchone()
+                    var_q = float(''.join(map(str, var_q)))
+                    var_y = float(''.join(map(str, var_y)))
+                    # removes the brackets from the name queryed
+                    var_x = (''.join(map(str, var_x)))
+                    var_j = (''.join(map(str, var_j)))
+                    buying_price = float(''.join(map(str, buying_price)))
+                    disc = (''.join(map(str, disc)))
+                    b = float(''.join(map(str, b)))
+                    b2 = (''.join(map(str, b2)))
+                    tp = babel.numbers.format_currency(
+                        decimal.Decimal(float(b)), cash_label, locale='en_US')
+                    # totalvat = cusr.execute(
+                    #     "SELECT (? / (?+100)*100)*(?/100)FROM stock WHERE UPC=?",
+                    #     (b,
+                    #      var_q,
+                    #      var_q,
+                    #      itemid)).fetchone()
+                    # totalvat = float(''.join(map(str, totalvat)))
+                    totalvat = ((var_q / 100 * b))
+                    sale_date = date.today()
+                    self.pos = cusr.execute(
+                        "INSERT INTO pos_table(sale_no, UPC, name, discount, category, Quantity, KSH, KSH2, VAT, totalvat, taxcode, buying_price, sale_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        (sale_no,
+                            itemid,
+                            var_x,
+                            disc,
+                            var_j,
+                            quantity,
+                            b,
+                            b2,
+                            var_q,
+                            totalvat,
+                            var_f,
+                            buying_price,
+                            sale_date))
+                    cusr.execute(
+                        "INSERT INTO most_sold(UPC, name, KSH) VALUES (?,?,?)", (itemid, var_x, tp))
+                    self.point_OS[itemid] = quantity2
+                    # var_t = cusr.execute(
+                    #     "UPDATE stock SET Quantity=? WHERE UPC=? ", (var_y, itemid)).fetchone()
+                    self.kshposappend(b)
+                    self.itemposappend(itemid)
+                    database_connection.commit()
+                    self.load_postable_data()
                 
-                self.total = cusr.execute(
-                    "SELECT SUM(totalvat) FROM pos_table").fetchone()
-                self.total = float(''.join(map(str, self.total)))
-                self.totalksh = cusr.execute(
-                    "SELECT SUM(KSH) FROM pos_table").fetchone()
-                self.totalksh = float(''.join(map(str, self.totalksh))) 
-                grand = (self.total + self.totalksh)
-                discount2 = (discount / 100 * grand)
-                grand_total = (grand - discount2)
-                np = babel.numbers.format_currency(decimal.Decimal(
-                    grand_total), cash_label, locale='en_US')
-                self.ui.label_123.setText(str(np))
-                self.ui.label_123.setFont(QFont("Times", 21))
-                self.ui.label_123.setStyleSheet("QLabel { color : white; }")
-                cusr.close()
-                database_connection.close()
-                # except Exception:
-                #     QMessageBox.warning(
-                #         QMessageBox(),
-                #         'Error',
-                #         'enter valid details make sure TAX are set in tax setting ')
+                    discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
+                    discount = float(''.join(map(str, discount)))
+                    
+                    self.total = cusr.execute(
+                        "SELECT SUM(totalvat) FROM pos_table").fetchone()
+                    self.total = float(''.join(map(str, self.total)))
+                    self.totalksh = cusr.execute(
+                        "SELECT SUM(KSH) FROM pos_table").fetchone()
+                    self.totalksh = float(''.join(map(str, self.totalksh))) 
+                    grand = (self.total + self.totalksh)
+                    discount2 = (discount / 100 * grand)
+                    grand_total = (grand - discount2)
+                    np = babel.numbers.format_currency(decimal.Decimal(
+                        grand_total), cash_label, locale='en_US')
+                    self.ui.label_123.setText(str(np))
+                    self.ui.label_123.setFont(QFont("Times", 21))
+                    self.ui.label_123.setStyleSheet("QLabel { color : white; }")
+                    cusr.close()
+                    database_connection.close()
+                    # except Exception:
+                    #     QMessageBox.warning(
+                    #         QMessageBox(),
+                    #         'Error',
+                    #         'enter valid details make sure TAX are set in tax setting ')
 
     def pos_details(self):
         self.ui.pushButton_20.clicked.connect(self.point_of_sale_function)
 
 
     def point_of_sale_function(self):
-        # try:
-        selliing_price = float(str(self.ui.lineEdit_8.text()))
-        database_connection = sqlite3.connect(
-            pathtodb + "\\yobi\\yobi_database.db")
-        cusr = database_connection.cursor()
-        self.totalksh = cusr.execute(
-            "SELECT SUM(KSH) FROM pos_table").fetchone()
-        self.totalqua = cusr.execute(
-            "SELECT SUM(Quantity) FROM pos_table").fetchone()
-        self.totalksh = float(''.join(map(str, self.totalksh)))
-        self.totalqua = float(''.join(map(str, self.totalqua)))
-        for item in self.poslist:
-            posupc = cusr.execute(
-                "SELECT KSH FROM pos_table WHERE UPC=?", (item,)).fetchone()
-            posupc = float(''.join(map(str, posupc)))
-            print("this is the item UPC", item)
-            self.g = cusr.execute(
-                "UPDATE stock SET sold=(sold + ?) WHERE UPC=? ", (posupc, item)).fetchone()
-        database_connection.commit()
-        self.most_sold_table()
-        self.add_invoice()
-        # except Exception:
-        # QMessageBox.warning(QMessageBox(), 'Error', 'please enter valid details')
+        try:
+            database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            self.totalksh = cusr.execute(
+                "SELECT SUM(KSH) FROM pos_table").fetchone()
+            self.totalqua = cusr.execute(
+                "SELECT SUM(Quantity) FROM pos_table").fetchone()
+            self.totalksh = float(''.join(map(str, self.totalksh)))
+            self.totalqua = float(''.join(map(str, self.totalqua)))
+            for item in self.poslist:
+                posupc = cusr.execute(
+                    "SELECT KSH FROM pos_table WHERE UPC=?", (item,)).fetchone()
+                posupc = float(''.join(map(str, posupc)))
+                print("this is the item UPC", item)
+                self.g = cusr.execute(
+                    "UPDATE stock SET sold=(sold + ?) WHERE UPC=? ", (posupc, item)).fetchone()
+            database_connection.commit()
+            self.most_sold_table()
+            self.add_invoice()
+        except Exception:
+            QMessageBox.warning(QMessageBox(), 'Error', 'please enter valid details')
 
     def add_invoice(self):
         self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
@@ -4652,7 +4905,7 @@ class MainWindow(QMainWindow):
                     credit,
                     order_date))
                 self.connection.commit()
-                self.c.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, "operating", description, "1", "0", order_date))
+                self.c.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, "operating", description, "1", "0", order_date))
                 self.connection.commit()
             else:
                 self.c.execute(
@@ -4711,7 +4964,7 @@ class MainWindow(QMainWindow):
                     "debit",
                     order_date))
                 self.connection.commit()
-                self.c.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, "other", description, "1", "0", order_date))
+                self.c.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, "other", description, "1", "0", order_date))
                 self.connection.commit()
 
             self.c.execute(
@@ -4879,8 +5132,8 @@ class MainWindow(QMainWindow):
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
             total_paid = cusr.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE name=?",
-            ("Product Sales",)).fetchone()
+            "SELECT SUM(KSH) FROM transactions WHERE name=? AND tx_type=?",
+            ("Product Sales", "credit")).fetchone()
             total_paid = (''.join(map(str, total_paid)))
             if total_paid == str(None):
                 total_paid = 0.00
@@ -4947,7 +5200,7 @@ class MainWindow(QMainWindow):
             pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
         coa_account = "expenses"
-        var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=?", (coa_account,)).fetchone()
+        var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "debit")).fetchone()
         var_x = (''.join(map(str, var_x)))
         if var_x == str(None):
             var_x = 0.00
@@ -4968,7 +5221,7 @@ class MainWindow(QMainWindow):
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
             coa_account = "fixedexpenses"
-            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=?", (coa_account,)).fetchone()
+            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "debit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
                 var_x = 0.00
@@ -4989,7 +5242,7 @@ class MainWindow(QMainWindow):
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
             coa_account = "Longtermliabilities"
-            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=?", (coa_account,)).fetchone()
+            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "credit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
                 var_x = 0.0
@@ -5011,7 +5264,7 @@ class MainWindow(QMainWindow):
             cusr = database_connection.cursor()
             coa_account = "currentliabilities"
             var_x = cusr.execute(
-                "SELECT SUM(KSH) FROM transactions WHERE coa_id=?", (coa_account,)).fetchone()
+                "SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "credit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
                 var_x = 0.0
@@ -5032,7 +5285,7 @@ class MainWindow(QMainWindow):
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
             coa_account = "currentassets"
-            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=?", (coa_account,)).fetchone()
+            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "debit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
                 var_x = 0.0
@@ -5053,7 +5306,7 @@ class MainWindow(QMainWindow):
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
             coa_account = "fixedassets"
-            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=?", (coa_account,)).fetchone()
+            var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "debit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
                 var_x = 0.0
@@ -5238,6 +5491,7 @@ class MainWindow(QMainWindow):
         """
         dlg = AddJournalEntry(self)
         dlg.exec()
+        self.all_journal_entries()
 
     def add_po(self):
         """calls the AddJournalEntry dialouge
@@ -5413,7 +5667,7 @@ class AddJournalEntry(QDialog):
         self.ui = Ui_Dialog_journal_entry()
         # Run the .setupUi() method to show the GUI
         self.ui.setupUi(self)
-        self.ui.pushButton.clicked.connect(self.add_journal_entey)
+        self.ui.pushButton.clicked.connect(self.add_journal_entry)
         activity = [
         'Operating',
         'Financing',
@@ -5421,35 +5675,43 @@ class AddJournalEntry(QDialog):
         'other']
         self.ui.comboBox.addItems(activity)
 
-    def add_journal_entey(self):
-        """_ gets data from the database and sets them to the Line 
-        edits using itemname as the ID for serching _
-        """
-        
-        description = self.ui.lineEdit_22.text()
-        activities = str(self.ui.comboBox.currentText())
-        combo1 = self.ui.checkBox
-        combo2 = self.ui.checkBox_2
-        qdate = self.ui.dateEdit.date()
-        journal_date = qdate.toPython()
-        journal_uuid = uuid.uuid4().hex
-        ledger_uuid = str(ledger_id[0])
-        if combo1.isChecked() == True:
-            combo1 = "1"
-        else:
-            combo1="0"
-        if combo2.isChecked() == True:
-            combo2 = "1"
-        else:
-            combo2 = "0"
+    def add_journal_entry(self):
+        try:
+            """_ gets data from the database and sets them to the Line 
+            edits using itemname as the ID for serching _
+            """
+            
+            description = self.ui.lineEdit_22.text()
+            activities = str(self.ui.comboBox.currentText())
+            combo1 = self.ui.checkBox
+            combo2 = self.ui.checkBox_2
+            qdate = self.ui.dateEdit.date()
+            journal_date = qdate.toPython()
+            journal_uuid = uuid.uuid4().hex
+            ledger_uuid = str(ledger_id[0])
+            if combo1.isChecked() == True:
+                combo1 = "1"
+            else:
+                combo1="0"
+            if combo2.isChecked() == True:
+                combo2 = "1"
+            else:
+                combo2 = "0"
 
-        print(combo1)
-        print(combo2)
-        database_connection = sqlite3.connect(
-            pathtodb + "\\yobi\\yobi_database.db")
-        cusr = database_connection.cursor()
-        cusr.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, activities, description, combo1, combo2, journal_date))
-        database_connection.commit()
+            print(combo1)
+            print(combo2)
+            database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, activities, description, combo1, combo2, journal_date))
+            database_connection.commit()
+            QMessageBox.information(QMessageBox(),'Successfull', "Transaction added journal")
+        except Exception:
+            print(Exception)
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'Could not add journal.')
 
 
 
@@ -5871,11 +6133,11 @@ class AddBill(QDialog):
         code2 = '1400'
         code3 = '2490'
         tx = self.c.execute(
-        "SELECT account FROM chart_of_accounts WHERE code=? ", (code,)).fetchall()
+        "SELECT account FROM chart_of_accounts WHERE code=? AND active=?", (code, "1")).fetchall()
         pr_e = self.c.execute(
-        "SELECT account FROM chart_of_accounts WHERE code=? ", (code2,)).fetchall()
+        "SELECT account FROM chart_of_accounts WHERE code=? AND active=?", (code2, "1")).fetchall()
         unnerned = self.c.execute(
-        "SELECT account FROM chart_of_accounts WHERE code=? ", (code3,)).fetchall()
+        "SELECT account FROM chart_of_accounts WHERE code=? AND active=?", (code3, "1")).fetchall()
         vb = [item for t in tx for item in t]
         prepaid = [item for t in pr_e for item in t]
         unnerned_acc = [item for t in unnerned for item in t]
@@ -6084,11 +6346,10 @@ class coa(QDialog):
 
     def update_postable(self):
         try:
-            code = str(self.ui.comboBox.currentText())
+            role = str(self.ui.comboBox.currentText())
             balance_ty = str(self.ui.comboBox_2.currentText())
             name = str(self.ui.lineEdit_22.text())
-            role = str(self.ui.lineEdit.text())
-            coa_uuid = uuid.uuid4().hex
+            code = str(self.ui.lineEdit.text())
             if self.ui.checkBox.isChecked() == True:
                 combo2 = "0"
                 combo1="1"
@@ -6108,7 +6369,7 @@ class coa(QDialog):
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
             cusr.execute(
-                "INSERT INTO chart_of_accounts(id, code, role, account, balance_type, locked, active) VALUES (?,?,?,?,?,?,?)", (coa_uuid, code, role, name, balance_ty, combo1,combo2))
+                "INSERT INTO chart_of_accounts(code, role, account, balance_type, locked, active) VALUES (?,?,?,?,?,?)", (code, role, name, balance_ty, combo1,combo2))
             database_connection.commit()
             QMessageBox.information(
                 QMessageBox(),
@@ -6116,7 +6377,7 @@ class coa(QDialog):
                 'account added successfully to the database.')
             self.close()
         except Exception:
-            QMessageBox.warning(QMessageBox(), 'Error', 'Could not find item.')
+            QMessageBox.warning(QMessageBox(), 'Error', 'code already taken, unique code is required.')
 
 
 class profileEdit(QDialog):
@@ -6305,11 +6566,18 @@ class stockAdd(QDialog):
         uom = str(self.ui.comboBox.currentText())
         stockdate = date.today()
         sold = 0.0
+        uuid1 = uuid.uuid4().hex
+        uuid2 = uuid.uuid4().hex
+        created = dt.today()
+        updated = dt.today()
+        journal_uuid = uuid.uuid4().hex
+        ledger_uuid = uuid.uuid4().hex
         database_connection = sqlite3.connect(
             pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
         var_x = cusr.execute("SELECT UPC FROM stock").fetchall()
         var_y = [item for t in var_x for item in t]
+        
         if UPC in var_y:
             QMessageBox.warning(QMessageBox(), 'Error', 'item already exists.')
         else:
@@ -6330,6 +6598,38 @@ class stockAdd(QDialog):
                      vat,
                      stockdate,
                      sold))
+                database_connection.commit()
+                cusr.execute("INSERT INTO ledgers(id, name, locked, active, ledger_date) VALUES (?,?,?,?,?)",(ledger_uuid, UPC,"1","0",stockdate))
+                database_connection.commit()
+                cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, "other", "Stock intake", "1", "0", stockdate))
+                database_connection.commit()
+                cusr.execute(
+                "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    (uuid2,
+                    created,
+                    updated,
+                    "currentassets",
+                    journal_uuid,
+                    ledger_uuid,
+                    "inventory",
+                    Buying_price,
+                    "Stock intake",
+                    "debit",
+                    stockdate))
+                database_connection.commit()
+                cusr.execute(
+                    "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                    (uuid2,
+                    created,
+                    updated,
+                    "expenses",
+                    journal_uuid,
+                    ledger_uuid,
+                    "cost of goods sold",
+                    Buying_price,
+                    "Stock intake",
+                    "credit",
+                    stockdate))
                 database_connection.commit()
                 cusr.close()
                 database_connection.close()
@@ -7106,17 +7406,30 @@ class LogoutUser(QDialog):
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.logout_user)
+        self.ui.pushButton_2.clicked.connect(self.cancel_logout)
         # self.ui.pushButton_3.clicked.connect(self.accounts_login)
         # self.ui.pushButton_8.clicked.connect(self.close_entrance)
     def logout_user(self):
-        credentials = {
-                    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1NDY2OTE4MSwiaWF0IjoxNjU0NTgyNzgxLCJqdGkiOiIyMzlkMjJiMjk5YzM0MWIyODk4MWNhMThlOWM0ODY3NiIsInVzZXJfaWQiOiIwNmFlZGI4NC0zZTY1LTQzNDctYWQ5ZC05NDg0OTVjMmE5NWMifQ.jp-g6CGro0RBph25wFlkwM2d-OB1bc9Jz6Uwq5n1SR8"
-                }
-        headers = {
-                    "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTg5MjY4LCJpYXQiOjE2NTQ1ODI3ODEsImp0aSI6ImIzODkwZTI5NDU1YzQzNzdhOTBhM2VlN2IwMDE1NGYxIiwidXNlcl9pZCI6IjA2YWVkYjg0LTNlNjUtNDM0Ny1hZDlkLTk0ODQ5NWMyYTk1YyJ9.X4pz7fxAe2nemkL5cu4YjcfJUB_pzBe6NZp1SUAZ1lY",
-                }
-        response = requests.post("http://127.0.0.1:8000/apiv1/logout/", json=credentials, headers=headers)
-        print("&&&Status code", response.status_code)
+        try:
+            database_connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            cusr.execute("DELETE FROM admin")
+            database_connection.commit()
+            self.close()
+            MainWindow().close()
+            # credentials = {
+            #             "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1NDY2OTE4MSwiaWF0IjoxNjU0NTgyNzgxLCJqdGkiOiIyMzlkMjJiMjk5YzM0MWIyODk4MWNhMThlOWM0ODY3NiIsInVzZXJfaWQiOiIwNmFlZGI4NC0zZTY1LTQzNDctYWQ5ZC05NDg0OTVjMmE5NWMifQ.jp-g6CGro0RBph25wFlkwM2d-OB1bc9Jz6Uwq5n1SR8"
+            #         }
+            # headers = {
+            #             "authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTg5MjY4LCJpYXQiOjE2NTQ1ODI3ODEsImp0aSI6ImIzODkwZTI5NDU1YzQzNzdhOTBhM2VlN2IwMDE1NGYxIiwidXNlcl9pZCI6IjA2YWVkYjg0LTNlNjUtNDM0Ny1hZDlkLTk0ODQ5NWMyYTk1YyJ9.X4pz7fxAe2nemkL5cu4YjcfJUB_pzBe6NZp1SUAZ1lY",
+            #         }
+            # response = requests.post("http://127.0.0.1:8000/apiv1/logout/", json=credentials, headers=headers)
+            # print("&&&Status code", response.status_code)
+        except Exception:
+            print("succes")
+
+    def cancel_logout(self):
+        self.close()
 
 class Accounts_login(QMainWindow):
 
@@ -7257,39 +7570,36 @@ class SignUp(QMainWindow):
     def check_login(self, event):
         if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
             username = self.ui.username.text()
+            username3 = self.ui.username_3.text()
+            username2 = self.ui.username_2.text()
             password = self.ui.password.text()
-            reqUrl = "http://localhost:8080/authe/"
+            reqUrl = "http://localhost:8080/api/v1/register/"
 
             headersList = {
             "Accept": "*/*",
-            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
             "Content-Type": "application/json" 
             }
 
             payload = json.dumps({
-                "username": "zam",
-                "email":"zam@gmail.com",
-                "password" : "123456"
+                "email": username,
+                "username": username3,
+                "phonenumber": username2,
+                "password" : password
             })
 
             response = requests.request("POST", reqUrl, data=payload,  headers=headersList)
-
+            resp = response.json()
             print(response.text)
 
-            if check_username == username and check_password == pass_hash:
-                database_connection.close()
+            if response.status_code == 200:
+                successmes = "Account created succesfuly"
+                self.ui.label.setText(f"{successmes}!")
+                timedelta.microseconds(50)
                 self.close()
-                Entrance().close()
-                b = 'admin'
-                who_is_logged.insert(0, b)
-                who_is_logged.insert(1, user)
-                print(";:::::::::::::", who_is_logged[0])
-
-                MainWindow()
-                
-                
             else:
                 # SET STYLESHEET
+                error = "Invalid credentials, try again"
+                self.ui.label.setText(f"{error}!")
                 self.ui.username.setStyleSheet("#username:focus { border: 3px solid rgb(255, 0, 127); }")
                 self.ui.password.setStyleSheet("#password:focus { border: 3px solid rgb(255, 0, 127); }")
                 self.shacke_window()
@@ -7387,6 +7697,7 @@ class LoginWindow(QMainWindow):
 
         # KEY PRESS EVENT
         # ///////////////////////////////////////////////////////////////
+        self.ui.pushButton.clicked.connect(self.singnup)
         self.ui.username.keyReleaseEvent = self.check_login
         self.ui.password.keyReleaseEvent = self.check_login
         database_connection = sqlite3.connect(
@@ -7404,6 +7715,9 @@ class LoginWindow(QMainWindow):
 
     # CHECK LOGIN
     # ///////////////////////////////////////////////////////////////
+    def singnup(self):
+        SignUp().show()
+    
     def check_login(self, event):
         database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
@@ -7423,7 +7737,7 @@ class LoginWindow(QMainWindow):
                 self.main.show()                
                 self.close()
             
-            reqUrl = "http://localhost:8080/login/"
+            reqUrl = "http://localhost:8080/api/v1/login/"
 
             headersList = {
             "Accept": "*/*",
