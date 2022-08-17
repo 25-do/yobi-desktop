@@ -288,6 +288,7 @@ def combo_payments(self):
     self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
     self.c = self.connection.cursor()
     acc = 'expenses'
+    fix_expe = 'fixedexpenses'
     acc_asset_fixed = "fixedassets"
     acc_asset_current = "currentassets"
     acc_lib_short = "currentliabilities"
@@ -324,6 +325,8 @@ def combo_payments(self):
 
     d = self.c.execute(
         "SELECT account FROM chart_of_accounts WHERE role=?", (acc,)).fetchall()
+    fix_expes = self.c.execute(
+        "SELECT account FROM chart_of_accounts WHERE role=?", (fix_expe,)).fetchall()
     acc_fix = self.c.execute(
         "SELECT account FROM chart_of_accounts WHERE role=?", (acc_asset_fixed,)).fetchall()
     acc_curr = self.c.execute(
@@ -336,6 +339,7 @@ def combo_payments(self):
         "SELECT account FROM chart_of_accounts WHERE role=?", (acc_revenue,)).fetchall()
 
     b = [item for t in d for item in t]
+    fix_expes_combo = [item for t in fix_expes for item in t]
     acc_fix1 = [item for t in acc_fix for item in t]
     acc_curr1 = [item for t in acc_curr for item in t]
     acc_short1 = [item for t in acc_short for item in t]
@@ -343,6 +347,8 @@ def combo_payments(self):
     acc_rev1 = [item for t in acc_rev for item in t]
 
     self.ui.comboBox_6.addItems(b)
+    self.ui.comboBox_22.addItems(b)
+    self.ui.comboBox_22.addItems(fix_expes_combo)
     self.ui.comboBox_22.addItems(acc_rev1)
     self.ui.comboBox_22.addItems(acc_fix1)
     self.ui.comboBox_22.addItems(acc_long1)

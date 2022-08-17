@@ -2022,7 +2022,7 @@ p, li { white-space: pre-wrap; }
                          <string notr="true">background: transparent;</string>
                         </property>
                         <property name="currentIndex">
-                         <number>20</number>
+                         <number>33</number>
                         </property>
                         <widget class="QWidget" name="home">
                          <property name="maximumSize">
@@ -3097,8 +3097,8 @@ p, li { white-space: pre-wrap; }
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>92</width>
-                                  <height>30</height>
+                                  <width>16</width>
+                                  <height>16</height>
                                  </rect>
                                 </property>
                                </widget>
@@ -9032,31 +9032,80 @@ background-color: rgb(50, 50, 50);
                         </widget>
                         <widget class="QWidget" name="page_39">
                          <layout class="QGridLayout" name="gridLayout_89">
-                          <item row="0" column="0">
-                           <widget class="QFrame" name="frame_84">
+                          <item row="3" column="0" rowspan="2">
+                           <widget class="QFrame" name="frame_76">
                             <property name="frameShape">
                              <enum>QFrame::StyledPanel</enum>
                             </property>
                             <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
+                             <enum>QFrame::Plain</enum>
                             </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_26">
+                            <property name="lineWidth">
+                             <number>1</number>
+                            </property>
+                            <property name="midLineWidth">
+                             <number>0</number>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_18">
                              <item>
-                              <widget class="QPushButton" name="pushButton_110">
-                               <property name="minimumSize">
-                                <size>
-                                 <width>0</width>
-                                 <height>31</height>
-                                </size>
+                              <widget class="QLabel" name="label_281">
+                               <property name="text">
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bill state&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                </property>
-                               <property name="maximumSize">
-                                <size>
-                                 <width>16777215</width>
-                                 <height>31</height>
-                                </size>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_282">
+                               <property name="text">
+                                <string>Amount Paid</string>
                                </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_382">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_383">
+                               <property name="text">
+                                <string>Make payment</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLineEdit" name="lineEdit_45"/>
+                             </item>
+                             <item>
+                              <widget class="QCheckBox" name="checkBox_3">
+                               <property name="text">
+                                <string>paid</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_283">
+                               <property name="text">
+                                <string>Paid Date</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QDateEdit" name="dateEdit_8">
                                <property name="styleSheet">
-                                <string notr="true">background-color: rgb(39, 168, 0);</string>
+                                <string notr="true">background-color: rgb(29, 29, 29);</string>
+                               </property>
+                               <property name="calendarPopup">
+                                <bool>true</bool>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_78">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(0, 198, 0);</string>
                                </property>
                                <property name="text">
                                 <string>Save</string>
@@ -9066,69 +9115,10 @@ background-color: rgb(50, 50, 50);
                             </layout>
                            </widget>
                           </item>
-                          <item row="1" column="1" colspan="2">
-                           <widget class="QFrame" name="frame_79">
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Sunken</enum>
-                            </property>
-                            <layout class="QVBoxLayout" name="verticalLayout_38">
-                             <item>
-                              <widget class="QLabel" name="label_284">
-                               <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Bill Amount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLineEdit" name="lineEdit_58"/>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_110">
-                               <property name="text">
-                                <string>Vendor</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QComboBox" name="comboBox_52"/>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_285">
-                               <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;External Refrence Number&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLineEdit" name="lineEdit_59"/>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_286">
-                               <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Terms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QComboBox" name="comboBox_17"/>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_287">
-                               <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Bill Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QComboBox" name="comboBox_18"/>
-                             </item>
-                            </layout>
-                           </widget>
+                          <item row="2" column="3">
+                           <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
                           </item>
-                          <item row="3" column="1" colspan="4">
+                          <item row="4" column="1" colspan="4">
                            <widget class="QFrame" name="frame_83">
                             <property name="frameShape">
                              <enum>QFrame::StyledPanel</enum>
@@ -9215,7 +9205,7 @@ background-color: rgb(50, 50, 50);
                             </layout>
                            </widget>
                           </item>
-                          <item row="0" column="2">
+                          <item row="1" column="2">
                            <spacer name="horizontalSpacer_15">
                             <property name="orientation">
                              <enum>Qt::Horizontal</enum>
@@ -9228,80 +9218,92 @@ background-color: rgb(50, 50, 50);
                             </property>
                            </spacer>
                           </item>
-                          <item row="2" column="0" rowspan="2">
-                           <widget class="QFrame" name="frame_76">
+                          <item row="2" column="0">
+                           <widget class="QFrame" name="frame_75">
                             <property name="frameShape">
                              <enum>QFrame::StyledPanel</enum>
                             </property>
                             <property name="frameShadow">
-                             <enum>QFrame::Plain</enum>
+                             <enum>QFrame::Sunken</enum>
                             </property>
-                            <property name="lineWidth">
-                             <number>1</number>
+                            <layout class="QGridLayout" name="gridLayout_80">
+                             <item row="0" column="0">
+                              <widget class="QLabel" name="label_280">
+                               <property name="text">
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; color:#8c8c8c;&quot;&gt;Vendor Info&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="0">
+                              <widget class="QLabel" name="label_277">
+                               <property name="text">
+                                <string>Address</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="5" column="0">
+                              <widget class="QLabel" name="label_279">
+                               <property name="text">
+                                <string>Website</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="0">
+                              <widget class="QLabel" name="label_278">
+                               <property name="text">
+                                <string>email</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="0">
+                              <widget class="QLabel" name="label_275">
+                               <property name="text">
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;vendor name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="0">
+                              <widget class="QLabel" name="label_276">
+                               <property name="text">
+                                <string>Contacts</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QFrame" name="frame_84">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
                             </property>
-                            <property name="midLineWidth">
-                             <number>0</number>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
                             </property>
-                            <layout class="QVBoxLayout" name="verticalLayout_18">
+                            <layout class="QHBoxLayout" name="horizontalLayout_26">
                              <item>
-                              <widget class="QLabel" name="label_281">
+                              <widget class="QPushButton" name="pushButton_176">
                                <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bill state&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                <string>Back</string>
                                </property>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QLabel" name="label_282">
-                               <property name="text">
-                                <string>Amount Paid</string>
+                              <widget class="QPushButton" name="pushButton_110">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>31</height>
+                                </size>
                                </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_382">
-                               <property name="text">
-                                <string/>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>31</height>
+                                </size>
                                </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_383">
-                               <property name="text">
-                                <string>Make payment</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLineEdit" name="lineEdit_45"/>
-                             </item>
-                             <item>
-                              <widget class="QCheckBox" name="checkBox_3">
-                               <property name="text">
-                                <string>paid</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_283">
-                               <property name="text">
-                                <string>Paid Date</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QDateEdit" name="dateEdit_8">
                                <property name="styleSheet">
-                                <string notr="true">background-color: rgb(29, 29, 29);</string>
-                               </property>
-                               <property name="calendarPopup">
-                                <bool>true</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="pushButton_78">
-                               <property name="styleSheet">
-                                <string notr="true">background-color: rgb(0, 198, 0);</string>
+                                <string notr="true">background-color: rgb(39, 168, 0);</string>
                                </property>
                                <property name="text">
                                 <string>Save</string>
@@ -9311,7 +9313,69 @@ background-color: rgb(50, 50, 50);
                             </layout>
                            </widget>
                           </item>
-                          <item row="1" column="4">
+                          <item row="1" column="3">
+                           <widget class="QLabel" name="label_290">
+                            <property name="text">
+                             <string>Notes</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="1" colspan="4">
+                           <widget class="QFrame" name="frame_82">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Sunken</enum>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_20">
+                             <item>
+                              <widget class="QLabel" name="label_288">
+                               <property name="text">
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bill Items&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QComboBox" name="comboBox_19">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>297</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>300</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="editable">
+                                <bool>true</bool>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_289">
+                               <property name="text">
+                                <string>Amount</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLineEdit" name="lineEdit_60"/>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_109">
+                               <property name="text">
+                                <string>Add</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item row="2" column="4">
                            <widget class="QFrame" name="frame_81">
                             <property name="frameShape">
                              <enum>QFrame::StyledPanel</enum>
@@ -9376,7 +9440,7 @@ background-color: rgb(50, 50, 50);
                             </layout>
                            </widget>
                           </item>
-                          <item row="0" column="1">
+                          <item row="1" column="1">
                            <spacer name="horizontalSpacer_16">
                             <property name="orientation">
                              <enum>Qt::Horizontal</enum>
@@ -9389,124 +9453,67 @@ background-color: rgb(50, 50, 50);
                             </property>
                            </spacer>
                           </item>
-                          <item row="1" column="0">
-                           <widget class="QFrame" name="frame_75">
+                          <item row="2" column="1" colspan="2">
+                           <widget class="QFrame" name="frame_79">
                             <property name="frameShape">
                              <enum>QFrame::StyledPanel</enum>
                             </property>
                             <property name="frameShadow">
                              <enum>QFrame::Sunken</enum>
                             </property>
-                            <layout class="QGridLayout" name="gridLayout_80">
-                             <item row="0" column="0">
-                              <widget class="QLabel" name="label_280">
+                            <layout class="QVBoxLayout" name="verticalLayout_38">
+                             <item>
+                              <widget class="QLabel" name="label_284">
                                <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; color:#8c8c8c;&quot;&gt;Vendor Info&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Bill Amount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="2" column="0">
-                              <widget class="QLabel" name="label_277">
+                             <item>
+                              <widget class="QLineEdit" name="lineEdit_58"/>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_110">
                                <property name="text">
-                                <string>Address</string>
+                                <string>Vendor</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="5" column="0">
-                              <widget class="QLabel" name="label_279">
+                             <item>
+                              <widget class="QComboBox" name="comboBox_52"/>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_285">
                                <property name="text">
-                                <string>Website</string>
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;External Refrence Number&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="4" column="0">
-                              <widget class="QLabel" name="label_278">
+                             <item>
+                              <widget class="QLineEdit" name="lineEdit_59"/>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_286">
                                <property name="text">
-                                <string>email</string>
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Terms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="1" column="0">
-                              <widget class="QLabel" name="label_275">
+                             <item>
+                              <widget class="QComboBox" name="comboBox_17"/>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_287">
                                <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;vendor name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Bill Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="3" column="0">
-                              <widget class="QLabel" name="label_276">
-                               <property name="text">
-                                <string>Contacts</string>
-                               </property>
-                              </widget>
+                             <item>
+                              <widget class="QComboBox" name="comboBox_18"/>
                              </item>
                             </layout>
                            </widget>
-                          </item>
-                          <item row="2" column="1" colspan="4">
-                           <widget class="QFrame" name="frame_82">
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Sunken</enum>
-                            </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_20">
-                             <item>
-                              <widget class="QLabel" name="label_288">
-                               <property name="text">
-                                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bill Items&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QComboBox" name="comboBox_19">
-                               <property name="minimumSize">
-                                <size>
-                                 <width>297</width>
-                                 <height>0</height>
-                                </size>
-                               </property>
-                               <property name="maximumSize">
-                                <size>
-                                 <width>300</width>
-                                 <height>16777215</height>
-                                </size>
-                               </property>
-                               <property name="editable">
-                                <bool>true</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label_289">
-                               <property name="text">
-                                <string>Amount</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLineEdit" name="lineEdit_60"/>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="pushButton_109">
-                               <property name="text">
-                                <string>Add</string>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                          <item row="0" column="3">
-                           <widget class="QLabel" name="label_290">
-                            <property name="text">
-                             <string>Notes</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="1" column="3">
-                           <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
                           </item>
                          </layout>
                         </widget>
@@ -15180,7 +15187,7 @@ background-color: rgb(48, 48, 48);
                                 <item row="0" column="3">
                                  <widget class="QLabel" name="label_124">
                                   <property name="text">
-                                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#d9d9d9;&quot;&gt;Sub amount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Total&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                   </property>
                                  </widget>
                                 </item>

@@ -2,6 +2,7 @@
 #           (Where there is no order, there is confusion) -Luca Pacioli       #
 ##############################################################################
 import json
+# import asyncio
 import logging
 import random
 import re
@@ -1362,35 +1363,51 @@ class MainWindow(QMainWindow):
             (currentcode,
              )).fetchone()
         p_s = (''.join(map(str, p_s)))
-        tel = cusr.execute(
-            "SELECT telno FROM clients WHERE name=? ", (c_n,)).fetchone()
-        tel = (''.join(map(str, tel)))
-        addr = cusr.execute(
-            "SELECT address FROM clients WHERE name=? ", (c_n,)).fetchone()
-        addr = (''.join(map(str, addr)))
-        e_addr = cusr.execute(
-            "SELECT email FROM clients WHERE name=? ", (c_n,)).fetchone()
-        e_addr = (''.join(map(str, e_addr)))
+        try:
+            tel = cusr.execute(
+                "SELECT telno FROM clients WHERE name=? ", (c_n,)).fetchone()
+            tel = (''.join(map(str, tel)))
+        except Exception:
+            print(f"client error")
+        try:
+            addr = cusr.execute(
+                "SELECT address FROM clients WHERE name=? ", (c_n,)).fetchone()
+            addr = (''.join(map(str, addr)))
+        except Exception:
+            print(f"client error")
+        try:
+            e_addr = cusr.execute(
+                "SELECT email FROM clients WHERE name=? ", (c_n,)).fetchone()
+            e_addr = (''.join(map(str, e_addr)))
+        except Exception:
+            print(f"client error")
         t_a_k = babel.numbers.format_currency(decimal.Decimal(t_a), cash_label)
         s_b_k = babel.numbers.format_currency(decimal.Decimal(s_b), cash_label)
         d_u_k = babel.numbers.format_currency(decimal.Decimal(d_u), cash_label)
         g_t_k = babel.numbers.format_currency(decimal.Decimal(g_t), cash_label)
         d_t_k = babel.numbers.format_currency(decimal.Decimal(d_t), cash_label)
         self.ui.label_148.setText(str(c_n))
+        
         self.ui.label_157.setText(str(d_u_k))
+        self.ui.label_157.setFont(QFont("Times", 13))
         self.ui.label_159.setText(str(p_t))
+        self.ui.label_159.setFont(QFont("Times", 13))
         self.ui.label_166.setText(str(g_t_k))
+        self.ui.label_166.setFont(QFont("Times", 13))
         self.ui.label_166.setStyleSheet(
             "QLabel { color : rgb(0, 170, 0); }")
         self.ui.label_167.setText(str(s_b_k))
         self.ui.label_167.setStyleSheet(
             "QLabel { color : rgb(0, 170, 0); }")
+        self.ui.label_167.setFont(QFont("Times", 13))
         self.ui.label_168.setText(str(t_a_k))
         self.ui.label_168.setStyleSheet(
             "QLabel { color : rgb(0, 170, 0); }")
+        self.ui.label_168.setFont(QFont("Times", 13))
         self.ui.label_169.setText(str(d_t_k))
         self.ui.label_169.setStyleSheet(
             "QLabel { color : rgb(0, 170, 0); }")
+        self.ui.label_169.setFont(QFont("Times", 13))
         self.ui.label_160.setText(str(o_d))
         self.ui.label_152.setText(str(addr))
         self.ui.label_153.setText(str(tel))
@@ -2182,6 +2199,34 @@ class MainWindow(QMainWindow):
             database_connection.commit()
             # removes the UPC from poslist
             self.poslist.pop(b)
+            discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
+            discount = (''.join(map(str, discount)))
+            if discount == str(None):
+                discount = 0.0
+            else:
+                discount = float(''.join(map(str, discount)))
+            total = cusr.execute(
+                            "SELECT SUM(totalvat) FROM pos_table").fetchone()
+            total = (''.join(map(str, total)))
+            if total == str(None):
+                total = 0.0
+            else:
+                total = float(''.join(map(str, total)))
+            totalksh = cusr.execute(
+                "SELECT SUM(KSH) FROM pos_table").fetchone()
+            totalksh = (''.join(map(str, totalksh))) 
+            if totalksh == str(None):
+                totalksh = 0.0
+            else:
+                totalksh = float(''.join(map(str, totalksh)))
+            grand = (total + totalksh)
+            discount2 = (discount / 100 * grand)
+            grand_total = (grand - discount2)
+            np = babel.numbers.format_currency(decimal.Decimal(
+                grand_total), cash_label, locale='en_US')
+            self.ui.label_123.setText(str(np))
+            self.ui.label_123.setFont(QFont("Times", 21))
+            self.ui.label_123.setStyleSheet("QLabel { color : white; }")
             self.load_postable_data()
 
     def tx_back_btn(self):
@@ -3099,7 +3144,7 @@ class MainWindow(QMainWindow):
                         currentcode
                         ))
             database_connection.commit()
-            cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger, "other", "bill payment", "1", "0", paid_date))
+            cusr.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid,ledger, "other", "bill payment", "1", "0", paid_date))
             database_connection.commit()
             cusr.execute(
                     "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
@@ -3156,7 +3201,7 @@ class MainWindow(QMainWindow):
         try:
             cusr.execute("INSERT INTO bill_item(created, updated, uuid, bill_uuid, name, amount) VALUES (?,?,?,?,?,?)", (created, updated, uuid_1, bill_uuid, name, amount))
             database_connection.commit()
-            cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(b, "other", "bill items", "1", "0", created))
+            cusr.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid,b, "other", "bill items", "1", "0", created))
             database_connection.commit()
             cusr.execute(
                     "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
@@ -4117,7 +4162,25 @@ class MainWindow(QMainWindow):
             "UPDATE pos_table SET KSH=? WHERE name=?",
             (total_am,
              currentcode))
+             
+        discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
+        discount = float(''.join(map(str, discount)))
+        total = cusr.execute(
+                        "SELECT SUM(totalvat) FROM pos_table").fetchone()
+        total = float(''.join(map(str, total)))
+        totalksh = cusr.execute(
+            "SELECT SUM(KSH) FROM pos_table").fetchone()
+        totalksh = float(''.join(map(str, totalksh))) 
+        grand = (total + totalksh)
+        discount2 = (discount / 100 * grand)
+        grand_total = (grand - discount2)
+        np = babel.numbers.format_currency(decimal.Decimal(
+            grand_total), cash_label, locale='en_US')
+        self.ui.label_123.setText(str(np))
+        self.ui.label_123.setFont(QFont("Times", 21))
+        self.ui.label_123.setStyleSheet("QLabel { color : white; }")
         database_connection.commit()
+        
         self.load_postable_data()
     def remove_quantity(self):
         database_connection = sqlite3.connect(
@@ -4143,7 +4206,24 @@ class MainWindow(QMainWindow):
             (total_am,
              currentcode))
         database_connection.commit()
+        
         self.load_postable_data()
+        discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
+        discount = float(''.join(map(str, discount)))
+        total = cusr.execute(
+                        "SELECT SUM(totalvat) FROM pos_table").fetchone()
+        total = float(''.join(map(str, total)))
+        totalksh = cusr.execute(
+            "SELECT SUM(KSH) FROM pos_table").fetchone()
+        totalksh = float(''.join(map(str, totalksh))) 
+        grand = (total + totalksh)
+        discount2 = (discount / 100 * grand)
+        grand_total = (grand - discount2)
+        np = babel.numbers.format_currency(decimal.Decimal(
+            grand_total), cash_label, locale='en_US')
+        self.ui.label_123.setText(str(np))
+        self.ui.label_123.setFont(QFont("Times", 21))
+        self.ui.label_123.setStyleSheet("QLabel { color : white; }")
     def pos_line(self):
         try:
             database_connection = sqlite3.connect(
@@ -4595,6 +4675,7 @@ class MainWindow(QMainWindow):
             cusr = database_connection.cursor()
             stock_upc = cusr.execute("SELECT UPC FROM stock").fetchall() #gets all UPC from table stock
             stock_upc_list = [item for t in stock_upc for item in t] # converts fetched stock upc from tuple to list
+            self.ui.comboBox_12.clear()
             self.ui.comboBox_12.addItems(stock_upc_list)
             self.ui.comboBox_15.addItems(stock_upc_list)
         except Exception:
@@ -4905,7 +4986,7 @@ class MainWindow(QMainWindow):
                     credit,
                     order_date))
                 self.connection.commit()
-                self.c.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, "operating", description, "1", "0", order_date))
+                self.c.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, "operating", description, "1", "0", order_date))
                 self.connection.commit()
             else:
                 self.c.execute(
@@ -4964,7 +5045,7 @@ class MainWindow(QMainWindow):
                     "debit",
                     order_date))
                 self.connection.commit()
-                self.c.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, "other", description, "1", "0", order_date))
+                self.c.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, "other", description, "1", "0", order_date))
                 self.connection.commit()
 
             self.c.execute(
@@ -5703,7 +5784,7 @@ class AddJournalEntry(QDialog):
             database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
             cusr = database_connection.cursor()
-            cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, activities, description, combo1, combo2, journal_date))
+            cusr.execute("INSERT INTO journal_entries(id, ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, activities, description, combo1, combo2, journal_date))
             database_connection.commit()
             QMessageBox.information(QMessageBox(),'Successfull', "Transaction added journal")
         except Exception:
@@ -6601,7 +6682,7 @@ class stockAdd(QDialog):
                 database_connection.commit()
                 cusr.execute("INSERT INTO ledgers(id, name, locked, active, ledger_date) VALUES (?,?,?,?,?)",(ledger_uuid, UPC,"1","0",stockdate))
                 database_connection.commit()
-                cusr.execute("INSERT INTO journal_entries(ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?)",(ledger_uuid, "other", "Stock intake", "1", "0", stockdate))
+                cusr.execute("INSERT INTO journal_entries(id,ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledger_uuid, "other", "Stock intake", "1", "0", stockdate))
                 database_connection.commit()
                 cusr.execute(
                 "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
