@@ -4140,6 +4140,7 @@ class MainWindow(QMainWindow):
                 self.ui.tableWidget_16.setCellWidget(row_number, 6, minus)
 
     def add_quantity(self):
+        print(f"starting................/............")
         database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
@@ -4147,7 +4148,7 @@ class MainWindow(QMainWindow):
         currentcode = (self.ui.tableWidget_16.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode))) # bill number
         cusr.execute(
-            "UPDATE pos_table SET Quantity=(Quantity+?) WHERE name=?",
+            "UPDATE pos_table SET Quantity=(Quantity+?) WHERE UPC=?",
             ("1",
              currentcode))
         database_connection.commit()
@@ -4159,10 +4160,10 @@ class MainWindow(QMainWindow):
         quantity = float(''.join(map(str, quantity)))
         total_am = var_x * quantity
         cusr.execute(
-            "UPDATE pos_table SET KSH=? WHERE name=?",
+            "UPDATE pos_table SET KSH=? WHERE UPC=?",
             (total_am,
              currentcode))
-             
+        database_connection.commit()
         discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
         discount = float(''.join(map(str, discount)))
         total = cusr.execute(
@@ -4179,9 +4180,10 @@ class MainWindow(QMainWindow):
         self.ui.label_123.setText(str(np))
         self.ui.label_123.setFont(QFont("Times", 21))
         self.ui.label_123.setStyleSheet("QLabel { color : white; }")
-        database_connection.commit()
+        
         
         self.load_postable_data()
+        print(f"finished................/............")
     def remove_quantity(self):
         database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
@@ -4190,7 +4192,7 @@ class MainWindow(QMainWindow):
         currentcode = (self.ui.tableWidget_16.item(row, 0).text())
         currentcode = (''.join(map(str, currentcode))) # bill number
         cusr.execute(
-            "UPDATE pos_table SET Quantity=(Quantity-?) WHERE name=?",
+            "UPDATE pos_table SET Quantity=(Quantity-?) WHERE UPC=?",
             ("1",
              currentcode))
         database_connection.commit()
@@ -4202,7 +4204,7 @@ class MainWindow(QMainWindow):
         quantity = float(''.join(map(str, quantity)))
         total_am = var_x * quantity
         cusr.execute(
-            "UPDATE pos_table SET KSH=? WHERE name=?",
+            "UPDATE pos_table SET KSH=? WHERE UPC=?",
             (total_am,
              currentcode))
         database_connection.commit()
@@ -4751,9 +4753,15 @@ class MainWindow(QMainWindow):
                     var_f = cusr.execute(
                         "SELECT vat FROM stock WHERE UPC=?", (itemid,)).fetchone()
                     var_f = (''.join(map(str, var_f)))
-                    var_q = cusr.execute(
-                        "SELECT tax_percentage FROM tax_table WHERE tax_name=?", (var_f,)).fetchone()
-                    var_q = float(''.join(map(str, var_q)))
+                    try:
+                        var_q = cusr.execute(
+                            "SELECT tax_percentage FROM tax_table WHERE tax_name=?", (var_f,)).fetchone()
+                        var_q = float(''.join(map(str, var_q)))
+                    except Exception:
+                        QMessageBox.warning(
+                            QMessageBox(),
+                            'Error',
+                            'Tax not set navigate to the stock page then press the tax button .')
                     var_y = float(''.join(map(str, var_y)))
                     # removes the brackets from the name queryed
                     var_x = (''.join(map(str, var_x)))
@@ -4888,9 +4896,9 @@ class MainWindow(QMainWindow):
         print(f"Grand TOTAL AFTER DEDUCTION OF DISCOUNT ---> {grand_total}")
         total_no_tax = (self.posksh - discount3)
         amount_paid = float(str(self.ui.lineEdit_8.text()))
-        due = (grand_total - amount_paid)
+        due = round(grand_total - amount_paid, 2)
         print(f"DUE AMOUNT ---> {due}")
-        due2 = (total_no_tax - amount_paid)
+        due2 = round(total_no_tax - amount_paid, 2)
         if due < 0:
             QMessageBox.warning(
                 QMessageBox(),
@@ -7635,6 +7643,16 @@ class Admin_Login(QMainWindow):
                 self.ui.username.setStyleSheet("#username:focus { border: 3px solid rgb(255, 0, 127); }")
                 self.ui.password.setStyleSheet("#password:focus { border: 3px solid rgb(255, 0, 127); }")
                 self.shacke_window()
+    def shacke_window(self):
+        # SHACKE WINDOW
+        actual_pos = self.pos()
+        QTimer.singleShot(0, lambda: self.move(actual_pos.x() + 1, actual_pos.y()))
+        QTimer.singleShot(50, lambda: self.move(actual_pos.x() + -2, actual_pos.y()))
+        QTimer.singleShot(100, lambda: self.move(actual_pos.x() + 4, actual_pos.y()))
+        QTimer.singleShot(150, lambda: self.move(actual_pos.x() + -5, actual_pos.y()))
+        QTimer.singleShot(200, lambda: self.move(actual_pos.x() + 4, actual_pos.y()))
+        QTimer.singleShot(250, lambda: self.move(actual_pos.x() + -2, actual_pos.y()))
+        QTimer.singleShot(300, lambda: self.move(actual_pos.x(), actual_pos.y()))
 class SignUp(QMainWindow):
 
     def __init__(self):

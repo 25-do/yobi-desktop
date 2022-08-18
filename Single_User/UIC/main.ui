@@ -2022,7 +2022,7 @@ p, li { white-space: pre-wrap; }
                          <string notr="true">background: transparent;</string>
                         </property>
                         <property name="currentIndex">
-                         <number>33</number>
+                         <number>16</number>
                         </property>
                         <widget class="QWidget" name="home">
                          <property name="maximumSize">
@@ -3097,8 +3097,8 @@ p, li { white-space: pre-wrap; }
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>16</width>
-                                  <height>16</height>
+                                  <width>401</width>
+                                  <height>183</height>
                                  </rect>
                                 </property>
                                </widget>

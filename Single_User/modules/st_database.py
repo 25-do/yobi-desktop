@@ -18,7 +18,7 @@ def stats_database(self):
     cusr.execute("CREATE TABLE IF NOT EXISTS fix_expe(id_1 INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, KSH INTEGER, description TEXT, debit INTEGER, credit INTEGER,fixdate TIMESTAMP)")
     # cusr.execute("CREATE TABLE IF NOT EXISTS sales(id_4 INTEGER PRIMARY KEY, name TEXT, KSH INTEGER, description TEXT, debit INTEGER, credit INTEGER,saledate TIMESTAMP)")
     cusr.execute("CREATE TABLE IF NOT EXISTS transactions(uuid TEXT, updated TIMESTAMP, created TIMESTAMP, coa_id TEXT, id_4 INTEGER PRIMARY KEY, journal_entry_id TEXT, ledger_id TEXT, name TEXT, KSH INTEGER, description TEXT, tx_type TEXT, transactionsdate TIMESTAMP, user_uuid TEXT)")
-    cusr.execute("CREATE TABLE IF NOT EXISTS journal_entries(id INTEGER PRIMARY KEY AUTOINCREMENT, ledger_id TEXT, activity TEXT, description TEXT, posted TEXT, locked TEXT, journal_entrydate TIMESTAMP, user_uuid TEXT)")
+    cusr.execute("CREATE TABLE IF NOT EXISTS journal_entries(id TEXT, ledger_id TEXT, activity TEXT, description TEXT, posted TEXT, locked TEXT, journal_entrydate TIMESTAMP, user_uuid TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS ledgers(id TEXT, lg_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, locked TEXT, active TEXT, ledger_date TIMESTAMP, user_uuid TEXT)")
 
     cusr.execute("CREATE TABLE IF NOT EXISTS account_payable(id_17 INTEGER PRIMARY KEY, name TEXT, KSH INTEGER, description TEXT, debit INTEGER, credit INTEGER, ledgerdate TIMESTAMP, user_uuid TEXT)")
