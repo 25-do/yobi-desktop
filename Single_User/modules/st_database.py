@@ -39,7 +39,7 @@ def stats_database(self):
     cusr.execute("CREATE TABLE IF NOT EXISTS orders(uuid TEXT, created TIMESTAMP, sale_no TEXT, updated TIMESTAMP, terms TEXT, id_13 INTEGER PRIMARY KEY AUTOINCREMENT, item_code TEXT NOT NULL, discount INTEGER,  paid_amount INTEGER NOT NULL, code TEXT, client_name TEXT NOT NULL, grand_total INTEGER, total_amount INTEGER, sub_total INTEGER, payment_type Text, payment_status Text,  order_date TIMESTAMP, due INTEGER, invoice_status TEXT, markdown_notes TEXT, ledger_uuid TEXT, user_uuid TEXT)")
 
     cusr.execute("CREATE TABLE IF NOT EXISTS payment(code TEXT,  client_name TEXT, payment_date TIMESTAMP , paid INTEGER, due INTEGER)")
-    cusr.execute("CREATE TABLE IF NOT EXISTS chart_of_accounts(code TEXT, role TEXT, account TEXT, balance_type TEXT, locked INTEGER, active INTEGER)")
+    cusr.execute("CREATE TABLE IF NOT EXISTS chart_of_accounts(code INTEGER PRIMARY KEY, role TEXT, account TEXT, balance_type TEXT, locked INTEGER, active INTEGER)")
     cusr.execute("CREATE TABLE IF NOT EXISTS currency(currency TEXT)")
     cusr.execute("CREATE TABLE IF NOT EXISTS debt_payment(code TEXT,  supplier_name TEXT, payment_date TIMESTAMP , paid INTEGER, due INTEGER)")
     cusr.execute("CREATE TABLE IF NOT EXISTS income(name TEXT,  amount INTEGER, debit INTEGER, credit INTEGER, description TEXT , income_date TIMESTAMP)")

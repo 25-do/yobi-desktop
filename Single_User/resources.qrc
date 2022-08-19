@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>images/images/accounting.png</file>
     <file>images/images/Capture1.png</file>
     <file>images/images/excel.png</file>
     <file>images/images/tax.png</file>
@@ -9,6 +10,11 @@
     <file>images/images/user.png</file>
   </qresource>
   <qresource prefix="icons">
+    <file>images/images/checkout.png</file>
+    <file>images/images/ledger.png</file>
+    <file>images/images/receipt.png</file>
+    <file>images/images/target.png</file>
+    <file>images/images/vendor.png</file>
     <file>images/icons/cil-3d.png</file>
     <file>images/icons/cil-4k.png</file>
     <file>images/icons/cil-account-logout.png</file>

@@ -288,6 +288,7 @@ def combo_payments(self):
     self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
     self.c = self.connection.cursor()
     acc = 'expenses'
+    fix_expe = 'fixedexpenses'
     acc_asset_fixed = "fixedassets"
     acc_asset_current = "currentassets"
     acc_lib_short = "currentliabilities"
@@ -324,6 +325,8 @@ def combo_payments(self):
 
     d = self.c.execute(
         "SELECT account FROM chart_of_accounts WHERE role=?", (acc,)).fetchall()
+    fix_expes = self.c.execute(
+        "SELECT account FROM chart_of_accounts WHERE role=?", (fix_expe,)).fetchall()
     acc_fix = self.c.execute(
         "SELECT account FROM chart_of_accounts WHERE role=?", (acc_asset_fixed,)).fetchall()
     acc_curr = self.c.execute(
@@ -336,6 +339,7 @@ def combo_payments(self):
         "SELECT account FROM chart_of_accounts WHERE role=?", (acc_revenue,)).fetchall()
 
     b = [item for t in d for item in t]
+    fix_expes_combo = [item for t in fix_expes for item in t]
     acc_fix1 = [item for t in acc_fix for item in t]
     acc_curr1 = [item for t in acc_curr for item in t]
     acc_short1 = [item for t in acc_short for item in t]
@@ -343,6 +347,8 @@ def combo_payments(self):
     acc_rev1 = [item for t in acc_rev for item in t]
 
     self.ui.comboBox_6.addItems(b)
+    self.ui.comboBox_22.addItems(b)
+    self.ui.comboBox_22.addItems(fix_expes_combo)
     self.ui.comboBox_22.addItems(acc_rev1)
     self.ui.comboBox_22.addItems(acc_fix1)
     self.ui.comboBox_22.addItems(acc_long1)
@@ -943,83 +949,83 @@ def add_coa(self):
     b = self.c.execute("SELECT * FROM chart_of_accounts").fetchone()
 
     if b is None:
-        rows = [('1550', 'fixedassets', 'Buildings', 'debit', 0, 1),
-                ('1511', 'fixedassets', 'computer equipment', 'debit', 0, 1),
-                ('1512', 'fixedassets', 'computer software', 'debit', 0, 1),
-                ('1500', 'fixedassets', 'funiture and fixtures', 'debit', 0, 1),
-                ('1920', 'fixedassets', 'intagible asset', 'debit', 0, 1),
-                ('1520', 'fixedassets', 'machinery', 'debit', 0, 1),
-                ('1510', 'fixedassets', 'office equipment', 'debit', 0, 1),
-                ('1570', 'fixedassets', 'leasehold improvements', 'debit', 0, 1),
-                ('1560', 'fixedassets', 'construction in progress', 'debit', 0, 1),
-                ('1690', 'fixedassets', 'land', 'debit', 0, 1),
-                ('1010', 'currentassets', 'cash and cash equivalents', 'debit', 0, 1),
-                ('1420', 'currentassets', 'marketable Securities', 'debit', 0, 1),
-                ('1100', 'currentassets', 'Accounts Receivable', 'debit', 0, 1),
-                ('1205', 'currentassets', 'supplies', 'debit', 0, 1),
-                ('1206', 'currentassets', 'debtors', 'debit', 0, 1),
-                ('1400', 'currentassets', 'prepaid Expenses', 'debit', 0, 1),
-                ('1200', 'currentassets', 'inventory', 'debit', 0, 1),
-                ('1000', 'currentassets', 'petty cash', 'debit', 0, 1),
-                ('1410', 'currentassets', 'Employee Advances', 'credit', 0, 1),
-                ('2000', 'currentliabilities', 'accounts payable', 'credit', 0, 1),
-                ('2330', 'currentliabilities', 'credit lines', 'credit', 0, 1),
-                ('2320', 'currentliabilities', 'salaries', 'credit', 0, 1),
-                ('2030', 'currentliabilities', 'intrest payable', 'credit', 0, 1),
-                ('2390', 'currentliabilities', 'income taxes payable', 'credit', 0, 1),
-                ('2370', 'currentliabilities', 'bills payble', 'credit', 0, 1),
-                ('2450', 'currentliabilities', 'short term loans', 'credit', 0, 1),
-                ('2300', 'currentliabilities', 'accured expenses', 'credit', 0, 1),
-                ('2460', 'currentliabilities', 'bank account overdrafts', 'credit', 0, 1),
-                ('2480', 'currentliabilities', 'creditors', 'credit', 0, 1),
-                ('2490', 'currentliabilities', 'Deferred Revenue', 'credit', 0, 1),
-                ('2704', 'Longtermliabilities', 'mortages or bonds', 'credit', 0, 1),
-                ('2702', 'Longtermliabilities', 'capital lease', 'credit', 0, 1),
-                ('2740', 'Longtermliabilities', 'Bonds Payable', 'credit', 0, 1),
-                ('2700', 'Longtermliabilities', 'Notes Payable', 'credit', 0, 1),
-                ('6000', 'fixedexpenses', 'mortages', 'debit', 0, 1),
-                ('7400', 'fixedexpenses', 'rent', 'debit', 0, 1),
-                ('7440', 'fixedexpenses', 'strata fee', 'debit', 0, 1),
-                ('6700', 'fixedexpenses', 'vehicle insuarrance', 'debit', 0, 1),
-                ('6660', 'fixedexpenses', 'house/tenant insuarance', 'debit', 0, 1),
-                ('7800', 'fixedexpenses', 'utilities bills(cabel)', 'debit', 0, 1),
-                ('6000', 'expenses', 'Default Purchase Expense', 'debit', 0, 1),
-                ('6010', 'expenses', 'Advertising Expense', 'debit', 0, 1),
-                ('6011', 'expenses', 'cost of goods sold', 'debit', 0, 1),
-                ('6050', 'expenses', 'Amortization Expense', 'debit', 0, 1),
-                ('6300', 'expenses', 'Charitable Contributions Expense', 'debit', 0, 1),
-                ('6100', 'expenses', 'Auto Expense', 'debit', 0, 1),
-                ('6150', 'expenses', 'Bad Debt Expense', 'debit', 0, 1),
-                ('6250', 'expenses', 'Cash Over and Short ', 'debit', 0, 1),
-                ('6200', 'expenses', 'Bank fees ', 'debit', 0, 1),
-                ('6350', 'expenses', 'Commissions and Fees expenses ', 'debit', 0, 1),
-                ('6400', 'expenses', 'Depreciation expenses ', 'debit', 0, 1),
-                ('6450', 'expenses', 'Dues and Subscriptions expenses ', 'debit', 0, 1),
-                ('6500', 'expenses', 'Employee Benefit Expense, Health Insurance ', 'debit', 0, 1),
-                ('6510', 'expenses', 'Employee Benefit Expense,Pension Plans ', 'debit', 0, 1),
-                ('6520', 'expenses', 'Employee Benefit Expense,Profit Sharing Plans ', 'debit', 0, 1),
-                ('6530', 'expenses', 'Employee Benefit Expense,Other ', 'debit', 0, 1),
-                ('6550', 'expenses', 'Freight Expense ', 'debit', 0, 1),
-                ('6600', 'expenses', 'Gifts Expense ', 'debit', 0, 1),
-                ('6650', 'expenses', 'Income Tax Expense,Federal ', 'debit', 0, 1),
-                ('6660', 'expenses', 'Income Tax Expense,State ', 'debit', 0, 1),
-                ('6670', 'expenses', 'Income Tax Expense,Local ', 'debit', 0, 1),
-                ('6700', 'expenses', 'Insurance Expense,Product Liability ', 'debit', 0, 1),
-                ('6710', 'expenses', 'Insurance Expense,Vehicle ', 'debit', 0, 1),
-                ('6750', 'expenses', 'Intrest Expense ', 'debit', 0, 1),
-                ('6800', 'expenses', 'Laundry and Dry Cleaning Expense ', 'debit', 0, 1),
-                ('6850', 'expenses', 'Legal and Professional Expense ', 'debit', 0, 1),
-                ('6900', 'expenses', 'Licenses Expense ', 'debit', 0, 1),
-                ('6950', 'expenses', 'Loss on NSF Checks ', 'debit', 0, 1),
-                ('7000', 'expenses', 'Maintanance Expence', 'debit', 0, 1),
-                ('7050', 'expenses', 'Meals and Entertainment Expense', 'debit', 0, 1),
-                ('4000', 'revenue', 'Product Sales', 'credit', 0, 1),
-                ('4060', 'revenue', 'interest income', 'credit', 0, 1),
-                ('4080', 'revenue', 'other income', 'credit', 0, 1),
-                ('4540', 'revenue', 'Finance charge income', 'credit', 0, 1),
-                ('4550', 'revenue', 'Shipping  Charges Reimbbursed', 'credit', 0, 1),
-                ('4800', 'revenue', 'Sales Returns and Allowances', 'credit', 0, 1),
-                ('4900', 'revenue', 'Sales Discounts', 'credit', 0, 1),]
+        rows = [(1550, 'fixedassets', 'Buildings', 'debit', 0, 1),
+                (1511, 'fixedassets', 'computer equipment', 'debit', 0, 1),
+                (1512, 'fixedassets', 'computer software', 'debit', 0, 1),
+                (1500, 'fixedassets', 'funiture and fixtures', 'debit', 0, 1),
+                (1920, 'fixedassets', 'intagible asset', 'debit', 0, 1),
+                (1520, 'fixedassets', 'machinery', 'debit', 0, 1),
+                (1510, 'fixedassets', 'office equipment', 'debit', 0, 1),
+                (1570, 'fixedassets', 'leasehold improvements', 'debit', 0, 1),
+                (1560, 'fixedassets', 'construction in progress', 'debit', 0, 1),
+                (1690, 'fixedassets', 'land', 'debit', 0, 1),
+                (1010, 'currentassets', 'cash and cash equivalents', 'debit', 0, 1),
+                (1420, 'currentassets', 'marketable Securities', 'debit', 0, 1),
+                (1100, 'currentassets', 'Accounts Receivable', 'debit', 0, 1),
+                (1205, 'currentassets', 'supplies', 'debit', 0, 1),
+                (1206, 'currentassets', 'debtors', 'debit', 0, 1),
+                (1400, 'currentassets', 'prepaid Expenses', 'debit', 0, 1),#payment in advance
+                (1200, 'currentassets', 'inventory', 'debit', 0, 1),
+                (1000, 'currentassets', 'petty cash', 'debit', 0, 1),
+                (1410, 'currentassets', 'Employee Advances', 'debit', 0, 1),
+                (2000, 'currentliabilities', 'accounts payable', 'credit', 0, 1),
+                (2330, 'currentliabilities', 'credit lines', 'credit', 0, 1),
+                (2320, 'currentliabilities', 'salaries', 'credit', 0, 1),
+                (2030, 'currentliabilities', 'intrest payable', 'credit', 0, 1),
+                (2390, 'currentliabilities', 'income taxes payable', 'credit', 0, 1),
+                (2370, 'currentliabilities', 'bills payble', 'credit', 0, 1),
+                (2450, 'currentliabilities', 'short term loans', 'credit', 0, 1),
+                (2300, 'currentliabilities', 'accured expenses', 'credit', 0, 1),
+                (2460, 'currentliabilities', 'bank account overdrafts', 'credit', 0, 1),
+                (2480, 'currentliabilities', 'creditors', 'credit', 0, 1),
+                (2490, 'currentliabilities', 'Deferred Revenue', 'credit', 0, 1),
+                (2704, 'Longtermliabilities', 'mortages or bonds', 'credit', 0, 1),
+                (2702, 'Longtermliabilities', 'capital lease', 'credit', 0, 1),
+                (2740, 'Longtermliabilities', 'Bonds Payable', 'credit', 0, 1),
+                (2700, 'Longtermliabilities', 'Notes Payable', 'credit', 0, 1),
+                (6001, 'fixedexpenses', 'mortages', 'debit', 0, 1),
+                (7400, 'fixedexpenses', 'rent', 'debit', 0, 1),
+                (7440, 'fixedexpenses', 'strata fee', 'debit', 0, 1),
+                (6730, 'fixedexpenses', 'vehicle insuarrance', 'debit', 0, 1),
+                (6630, 'fixedexpenses', 'house/tenant insuarance', 'debit', 0, 1),
+                (7800, 'fixedexpenses', 'utilities bills(cabel)', 'debit', 0, 1),
+                (6000, 'expenses', 'Default Purchase Expense', 'debit', 0, 1),
+                (6010, 'expenses', 'Advertising Expense', 'debit', 0, 1),
+                (6011, 'expenses', 'cost of goods sold', 'debit', 0, 1),
+                (6050, 'expenses', 'Amortization Expense', 'debit', 0, 1),
+                (6300, 'expenses', 'Charitable Contributions Expense', 'debit', 0, 1),
+                (6100, 'expenses', 'Auto Expense', 'debit', 0, 1),
+                (6150, 'expenses', 'Bad Debt Expense', 'debit', 0, 1),
+                (6250, 'expenses', 'Cash Over and Short ', 'debit', 0, 1),
+                (6200, 'expenses', 'Bank fees ', 'debit', 0, 1),
+                (6350, 'expenses', 'Commissions and Fees expenses ', 'debit', 0, 1),
+                (6400, 'expenses', 'Depreciation expenses ', 'debit', 0, 1),
+                (6450, 'expenses', 'Dues and Subscriptions expenses ', 'debit', 0, 1),
+                (6500, 'expenses', 'Employee Benefit Expense, Health Insurance ', 'debit', 0, 1),
+                (6510, 'expenses', 'Employee Benefit Expense,Pension Plans ', 'debit', 0, 1),
+                (6520, 'expenses', 'Employee Benefit Expense,Profit Sharing Plans ', 'debit', 0, 1),
+                (6530, 'expenses', 'Employee Benefit Expense,Other ', 'debit', 0, 1),
+                (6550, 'expenses', 'Freight Expense ', 'debit', 0, 1),
+                (6600, 'expenses', 'Gifts Expense ', 'debit', 0, 1),
+                (6650, 'expenses', 'Income Tax Expense,Federal ', 'debit', 0, 1),
+                (6660, 'expenses', 'Income Tax Expense,State ', 'debit', 0, 1),
+                (6670, 'expenses', 'Income Tax Expense,Local ', 'debit', 0, 1),
+                (6700, 'expenses', 'Insurance Expense,Product Liability ', 'debit', 0, 1),
+                (6710, 'expenses', 'Insurance Expense,Vehicle ', 'debit', 0, 1),
+                (6750, 'expenses', 'Intrest Expense ', 'debit', 0, 1),
+                (6800, 'expenses', 'Laundry and Dry Cleaning Expense ', 'debit', 0, 1),
+                (6850, 'expenses', 'Legal and Professional Expense ', 'debit', 0, 1),
+                (6900, 'expenses', 'Licenses Expense ', 'debit', 0, 1),
+                (6950, 'expenses', 'Loss on NSF Checks ', 'debit', 0, 1),
+                (7000, 'expenses', 'Maintanance Expence', 'debit', 0, 1),
+                (7050, 'expenses', 'Meals and Entertainment Expense', 'debit', 0, 1),
+                (4000, 'revenue', 'Product Sales', 'credit', 0, 1),
+                (4060, 'revenue', 'interest income', 'credit', 0, 1),
+                (4080, 'revenue', 'other income', 'credit', 0, 1),
+                (4540, 'revenue', 'Finance charge income', 'credit', 0, 1),
+                (4550, 'revenue', 'Shipping  Charges Reimbbursed', 'credit', 0, 1),
+                (4800, 'revenue', 'Sales Returns and Allowances', 'credit', 0, 1),
+                (4900, 'revenue', 'Sales Discounts', 'credit', 0, 1),]
                 
         self.c.executemany("INSERT INTO chart_of_accounts VALUES (?,?,?,?,?,?)", rows)
         self.connection.commit()

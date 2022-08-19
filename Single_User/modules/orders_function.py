@@ -31,7 +31,7 @@ except Exception:
 
 def setButtons(self):
     self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    query = "SELECT code, client_name, grand_total, total_amount, payment_status,  order_date, due FROM orders ORDER BY id_13 DESC LIMIT 20"
+    query = "SELECT code, client_name, grand_total, payment_status,  order_date, due FROM orders ORDER BY id_13 DESC LIMIT 20"
     result = self.connection.execute(query).fetchall()
 
     self.ui.tableWidget_6.setRowCount(0)
@@ -105,10 +105,10 @@ def setButtons(self):
             deletebtn.setIconSize(QSize(40, 40))
             btn.clicked.connect(self.btn_triger)
 
-            self.ui.tableWidget_6.setCellWidget(row_number, 7, btn)
-            self.ui.tableWidget_6.setCellWidget(row_number, 8, self.push)
-            self.ui.tableWidget_6.setCellWidget(row_number, 9, deletebtn)
-            self.ui.tableWidget_6.setCellWidget(row_number, 10, rtn)
+            self.ui.tableWidget_6.setCellWidget(row_number, 6, btn)
+            self.ui.tableWidget_6.setCellWidget(row_number, 7, self.push)
+            self.ui.tableWidget_6.setCellWidget(row_number, 8, deletebtn)
+            self.ui.tableWidget_6.setCellWidget(row_number, 9, rtn)
             # deletebtn.clicked.connect(self.deleteorders)
             self.push.clicked.connect(self.update_orders_page)
             rtn.clicked.connect(self.set_return_orders)
@@ -116,7 +116,7 @@ def setButtons(self):
 
 def setButtons2(self):
     self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    query = "SELECT code, client_name, grand_total, total_amount, payment_status,  order_date, due FROM orders ORDER BY id_13 DESC LIMIT 20"
+    query = "SELECT code, client_name, grand_total, payment_status, order_date, due FROM orders ORDER BY id_13 DESC LIMIT 20"
     result = self.connection.execute(query).fetchall()
 
     self.ui.tableWidget_6.setRowCount(0)
@@ -190,10 +190,10 @@ def setButtons2(self):
             deletebtn.setIconSize(QSize(40, 40))
             btn.clicked.connect(self.btn_triger)
 
-            self.ui.tableWidget_6.setCellWidget(row_number, 7, btn)
-            self.ui.tableWidget_6.setCellWidget(row_number, 8, self.push)
-            self.ui.tableWidget_6.setCellWidget(row_number, 9, deletebtn)
-            self.ui.tableWidget_6.setCellWidget(row_number, 10, rtn)
+            self.ui.tableWidget_6.setCellWidget(row_number, 6, btn)
+            self.ui.tableWidget_6.setCellWidget(row_number, 7, self.push)
+            self.ui.tableWidget_6.setCellWidget(row_number, 8, deletebtn)
+            self.ui.tableWidget_6.setCellWidget(row_number, 9, rtn)
             # deletebtn.clicked.connect(self.deleteorders)
             self.push.clicked.connect(self.update_orders_page)
             rtn.clicked.connect(self.set_return_orders)
@@ -254,12 +254,16 @@ def orders_label(self):
         td = (amount_paid + total_paid)
 
         total_revenue2 = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND name=?", ("revenue", "Product Sales")).fetchone()
+            "SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND name=? AND tx_type=?", ("revenue", "Product Sales", "credit")).fetchone()
         total_revenue2 = (''.join(map(str, total_revenue2)))
 
         total_revenue = self.c.execute(
-            "SELECT SUM(KSH) FROM transactions WHERE coa_id=? ", ("revenue",)).fetchone()
+            "SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", ("revenue", "credit")).fetchone()
         total_revenue = (''.join(map(str, total_revenue)))
+        if total_revenue == str(None):
+            total_revenue = 0.0
+        else:
+            total_revenue = float(''.join(map(str, total_revenue)))
 
         if total_revenue2 == str(None):
             total_revenue2 = 0.0
@@ -481,7 +485,7 @@ def sales_return_reload(self):
 
 def setButtons_suppliers(self):
     self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    query = "SELECT id_14, name, addr1, tel1, email FROM supplier ORDER BY id_14 DESC"
+    query = "SELECT id_14, name FROM supplier ORDER BY id_14 DESC"
     result = self.connection.execute(query).fetchall()
 
     self.ui.tableWidget_14.setRowCount(0)
@@ -500,6 +504,17 @@ def setButtons_suppliers(self):
             # font.setWeight(75)
             btn.setFont(font)
             btn.setStyleSheet("QPushButton{\n"
+                              "    background-color: rgb(0, 255, 0);;\n"
+                              "border-radius : 25px;\n"
+                              "color : rgb(7, 7, 7); \n"
+                              "}")
+            details = QPushButton("Details")
+            font = QtGui.QFont()
+            font.setPointSize(9)
+            font.setBold(True)
+            # font.setWeight(75)
+            details.setFont(font)
+            details.setStyleSheet("QPushButton{\n"
                               "    background-color: rgb(0, 255, 0);;\n"
                               "border-radius : 25px;\n"
                               "color : rgb(7, 7, 7); \n"
@@ -550,10 +565,12 @@ def setButtons_suppliers(self):
             deletebtn.setIcon(icon7)
             deletebtn.setIconSize(QSize(40, 40))
 
-            self.ui.tableWidget_14.setCellWidget(row_number, 7, btn)
-            self.ui.tableWidget_14.setCellWidget(row_number, 8, self.push)
-            self.ui.tableWidget_14.setCellWidget(row_number, 9, deletebtn)
+            self.ui.tableWidget_14.setCellWidget(row_number, 2, btn)
+            self.ui.tableWidget_14.setCellWidget(row_number, 3, self.push)
+            self.ui.tableWidget_14.setCellWidget(row_number, 4, deletebtn)
+            self.ui.tableWidget_14.setCellWidget(row_number, 5, details)
 
             btn.clicked.connect(self.vendor_bills)
             self.push.clicked.connect(self.update_supplier_page)
             deletebtn.clicked.connect(self.delete_supplier)
+            details.clicked.connect(self.details_supplier_page)
