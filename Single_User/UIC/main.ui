@@ -2022,7 +2022,7 @@ p, li { white-space: pre-wrap; }
                          <string notr="true">background: transparent;</string>
                         </property>
                         <property name="currentIndex">
-                         <number>16</number>
+                         <number>3</number>
                         </property>
                         <widget class="QWidget" name="home">
                          <property name="maximumSize">
@@ -2301,8 +2301,7 @@ border-radius : 15px;
                                 </size>
                                </property>
                                <property name="styleSheet">
-                                <string notr="true">alternate-background-color: rgb(43, 43, 43);
-</string>
+                                <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
                                </property>
                                <property name="editTriggers">
                                 <set>QAbstractItemView::NoEditTriggers</set>
@@ -2527,8 +2526,8 @@ border-radius: 15px;
                                        <colorrole role="AlternateBase">
                                         <brush brushstyle="SolidPattern">
                                          <color alpha="255">
-                                          <red>43</red>
-                                          <green>43</green>
+                                          <red>33</red>
+                                          <green>37</green>
                                           <blue>43</blue>
                                          </color>
                                         </brush>
@@ -2601,8 +2600,8 @@ border-radius: 15px;
                                        <colorrole role="AlternateBase">
                                         <brush brushstyle="SolidPattern">
                                          <color alpha="255">
-                                          <red>43</red>
-                                          <green>43</green>
+                                          <red>33</red>
+                                          <green>37</green>
                                           <blue>43</blue>
                                          </color>
                                         </brush>
@@ -2675,8 +2674,8 @@ border-radius: 15px;
                                        <colorrole role="AlternateBase">
                                         <brush brushstyle="SolidPattern">
                                          <color alpha="255">
-                                          <red>43</red>
-                                          <green>43</green>
+                                          <red>33</red>
+                                          <green>37</green>
                                           <blue>43</blue>
                                          </color>
                                         </brush>
@@ -2697,8 +2696,7 @@ border-radius: 15px;
                                      <bool>false</bool>
                                     </property>
                                     <property name="styleSheet">
-                                     <string notr="true">alternate-background-color: rgb(43, 43, 43);
-</string>
+                                     <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
                                     </property>
                                     <property name="frameShape">
                                      <enum>QFrame::Box</enum>
@@ -2826,12 +2824,32 @@ border-radius: 15px;
                                        <property name="text">
                                         <string>Clients</string>
                                        </property>
+                                       <property name="icon">
+                                        <iconset resource="../resources.qrc">
+                                         <normaloff>:/icons/images/images/target.png</normaloff>:/icons/images/images/target.png</iconset>
+                                       </property>
+                                       <property name="iconSize">
+                                        <size>
+                                         <width>63</width>
+                                         <height>45</height>
+                                        </size>
+                                       </property>
                                       </widget>
                                      </item>
                                      <item row="1" column="2">
                                       <widget class="QPushButton" name="pushButton_171">
                                        <property name="text">
                                         <string>Bills</string>
+                                       </property>
+                                       <property name="icon">
+                                        <iconset resource="../resources.qrc">
+                                         <normaloff>:/icons/images/images/receipt.png</normaloff>:/icons/images/images/receipt.png</iconset>
+                                       </property>
+                                       <property name="iconSize">
+                                        <size>
+                                         <width>53</width>
+                                         <height>44</height>
+                                        </size>
                                        </property>
                                       </widget>
                                      </item>
@@ -2840,12 +2858,32 @@ border-radius: 15px;
                                        <property name="text">
                                         <string>purchase orders</string>
                                        </property>
+                                       <property name="icon">
+                                        <iconset resource="../resources.qrc">
+                                         <normaloff>:/icons/images/images/checkout.png</normaloff>:/icons/images/images/checkout.png</iconset>
+                                       </property>
+                                       <property name="iconSize">
+                                        <size>
+                                         <width>44</width>
+                                         <height>47</height>
+                                        </size>
+                                       </property>
                                       </widget>
                                      </item>
                                      <item row="1" column="0">
                                       <widget class="QPushButton" name="pushButton_105">
                                        <property name="text">
                                         <string>Vendors</string>
+                                       </property>
+                                       <property name="icon">
+                                        <iconset resource="../resources.qrc">
+                                         <normaloff>:/icons/images/images/vendor.png</normaloff>:/icons/images/images/vendor.png</iconset>
+                                       </property>
+                                       <property name="iconSize">
+                                        <size>
+                                         <width>53</width>
+                                         <height>49</height>
+                                        </size>
                                        </property>
                                       </widget>
                                      </item>
@@ -2854,12 +2892,32 @@ border-radius: 15px;
                                        <property name="text">
                                         <string>Ledgers</string>
                                        </property>
+                                       <property name="icon">
+                                        <iconset resource="../resources.qrc">
+                                         <normaloff>:/icons/images/images/ledger.png</normaloff>:/icons/images/images/ledger.png</iconset>
+                                       </property>
+                                       <property name="iconSize">
+                                        <size>
+                                         <width>43</width>
+                                         <height>46</height>
+                                        </size>
+                                       </property>
                                       </widget>
                                      </item>
                                      <item row="2" column="0">
                                       <widget class="QPushButton" name="pushButton_144">
                                        <property name="text">
                                         <string>Invoice</string>
+                                       </property>
+                                       <property name="icon">
+                                        <iconset resource="../resources.qrc">
+                                         <normaloff>:/images/images/images/accounting.png</normaloff>:/images/images/images/accounting.png</iconset>
+                                       </property>
+                                       <property name="iconSize">
+                                        <size>
+                                         <width>51</width>
+                                         <height>41</height>
+                                        </size>
                                        </property>
                                       </widget>
                                      </item>
@@ -3097,7 +3155,7 @@ p, li { white-space: pre-wrap; }
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>401</width>
+                                  <width>400</width>
                                   <height>183</height>
                                  </rect>
                                 </property>
@@ -4972,115 +5030,115 @@ alternate-background-color: rgb(43, 43, 43);
                              <enum>QFrame::Raised</enum>
                             </property>
                             <layout class="QGridLayout" name="gridLayout_120">
-                             <item row="5" column="0">
-                              <widget class="QLabel" name="label_387">
-                               <property name="text">
-                                <string>Address2</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="7" column="0">
-                              <widget class="QLabel" name="label_385">
-                               <property name="text">
-                                <string>website</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="2" column="0">
-                              <widget class="QLabel" name="label_391">
-                               <property name="text">
-                                <string>phone number 1</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="4" column="0">
-                              <widget class="QLabel" name="label_388">
-                               <property name="text">
-                                <string>Address1</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="8" column="0">
-                              <widget class="QLabel" name="label_392">
-                               <property name="text">
-                                <string>country</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="6" column="0">
-                              <widget class="QLabel" name="label_386">
-                               <property name="text">
-                                <string>email</string>
-                               </property>
-                              </widget>
-                             </item>
                              <item row="3" column="0">
-                              <widget class="QLabel" name="label_389">
-                               <property name="text">
-                                <string>phone number 2</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="0">
                               <widget class="QLabel" name="label_390">
                                <property name="text">
                                 <string>Name :</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="1" column="1">
-                              <widget class="QLabel" name="label_394">
+                             <item row="6" column="0">
+                              <widget class="QLabel" name="label_388">
                                <property name="text">
-                                <string/>
+                                <string>Address1</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="2" column="1">
-                              <widget class="QLabel" name="label_395">
+                             <item row="5" column="0">
+                              <widget class="QLabel" name="label_389">
                                <property name="text">
-                                <string/>
+                                <string>phone number 2</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="3" column="1">
-                              <widget class="QLabel" name="label_396">
-                               <property name="text">
-                                <string/>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="5" column="1">
-                              <widget class="QLabel" name="label_397">
-                               <property name="text">
-                                <string/>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="4" column="1">
+                             <item row="6" column="1">
                               <widget class="QLabel" name="label_398">
                                <property name="text">
                                 <string/>
                                </property>
                               </widget>
                              </item>
-                             <item row="6" column="1">
+                             <item row="7" column="0">
+                              <widget class="QLabel" name="label_387">
+                               <property name="text">
+                                <string>Address2</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="5" column="1">
+                              <widget class="QLabel" name="label_396">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="10" column="0">
+                              <widget class="QLabel" name="label_392">
+                               <property name="text">
+                                <string>country</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="8" column="1">
                               <widget class="QLabel" name="label_399">
                                <property name="text">
                                 <string/>
                                </property>
                               </widget>
                              </item>
+                             <item row="9" column="0">
+                              <widget class="QLabel" name="label_385">
+                               <property name="text">
+                                <string>website</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="1">
+                              <widget class="QLabel" name="label_395">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
                              <item row="7" column="1">
+                              <widget class="QLabel" name="label_397">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="8" column="0">
+                              <widget class="QLabel" name="label_386">
+                               <property name="text">
+                                <string>email</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="9" column="1">
                               <widget class="QLabel" name="label_400">
                                <property name="text">
                                 <string/>
                                </property>
                               </widget>
                              </item>
-                             <item row="8" column="1">
+                             <item row="3" column="1">
+                              <widget class="QLabel" name="label_394">
+                               <property name="text">
+                                <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="10" column="1">
                               <widget class="QLabel" name="label_401">
                                <property name="text">
                                 <string/>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="0">
+                              <widget class="QLabel" name="label_391">
+                               <property name="text">
+                                <string>phone number 1</string>
                                </property>
                               </widget>
                              </item>
@@ -5088,6 +5146,23 @@ alternate-background-color: rgb(43, 43, 43);
                               <widget class="QLabel" name="label_393">
                                <property name="text">
                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;VENDOR INFO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="0" colspan="2">
+                              <widget class="QPushButton" name="pushButton_177">
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../resources.qrc">
+                                 <normaloff>:/icons/images/images/vendor.png</normaloff>:/icons/images/images/vendor.png</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>99</width>
+                                 <height>86</height>
+                                </size>
                                </property>
                               </widget>
                              </item>

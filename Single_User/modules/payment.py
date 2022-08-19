@@ -964,7 +964,7 @@ def add_coa(self):
                 (1100, 'currentassets', 'Accounts Receivable', 'debit', 0, 1),
                 (1205, 'currentassets', 'supplies', 'debit', 0, 1),
                 (1206, 'currentassets', 'debtors', 'debit', 0, 1),
-                (1400, 'currentassets', 'prepaid Expenses', 'debit', 0, 1),
+                (1400, 'currentassets', 'prepaid Expenses', 'debit', 0, 1),#payment in advance
                 (1200, 'currentassets', 'inventory', 'debit', 0, 1),
                 (1000, 'currentassets', 'petty cash', 'debit', 0, 1),
                 (1410, 'currentassets', 'Employee Advances', 'debit', 0, 1),

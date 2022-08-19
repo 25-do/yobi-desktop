@@ -137,7 +137,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         # ///////////////////////////////////////////////////////////////
-        Settings.ENABLE_CUSTOM_TITLE_BAR = True
+        Settings.ENABLE_CUSTOM_TITLE_BAR = False
         # APP NAME
         # ///////////////////////////////////////////////////////////////
         title = "yobi"
@@ -2980,6 +2980,8 @@ class MainWindow(QMainWindow):
         else:
             ad_uuidd = cusr.execute("SELECT uuid FROM bill WHERE bill_number=?", (currentcode,)).fetchone()
             ad_uuidd = (''.join(map(str, ad_uuidd)))
+            ledgers = cusr.execute("SELECT id FROM ledgers WHERE bill_number=?", (currentcode,)).fetchone()
+            ledgers = (''.join(map(str, ledgers)))
             amount_d = cusr.execute("SELECT amount_due FROM bill WHERE bill_number=?", (currentcode,)).fetchone()
             amount_d = (''.join(map(str, amount_d)))
             a_d = cusr.execute("SELECT SUM(amount) FROM bill_item WHERE bill_uuid=?", (ad_uuidd,)).fetchone()
@@ -3054,6 +3056,10 @@ class MainWindow(QMainWindow):
 
             bill_status = str(self.ui.comboBox_18.currentText())
             vendor = str(self.ui.comboBox_52.currentText())
+            uuid2 = uuid.uuid4().hex
+            created = dt.today()
+            updated = dt.today()
+            journal_uuid = uuid.uuid4().hex
             markdown_notes = self.ui.plainTextEdit_3.document().toPlainText()
             cusr.execute(
                     "UPDATE bill SET updated=?, terms=?,  amount_recivable=?, amount_unerned=?, amount_earned=?, date=?, due_date=?, xref=?, accrue=?, vendor_id=?, bill_status=?, markdown_notes=? WHERE bill_number=? ", (
@@ -3072,6 +3078,22 @@ class MainWindow(QMainWindow):
                         markdown_notes,
                         currentcode
                         ))
+            database_connection.commit()
+            cusr.execute("INSERT INTO journal_entries(id,ledger_id, activity, description, posted, locked, journal_entrydate) VALUES (?,?,?,?,?,?,?)",(journal_uuid, ledgers, "other", "Accounts Payble", "1", "0", created))
+            database_connection.commit()
+            cusr.execute(
+            "INSERT INTO transactions(uuid, updated, created, coa_id, journal_entry_id, ledger_id, name, KSH, description, tx_type, transactionsdate) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (uuid2,
+                created,
+                updated,
+                "currentliabilities",
+                journal_uuid,
+                ledgers,
+                "accounts payable",
+                total_am,
+                "Bills accounts payable",
+                "credit",
+                created))
             database_connection.commit()
     def pay_bill(self):
         database_connection = sqlite3.connect(
