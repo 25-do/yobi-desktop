@@ -1,6 +1,7 @@
 from widgets import *
 from PySide6.QtWidgets import *
 from PySide6.QtGui import QFont
+from PySide6.QtCore import Qt
 
 
 
@@ -125,6 +126,9 @@ def resize_tables(self):
     self.ui.tableWidget_41.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.tableWidget_37.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     self.ui.tableWidget_42.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-    
-
-
+    self.ui.tableWidget_21.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_20.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_22.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_10.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget_19.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+    self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)

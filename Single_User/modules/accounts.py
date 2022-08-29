@@ -1,7 +1,7 @@
+import traceback
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QTableWidgetItem
 from main import *
-import pandas as pd
 import os
 import unittest
 basepath = os.path.expanduser('~/Documents')
@@ -279,6 +279,7 @@ def sales(self):
         "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=? AND tx_type=?",
         (sale_date,
          sale_date2, "Product Sales", "credit")).fetchone()
+    sales_rev = (''.join(map(str, sales_rev)))
     self.c.execute('INSERT INTO report_printing VALUES (?,?)', ('Sales', ' '))
     self.connection.commit()
 
@@ -304,7 +305,7 @@ def sales_returns(self):
     qdate = self.ui.dateEdit_5.date()
     order_date2 = qdate.toPython()
     alltb = self.c.execute(
-        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=? AND tx_type=?",
             (order_date,
             order_date2, "Sales Returns and Allowances", "credit")).fetchone()
 
@@ -453,9 +454,13 @@ def general_report(self):
     qdate = self.ui.dateEdit_17.date()
     order_date2 = qdate.toPython()
     result = self.c.execute(
-        "SELECT uuid, name, KSH, tx_type, description, transactionsdate FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
+        "SELECT name, KSH, transactionsdate FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
         (order_date,
-         order_date2)).fetchall()
+         order_date2, "debit")).fetchall()
+    result2 = self.c.execute(
+        "SELECT name, KSH, transactionsdate FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND tx_type=?",
+        (order_date,
+         order_date2, "credit")).fetchall()
     if result == []:
         QMessageBox.warning(
             QMessageBox(),
@@ -486,7 +491,9 @@ def general_report(self):
         cr1 = babel.numbers.format_currency(
             decimal.Decimal(cr), cash_label, locale='en_US')
         self.ui.label_230.setText(str(cr1))
+        self.ui.label_230.setFont(QFont("Times", 14))
         self.ui.label_228.setText(str(dr1))
+        self.ui.label_228.setFont(QFont("Times", 14))
         if dr == cr:
             self.ui.label_231.setText("Balanced")
         else:
@@ -502,130 +509,16 @@ def general_report(self):
                     column_number,
                     QTableWidgetItem(
                         str(data)))
-
-
-def export_table_sales(self):
-    self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    self.c = self.connection.cursor()
-    self.c.execute("DELETE FROM sales_report")
-    qdate = self.ui.dateEdit_16.date()
-    order_date = qdate.toPython()
-
-    qdate = self.ui.dateEdit_15.date()
-    order_date2 = qdate.toPython()
-    self.c.execute(
-        "INSERT INTO sales_report SELECT * FROM sales WHERE sale_date BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchall()
-    df = pd.read_sql_query("SELECT * FROM sales_report", self.connection)
-    df.to_html("data.html")
-    with open("data.html") as file:
-        file = file.read()
-    file = file.replace("<table ", "<table class='rwd-table'")
-    with open("data.html", "w") as file_to_write:
-        file_to_write.write(html + file)
-    os.startfile("data.html")
-
-
-def export_table_orders(self):
-    self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    self.c = self.connection.cursor()
-    self.c.execute("DELETE FROM sales_report")
-    qdate = self.ui.dateEdit_20.date()
-    order_date = qdate.toPython()
-
-    qdate = self.ui.dateEdit_19.date()
-    order_date2 = qdate.toPython()
-    data = self.c.execute(
-        "SELECT code, discount,  paid_amount, client_name, grand_total, total_amount, payment_status,  order_date, due, order_date FROM orders WHERE order_date BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchall()
-    df = pd.DataFrame(
-        data=data,
-        columns=[
-            'code',
-            'discount',
-            'paid_amount',
-            'client_name',
-            'grand_total',
-            'total_amount',
-            'payment_status',
-            'order_date',
-            'due',
-            'order_date'])
-
-    df.to_csv(os.path.join(pathtodb, r'DataBD_Data.csv'))
-
-
-def export_table_stock(self):
-    self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    self.c = self.connection.cursor()
-    self.c.execute("DELETE FROM stock_report")
-    qdate = self.ui.dateEdit_12.date()
-    order_date = qdate.toPython()
-
-    qdate = self.ui.dateEdit_11.date()
-    order_date2 = qdate.toPython()
-
-    self.c.execute(
-        "INSERT INTO stock_report SELECT UPC , name , Buying_price , selling_price , Quantity , Supplier, category, reoder , vat, stockdate FROM stock WHERE stockdate BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchall()
-    df = pd.read_sql_query("SELECT * FROM stock_report", self.connection)
-    df.to_html("data.html")
-    with open("data.html") as file:
-        file = file.read()
-    file = file.replace("<table ", "<table class='rwd-table'")
-    with open("data.html", "w") as file_to_write:
-        file_to_write.write(html + file)
-    os.startfile("data.html")
-
-
-def export_table_sales_return(self):
-    self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    self.c = self.connection.cursor()
-    self.c.execute("DELETE FROM sales_returns_report")
-    qdate = self.ui.dateEdit_10.date()
-    order_date = qdate.toPython()
-    qdate = self.ui.dateEdit_9.date()
-    order_date2 = qdate.toPython()
-    self.c.execute(
-        "INSERT INTO sales_returns_report SELECT * FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=?",
-        (order_date,
-         order_date2, "Sales Returns and Allowances")).fetchall()
-         
-    df = pd.read_sql_query(
-        "SELECT * FROM sales_returns_report",
-        self.connection)
-    df.to_html("data.html")
-    with open("data.html") as file:
-        file = file.read()
-    file = file.replace("<table ", "<table class='rwd-table'")
-    with open("data.html", "w") as file_to_write:
-        file_to_write.write(html + file)
-    os.startfile("data.html")
-
-
-def export_table_general_ledger(self):
-    self.connection = sqlite3.connect(pathtodb + "\\yobi\\yobi_database.db")
-    self.c = self.connection.cursor()
-    self.c.execute("DELETE FROM sales_report")
-    qdate = self.ui.dateEdit_18.date()
-    order_date = qdate.toPython()
-    qdate = self.ui.dateEdit_17.date()
-    order_date2 = qdate.toPython()
-    self.c.execute(
-        "INSERT INTO sales_report SELECT * FROM transactions WHERE transactionsdate BETWEEN ? AND ?",
-        (order_date,
-         order_date2)).fetchall()
-    df = pd.read_sql_query("SELECT * FROM sales_report", self.connection)
-    df.to_html("data.html")
-    with open("data.html") as file:
-        file = file.read()
-    file = file.replace("<table ", "<table class='rwd-table'")
-    with open("data.html", "w") as file_to_write:
-        file_to_write.write(html + file)
-    os.startfile("data.html")
+        
+        self.ui.tableWidget.setRowCount(0)
+        for row_number, row_data in enumerate(result2):
+            self.ui.tableWidget.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.ui.tableWidget.setItem(
+                    row_number,
+                    column_number,
+                    QTableWidgetItem(
+                        str(data)))
 
 
 def gross_pr(self):
@@ -644,21 +537,32 @@ def gross_pr(self):
     sales_rev = self.c.execute(
         "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=? AND tx_type=?",
         (order_date,
-         order_date, "Product Sales", "credit")).fetchone()
+         order_date2, "Product Sales", "credit")).fetchone()
     sales_rev = (''.join(map(str, sales_rev)))
+    cogs = self.c.execute(
+        "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND name=? AND tx_type=?",
+        (order_date,
+         order_date2, "cost of goods sold", "debit")).fetchone()
+    cogs = (''.join(map(str, cogs)))
 
     alltb = (''.join(map(str, alltb)))
     if alltb == str(None):
-        alltb = 0
+        alltb = 0.00
     else:
-        alltb = float(''.join(map(str, alltb)))
+        alltb = round(float(''.join(map(str, alltb))), 2)
 
     if sales_rev == str(None):
-        sales_rev = 0
+        sales_rev = 0.00
     else:
-        sales_rev = float(''.join(map(str, sales_rev)))
+        sales_rev = round(float(''.join(map(str, sales_rev))), 2)
+    if cogs == str(None):
+        cogs = 0.00
+    else:
+        cogs = round(float(''.join(map(str, cogs))), 2)
+    print(f"sales revenue>>{sales_rev} cost of goods>>{cogs} sales returns>>{alltb}")
 
-    gross_profit = ((sales_rev) - alltb)
+    gross_profit = round((sales_rev - cogs - alltb), 2)
+    print(f"gross profit ->>>>>>>>>>>>>>>>{gross_profit}")
     gross = QtWidgets.QTreeWidgetItem(self.ui.treeWidget, ['Gross Profit'])
     total_income7 = babel.numbers.format_currency(
         decimal.Decimal(gross_profit), cash_label, locale='en_US')
@@ -681,10 +585,6 @@ def net_pr(self):
             (order_date,
             order_date2, "Sales Returns and Allowances", "credit")).fetchone()
 
-        paid = self.c.execute(
-            "SELECT SUM(paid) FROM payment WHERE payment_date BETWEEN ? AND ?",
-            (order_date,
-             order_date2)).fetchone()
 
         total_income = self.c.execute(
             "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
@@ -692,23 +592,17 @@ def net_pr(self):
              order_date2, "revenue", "credit")).fetchone()
         total_income = float(''.join(map(str, total_income)))
 
-        total_sales = self.c.execute(
-            "SELECT SUM(paid_amount) FROM orders WHERE order_date BETWEEN ? AND ?",
-            (order_date,
-             order_date2)).fetchone()
-        total_sales = float(''.join(map(str, total_sales)))
+
         fix_sum = self.c.execute(
             "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND coa_id=? AND tx_type=?",
             (order_date,
              order_date2, "fixedexpenses", "expenses", "debit")).fetchone()
 
-        paid = (''.join(map(str, paid)))
         fix_sum = (''.join(map(str, fix_sum)))
         if fix_sum == str(None):
             fix_sum = 0.0
         else:
             fix_sum = float(''.join(map(str, fix_sum)))
-        l = int(fix_sum)
 
         alltb = (''.join(map(str, alltb)))
 
@@ -716,17 +610,11 @@ def net_pr(self):
             alltb = 0.0
         else:
             alltb = float(''.join(map(str, alltb)))
-
-        if paid == str(None):
-            paid = 0.0
-        else:
-            paid = float(''.join(map(str, paid)))
-
-        net_profit = ((total_income + total_sales + paid + l) - alltb)
+        net_profit = round((total_income + fix_sum) - alltb, 2)
         gross = QtWidgets.QTreeWidgetItem(self.ui.treeWidget, ['Net Profit'])
         total_income71 = babel.numbers.format_currency(
             decimal.Decimal(net_profit), cash_label, locale='en_US')
         QtWidgets.QTreeWidgetItem(gross, ['Net profit', ' ', total_income71])
         return net_profit
     except Exception:
-        print("net profit error")
+        traceback.print_exc()

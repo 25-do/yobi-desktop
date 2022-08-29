@@ -1050,41 +1050,6 @@ Button */
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_widgets_2">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>45</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                    <italic>false</italic>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="layoutDirection">
-                   <enum>Qt::LeftToRight</enum>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-3d.png);</string>
-                  </property>
-                  <property name="text">
-                   <string>Transactions</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="pushButton">
                   <property name="minimumSize">
                    <size>
@@ -1772,13 +1737,6 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_129">
-                  <property name="text">
-                   <string>Navigator</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="settingsTopBtn">
                   <property name="minimumSize">
                    <size>
@@ -2022,7 +1980,7 @@ p, li { white-space: pre-wrap; }
                          <string notr="true">background: transparent;</string>
                         </property>
                         <property name="currentIndex">
-                         <number>3</number>
+                         <number>29</number>
                         </property>
                         <widget class="QWidget" name="home">
                          <property name="maximumSize">
@@ -9658,7 +9616,21 @@ background-color: rgb(50, 50, 50);
                            </rect>
                           </property>
                           <layout class="QGridLayout" name="gridLayout_25">
-                           <item row="7" column="2">
+                           <item row="7" column="0">
+                            <widget class="QLabel" name="label_132">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#afafaf;&quot;&gt;Paid Amount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item row="2" column="1" colspan="2">
+                            <widget class="QLabel" name="label_133">
+                             <property name="text">
+                              <string/>
+                             </property>
+                            </widget>
+                           </item>
+                           <item row="8" column="2">
                             <layout class="QHBoxLayout" name="horizontalLayout_10">
                              <item>
                               <spacer name="horizontalSpacer_25">
@@ -9730,7 +9702,7 @@ QPushButton:disabled {
                              </item>
                             </layout>
                            </item>
-                           <item row="3" column="2">
+                           <item row="4" column="2">
                             <widget class="QDateEdit" name="dateEdit_3">
                              <property name="maximumSize">
                               <size>
@@ -9765,14 +9737,82 @@ QPushButton:disabled {
                              </property>
                             </widget>
                            </item>
-                           <item row="1" column="1" colspan="2">
-                            <widget class="QLabel" name="label_133">
-                             <property name="text">
-                              <string/>
+                           <item row="7" column="2">
+                            <widget class="QLineEdit" name="lineEdit_17">
+                             <property name="maximumSize">
+                              <size>
+                               <width>400</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+	background-color: rgb(33, 37, 43);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding-left: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: rgb(255, 121, 198);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}</string>
                              </property>
                             </widget>
                            </item>
-                           <item row="2" column="0" colspan="3">
+                           <item row="0" column="0">
+                            <widget class="QPushButton" name="pushButton_13">
+                             <property name="minimumSize">
+                              <size>
+                               <width>30</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>30</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="cursor">
+                              <cursorShape>PointingHandCursor</cursorShape>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true"/>
+                             </property>
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="icon">
+                              <iconset resource="../resources.qrc">
+                               <normaloff>:/icons/images/icons/cil-arrow-left.png</normaloff>:/icons/images/icons/cil-arrow-left.png</iconset>
+                             </property>
+                             <property name="iconSize">
+                              <size>
+                               <width>26</width>
+                               <height>30</height>
+                              </size>
+                             </property>
+                            </widget>
+                           </item>
+                           <item row="4" column="0">
+                            <widget class="QLabel" name="label_130">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#cccccc;&quot;&gt;Payment Date&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item row="2" column="0">
+                            <widget class="QLabel" name="label_129">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#bfbfbf;&quot;&gt;Payment of Order:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item row="3" column="0" colspan="3">
                             <widget class="QTableWidget" name="tableWidget_12">
                              <property name="palette">
                               <palette>
@@ -9828,6 +9868,15 @@ QPushButton:disabled {
                                    <red>0</red>
                                    <green>0</green>
                                    <blue>0</blue>
+                                  </color>
+                                 </brush>
+                                </colorrole>
+                                <colorrole role="AlternateBase">
+                                 <brush brushstyle="SolidPattern">
+                                  <color alpha="255">
+                                   <red>33</red>
+                                   <green>37</green>
+                                   <blue>43</blue>
                                   </color>
                                  </brush>
                                 </colorrole>
@@ -9896,6 +9945,15 @@ QPushButton:disabled {
                                   </color>
                                  </brush>
                                 </colorrole>
+                                <colorrole role="AlternateBase">
+                                 <brush brushstyle="SolidPattern">
+                                  <color alpha="255">
+                                   <red>33</red>
+                                   <green>37</green>
+                                   <blue>43</blue>
+                                  </color>
+                                 </brush>
+                                </colorrole>
                                 <colorrole role="PlaceholderText">
                                  <brush brushstyle="SolidPattern">
                                   <color alpha="255">
@@ -9961,6 +10019,15 @@ QPushButton:disabled {
                                   </color>
                                  </brush>
                                 </colorrole>
+                                <colorrole role="AlternateBase">
+                                 <brush brushstyle="SolidPattern">
+                                  <color alpha="255">
+                                   <red>33</red>
+                                   <green>37</green>
+                                   <blue>43</blue>
+                                  </color>
+                                 </brush>
+                                </colorrole>
                                 <colorrole role="PlaceholderText">
                                  <brush brushstyle="SolidPattern">
                                   <color alpha="255">
@@ -9974,46 +10041,13 @@ QPushButton:disabled {
                               </palette>
                              </property>
                              <property name="styleSheet">
-                              <string notr="true">QTableWidget {	
-	background-color: transparent;
-	padding: 10px;
-	border-radius: 5px;
-	gridline-color: rgb(44, 49, 58);
-	border-bottom: 1px solid rgb(44, 49, 60);
-}
-QTableWidget::item{
-	border-color: rgb(44, 49, 60);
-	padding-left: 5px;
-	padding-right: 5px;
-	gridline-color: rgb(44, 49, 60);
-}
-QTableWidget::item:selected{
-	background-color: rgb(189, 147, 249);
-}
-QHeaderView::section{
-	background-color: rgb(33, 37, 43);
-	max-width: 30px;
-	border: 1px solid rgb(44, 49, 58);
-	border-style: none;
-    border-bottom: 1px solid rgb(44, 49, 60);
-    border-right: 1px solid rgb(44, 49, 60);
-}
-QTableWidget::horizontalHeader {	
-	background-color: rgb(33, 37, 43);
-}
-
-QHeaderView::section:horizontal
-{
-    border: 1px solid rgb(33, 37, 43);
-	background-color: rgb(33, 37, 43);
-	padding: 3px;
-	border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-}
-QHeaderView::section:vertical
-{
-    border: 1px solid rgb(44, 49, 60);
-}</string>
+                              <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                             </property>
+                             <property name="alternatingRowColors">
+                              <bool>true</bool>
+                             </property>
+                             <property name="gridStyle">
+                              <enum>Qt::NoPen</enum>
                              </property>
                              <column>
                               <property name="text">
@@ -10042,85 +10076,17 @@ QHeaderView::section:vertical
                              </column>
                             </widget>
                            </item>
-                           <item row="6" column="0">
-                            <widget class="QLabel" name="label_132">
-                             <property name="text">
-                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#afafaf;&quot;&gt;Paid Amount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item row="6" column="2">
-                            <widget class="QLineEdit" name="lineEdit_17">
-                             <property name="maximumSize">
-                              <size>
-                               <width>400</width>
-                               <height>16777215</height>
-                              </size>
-                             </property>
-                             <property name="styleSheet">
-                              <string notr="true">QLineEdit {
-	background-color: rgb(33, 37, 43);
-	border-radius: 5px;
-	border: 2px solid rgb(33, 37, 43);
-	padding-left: 10px;
-	selection-color: rgb(255, 255, 255);
-	selection-background-color: rgb(255, 121, 198);
-}
-QLineEdit:hover {
-	border: 2px solid rgb(64, 71, 88);
-}
-QLineEdit:focus {
-	border: 2px solid rgb(91, 101, 124);
-}</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item row="3" column="0">
-                            <widget class="QLabel" name="label_130">
-                             <property name="text">
-                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#cccccc;&quot;&gt;Order Date&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                             </property>
-                            </widget>
-                           </item>
                            <item row="1" column="0">
-                            <widget class="QLabel" name="label_129">
+                            <widget class="QLabel" name="label_112">
                              <property name="text">
-                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#bfbfbf;&quot;&gt;Payment of Order:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Amount Due:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                             </widget>
                            </item>
-                           <item row="0" column="0">
-                            <widget class="QPushButton" name="pushButton_13">
-                             <property name="minimumSize">
-                              <size>
-                               <width>30</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>30</width>
-                               <height>16777215</height>
-                              </size>
-                             </property>
-                             <property name="cursor">
-                              <cursorShape>PointingHandCursor</cursorShape>
-                             </property>
-                             <property name="styleSheet">
-                              <string notr="true"/>
-                             </property>
+                           <item row="1" column="1" colspan="2">
+                            <widget class="QLabel" name="label_404">
                              <property name="text">
                               <string/>
-                             </property>
-                             <property name="icon">
-                              <iconset resource="../resources.qrc">
-                               <normaloff>:/icons/images/icons/cil-arrow-left.png</normaloff>:/icons/images/icons/cil-arrow-left.png</iconset>
-                             </property>
-                             <property name="iconSize">
-                              <size>
-                               <width>26</width>
-                               <height>30</height>
-                              </size>
                              </property>
                             </widget>
                            </item>
@@ -11388,7 +11354,7 @@ QPushButton:disabled {
 }</string>
                                </property>
                                <property name="text">
-                                <string>General ledger</string>
+                                <string>Trial balance</string>
                                </property>
                               </widget>
                              </item>
@@ -11538,10 +11504,30 @@ QPushButton:disabled {
                              <string notr="true">background-color: rgb(33, 37, 43);</string>
                             </property>
                             <property name="currentIndex">
-                             <number>4</number>
+                             <number>3</number>
                             </property>
                             <widget class="QWidget" name="page_11">
                              <layout class="QGridLayout" name="gridLayout_7">
+                              <item row="2" column="6">
+                               <widget class="QPushButton" name="pushButton_9">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>76</width>
+                                  <height>16777215</height>
+                                 </size>
+                                </property>
+                                <property name="cursor">
+                                 <cursorShape>PointingHandCursor</cursorShape>
+                                </property>
+                                <property name="text">
+                                 <string/>
+                                </property>
+                                <property name="icon">
+                                 <iconset resource="../resources.qrc">
+                                  <normaloff>:/icons/images/icons/cil-magnifying-glass.png</normaloff>:/icons/images/icons/cil-magnifying-glass.png</iconset>
+                                </property>
+                               </widget>
+                              </item>
                               <item row="2" column="1">
                                <widget class="QLabel" name="label_120">
                                 <property name="maximumSize">
@@ -11555,24 +11541,17 @@ QPushButton:disabled {
                                 </property>
                                </widget>
                               </item>
-                              <item row="0" column="3">
-                               <widget class="QLabel" name="label_81">
-                                <property name="text">
-                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;Profit &amp;amp; Loss&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="2" column="5">
-                               <widget class="QDateEdit" name="dateEdit_5">
+                              <item row="2" column="2">
+                               <widget class="QDateEdit" name="dateEdit_4">
                                 <property name="minimumSize">
                                  <size>
-                                  <width>330</width>
+                                  <width>468</width>
                                   <height>0</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>351</width>
+                                  <width>396</width>
                                   <height>16777215</height>
                                  </size>
                                 </property>
@@ -11581,7 +11560,14 @@ QPushButton:disabled {
                                 </property>
                                </widget>
                               </item>
-                              <item row="4" column="0" colspan="8">
+                              <item row="0" column="3">
+                               <widget class="QLabel" name="label_81">
+                                <property name="text">
+                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;Profit &amp;amp; Loss&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="3" column="0" colspan="8">
                                <widget class="QTreeWidget" name="treeWidget">
                                 <property name="styleSheet">
                                  <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
@@ -11615,17 +11601,22 @@ QPushButton:disabled {
                                 </column>
                                </widget>
                               </item>
-                              <item row="2" column="7">
-                               <widget class="QPushButton" name="pushButton_64">
-                                <property name="cursor">
-                                 <cursorShape>PointingHandCursor</cursorShape>
+                              <item row="2" column="5">
+                               <widget class="QDateEdit" name="dateEdit_5">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>330</width>
+                                  <height>0</height>
+                                 </size>
                                 </property>
-                                <property name="text">
-                                 <string/>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>351</width>
+                                  <height>16777215</height>
+                                 </size>
                                 </property>
-                                <property name="icon">
-                                 <iconset resource="../resources.qrc">
-                                  <normaloff>:/icons/images/icons/cil-print.png</normaloff>:/icons/images/icons/cil-print.png</iconset>
+                                <property name="calendarPopup">
+                                 <bool>true</bool>
                                 </property>
                                </widget>
                               </item>
@@ -11636,104 +11627,31 @@ QPushButton:disabled {
                                 </property>
                                </widget>
                               </item>
-                              <item row="2" column="2">
-                               <widget class="QDateEdit" name="dateEdit_4">
-                                <property name="minimumSize">
-                                 <size>
-                                  <width>468</width>
-                                  <height>0</height>
-                                 </size>
-                                </property>
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>396</width>
-                                  <height>16777215</height>
-                                 </size>
-                                </property>
-                                <property name="calendarPopup">
-                                 <bool>true</bool>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="2" column="6">
-                               <widget class="QPushButton" name="pushButton_9">
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>76</width>
-                                  <height>16777215</height>
-                                 </size>
-                                </property>
-                                <property name="cursor">
-                                 <cursorShape>PointingHandCursor</cursorShape>
-                                </property>
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="../resources.qrc">
-                                  <normaloff>:/icons/images/icons/cil-magnifying-glass.png</normaloff>:/icons/images/icons/cil-magnifying-glass.png</iconset>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="3" column="1" colspan="2">
-                               <widget class="QFrame" name="frame_63">
-                                <property name="frameShape">
-                                 <enum>QFrame::StyledPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                 <enum>QFrame::Raised</enum>
-                                </property>
-                                <layout class="QHBoxLayout" name="horizontalLayout_25">
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_96">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}
-</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Week</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_97">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Month</string>
-                                   </property>
-                                   <property name="flat">
-                                    <bool>true</bool>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                </layout>
-                               </widget>
-                              </item>
                              </layout>
                             </widget>
                             <widget class="QWidget" name="page_19">
                              <layout class="QGridLayout" name="gridLayout_43">
-                              <item row="3" column="0" colspan="6">
+                              <item row="1" column="0">
+                               <widget class="QLabel" name="label_128">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>50</width>
+                                  <height>16777215</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>From:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="0" column="1" colspan="3">
+                               <widget class="QLabel" name="label_102">
+                                <property name="text">
+                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;sales returns&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="2" column="0" colspan="6">
                                <widget class="QTableWidget" name="tableWidget_10">
                                 <property name="styleSheet">
                                  <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
@@ -11774,67 +11692,7 @@ QPushButton:hover {
                                 </column>
                                </widget>
                               </item>
-                              <item row="0" column="1" colspan="3">
-                               <widget class="QLabel" name="label_102">
-                                <property name="text">
-                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;sales returns&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="1" column="2">
-                               <widget class="QLabel" name="label_122">
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>50</width>
-                                  <height>16777215</height>
-                                 </size>
-                                </property>
-                                <property name="text">
-                                 <string>To:</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="1" column="0">
-                               <widget class="QLabel" name="label_128">
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>50</width>
-                                  <height>16777215</height>
-                                 </size>
-                                </property>
-                                <property name="text">
-                                 <string>From:</string>
-                                </property>
-                               </widget>
-                              </item>
                               <item row="1" column="5">
-                               <widget class="QPushButton" name="pushButton_65">
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>56</width>
-                                  <height>16777215</height>
-                                 </size>
-                                </property>
-                                <property name="cursor">
-                                 <cursorShape>PointingHandCursor</cursorShape>
-                                </property>
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="../resources.qrc">
-                                  <normaloff>:/icons/images/icons/cil-print.png</normaloff>:/icons/images/icons/cil-print.png</iconset>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="1" column="1">
-                               <widget class="QDateEdit" name="dateEdit_10">
-                                <property name="calendarPopup">
-                                 <bool>true</bool>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="1" column="4">
                                <widget class="QPushButton" name="pushButton_42">
                                 <property name="maximumSize">
                                  <size>
@@ -11854,122 +11712,18 @@ QPushButton:hover {
                                 </property>
                                </widget>
                               </item>
-                              <item row="1" column="3">
+                              <item row="1" column="4">
                                <widget class="QDateEdit" name="dateEdit_9">
                                 <property name="calendarPopup">
                                  <bool>true</bool>
                                 </property>
                                </widget>
                               </item>
-                              <item row="2" column="0" colspan="3">
-                               <widget class="QFrame" name="frame_46">
-                                <property name="frameShape">
-                                 <enum>QFrame::StyledPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                 <enum>QFrame::Raised</enum>
-                                </property>
-                                <layout class="QHBoxLayout" name="horizontalLayout_24">
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_92">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Today</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_93">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}
-</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Week</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_94">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Month</string>
-                                   </property>
-                                   <property name="flat">
-                                    <bool>true</bool>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                </layout>
-                               </widget>
-                              </item>
-                             </layout>
-                            </widget>
-                            <widget class="QWidget" name="page_22">
-                             <layout class="QGridLayout" name="gridLayout_45">
-                              <item row="0" column="2">
-                               <widget class="QLabel" name="label_183">
-                                <property name="text">
-                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;stock&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="2" column="0">
-                               <widget class="QLabel" name="label_17">
+                              <item row="1" column="3">
+                               <widget class="QLabel" name="label_122">
                                 <property name="maximumSize">
                                  <size>
-                                  <width>40</width>
-                                  <height>16777215</height>
-                                 </size>
-                                </property>
-                                <property name="text">
-                                 <string>From</string>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="2" column="3">
-                               <widget class="QDateEdit" name="dateEdit_11">
-                                <property name="calendarPopup">
-                                 <bool>true</bool>
-                                </property>
-                               </widget>
-                              </item>
-                              <item row="2" column="2">
-                               <widget class="QLabel" name="label_40">
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>40</width>
+                                  <width>50</width>
                                   <height>16777215</height>
                                  </size>
                                 </property>
@@ -11978,7 +11732,18 @@ QPushButton:hover {
                                 </property>
                                </widget>
                               </item>
-                              <item row="5" column="0" colspan="6">
+                              <item row="1" column="1" colspan="2">
+                               <widget class="QDateEdit" name="dateEdit_10">
+                                <property name="calendarPopup">
+                                 <bool>true</bool>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                            <widget class="QWidget" name="page_22">
+                             <layout class="QGridLayout" name="gridLayout_45">
+                              <item row="4" column="0" colspan="6">
                                <widget class="QTableWidget" name="tableWidget_19">
                                 <property name="styleSheet">
                                  <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
@@ -12029,6 +11794,11 @@ QPushButton:hover {
                                 </column>
                                 <column>
                                  <property name="text">
+                                  <string>Reoder Limit</string>
+                                 </property>
+                                </column>
+                                <column>
+                                 <property name="text">
                                   <string>Vat</string>
                                  </property>
                                 </column>
@@ -12037,6 +11807,19 @@ QPushButton:hover {
                                   <string>Date</string>
                                  </property>
                                 </column>
+                               </widget>
+                              </item>
+                              <item row="2" column="0">
+                               <widget class="QLabel" name="label_17">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>40</width>
+                                  <height>16777215</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>From</string>
+                                </property>
                                </widget>
                               </item>
                               <item row="2" column="4">
@@ -12059,26 +11842,6 @@ QPushButton:hover {
                                 </property>
                                </widget>
                               </item>
-                              <item row="2" column="5">
-                               <widget class="QPushButton" name="pushButton_59">
-                                <property name="maximumSize">
-                                 <size>
-                                  <width>45</width>
-                                  <height>16777215</height>
-                                 </size>
-                                </property>
-                                <property name="cursor">
-                                 <cursorShape>PointingHandCursor</cursorShape>
-                                </property>
-                                <property name="text">
-                                 <string/>
-                                </property>
-                                <property name="icon">
-                                 <iconset resource="../resources.qrc">
-                                  <normaloff>:/icons/images/icons/cil-print.png</normaloff>:/icons/images/icons/cil-print.png</iconset>
-                                </property>
-                               </widget>
-                              </item>
                               <item row="2" column="1">
                                <widget class="QDateEdit" name="dateEdit_12">
                                 <property name="calendarPopup">
@@ -12086,77 +11849,31 @@ QPushButton:hover {
                                 </property>
                                </widget>
                               </item>
-                              <item row="3" column="0" colspan="2">
-                               <widget class="QFrame" name="frame_14">
-                                <property name="frameShape">
-                                 <enum>QFrame::StyledPanel</enum>
+                              <item row="0" column="2">
+                               <widget class="QLabel" name="label_183">
+                                <property name="text">
+                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;stock&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                 </property>
-                                <property name="frameShadow">
-                                 <enum>QFrame::Raised</enum>
+                               </widget>
+                              </item>
+                              <item row="2" column="2">
+                               <widget class="QLabel" name="label_40">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>40</width>
+                                  <height>16777215</height>
+                                 </size>
                                 </property>
-                                <layout class="QHBoxLayout" name="horizontalLayout_15">
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_43">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Today</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_14">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}
-</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Week</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item>
-                                  <widget class="QPushButton" name="pushButton_38">
-                                   <property name="styleSheet">
-                                    <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Month</string>
-                                   </property>
-                                   <property name="flat">
-                                    <bool>true</bool>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                </layout>
+                                <property name="text">
+                                 <string>To:</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item row="2" column="3">
+                               <widget class="QDateEdit" name="dateEdit_11">
+                                <property name="calendarPopup">
+                                 <bool>true</bool>
+                                </property>
                                </widget>
                               </item>
                              </layout>
@@ -12172,7 +11889,27 @@ QPushButton:hover {
                                  <enum>QFrame::Raised</enum>
                                 </property>
                                 <layout class="QGridLayout" name="gridLayout_50">
-                                 <item row="3" column="0" colspan="6">
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_41">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>36</width>
+                                     <height>16777215</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>From:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="1" colspan="3">
+                                  <widget class="QLabel" name="label_185">
+                                   <property name="text">
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;sales&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="0" colspan="6">
                                   <widget class="QTableWidget" name="tableWidget_20">
                                    <property name="styleSheet">
                                     <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
@@ -12235,7 +11972,7 @@ QPushButton:hover {
                                    </column>
                                   </widget>
                                  </item>
-                                 <item row="1" column="4">
+                                 <item row="1" column="5">
                                   <widget class="QPushButton" name="pushButton_56">
                                    <property name="maximumSize">
                                     <size>
@@ -12255,67 +11992,14 @@ QPushButton:hover {
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="1" column="0">
-                                  <widget class="QLabel" name="label_41">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>36</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>From:</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="5">
-                                  <widget class="QPushButton" name="pushButton_60">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>38</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="cursor">
-                                    <cursorShape>PointingHandCursor</cursorShape>
-                                   </property>
-                                   <property name="text">
-                                    <string/>
-                                   </property>
-                                   <property name="icon">
-                                    <iconset resource="../resources.qrc">
-                                     <normaloff>:/icons/images/icons/cil-print.png</normaloff>:/icons/images/icons/cil-print.png</iconset>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="3">
+                                 <item row="1" column="4">
                                   <widget class="QDateEdit" name="dateEdit_15">
                                    <property name="calendarPopup">
                                     <bool>true</bool>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="0" column="1" colspan="3">
-                                  <widget class="QLabel" name="label_185">
-                                   <property name="text">
-                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;sales&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="1">
-                                  <widget class="QDateEdit" name="dateEdit_16">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>445</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="calendarPopup">
-                                    <bool>true</bool>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="2">
+                                 <item row="1" column="3">
                                   <widget class="QLabel" name="label_43">
                                    <property name="maximumSize">
                                     <size>
@@ -12328,77 +12012,17 @@ QPushButton:hover {
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="2" column="0" colspan="2">
-                                  <widget class="QFrame" name="frame_19">
-                                   <property name="frameShape">
-                                    <enum>QFrame::StyledPanel</enum>
+                                 <item row="1" column="1" colspan="2">
+                                  <widget class="QDateEdit" name="dateEdit_16">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>445</width>
+                                     <height>16777215</height>
+                                    </size>
                                    </property>
-                                   <property name="frameShadow">
-                                    <enum>QFrame::Raised</enum>
+                                   <property name="calendarPopup">
+                                    <bool>true</bool>
                                    </property>
-                                   <layout class="QHBoxLayout" name="horizontalLayout_21">
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_66">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Today</string>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_84">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}
-</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Week</string>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_85">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Month</string>
-                                      </property>
-                                      <property name="flat">
-                                       <bool>true</bool>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                   </layout>
                                   </widget>
                                  </item>
                                 </layout>
@@ -12416,18 +12040,24 @@ QPushButton:hover {
                                 <property name="frameShadow">
                                  <enum>QFrame::Raised</enum>
                                 </property>
-                                <layout class="QGridLayout" name="gridLayout_51">
-                                 <item row="4" column="2">
-                                  <widget class="QLabel" name="label_229">
+                                <layout class="QGridLayout" name="gridLayout_122">
+                                 <item row="0" column="1" colspan="3">
+                                  <widget class="QLabel" name="label_186">
                                    <property name="text">
-                                    <string>credit</string>
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;Trial Balance&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="1" column="3">
-                                  <widget class="QDateEdit" name="dateEdit_17">
-                                   <property name="calendarPopup">
-                                    <bool>true</bool>
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_48">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>36</width>
+                                     <height>16777215</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>From:</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -12444,43 +12074,23 @@ QPushButton:hover {
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="1" column="5">
-                                  <widget class="QPushButton" name="pushButton_61">
+                                 <item row="1" column="2">
+                                  <widget class="QLabel" name="label_46">
                                    <property name="maximumSize">
                                     <size>
-                                     <width>47</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="cursor">
-                                    <cursorShape>PointingHandCursor</cursorShape>
-                                   </property>
-                                   <property name="text">
-                                    <string/>
-                                   </property>
-                                   <property name="icon">
-                                    <iconset resource="../resources.qrc">
-                                     <normaloff>:/icons/images/icons/cil-print.png</normaloff>:/icons/images/icons/cil-print.png</iconset>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="4" column="4" colspan="2">
-                                  <widget class="QLabel" name="label_231">
-                                   <property name="text">
-                                    <string/>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="0">
-                                  <widget class="QLabel" name="label_48">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>36</width>
+                                     <width>20</width>
                                      <height>16777215</height>
                                     </size>
                                    </property>
                                    <property name="text">
-                                    <string>From:</string>
+                                    <string>To:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="3">
+                                  <widget class="QDateEdit" name="dateEdit_17">
+                                   <property name="calendarPopup">
+                                    <bool>true</bool>
                                    </property>
                                   </widget>
                                  </item>
@@ -12504,166 +12114,90 @@ QPushButton:hover {
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="4" column="0">
-                                  <widget class="QLabel" name="label_227">
-                                   <property name="text">
-                                    <string>debit</string>
-                                   </property>
-                                  </widget>
+                                 <item row="2" column="0" colspan="5">
+                                  <layout class="QGridLayout" name="gridLayout_51">
+                                   <item row="1" column="1">
+                                    <widget class="QTableWidget" name="tableWidget">
+                                     <column>
+                                      <property name="text">
+                                       <string>Name</string>
+                                      </property>
+                                     </column>
+                                     <column>
+                                      <property name="text">
+                                       <string>KSH</string>
+                                      </property>
+                                     </column>
+                                     <column>
+                                      <property name="text">
+                                       <string>date</string>
+                                      </property>
+                                     </column>
+                                    </widget>
+                                   </item>
+                                   <item row="1" column="0">
+                                    <widget class="QTableWidget" name="tableWidget_21">
+                                     <property name="styleSheet">
+                                      <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
+                                     </property>
+                                     <property name="alternatingRowColors">
+                                      <bool>true</bool>
+                                     </property>
+                                     <property name="gridStyle">
+                                      <enum>Qt::NoPen</enum>
+                                     </property>
+                                     <column>
+                                      <property name="text">
+                                       <string>name </string>
+                                      </property>
+                                     </column>
+                                     <column>
+                                      <property name="text">
+                                       <string>KSH</string>
+                                      </property>
+                                     </column>
+                                     <column>
+                                      <property name="text">
+                                       <string>date</string>
+                                      </property>
+                                     </column>
+                                    </widget>
+                                   </item>
+                                   <item row="0" column="0">
+                                    <widget class="QLabel" name="label_227">
+                                     <property name="text">
+                                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Dr&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item row="0" column="1">
+                                    <widget class="QLabel" name="label_229">
+                                     <property name="text">
+                                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Cr&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
                                  </item>
-                                 <item row="3" column="0" colspan="6">
-                                  <widget class="QTableWidget" name="tableWidget_21">
-                                   <property name="styleSheet">
-                                    <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
-                                   </property>
-                                   <property name="alternatingRowColors">
-                                    <bool>true</bool>
-                                   </property>
-                                   <property name="gridStyle">
-                                    <enum>Qt::NoPen</enum>
-                                   </property>
-                                   <column>
-                                    <property name="text">
-                                     <string>ID</string>
-                                    </property>
-                                   </column>
-                                   <column>
-                                    <property name="text">
-                                     <string>name </string>
-                                    </property>
-                                   </column>
-                                   <column>
-                                    <property name="text">
-                                     <string>KSH</string>
-                                    </property>
-                                   </column>
-                                   <column>
-                                    <property name="text">
-                                     <string>description </string>
-                                    </property>
-                                   </column>
-                                   <column>
-                                    <property name="text">
-                                     <string>debit </string>
-                                    </property>
-                                   </column>
-                                   <column>
-                                    <property name="text">
-                                     <string>credit</string>
-                                    </property>
-                                   </column>
-                                   <column>
-                                    <property name="text">
-                                     <string>ledgerdate </string>
-                                    </property>
-                                   </column>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="2">
-                                  <widget class="QLabel" name="label_46">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>20</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>To:</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="0" column="1" colspan="3">
-                                  <widget class="QLabel" name="label_186">
-                                   <property name="text">
-                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;General Ledger&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="4" column="1">
+                                 <item row="3" column="1">
                                   <widget class="QLabel" name="label_228">
                                    <property name="text">
                                     <string/>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="4" column="3">
+                                 <item row="3" column="3">
                                   <widget class="QLabel" name="label_230">
                                    <property name="text">
                                     <string/>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="2" column="0" colspan="2">
-                                  <widget class="QFrame" name="frame_17">
-                                   <property name="frameShape">
-                                    <enum>QFrame::StyledPanel</enum>
+                                 <item row="3" column="4">
+                                  <widget class="QLabel" name="label_231">
+                                   <property name="text">
+                                    <string/>
                                    </property>
-                                   <property name="frameShadow">
-                                    <enum>QFrame::Raised</enum>
-                                   </property>
-                                   <layout class="QHBoxLayout" name="horizontalLayout_22">
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_86">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Today</string>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_87">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}
-</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Week</string>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_88">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Month</string>
-                                      </property>
-                                      <property name="flat">
-                                       <bool>true</bool>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                   </layout>
                                   </widget>
                                  </item>
                                 </layout>
@@ -12682,10 +12216,16 @@ QPushButton:hover {
                                  <enum>QFrame::Raised</enum>
                                 </property>
                                 <layout class="QGridLayout" name="gridLayout_57">
-                                 <item row="1" column="3">
-                                  <widget class="QDateEdit" name="dateEdit_19">
-                                   <property name="calendarPopup">
-                                    <bool>true</bool>
+                                 <item row="1" column="2">
+                                  <widget class="QLabel" name="label_188">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>20</width>
+                                     <height>16777215</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>To:</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -12709,73 +12249,7 @@ QPushButton:hover {
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="1" column="5">
-                                  <widget class="QPushButton" name="pushButton_62">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>48</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="cursor">
-                                    <cursorShape>PointingHandCursor</cursorShape>
-                                   </property>
-                                   <property name="text">
-                                    <string/>
-                                   </property>
-                                   <property name="icon">
-                                    <iconset resource="../resources.qrc">
-                                     <normaloff>:/icons/images/icons/cil-print.png</normaloff>:/icons/images/icons/cil-print.png</iconset>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="0" column="1" colspan="3">
-                                  <widget class="QLabel" name="label_189">
-                                   <property name="text">
-                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;Orders&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="1">
-                                  <widget class="QDateEdit" name="dateEdit_20">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>445</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="calendarPopup">
-                                    <bool>true</bool>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="0">
-                                  <widget class="QLabel" name="label_190">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>36</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>From:</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="2">
-                                  <widget class="QLabel" name="label_188">
-                                   <property name="maximumSize">
-                                    <size>
-                                     <width>20</width>
-                                     <height>16777215</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>To:</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="3" column="0" colspan="5">
+                                 <item row="2" column="0" colspan="5">
                                   <widget class="QTableWidget" name="tableWidget_22">
                                    <property name="styleSheet">
                                     <string notr="true">alternate-background-color: rgb(33, 37, 43);</string>
@@ -12823,77 +12297,44 @@ QPushButton:hover {
                                    </column>
                                   </widget>
                                  </item>
-                                 <item row="2" column="0" colspan="2">
-                                  <widget class="QFrame" name="frame_23">
-                                   <property name="frameShape">
-                                    <enum>QFrame::StyledPanel</enum>
+                                 <item row="1" column="3">
+                                  <widget class="QDateEdit" name="dateEdit_19">
+                                   <property name="calendarPopup">
+                                    <bool>true</bool>
                                    </property>
-                                   <property name="frameShadow">
-                                    <enum>QFrame::Raised</enum>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="1">
+                                  <widget class="QDateEdit" name="dateEdit_20">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>445</width>
+                                     <height>16777215</height>
+                                    </size>
                                    </property>
-                                   <layout class="QHBoxLayout" name="horizontalLayout_23">
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_89">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Today</string>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_90">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}
-</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Week</string>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                    <item>
-                                     <widget class="QPushButton" name="pushButton_91">
-                                      <property name="styleSheet">
-                                       <string notr="true">QPushButton {
-	border: 2px solid rgb(51,51,51);
-	border-radius: 5px;	
-	color:rgb(255,255,255);
-	background-color: rgb(51,51,51);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0,143,150);
-	background-color: rgb(0,143,150);
-}</string>
-                                      </property>
-                                      <property name="text">
-                                       <string>Month</string>
-                                      </property>
-                                      <property name="flat">
-                                       <bool>true</bool>
-                                      </property>
-                                     </widget>
-                                    </item>
-                                   </layout>
+                                   <property name="calendarPopup">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_190">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>36</width>
+                                     <height>16777215</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>From:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="1" colspan="3">
+                                  <widget class="QLabel" name="label_189">
+                                   <property name="text">
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;Orders&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                   </property>
                                   </widget>
                                  </item>
                                 </layout>
@@ -15218,16 +14659,6 @@ alternate-background-color: rgb(33, 37, 43);</string>
                                   </property>
                                  </widget>
                                 </item>
-                                <item row="3" column="4">
-                                 <widget class="QLineEdit" name="lineEdit_13">
-                                  <property name="styleSheet">
-                                   <string notr="true">background-color: rgb(48, 48, 48);</string>
-                                  </property>
-                                  <property name="text">
-                                   <string>0</string>
-                                  </property>
-                                 </widget>
-                                </item>
                                 <item row="4" column="3">
                                  <widget class="QLabel" name="label_125">
                                   <property name="text">
@@ -15239,13 +14670,6 @@ alternate-background-color: rgb(33, 37, 43);</string>
                                  <widget class="QLabel" name="label_113">
                                   <property name="text">
                                    <string>Grand total</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item row="3" column="3">
-                                 <widget class="QLabel" name="label_112">
-                                  <property name="text">
-                                   <string>Discount</string>
                                   </property>
                                  </widget>
                                 </item>
@@ -15420,6 +14844,19 @@ border-radius : 20px;
                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600; color:#cfcfcf;&quot;&gt;Paid amount&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                   </property>
                                  </widget>
+                                </item>
+                                <item row="3" column="4">
+                                 <spacer name="horizontalSpacer_60">
+                                  <property name="orientation">
+                                   <enum>Qt::Horizontal</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
                                 </item>
                                </layout>
                               </widget>
@@ -21408,7 +20845,7 @@ background-color: rgb(33, 37, 43);
                              <item row="0" column="2">
                               <widget class="QStackedWidget" name="stackedWidget_4">
                                <property name="currentIndex">
-                                <number>0</number>
+                                <number>2</number>
                                </property>
                                <widget class="QWidget" name="page_45">
                                 <layout class="QGridLayout" name="gridLayout_100">

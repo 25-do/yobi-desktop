@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainTgXamm.ui'
+## Form generated from reading UI file 'mainsjbrJN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -751,18 +751,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.btn_exit)
 
-        self.btn_widgets_2 = QPushButton(self.topMenu)
-        self.btn_widgets_2.setObjectName(u"btn_widgets_2")
-        sizePolicy.setHeightForWidth(self.btn_widgets_2.sizePolicy().hasHeightForWidth())
-        self.btn_widgets_2.setSizePolicy(sizePolicy)
-        self.btn_widgets_2.setMinimumSize(QSize(0, 45))
-        self.btn_widgets_2.setFont(font)
-        self.btn_widgets_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_widgets_2.setLayoutDirection(Qt.LeftToRight)
-        self.btn_widgets_2.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-3d.png);")
-
-        self.verticalLayout_8.addWidget(self.btn_widgets_2)
-
         self.pushButton = QPushButton(self.topMenu)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 45))
@@ -1035,11 +1023,6 @@ class Ui_MainWindow(object):
         self.pushButton_26.setIcon(icon2)
 
         self.horizontalLayout_2.addWidget(self.pushButton_26)
-
-        self.pushButton_129 = QPushButton(self.rightButtons)
-        self.pushButton_129.setObjectName(u"pushButton_129")
-
-        self.horizontalLayout_2.addWidget(self.pushButton_129)
 
         self.settingsTopBtn = QPushButton(self.rightButtons)
         self.settingsTopBtn.setObjectName(u"settingsTopBtn")
@@ -4984,6 +4967,16 @@ class Ui_MainWindow(object):
         self.gridLayout_25 = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_25.setObjectName(u"gridLayout_25")
         self.gridLayout_25.setContentsMargins(0, 0, 0, 0)
+        self.label_132 = QLabel(self.gridLayoutWidget_2)
+        self.label_132.setObjectName(u"label_132")
+
+        self.gridLayout_25.addWidget(self.label_132, 7, 0, 1, 1)
+
+        self.label_133 = QLabel(self.gridLayoutWidget_2)
+        self.label_133.setObjectName(u"label_133")
+
+        self.gridLayout_25.addWidget(self.label_133, 2, 1, 1, 2)
+
         self.horizontalLayout_10 = QHBoxLayout()
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.horizontalSpacer_25 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -5023,7 +5016,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.addItem(self.horizontalSpacer_27)
 
 
-        self.gridLayout_25.addLayout(self.horizontalLayout_10, 7, 2, 1, 1)
+        self.gridLayout_25.addLayout(self.horizontalLayout_10, 8, 2, 1, 1)
 
         self.dateEdit_3 = QDateEdit(self.gridLayoutWidget_2)
         self.dateEdit_3.setObjectName(u"dateEdit_3")
@@ -5035,12 +5028,48 @@ class Ui_MainWindow(object):
         self.dateEdit_3.setTimeSpec(Qt.LocalTime)
         self.dateEdit_3.setDate(QDate(2000, 4, 1))
 
-        self.gridLayout_25.addWidget(self.dateEdit_3, 3, 2, 1, 1)
+        self.gridLayout_25.addWidget(self.dateEdit_3, 4, 2, 1, 1)
 
-        self.label_133 = QLabel(self.gridLayoutWidget_2)
-        self.label_133.setObjectName(u"label_133")
+        self.lineEdit_17 = QLineEdit(self.gridLayoutWidget_2)
+        self.lineEdit_17.setObjectName(u"lineEdit_17")
+        self.lineEdit_17.setMaximumSize(QSize(400, 16777215))
+        self.lineEdit_17.setStyleSheet(u"QLineEdit {\n"
+"	background-color: rgb(33, 37, 43);\n"
+"	border-radius: 5px;\n"
+"	border: 2px solid rgb(33, 37, 43);\n"
+"	padding-left: 10px;\n"
+"	selection-color: rgb(255, 255, 255);\n"
+"	selection-background-color: rgb(255, 121, 198);\n"
+"}\n"
+"QLineEdit:hover {\n"
+"	border: 2px solid rgb(64, 71, 88);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"	border: 2px solid rgb(91, 101, 124);\n"
+"}")
 
-        self.gridLayout_25.addWidget(self.label_133, 1, 1, 1, 2)
+        self.gridLayout_25.addWidget(self.lineEdit_17, 7, 2, 1, 1)
+
+        self.pushButton_13 = QPushButton(self.gridLayoutWidget_2)
+        self.pushButton_13.setObjectName(u"pushButton_13")
+        self.pushButton_13.setMinimumSize(QSize(30, 0))
+        self.pushButton_13.setMaximumSize(QSize(30, 16777215))
+        self.pushButton_13.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_13.setStyleSheet(u"")
+        self.pushButton_13.setIcon(icon15)
+        self.pushButton_13.setIconSize(QSize(26, 30))
+
+        self.gridLayout_25.addWidget(self.pushButton_13, 0, 0, 1, 1)
+
+        self.label_130 = QLabel(self.gridLayoutWidget_2)
+        self.label_130.setObjectName(u"label_130")
+
+        self.gridLayout_25.addWidget(self.label_130, 4, 0, 1, 1)
+
+        self.label_129 = QLabel(self.gridLayoutWidget_2)
+        self.label_129.setObjectName(u"label_129")
+
+        self.gridLayout_25.addWidget(self.label_129, 2, 0, 1, 1)
 
         self.tableWidget_12 = QTableWidget(self.gridLayoutWidget_2)
         if (self.tableWidget_12.columnCount() < 5):
@@ -5067,6 +5096,7 @@ class Ui_MainWindow(object):
         brush6.setStyle(Qt.NoBrush)
         palette7.setBrush(QPalette.Active, QPalette.Base, brush6)
         palette7.setBrush(QPalette.Active, QPalette.Window, brush5)
+        palette7.setBrush(QPalette.Active, QPalette.AlternateBase, brush2)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette7.setBrush(QPalette.Active, QPalette.PlaceholderText, brush)
 #endif
@@ -5078,6 +5108,7 @@ class Ui_MainWindow(object):
         brush7.setStyle(Qt.NoBrush)
         palette7.setBrush(QPalette.Inactive, QPalette.Base, brush7)
         palette7.setBrush(QPalette.Inactive, QPalette.Window, brush5)
+        palette7.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush2)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette7.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush)
 #endif
@@ -5089,99 +5120,26 @@ class Ui_MainWindow(object):
         brush8.setStyle(Qt.NoBrush)
         palette7.setBrush(QPalette.Disabled, QPalette.Base, brush8)
         palette7.setBrush(QPalette.Disabled, QPalette.Window, brush5)
+        palette7.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush2)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette7.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush)
 #endif
         self.tableWidget_12.setPalette(palette7)
-        self.tableWidget_12.setStyleSheet(u"QTableWidget {	\n"
-"	background-color: transparent;\n"
-"	padding: 10px;\n"
-"	border-radius: 5px;\n"
-"	gridline-color: rgb(44, 49, 58);\n"
-"	border-bottom: 1px solid rgb(44, 49, 60);\n"
-"}\n"
-"QTableWidget::item{\n"
-"	border-color: rgb(44, 49, 60);\n"
-"	padding-left: 5px;\n"
-"	padding-right: 5px;\n"
-"	gridline-color: rgb(44, 49, 60);\n"
-"}\n"
-"QTableWidget::item:selected{\n"
-"	background-color: rgb(189, 147, 249);\n"
-"}\n"
-"QHeaderView::section{\n"
-"	background-color: rgb(33, 37, 43);\n"
-"	max-width: 30px;\n"
-"	border: 1px solid rgb(44, 49, 58);\n"
-"	border-style: none;\n"
-"    border-bottom: 1px solid rgb(44, 49, 60);\n"
-"    border-right: 1px solid rgb(44, 49, 60);\n"
-"}\n"
-"QTableWidget::horizontalHeader {	\n"
-"	background-color: rgb(33, 37, 43);\n"
-"}\n"
-"\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"    border: 1px solid rgb(33, 37, 43);\n"
-"	background-color: rgb(33, 37, 43);\n"
-"	padding: 3px;\n"
-"	border-top-left-radius: 7px;\n"
-"    border-top-right-radius: 7px;\n"
-"}\n"
-"QHeaderView::section:vertical"
-                        "\n"
-"{\n"
-"    border: 1px solid rgb(44, 49, 60);\n"
-"}")
+        self.tableWidget_12.setStyleSheet(u"alternate-background-color: rgb(33, 37, 43);")
+        self.tableWidget_12.setAlternatingRowColors(True)
+        self.tableWidget_12.setGridStyle(Qt.NoPen)
 
-        self.gridLayout_25.addWidget(self.tableWidget_12, 2, 0, 1, 3)
+        self.gridLayout_25.addWidget(self.tableWidget_12, 3, 0, 1, 3)
 
-        self.label_132 = QLabel(self.gridLayoutWidget_2)
-        self.label_132.setObjectName(u"label_132")
+        self.label_112 = QLabel(self.gridLayoutWidget_2)
+        self.label_112.setObjectName(u"label_112")
 
-        self.gridLayout_25.addWidget(self.label_132, 6, 0, 1, 1)
+        self.gridLayout_25.addWidget(self.label_112, 1, 0, 1, 1)
 
-        self.lineEdit_17 = QLineEdit(self.gridLayoutWidget_2)
-        self.lineEdit_17.setObjectName(u"lineEdit_17")
-        self.lineEdit_17.setMaximumSize(QSize(400, 16777215))
-        self.lineEdit_17.setStyleSheet(u"QLineEdit {\n"
-"	background-color: rgb(33, 37, 43);\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid rgb(33, 37, 43);\n"
-"	padding-left: 10px;\n"
-"	selection-color: rgb(255, 255, 255);\n"
-"	selection-background-color: rgb(255, 121, 198);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"	border: 2px solid rgb(91, 101, 124);\n"
-"}")
+        self.label_404 = QLabel(self.gridLayoutWidget_2)
+        self.label_404.setObjectName(u"label_404")
 
-        self.gridLayout_25.addWidget(self.lineEdit_17, 6, 2, 1, 1)
-
-        self.label_130 = QLabel(self.gridLayoutWidget_2)
-        self.label_130.setObjectName(u"label_130")
-
-        self.gridLayout_25.addWidget(self.label_130, 3, 0, 1, 1)
-
-        self.label_129 = QLabel(self.gridLayoutWidget_2)
-        self.label_129.setObjectName(u"label_129")
-
-        self.gridLayout_25.addWidget(self.label_129, 1, 0, 1, 1)
-
-        self.pushButton_13 = QPushButton(self.gridLayoutWidget_2)
-        self.pushButton_13.setObjectName(u"pushButton_13")
-        self.pushButton_13.setMinimumSize(QSize(30, 0))
-        self.pushButton_13.setMaximumSize(QSize(30, 16777215))
-        self.pushButton_13.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_13.setStyleSheet(u"")
-        self.pushButton_13.setIcon(icon15)
-        self.pushButton_13.setIconSize(QSize(26, 30))
-
-        self.gridLayout_25.addWidget(self.pushButton_13, 0, 0, 1, 1)
+        self.gridLayout_25.addWidget(self.label_404, 1, 1, 1, 2)
 
         self.stackedWidget.addWidget(self.page_5)
         self.page_27 = QWidget()
@@ -5848,48 +5806,19 @@ class Ui_MainWindow(object):
         self.page_11.setObjectName(u"page_11")
         self.gridLayout_7 = QGridLayout(self.page_11)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.pushButton_9 = QPushButton(self.page_11)
+        self.pushButton_9.setObjectName(u"pushButton_9")
+        self.pushButton_9.setMaximumSize(QSize(76, 16777215))
+        self.pushButton_9.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_9.setIcon(icon14)
+
+        self.gridLayout_7.addWidget(self.pushButton_9, 2, 6, 1, 1)
+
         self.label_120 = QLabel(self.page_11)
         self.label_120.setObjectName(u"label_120")
         self.label_120.setMaximumSize(QSize(50, 16777215))
 
         self.gridLayout_7.addWidget(self.label_120, 2, 1, 1, 1)
-
-        self.label_81 = QLabel(self.page_11)
-        self.label_81.setObjectName(u"label_81")
-
-        self.gridLayout_7.addWidget(self.label_81, 0, 3, 1, 1)
-
-        self.dateEdit_5 = QDateEdit(self.page_11)
-        self.dateEdit_5.setObjectName(u"dateEdit_5")
-        self.dateEdit_5.setMinimumSize(QSize(330, 0))
-        self.dateEdit_5.setMaximumSize(QSize(351, 16777215))
-        self.dateEdit_5.setCalendarPopup(True)
-
-        self.gridLayout_7.addWidget(self.dateEdit_5, 2, 5, 1, 1)
-
-        self.treeWidget = QTreeWidget(self.page_11)
-        self.treeWidget.setObjectName(u"treeWidget")
-        self.treeWidget.setStyleSheet(u"alternate-background-color: rgb(33, 37, 43);")
-        self.treeWidget.setAlternatingRowColors(True)
-        self.treeWidget.setIndentation(20)
-        self.treeWidget.setAnimated(True)
-        self.treeWidget.header().setDefaultSectionSize(200)
-
-        self.gridLayout_7.addWidget(self.treeWidget, 4, 0, 1, 8)
-
-        self.pushButton_64 = QPushButton(self.page_11)
-        self.pushButton_64.setObjectName(u"pushButton_64")
-        self.pushButton_64.setCursor(QCursor(Qt.PointingHandCursor))
-        icon20 = QIcon()
-        icon20.addFile(u":/icons/images/icons/cil-print.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_64.setIcon(icon20)
-
-        self.gridLayout_7.addWidget(self.pushButton_64, 2, 7, 1, 1)
-
-        self.label_53 = QLabel(self.page_11)
-        self.label_53.setObjectName(u"label_53")
-
-        self.gridLayout_7.addWidget(self.label_53, 2, 4, 1, 1)
 
         self.dateEdit_4 = QDateEdit(self.page_11)
         self.dateEdit_4.setObjectName(u"dateEdit_4")
@@ -5899,60 +5828,50 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.dateEdit_4, 2, 2, 1, 1)
 
-        self.pushButton_9 = QPushButton(self.page_11)
-        self.pushButton_9.setObjectName(u"pushButton_9")
-        self.pushButton_9.setMaximumSize(QSize(76, 16777215))
-        self.pushButton_9.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_9.setIcon(icon14)
+        self.label_81 = QLabel(self.page_11)
+        self.label_81.setObjectName(u"label_81")
 
-        self.gridLayout_7.addWidget(self.pushButton_9, 2, 6, 1, 1)
+        self.gridLayout_7.addWidget(self.label_81, 0, 3, 1, 1)
 
-        self.frame_63 = QFrame(self.page_11)
-        self.frame_63.setObjectName(u"frame_63")
-        self.frame_63.setFrameShape(QFrame.StyledPanel)
-        self.frame_63.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_25 = QHBoxLayout(self.frame_63)
-        self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
-        self.pushButton_96 = QPushButton(self.frame_63)
-        self.pushButton_96.setObjectName(u"pushButton_96")
-        self.pushButton_96.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}\n"
-"")
+        self.treeWidget = QTreeWidget(self.page_11)
+        self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.setStyleSheet(u"alternate-background-color: rgb(33, 37, 43);")
+        self.treeWidget.setAlternatingRowColors(True)
+        self.treeWidget.setIndentation(20)
+        self.treeWidget.setAnimated(True)
+        self.treeWidget.header().setDefaultSectionSize(200)
 
-        self.horizontalLayout_25.addWidget(self.pushButton_96)
+        self.gridLayout_7.addWidget(self.treeWidget, 3, 0, 1, 8)
 
-        self.pushButton_97 = QPushButton(self.frame_63)
-        self.pushButton_97.setObjectName(u"pushButton_97")
-        self.pushButton_97.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
-        self.pushButton_97.setFlat(True)
+        self.dateEdit_5 = QDateEdit(self.page_11)
+        self.dateEdit_5.setObjectName(u"dateEdit_5")
+        self.dateEdit_5.setMinimumSize(QSize(330, 0))
+        self.dateEdit_5.setMaximumSize(QSize(351, 16777215))
+        self.dateEdit_5.setCalendarPopup(True)
 
-        self.horizontalLayout_25.addWidget(self.pushButton_97)
+        self.gridLayout_7.addWidget(self.dateEdit_5, 2, 5, 1, 1)
 
+        self.label_53 = QLabel(self.page_11)
+        self.label_53.setObjectName(u"label_53")
 
-        self.gridLayout_7.addWidget(self.frame_63, 3, 1, 1, 2)
+        self.gridLayout_7.addWidget(self.label_53, 2, 4, 1, 1)
 
         self.stackedWidget_2.addWidget(self.page_11)
         self.page_19 = QWidget()
         self.page_19.setObjectName(u"page_19")
         self.gridLayout_43 = QGridLayout(self.page_19)
         self.gridLayout_43.setObjectName(u"gridLayout_43")
+        self.label_128 = QLabel(self.page_19)
+        self.label_128.setObjectName(u"label_128")
+        self.label_128.setMaximumSize(QSize(50, 16777215))
+
+        self.gridLayout_43.addWidget(self.label_128, 1, 0, 1, 1)
+
+        self.label_102 = QLabel(self.page_19)
+        self.label_102.setObjectName(u"label_102")
+
+        self.gridLayout_43.addWidget(self.label_102, 0, 1, 1, 3)
+
         self.tableWidget_10 = QTableWidget(self.page_19)
         if (self.tableWidget_10.columnCount() < 5):
             self.tableWidget_10.setColumnCount(5)
@@ -5972,38 +5891,7 @@ class Ui_MainWindow(object):
         self.tableWidget_10.setGridStyle(Qt.NoPen)
         self.tableWidget_10.verticalHeader().setVisible(False)
 
-        self.gridLayout_43.addWidget(self.tableWidget_10, 3, 0, 1, 6)
-
-        self.label_102 = QLabel(self.page_19)
-        self.label_102.setObjectName(u"label_102")
-
-        self.gridLayout_43.addWidget(self.label_102, 0, 1, 1, 3)
-
-        self.label_122 = QLabel(self.page_19)
-        self.label_122.setObjectName(u"label_122")
-        self.label_122.setMaximumSize(QSize(50, 16777215))
-
-        self.gridLayout_43.addWidget(self.label_122, 1, 2, 1, 1)
-
-        self.label_128 = QLabel(self.page_19)
-        self.label_128.setObjectName(u"label_128")
-        self.label_128.setMaximumSize(QSize(50, 16777215))
-
-        self.gridLayout_43.addWidget(self.label_128, 1, 0, 1, 1)
-
-        self.pushButton_65 = QPushButton(self.page_19)
-        self.pushButton_65.setObjectName(u"pushButton_65")
-        self.pushButton_65.setMaximumSize(QSize(56, 16777215))
-        self.pushButton_65.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_65.setIcon(icon20)
-
-        self.gridLayout_43.addWidget(self.pushButton_65, 1, 5, 1, 1)
-
-        self.dateEdit_10 = QDateEdit(self.page_19)
-        self.dateEdit_10.setObjectName(u"dateEdit_10")
-        self.dateEdit_10.setCalendarPopup(True)
-
-        self.gridLayout_43.addWidget(self.dateEdit_10, 1, 1, 1, 1)
+        self.gridLayout_43.addWidget(self.tableWidget_10, 2, 0, 1, 6)
 
         self.pushButton_42 = QPushButton(self.page_19)
         self.pushButton_42.setObjectName(u"pushButton_42")
@@ -6011,101 +5899,34 @@ class Ui_MainWindow(object):
         self.pushButton_42.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_42.setIcon(icon14)
 
-        self.gridLayout_43.addWidget(self.pushButton_42, 1, 4, 1, 1)
+        self.gridLayout_43.addWidget(self.pushButton_42, 1, 5, 1, 1)
 
         self.dateEdit_9 = QDateEdit(self.page_19)
         self.dateEdit_9.setObjectName(u"dateEdit_9")
         self.dateEdit_9.setCalendarPopup(True)
 
-        self.gridLayout_43.addWidget(self.dateEdit_9, 1, 3, 1, 1)
+        self.gridLayout_43.addWidget(self.dateEdit_9, 1, 4, 1, 1)
 
-        self.frame_46 = QFrame(self.page_19)
-        self.frame_46.setObjectName(u"frame_46")
-        self.frame_46.setFrameShape(QFrame.StyledPanel)
-        self.frame_46.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_24 = QHBoxLayout(self.frame_46)
-        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
-        self.pushButton_92 = QPushButton(self.frame_46)
-        self.pushButton_92.setObjectName(u"pushButton_92")
-        self.pushButton_92.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
+        self.label_122 = QLabel(self.page_19)
+        self.label_122.setObjectName(u"label_122")
+        self.label_122.setMaximumSize(QSize(50, 16777215))
 
-        self.horizontalLayout_24.addWidget(self.pushButton_92)
+        self.gridLayout_43.addWidget(self.label_122, 1, 3, 1, 1)
 
-        self.pushButton_93 = QPushButton(self.frame_46)
-        self.pushButton_93.setObjectName(u"pushButton_93")
-        self.pushButton_93.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}\n"
-"")
+        self.dateEdit_10 = QDateEdit(self.page_19)
+        self.dateEdit_10.setObjectName(u"dateEdit_10")
+        self.dateEdit_10.setCalendarPopup(True)
 
-        self.horizontalLayout_24.addWidget(self.pushButton_93)
-
-        self.pushButton_94 = QPushButton(self.frame_46)
-        self.pushButton_94.setObjectName(u"pushButton_94")
-        self.pushButton_94.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
-        self.pushButton_94.setFlat(True)
-
-        self.horizontalLayout_24.addWidget(self.pushButton_94)
-
-
-        self.gridLayout_43.addWidget(self.frame_46, 2, 0, 1, 3)
+        self.gridLayout_43.addWidget(self.dateEdit_10, 1, 1, 1, 2)
 
         self.stackedWidget_2.addWidget(self.page_19)
         self.page_22 = QWidget()
         self.page_22.setObjectName(u"page_22")
         self.gridLayout_45 = QGridLayout(self.page_22)
         self.gridLayout_45.setObjectName(u"gridLayout_45")
-        self.label_183 = QLabel(self.page_22)
-        self.label_183.setObjectName(u"label_183")
-
-        self.gridLayout_45.addWidget(self.label_183, 0, 2, 1, 1)
-
-        self.label_17 = QLabel(self.page_22)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setMaximumSize(QSize(40, 16777215))
-
-        self.gridLayout_45.addWidget(self.label_17, 2, 0, 1, 1)
-
-        self.dateEdit_11 = QDateEdit(self.page_22)
-        self.dateEdit_11.setObjectName(u"dateEdit_11")
-        self.dateEdit_11.setCalendarPopup(True)
-
-        self.gridLayout_45.addWidget(self.dateEdit_11, 2, 3, 1, 1)
-
-        self.label_40 = QLabel(self.page_22)
-        self.label_40.setObjectName(u"label_40")
-        self.label_40.setMaximumSize(QSize(40, 16777215))
-
-        self.gridLayout_45.addWidget(self.label_40, 2, 2, 1, 1)
-
         self.tableWidget_19 = QTableWidget(self.page_22)
-        if (self.tableWidget_19.columnCount() < 9):
-            self.tableWidget_19.setColumnCount(9)
+        if (self.tableWidget_19.columnCount() < 10):
+            self.tableWidget_19.setColumnCount(10)
         __qtablewidgetitem134 = QTableWidgetItem()
         self.tableWidget_19.setHorizontalHeaderItem(0, __qtablewidgetitem134)
         __qtablewidgetitem135 = QTableWidgetItem()
@@ -6124,13 +5945,21 @@ class Ui_MainWindow(object):
         self.tableWidget_19.setHorizontalHeaderItem(7, __qtablewidgetitem141)
         __qtablewidgetitem142 = QTableWidgetItem()
         self.tableWidget_19.setHorizontalHeaderItem(8, __qtablewidgetitem142)
+        __qtablewidgetitem143 = QTableWidgetItem()
+        self.tableWidget_19.setHorizontalHeaderItem(9, __qtablewidgetitem143)
         self.tableWidget_19.setObjectName(u"tableWidget_19")
         self.tableWidget_19.setStyleSheet(u"alternate-background-color: rgb(33, 37, 43);")
         self.tableWidget_19.setAlternatingRowColors(True)
         self.tableWidget_19.setGridStyle(Qt.NoPen)
         self.tableWidget_19.verticalHeader().setVisible(False)
 
-        self.gridLayout_45.addWidget(self.tableWidget_19, 5, 0, 1, 6)
+        self.gridLayout_45.addWidget(self.tableWidget_19, 4, 0, 1, 6)
+
+        self.label_17 = QLabel(self.page_22)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setMaximumSize(QSize(40, 16777215))
+
+        self.gridLayout_45.addWidget(self.label_17, 2, 0, 1, 1)
 
         self.pushButton_34 = QPushButton(self.page_22)
         self.pushButton_34.setObjectName(u"pushButton_34")
@@ -6140,75 +5969,28 @@ class Ui_MainWindow(object):
 
         self.gridLayout_45.addWidget(self.pushButton_34, 2, 4, 1, 1)
 
-        self.pushButton_59 = QPushButton(self.page_22)
-        self.pushButton_59.setObjectName(u"pushButton_59")
-        self.pushButton_59.setMaximumSize(QSize(45, 16777215))
-        self.pushButton_59.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_59.setIcon(icon20)
-
-        self.gridLayout_45.addWidget(self.pushButton_59, 2, 5, 1, 1)
-
         self.dateEdit_12 = QDateEdit(self.page_22)
         self.dateEdit_12.setObjectName(u"dateEdit_12")
         self.dateEdit_12.setCalendarPopup(True)
 
         self.gridLayout_45.addWidget(self.dateEdit_12, 2, 1, 1, 1)
 
-        self.frame_14 = QFrame(self.page_22)
-        self.frame_14.setObjectName(u"frame_14")
-        self.frame_14.setFrameShape(QFrame.StyledPanel)
-        self.frame_14.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_15 = QHBoxLayout(self.frame_14)
-        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.pushButton_43 = QPushButton(self.frame_14)
-        self.pushButton_43.setObjectName(u"pushButton_43")
-        self.pushButton_43.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
+        self.label_183 = QLabel(self.page_22)
+        self.label_183.setObjectName(u"label_183")
 
-        self.horizontalLayout_15.addWidget(self.pushButton_43)
+        self.gridLayout_45.addWidget(self.label_183, 0, 2, 1, 1)
 
-        self.pushButton_14 = QPushButton(self.frame_14)
-        self.pushButton_14.setObjectName(u"pushButton_14")
-        self.pushButton_14.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}\n"
-"")
+        self.label_40 = QLabel(self.page_22)
+        self.label_40.setObjectName(u"label_40")
+        self.label_40.setMaximumSize(QSize(40, 16777215))
 
-        self.horizontalLayout_15.addWidget(self.pushButton_14)
+        self.gridLayout_45.addWidget(self.label_40, 2, 2, 1, 1)
 
-        self.pushButton_38 = QPushButton(self.frame_14)
-        self.pushButton_38.setObjectName(u"pushButton_38")
-        self.pushButton_38.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
-        self.pushButton_38.setFlat(True)
+        self.dateEdit_11 = QDateEdit(self.page_22)
+        self.dateEdit_11.setObjectName(u"dateEdit_11")
+        self.dateEdit_11.setCalendarPopup(True)
 
-        self.horizontalLayout_15.addWidget(self.pushButton_38)
-
-
-        self.gridLayout_45.addWidget(self.frame_14, 3, 0, 1, 2)
+        self.gridLayout_45.addWidget(self.dateEdit_11, 2, 3, 1, 1)
 
         self.stackedWidget_2.addWidget(self.page_22)
         self.page_23 = QWidget()
@@ -6221,35 +6003,46 @@ class Ui_MainWindow(object):
         self.frame_9.setFrameShadow(QFrame.Raised)
         self.gridLayout_50 = QGridLayout(self.frame_9)
         self.gridLayout_50.setObjectName(u"gridLayout_50")
+        self.label_41 = QLabel(self.frame_9)
+        self.label_41.setObjectName(u"label_41")
+        self.label_41.setMaximumSize(QSize(36, 16777215))
+
+        self.gridLayout_50.addWidget(self.label_41, 1, 0, 1, 1)
+
+        self.label_185 = QLabel(self.frame_9)
+        self.label_185.setObjectName(u"label_185")
+
+        self.gridLayout_50.addWidget(self.label_185, 0, 1, 1, 3)
+
         self.tableWidget_20 = QTableWidget(self.frame_9)
         if (self.tableWidget_20.columnCount() < 10):
             self.tableWidget_20.setColumnCount(10)
-        __qtablewidgetitem143 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(0, __qtablewidgetitem143)
         __qtablewidgetitem144 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(1, __qtablewidgetitem144)
+        self.tableWidget_20.setHorizontalHeaderItem(0, __qtablewidgetitem144)
         __qtablewidgetitem145 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(2, __qtablewidgetitem145)
+        self.tableWidget_20.setHorizontalHeaderItem(1, __qtablewidgetitem145)
         __qtablewidgetitem146 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(3, __qtablewidgetitem146)
+        self.tableWidget_20.setHorizontalHeaderItem(2, __qtablewidgetitem146)
         __qtablewidgetitem147 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(4, __qtablewidgetitem147)
+        self.tableWidget_20.setHorizontalHeaderItem(3, __qtablewidgetitem147)
         __qtablewidgetitem148 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(5, __qtablewidgetitem148)
+        self.tableWidget_20.setHorizontalHeaderItem(4, __qtablewidgetitem148)
         __qtablewidgetitem149 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(6, __qtablewidgetitem149)
+        self.tableWidget_20.setHorizontalHeaderItem(5, __qtablewidgetitem149)
         __qtablewidgetitem150 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(7, __qtablewidgetitem150)
+        self.tableWidget_20.setHorizontalHeaderItem(6, __qtablewidgetitem150)
         __qtablewidgetitem151 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(8, __qtablewidgetitem151)
+        self.tableWidget_20.setHorizontalHeaderItem(7, __qtablewidgetitem151)
         __qtablewidgetitem152 = QTableWidgetItem()
-        self.tableWidget_20.setHorizontalHeaderItem(9, __qtablewidgetitem152)
+        self.tableWidget_20.setHorizontalHeaderItem(8, __qtablewidgetitem152)
+        __qtablewidgetitem153 = QTableWidgetItem()
+        self.tableWidget_20.setHorizontalHeaderItem(9, __qtablewidgetitem153)
         self.tableWidget_20.setObjectName(u"tableWidget_20")
         self.tableWidget_20.setStyleSheet(u"alternate-background-color: rgb(33, 37, 43);")
         self.tableWidget_20.setAlternatingRowColors(True)
         self.tableWidget_20.setGridStyle(Qt.NoPen)
 
-        self.gridLayout_50.addWidget(self.tableWidget_20, 3, 0, 1, 6)
+        self.gridLayout_50.addWidget(self.tableWidget_20, 2, 0, 1, 6)
 
         self.pushButton_56 = QPushButton(self.frame_9)
         self.pushButton_56.setObjectName(u"pushButton_56")
@@ -6257,101 +6050,26 @@ class Ui_MainWindow(object):
         self.pushButton_56.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_56.setIcon(icon14)
 
-        self.gridLayout_50.addWidget(self.pushButton_56, 1, 4, 1, 1)
-
-        self.label_41 = QLabel(self.frame_9)
-        self.label_41.setObjectName(u"label_41")
-        self.label_41.setMaximumSize(QSize(36, 16777215))
-
-        self.gridLayout_50.addWidget(self.label_41, 1, 0, 1, 1)
-
-        self.pushButton_60 = QPushButton(self.frame_9)
-        self.pushButton_60.setObjectName(u"pushButton_60")
-        self.pushButton_60.setMaximumSize(QSize(38, 16777215))
-        self.pushButton_60.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_60.setIcon(icon20)
-
-        self.gridLayout_50.addWidget(self.pushButton_60, 1, 5, 1, 1)
+        self.gridLayout_50.addWidget(self.pushButton_56, 1, 5, 1, 1)
 
         self.dateEdit_15 = QDateEdit(self.frame_9)
         self.dateEdit_15.setObjectName(u"dateEdit_15")
         self.dateEdit_15.setCalendarPopup(True)
 
-        self.gridLayout_50.addWidget(self.dateEdit_15, 1, 3, 1, 1)
+        self.gridLayout_50.addWidget(self.dateEdit_15, 1, 4, 1, 1)
 
-        self.label_185 = QLabel(self.frame_9)
-        self.label_185.setObjectName(u"label_185")
+        self.label_43 = QLabel(self.frame_9)
+        self.label_43.setObjectName(u"label_43")
+        self.label_43.setMaximumSize(QSize(20, 16777215))
 
-        self.gridLayout_50.addWidget(self.label_185, 0, 1, 1, 3)
+        self.gridLayout_50.addWidget(self.label_43, 1, 3, 1, 1)
 
         self.dateEdit_16 = QDateEdit(self.frame_9)
         self.dateEdit_16.setObjectName(u"dateEdit_16")
         self.dateEdit_16.setMaximumSize(QSize(445, 16777215))
         self.dateEdit_16.setCalendarPopup(True)
 
-        self.gridLayout_50.addWidget(self.dateEdit_16, 1, 1, 1, 1)
-
-        self.label_43 = QLabel(self.frame_9)
-        self.label_43.setObjectName(u"label_43")
-        self.label_43.setMaximumSize(QSize(20, 16777215))
-
-        self.gridLayout_50.addWidget(self.label_43, 1, 2, 1, 1)
-
-        self.frame_19 = QFrame(self.frame_9)
-        self.frame_19.setObjectName(u"frame_19")
-        self.frame_19.setFrameShape(QFrame.StyledPanel)
-        self.frame_19.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_21 = QHBoxLayout(self.frame_19)
-        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
-        self.pushButton_66 = QPushButton(self.frame_19)
-        self.pushButton_66.setObjectName(u"pushButton_66")
-        self.pushButton_66.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
-
-        self.horizontalLayout_21.addWidget(self.pushButton_66)
-
-        self.pushButton_84 = QPushButton(self.frame_19)
-        self.pushButton_84.setObjectName(u"pushButton_84")
-        self.pushButton_84.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}\n"
-"")
-
-        self.horizontalLayout_21.addWidget(self.pushButton_84)
-
-        self.pushButton_85 = QPushButton(self.frame_19)
-        self.pushButton_85.setObjectName(u"pushButton_85")
-        self.pushButton_85.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
-        self.pushButton_85.setFlat(True)
-
-        self.horizontalLayout_21.addWidget(self.pushButton_85)
-
-
-        self.gridLayout_50.addWidget(self.frame_19, 2, 0, 1, 2)
+        self.gridLayout_50.addWidget(self.dateEdit_16, 1, 1, 1, 2)
 
 
         self.gridLayout_49.addWidget(self.frame_9, 0, 0, 1, 1)
@@ -6365,44 +6083,37 @@ class Ui_MainWindow(object):
         self.frame_26.setObjectName(u"frame_26")
         self.frame_26.setFrameShape(QFrame.StyledPanel)
         self.frame_26.setFrameShadow(QFrame.Raised)
-        self.gridLayout_51 = QGridLayout(self.frame_26)
-        self.gridLayout_51.setObjectName(u"gridLayout_51")
-        self.label_229 = QLabel(self.frame_26)
-        self.label_229.setObjectName(u"label_229")
+        self.gridLayout_122 = QGridLayout(self.frame_26)
+        self.gridLayout_122.setObjectName(u"gridLayout_122")
+        self.label_186 = QLabel(self.frame_26)
+        self.label_186.setObjectName(u"label_186")
 
-        self.gridLayout_51.addWidget(self.label_229, 4, 2, 1, 1)
+        self.gridLayout_122.addWidget(self.label_186, 0, 1, 1, 3)
 
-        self.dateEdit_17 = QDateEdit(self.frame_26)
-        self.dateEdit_17.setObjectName(u"dateEdit_17")
-        self.dateEdit_17.setCalendarPopup(True)
+        self.label_48 = QLabel(self.frame_26)
+        self.label_48.setObjectName(u"label_48")
+        self.label_48.setMaximumSize(QSize(36, 16777215))
 
-        self.gridLayout_51.addWidget(self.dateEdit_17, 1, 3, 1, 1)
+        self.gridLayout_122.addWidget(self.label_48, 1, 0, 1, 1)
 
         self.dateEdit_18 = QDateEdit(self.frame_26)
         self.dateEdit_18.setObjectName(u"dateEdit_18")
         self.dateEdit_18.setMaximumSize(QSize(445, 16777215))
         self.dateEdit_18.setCalendarPopup(True)
 
-        self.gridLayout_51.addWidget(self.dateEdit_18, 1, 1, 1, 1)
+        self.gridLayout_122.addWidget(self.dateEdit_18, 1, 1, 1, 1)
 
-        self.pushButton_61 = QPushButton(self.frame_26)
-        self.pushButton_61.setObjectName(u"pushButton_61")
-        self.pushButton_61.setMaximumSize(QSize(47, 16777215))
-        self.pushButton_61.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_61.setIcon(icon20)
+        self.label_46 = QLabel(self.frame_26)
+        self.label_46.setObjectName(u"label_46")
+        self.label_46.setMaximumSize(QSize(20, 16777215))
 
-        self.gridLayout_51.addWidget(self.pushButton_61, 1, 5, 1, 1)
+        self.gridLayout_122.addWidget(self.label_46, 1, 2, 1, 1)
 
-        self.label_231 = QLabel(self.frame_26)
-        self.label_231.setObjectName(u"label_231")
+        self.dateEdit_17 = QDateEdit(self.frame_26)
+        self.dateEdit_17.setObjectName(u"dateEdit_17")
+        self.dateEdit_17.setCalendarPopup(True)
 
-        self.gridLayout_51.addWidget(self.label_231, 4, 4, 1, 2)
-
-        self.label_48 = QLabel(self.frame_26)
-        self.label_48.setObjectName(u"label_48")
-        self.label_48.setMaximumSize(QSize(36, 16777215))
-
-        self.gridLayout_51.addWidget(self.label_48, 1, 0, 1, 1)
+        self.gridLayout_122.addWidget(self.dateEdit_17, 1, 3, 1, 1)
 
         self.pushButton_57 = QPushButton(self.frame_26)
         self.pushButton_57.setObjectName(u"pushButton_57")
@@ -6410,113 +6121,66 @@ class Ui_MainWindow(object):
         self.pushButton_57.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_57.setIcon(icon14)
 
-        self.gridLayout_51.addWidget(self.pushButton_57, 1, 4, 1, 1)
+        self.gridLayout_122.addWidget(self.pushButton_57, 1, 4, 1, 1)
 
-        self.label_227 = QLabel(self.frame_26)
-        self.label_227.setObjectName(u"label_227")
+        self.gridLayout_51 = QGridLayout()
+        self.gridLayout_51.setObjectName(u"gridLayout_51")
+        self.tableWidget = QTableWidget(self.frame_26)
+        if (self.tableWidget.columnCount() < 3):
+            self.tableWidget.setColumnCount(3)
+        __qtablewidgetitem154 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem154)
+        __qtablewidgetitem155 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem155)
+        __qtablewidgetitem156 = QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem156)
+        self.tableWidget.setObjectName(u"tableWidget")
 
-        self.gridLayout_51.addWidget(self.label_227, 4, 0, 1, 1)
+        self.gridLayout_51.addWidget(self.tableWidget, 1, 1, 1, 1)
 
         self.tableWidget_21 = QTableWidget(self.frame_26)
-        if (self.tableWidget_21.columnCount() < 7):
-            self.tableWidget_21.setColumnCount(7)
-        __qtablewidgetitem153 = QTableWidgetItem()
-        self.tableWidget_21.setHorizontalHeaderItem(0, __qtablewidgetitem153)
-        __qtablewidgetitem154 = QTableWidgetItem()
-        self.tableWidget_21.setHorizontalHeaderItem(1, __qtablewidgetitem154)
-        __qtablewidgetitem155 = QTableWidgetItem()
-        self.tableWidget_21.setHorizontalHeaderItem(2, __qtablewidgetitem155)
-        __qtablewidgetitem156 = QTableWidgetItem()
-        self.tableWidget_21.setHorizontalHeaderItem(3, __qtablewidgetitem156)
+        if (self.tableWidget_21.columnCount() < 3):
+            self.tableWidget_21.setColumnCount(3)
         __qtablewidgetitem157 = QTableWidgetItem()
-        self.tableWidget_21.setHorizontalHeaderItem(4, __qtablewidgetitem157)
+        self.tableWidget_21.setHorizontalHeaderItem(0, __qtablewidgetitem157)
         __qtablewidgetitem158 = QTableWidgetItem()
-        self.tableWidget_21.setHorizontalHeaderItem(5, __qtablewidgetitem158)
+        self.tableWidget_21.setHorizontalHeaderItem(1, __qtablewidgetitem158)
         __qtablewidgetitem159 = QTableWidgetItem()
-        self.tableWidget_21.setHorizontalHeaderItem(6, __qtablewidgetitem159)
+        self.tableWidget_21.setHorizontalHeaderItem(2, __qtablewidgetitem159)
         self.tableWidget_21.setObjectName(u"tableWidget_21")
         self.tableWidget_21.setStyleSheet(u"alternate-background-color: rgb(33, 37, 43);")
         self.tableWidget_21.setAlternatingRowColors(True)
         self.tableWidget_21.setGridStyle(Qt.NoPen)
 
-        self.gridLayout_51.addWidget(self.tableWidget_21, 3, 0, 1, 6)
+        self.gridLayout_51.addWidget(self.tableWidget_21, 1, 0, 1, 1)
 
-        self.label_46 = QLabel(self.frame_26)
-        self.label_46.setObjectName(u"label_46")
-        self.label_46.setMaximumSize(QSize(20, 16777215))
+        self.label_227 = QLabel(self.frame_26)
+        self.label_227.setObjectName(u"label_227")
 
-        self.gridLayout_51.addWidget(self.label_46, 1, 2, 1, 1)
+        self.gridLayout_51.addWidget(self.label_227, 0, 0, 1, 1)
 
-        self.label_186 = QLabel(self.frame_26)
-        self.label_186.setObjectName(u"label_186")
+        self.label_229 = QLabel(self.frame_26)
+        self.label_229.setObjectName(u"label_229")
 
-        self.gridLayout_51.addWidget(self.label_186, 0, 1, 1, 3)
+        self.gridLayout_51.addWidget(self.label_229, 0, 1, 1, 1)
+
+
+        self.gridLayout_122.addLayout(self.gridLayout_51, 2, 0, 1, 5)
 
         self.label_228 = QLabel(self.frame_26)
         self.label_228.setObjectName(u"label_228")
 
-        self.gridLayout_51.addWidget(self.label_228, 4, 1, 1, 1)
+        self.gridLayout_122.addWidget(self.label_228, 3, 1, 1, 1)
 
         self.label_230 = QLabel(self.frame_26)
         self.label_230.setObjectName(u"label_230")
 
-        self.gridLayout_51.addWidget(self.label_230, 4, 3, 1, 1)
+        self.gridLayout_122.addWidget(self.label_230, 3, 3, 1, 1)
 
-        self.frame_17 = QFrame(self.frame_26)
-        self.frame_17.setObjectName(u"frame_17")
-        self.frame_17.setFrameShape(QFrame.StyledPanel)
-        self.frame_17.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_22 = QHBoxLayout(self.frame_17)
-        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
-        self.pushButton_86 = QPushButton(self.frame_17)
-        self.pushButton_86.setObjectName(u"pushButton_86")
-        self.pushButton_86.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
+        self.label_231 = QLabel(self.frame_26)
+        self.label_231.setObjectName(u"label_231")
 
-        self.horizontalLayout_22.addWidget(self.pushButton_86)
-
-        self.pushButton_87 = QPushButton(self.frame_17)
-        self.pushButton_87.setObjectName(u"pushButton_87")
-        self.pushButton_87.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}\n"
-"")
-
-        self.horizontalLayout_22.addWidget(self.pushButton_87)
-
-        self.pushButton_88 = QPushButton(self.frame_17)
-        self.pushButton_88.setObjectName(u"pushButton_88")
-        self.pushButton_88.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
-        self.pushButton_88.setFlat(True)
-
-        self.horizontalLayout_22.addWidget(self.pushButton_88)
-
-
-        self.gridLayout_51.addWidget(self.frame_17, 2, 0, 1, 2)
+        self.gridLayout_122.addWidget(self.label_231, 3, 4, 1, 1)
 
 
         self.gridLayout_52.addWidget(self.frame_26, 0, 0, 1, 1)
@@ -6532,11 +6196,11 @@ class Ui_MainWindow(object):
         self.frame_27.setFrameShadow(QFrame.Raised)
         self.gridLayout_57 = QGridLayout(self.frame_27)
         self.gridLayout_57.setObjectName(u"gridLayout_57")
-        self.dateEdit_19 = QDateEdit(self.frame_27)
-        self.dateEdit_19.setObjectName(u"dateEdit_19")
-        self.dateEdit_19.setCalendarPopup(True)
+        self.label_188 = QLabel(self.frame_27)
+        self.label_188.setObjectName(u"label_188")
+        self.label_188.setMaximumSize(QSize(20, 16777215))
 
-        self.gridLayout_57.addWidget(self.dateEdit_19, 1, 3, 1, 1)
+        self.gridLayout_57.addWidget(self.label_188, 1, 2, 1, 1)
 
         self.pushButton_58 = QPushButton(self.frame_27)
         self.pushButton_58.setObjectName(u"pushButton_58")
@@ -6545,38 +6209,6 @@ class Ui_MainWindow(object):
         self.pushButton_58.setIcon(icon14)
 
         self.gridLayout_57.addWidget(self.pushButton_58, 1, 4, 1, 1)
-
-        self.pushButton_62 = QPushButton(self.frame_27)
-        self.pushButton_62.setObjectName(u"pushButton_62")
-        self.pushButton_62.setMaximumSize(QSize(48, 16777215))
-        self.pushButton_62.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_62.setIcon(icon20)
-
-        self.gridLayout_57.addWidget(self.pushButton_62, 1, 5, 1, 1)
-
-        self.label_189 = QLabel(self.frame_27)
-        self.label_189.setObjectName(u"label_189")
-
-        self.gridLayout_57.addWidget(self.label_189, 0, 1, 1, 3)
-
-        self.dateEdit_20 = QDateEdit(self.frame_27)
-        self.dateEdit_20.setObjectName(u"dateEdit_20")
-        self.dateEdit_20.setMaximumSize(QSize(445, 16777215))
-        self.dateEdit_20.setCalendarPopup(True)
-
-        self.gridLayout_57.addWidget(self.dateEdit_20, 1, 1, 1, 1)
-
-        self.label_190 = QLabel(self.frame_27)
-        self.label_190.setObjectName(u"label_190")
-        self.label_190.setMaximumSize(QSize(36, 16777215))
-
-        self.gridLayout_57.addWidget(self.label_190, 1, 0, 1, 1)
-
-        self.label_188 = QLabel(self.frame_27)
-        self.label_188.setObjectName(u"label_188")
-        self.label_188.setMaximumSize(QSize(20, 16777215))
-
-        self.gridLayout_57.addWidget(self.label_188, 1, 2, 1, 1)
 
         self.tableWidget_22 = QTableWidget(self.frame_27)
         if (self.tableWidget_22.columnCount() < 7):
@@ -6600,63 +6232,31 @@ class Ui_MainWindow(object):
         self.tableWidget_22.setAlternatingRowColors(True)
         self.tableWidget_22.setGridStyle(Qt.NoPen)
 
-        self.gridLayout_57.addWidget(self.tableWidget_22, 3, 0, 1, 5)
+        self.gridLayout_57.addWidget(self.tableWidget_22, 2, 0, 1, 5)
 
-        self.frame_23 = QFrame(self.frame_27)
-        self.frame_23.setObjectName(u"frame_23")
-        self.frame_23.setFrameShape(QFrame.StyledPanel)
-        self.frame_23.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_23 = QHBoxLayout(self.frame_23)
-        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
-        self.pushButton_89 = QPushButton(self.frame_23)
-        self.pushButton_89.setObjectName(u"pushButton_89")
-        self.pushButton_89.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
+        self.dateEdit_19 = QDateEdit(self.frame_27)
+        self.dateEdit_19.setObjectName(u"dateEdit_19")
+        self.dateEdit_19.setCalendarPopup(True)
 
-        self.horizontalLayout_23.addWidget(self.pushButton_89)
+        self.gridLayout_57.addWidget(self.dateEdit_19, 1, 3, 1, 1)
 
-        self.pushButton_90 = QPushButton(self.frame_23)
-        self.pushButton_90.setObjectName(u"pushButton_90")
-        self.pushButton_90.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}\n"
-"")
+        self.dateEdit_20 = QDateEdit(self.frame_27)
+        self.dateEdit_20.setObjectName(u"dateEdit_20")
+        self.dateEdit_20.setMaximumSize(QSize(445, 16777215))
+        self.dateEdit_20.setCalendarPopup(True)
 
-        self.horizontalLayout_23.addWidget(self.pushButton_90)
+        self.gridLayout_57.addWidget(self.dateEdit_20, 1, 1, 1, 1)
 
-        self.pushButton_91 = QPushButton(self.frame_23)
-        self.pushButton_91.setObjectName(u"pushButton_91")
-        self.pushButton_91.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}")
-        self.pushButton_91.setFlat(True)
+        self.label_190 = QLabel(self.frame_27)
+        self.label_190.setObjectName(u"label_190")
+        self.label_190.setMaximumSize(QSize(36, 16777215))
 
-        self.horizontalLayout_23.addWidget(self.pushButton_91)
+        self.gridLayout_57.addWidget(self.label_190, 1, 0, 1, 1)
 
+        self.label_189 = QLabel(self.frame_27)
+        self.label_189.setObjectName(u"label_189")
 
-        self.gridLayout_57.addWidget(self.frame_23, 2, 0, 1, 2)
+        self.gridLayout_57.addWidget(self.label_189, 0, 1, 1, 3)
 
 
         self.gridLayout_58.addWidget(self.frame_27, 0, 0, 1, 1)
@@ -6980,9 +6580,9 @@ class Ui_MainWindow(object):
         self.pushButton_16.setMaximumSize(QSize(70, 16777215))
         self.pushButton_16.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_16.setStyleSheet(u"")
-        icon21 = QIcon()
-        icon21.addFile(u":/icons/images/icons/cil-pen-alt.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_16.setIcon(icon21)
+        icon20 = QIcon()
+        icon20.addFile(u":/icons/images/icons/cil-pen-alt.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_16.setIcon(icon20)
         self.pushButton_16.setIconSize(QSize(37, 37))
 
         self.horizontalLayout_7.addWidget(self.pushButton_16)
@@ -7042,9 +6642,9 @@ class Ui_MainWindow(object):
         self.pushButton_54.setFont(font)
         self.pushButton_54.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_54.setStyleSheet(u"")
-        icon22 = QIcon()
-        icon22.addFile(u":/images/images/images/tax.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_54.setIcon(icon22)
+        icon21 = QIcon()
+        icon21.addFile(u":/images/images/images/tax.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_54.setIcon(icon21)
         self.pushButton_54.setIconSize(QSize(32, 40))
 
         self.horizontalLayout_7.addWidget(self.pushButton_54)
@@ -7570,12 +7170,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.label_123, 0, 4, 1, 1)
 
-        self.lineEdit_13 = QLineEdit(self.frame_89)
-        self.lineEdit_13.setObjectName(u"lineEdit_13")
-        self.lineEdit_13.setStyleSheet(u"background-color: rgb(48, 48, 48);")
-
-        self.gridLayout_9.addWidget(self.lineEdit_13, 3, 4, 1, 1)
-
         self.label_125 = QLabel(self.frame_89)
         self.label_125.setObjectName(u"label_125")
 
@@ -7585,11 +7179,6 @@ class Ui_MainWindow(object):
         self.label_113.setObjectName(u"label_113")
 
         self.gridLayout_9.addWidget(self.label_113, 5, 3, 1, 1)
-
-        self.label_112 = QLabel(self.frame_89)
-        self.label_112.setObjectName(u"label_112")
-
-        self.gridLayout_9.addWidget(self.label_112, 3, 3, 1, 1)
 
         self.comboBox_4 = QComboBox(self.frame_89)
         self.comboBox_4.setObjectName(u"comboBox_4")
@@ -7637,7 +7226,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(85, 170, 255);\n"
 "}\n"
 "")
-        self.pushButton_24.setIcon(icon20)
+        icon22 = QIcon()
+        icon22.addFile(u":/icons/images/icons/cil-print.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_24.setIcon(icon22)
         self.pushButton_24.setIconSize(QSize(60, 44))
         self.pushButton_24.setFlat(False)
 
@@ -7682,6 +7273,10 @@ class Ui_MainWindow(object):
         self.label_76.setObjectName(u"label_76")
 
         self.gridLayout_9.addWidget(self.label_76, 3, 0, 1, 1)
+
+        self.horizontalSpacer_60 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_60, 3, 4, 1, 1)
 
 
         self.gridLayout_94.addWidget(self.frame_89, 3, 1, 1, 1)
@@ -8908,7 +8503,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(112,112,112);\n"
 "	background-color: rgb(112,112,112);\n"
 "}")
-        self.pushButton_55.setIcon(icon21)
+        self.pushButton_55.setIcon(icon20)
         self.pushButton_55.setIconSize(QSize(53, 40))
 
         self.verticalLayout_33.addWidget(self.pushButton_55)
@@ -9045,7 +8640,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(112,112,112);\n"
 "	background-color: rgb(112,112,112);\n"
 "}")
-        self.pushButton_47.setIcon(icon21)
+        self.pushButton_47.setIcon(icon20)
         self.pushButton_47.setIconSize(QSize(53, 40))
 
         self.verticalLayout_23.addWidget(self.pushButton_47)
@@ -9328,7 +8923,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(112,112,112);\n"
 "	background-color: rgb(112,112,112);\n"
 "}")
-        self.pushButton_46.setIcon(icon21)
+        self.pushButton_46.setIcon(icon20)
         self.pushButton_46.setIconSize(QSize(53, 40))
 
         self.verticalLayout_24.addWidget(self.pushButton_46)
@@ -9590,7 +9185,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(112,112,112);\n"
 "	background-color: rgb(112,112,112);\n"
 "}")
-        self.pushButton_51.setIcon(icon21)
+        self.pushButton_51.setIcon(icon20)
         self.pushButton_51.setIconSize(QSize(53, 40))
 
         self.verticalLayout_30.addWidget(self.pushButton_51)
@@ -9862,7 +9457,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(112,112,112);\n"
 "	background-color: rgb(112,112,112);\n"
 "}")
-        self.pushButton_50.setIcon(icon21)
+        self.pushButton_50.setIcon(icon20)
         self.pushButton_50.setIconSize(QSize(53, 40))
 
         self.verticalLayout_25.addWidget(self.pushButton_50)
@@ -11322,12 +10917,12 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(29)
         self.stackedWidget_3.setCurrentIndex(0)
-        self.stackedWidget_2.setCurrentIndex(4)
+        self.stackedWidget_2.setCurrentIndex(3)
         self.stackedWidget_5.setCurrentIndex(0)
         self.stackedwidget_3.setCurrentIndex(4)
-        self.stackedWidget_4.setCurrentIndex(0)
+        self.stackedWidget_4.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -11344,7 +10939,6 @@ class Ui_MainWindow(object):
         self.btn_new.setText(QCoreApplication.translate("MainWindow", u"Stock", None))
         self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Accounts", None))
         self.btn_exit.setText(QCoreApplication.translate("MainWindow", u"Sale", None))
-        self.btn_widgets_2.setText(QCoreApplication.translate("MainWindow", u"Transactions", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Orders", None))
         self.client_btn_2.setText(QCoreApplication.translate("MainWindow", u"Clients", None))
         self.pushButton_37.setText(QCoreApplication.translate("MainWindow", u"Charts", None))
@@ -11369,7 +10963,6 @@ class Ui_MainWindow(object):
         self.label_28.setText("")
         self.titleRightInfo.setText("")
         self.pushButton_26.setText(QCoreApplication.translate("MainWindow", u"refresh", None))
-        self.pushButton_129.setText(QCoreApplication.translate("MainWindow", u"Navigator", None))
 #if QT_CONFIG(tooltip)
         self.settingsTopBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Settings", None))
 #endif // QT_CONFIG(tooltip)
@@ -11869,9 +11462,13 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem104.setText(QCoreApplication.translate("MainWindow", u"Actions", None));
         self.pushButton_112.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.pushButton_113.setText(QCoreApplication.translate("MainWindow", u"New Transaction", None))
+        self.label_132.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" color:#afafaf;\">Paid Amount</span></p></body></html>", None))
+        self.label_133.setText("")
         self.pushButton_7.setText("")
         self.dateEdit_3.setDisplayFormat(QCoreApplication.translate("MainWindow", u"M/d/yyyy", None))
-        self.label_133.setText("")
+        self.pushButton_13.setText("")
+        self.label_130.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" color:#cccccc;\">Payment Date</span></p></body></html>", None))
+        self.label_129.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#bfbfbf;\">Payment of Order:</span></p></body></html>", None))
         ___qtablewidgetitem105 = self.tableWidget_12.horizontalHeaderItem(0)
         ___qtablewidgetitem105.setText(QCoreApplication.translate("MainWindow", u"Code", None));
         ___qtablewidgetitem106 = self.tableWidget_12.horizontalHeaderItem(1)
@@ -11882,10 +11479,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem108.setText(QCoreApplication.translate("MainWindow", u"Paid", None));
         ___qtablewidgetitem109 = self.tableWidget_12.horizontalHeaderItem(4)
         ___qtablewidgetitem109.setText(QCoreApplication.translate("MainWindow", u"Due", None));
-        self.label_132.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" color:#afafaf;\">Paid Amount</span></p></body></html>", None))
-        self.label_130.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" color:#cccccc;\">Order Date</span></p></body></html>", None))
-        self.label_129.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:700; color:#bfbfbf;\">Payment of Order:</span></p></body></html>", None))
-        self.pushButton_13.setText("")
+        self.label_112.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Amount Due:</span></p></body></html>", None))
+        self.label_404.setText("")
         self.pushButton_73.setText("")
         ___qtablewidgetitem110 = self.tableWidget_23.horizontalHeaderItem(0)
         ___qtablewidgetitem110.setText(QCoreApplication.translate("MainWindow", u"Code", None));
@@ -11931,22 +11526,21 @@ class Ui_MainWindow(object):
         self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"sales return", None))
         self.pushButton_17.setText(QCoreApplication.translate("MainWindow", u"profit & loss", None))
         self.pushButton_19.setText(QCoreApplication.translate("MainWindow", u"orders", None))
-        self.pushButton_28.setText(QCoreApplication.translate("MainWindow", u"General ledger", None))
+        self.pushButton_28.setText(QCoreApplication.translate("MainWindow", u"Trial balance", None))
         self.pushButton_29.setText(QCoreApplication.translate("MainWindow", u"Balance sheet", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"sales", None))
         self.pushButton_30.setText(QCoreApplication.translate("MainWindow", u"Stock", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;\">Reports</span></p></body></html>", None))
+        self.pushButton_9.setText("")
         self.label_120.setText(QCoreApplication.translate("MainWindow", u"From:", None))
         self.label_81.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">Profit &amp; Loss</span></p></body></html>", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
         ___qtreewidgetitem.setText(2, QCoreApplication.translate("MainWindow", u"Total", None));
         ___qtreewidgetitem.setText(1, QCoreApplication.translate("MainWindow", u"Amount", None));
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"name", None));
-        self.pushButton_64.setText("")
         self.label_53.setText(QCoreApplication.translate("MainWindow", u"To:", None))
-        self.pushButton_9.setText("")
-        self.pushButton_96.setText(QCoreApplication.translate("MainWindow", u"Week", None))
-        self.pushButton_97.setText(QCoreApplication.translate("MainWindow", u"Month", None))
+        self.label_128.setText(QCoreApplication.translate("MainWindow", u"From:", None))
+        self.label_102.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">sales returns</span></p></body></html>", None))
         ___qtablewidgetitem124 = self.tableWidget_10.horizontalHeaderItem(0)
         ___qtablewidgetitem124.setText(QCoreApplication.translate("MainWindow", u"name ", None));
         ___qtablewidgetitem125 = self.tableWidget_10.horizontalHeaderItem(1)
@@ -11957,17 +11551,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem127.setText(QCoreApplication.translate("MainWindow", u"Tx type", None));
         ___qtablewidgetitem128 = self.tableWidget_10.horizontalHeaderItem(4)
         ___qtablewidgetitem128.setText(QCoreApplication.translate("MainWindow", u"Return date", None));
-        self.label_102.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">sales returns</span></p></body></html>", None))
-        self.label_122.setText(QCoreApplication.translate("MainWindow", u"To:", None))
-        self.label_128.setText(QCoreApplication.translate("MainWindow", u"From:", None))
-        self.pushButton_65.setText("")
         self.pushButton_42.setText("")
-        self.pushButton_92.setText(QCoreApplication.translate("MainWindow", u"Today", None))
-        self.pushButton_93.setText(QCoreApplication.translate("MainWindow", u"Week", None))
-        self.pushButton_94.setText(QCoreApplication.translate("MainWindow", u"Month", None))
-        self.label_183.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">stock</span></p></body></html>", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"From", None))
-        self.label_40.setText(QCoreApplication.translate("MainWindow", u"To:", None))
+        self.label_122.setText(QCoreApplication.translate("MainWindow", u"To:", None))
         ___qtablewidgetitem129 = self.tableWidget_19.horizontalHeaderItem(0)
         ___qtablewidgetitem129.setText(QCoreApplication.translate("MainWindow", u"UPC", None));
         ___qtablewidgetitem130 = self.tableWidget_19.horizontalHeaderItem(1)
@@ -11983,74 +11568,62 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem135 = self.tableWidget_19.horizontalHeaderItem(6)
         ___qtablewidgetitem135.setText(QCoreApplication.translate("MainWindow", u"Category", None));
         ___qtablewidgetitem136 = self.tableWidget_19.horizontalHeaderItem(7)
-        ___qtablewidgetitem136.setText(QCoreApplication.translate("MainWindow", u"Vat", None));
+        ___qtablewidgetitem136.setText(QCoreApplication.translate("MainWindow", u"Reoder Limit", None));
         ___qtablewidgetitem137 = self.tableWidget_19.horizontalHeaderItem(8)
-        ___qtablewidgetitem137.setText(QCoreApplication.translate("MainWindow", u"Date", None));
+        ___qtablewidgetitem137.setText(QCoreApplication.translate("MainWindow", u"Vat", None));
+        ___qtablewidgetitem138 = self.tableWidget_19.horizontalHeaderItem(9)
+        ___qtablewidgetitem138.setText(QCoreApplication.translate("MainWindow", u"Date", None));
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"From", None))
         self.pushButton_34.setText("")
-        self.pushButton_59.setText("")
-        self.pushButton_43.setText(QCoreApplication.translate("MainWindow", u"Today", None))
-        self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"Week", None))
-        self.pushButton_38.setText(QCoreApplication.translate("MainWindow", u"Month", None))
-        ___qtablewidgetitem138 = self.tableWidget_20.horizontalHeaderItem(0)
-        ___qtablewidgetitem138.setText(QCoreApplication.translate("MainWindow", u"Sale No.", None));
-        ___qtablewidgetitem139 = self.tableWidget_20.horizontalHeaderItem(1)
-        ___qtablewidgetitem139.setText(QCoreApplication.translate("MainWindow", u"UPC", None));
-        ___qtablewidgetitem140 = self.tableWidget_20.horizontalHeaderItem(2)
-        ___qtablewidgetitem140.setText(QCoreApplication.translate("MainWindow", u"Name", None));
-        ___qtablewidgetitem141 = self.tableWidget_20.horizontalHeaderItem(3)
-        ___qtablewidgetitem141.setText(QCoreApplication.translate("MainWindow", u"Category", None));
-        ___qtablewidgetitem142 = self.tableWidget_20.horizontalHeaderItem(4)
-        ___qtablewidgetitem142.setText(QCoreApplication.translate("MainWindow", u"Quantity", None));
-        ___qtablewidgetitem143 = self.tableWidget_20.horizontalHeaderItem(5)
-        ___qtablewidgetitem143.setText(QCoreApplication.translate("MainWindow", u"KSH ", None));
-        ___qtablewidgetitem144 = self.tableWidget_20.horizontalHeaderItem(6)
-        ___qtablewidgetitem144.setText(QCoreApplication.translate("MainWindow", u" VAT ", None));
-        ___qtablewidgetitem145 = self.tableWidget_20.horizontalHeaderItem(7)
-        ___qtablewidgetitem145.setText(QCoreApplication.translate("MainWindow", u" totalvat", None));
-        ___qtablewidgetitem146 = self.tableWidget_20.horizontalHeaderItem(8)
-        ___qtablewidgetitem146.setText(QCoreApplication.translate("MainWindow", u"taxcode", None));
-        ___qtablewidgetitem147 = self.tableWidget_20.horizontalHeaderItem(9)
-        ___qtablewidgetitem147.setText(QCoreApplication.translate("MainWindow", u"sale date", None));
-        self.pushButton_56.setText("")
+        self.label_183.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">stock</span></p></body></html>", None))
+        self.label_40.setText(QCoreApplication.translate("MainWindow", u"To:", None))
         self.label_41.setText(QCoreApplication.translate("MainWindow", u"From:", None))
-        self.pushButton_60.setText("")
         self.label_185.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">sales</span></p></body></html>", None))
+        ___qtablewidgetitem139 = self.tableWidget_20.horizontalHeaderItem(0)
+        ___qtablewidgetitem139.setText(QCoreApplication.translate("MainWindow", u"Sale No.", None));
+        ___qtablewidgetitem140 = self.tableWidget_20.horizontalHeaderItem(1)
+        ___qtablewidgetitem140.setText(QCoreApplication.translate("MainWindow", u"UPC", None));
+        ___qtablewidgetitem141 = self.tableWidget_20.horizontalHeaderItem(2)
+        ___qtablewidgetitem141.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem142 = self.tableWidget_20.horizontalHeaderItem(3)
+        ___qtablewidgetitem142.setText(QCoreApplication.translate("MainWindow", u"Category", None));
+        ___qtablewidgetitem143 = self.tableWidget_20.horizontalHeaderItem(4)
+        ___qtablewidgetitem143.setText(QCoreApplication.translate("MainWindow", u"Quantity", None));
+        ___qtablewidgetitem144 = self.tableWidget_20.horizontalHeaderItem(5)
+        ___qtablewidgetitem144.setText(QCoreApplication.translate("MainWindow", u"KSH ", None));
+        ___qtablewidgetitem145 = self.tableWidget_20.horizontalHeaderItem(6)
+        ___qtablewidgetitem145.setText(QCoreApplication.translate("MainWindow", u" VAT ", None));
+        ___qtablewidgetitem146 = self.tableWidget_20.horizontalHeaderItem(7)
+        ___qtablewidgetitem146.setText(QCoreApplication.translate("MainWindow", u" totalvat", None));
+        ___qtablewidgetitem147 = self.tableWidget_20.horizontalHeaderItem(8)
+        ___qtablewidgetitem147.setText(QCoreApplication.translate("MainWindow", u"taxcode", None));
+        ___qtablewidgetitem148 = self.tableWidget_20.horizontalHeaderItem(9)
+        ___qtablewidgetitem148.setText(QCoreApplication.translate("MainWindow", u"sale date", None));
+        self.pushButton_56.setText("")
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"To:", None))
-        self.pushButton_66.setText(QCoreApplication.translate("MainWindow", u"Today", None))
-        self.pushButton_84.setText(QCoreApplication.translate("MainWindow", u"Week", None))
-        self.pushButton_85.setText(QCoreApplication.translate("MainWindow", u"Month", None))
-        self.label_229.setText(QCoreApplication.translate("MainWindow", u"credit", None))
-        self.pushButton_61.setText("")
-        self.label_231.setText("")
+        self.label_186.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">Trial Balance</span></p></body></html>", None))
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"From:", None))
-        self.pushButton_57.setText("")
-        self.label_227.setText(QCoreApplication.translate("MainWindow", u"debit", None))
-        ___qtablewidgetitem148 = self.tableWidget_21.horizontalHeaderItem(0)
-        ___qtablewidgetitem148.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem149 = self.tableWidget_21.horizontalHeaderItem(1)
-        ___qtablewidgetitem149.setText(QCoreApplication.translate("MainWindow", u"name ", None));
-        ___qtablewidgetitem150 = self.tableWidget_21.horizontalHeaderItem(2)
-        ___qtablewidgetitem150.setText(QCoreApplication.translate("MainWindow", u"KSH", None));
-        ___qtablewidgetitem151 = self.tableWidget_21.horizontalHeaderItem(3)
-        ___qtablewidgetitem151.setText(QCoreApplication.translate("MainWindow", u"description ", None));
-        ___qtablewidgetitem152 = self.tableWidget_21.horizontalHeaderItem(4)
-        ___qtablewidgetitem152.setText(QCoreApplication.translate("MainWindow", u"debit ", None));
-        ___qtablewidgetitem153 = self.tableWidget_21.horizontalHeaderItem(5)
-        ___qtablewidgetitem153.setText(QCoreApplication.translate("MainWindow", u"credit", None));
-        ___qtablewidgetitem154 = self.tableWidget_21.horizontalHeaderItem(6)
-        ___qtablewidgetitem154.setText(QCoreApplication.translate("MainWindow", u"ledgerdate ", None));
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"To:", None))
-        self.label_186.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">General Ledger</span></p></body></html>", None))
+        self.pushButton_57.setText("")
+        ___qtablewidgetitem149 = self.tableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem149.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem150 = self.tableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem150.setText(QCoreApplication.translate("MainWindow", u"KSH", None));
+        ___qtablewidgetitem151 = self.tableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem151.setText(QCoreApplication.translate("MainWindow", u"date", None));
+        ___qtablewidgetitem152 = self.tableWidget_21.horizontalHeaderItem(0)
+        ___qtablewidgetitem152.setText(QCoreApplication.translate("MainWindow", u"name ", None));
+        ___qtablewidgetitem153 = self.tableWidget_21.horizontalHeaderItem(1)
+        ___qtablewidgetitem153.setText(QCoreApplication.translate("MainWindow", u"KSH", None));
+        ___qtablewidgetitem154 = self.tableWidget_21.horizontalHeaderItem(2)
+        ___qtablewidgetitem154.setText(QCoreApplication.translate("MainWindow", u"date", None));
+        self.label_227.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Dr</span></p></body></html>", None))
+        self.label_229.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Cr</span></p></body></html>", None))
         self.label_228.setText("")
         self.label_230.setText("")
-        self.pushButton_86.setText(QCoreApplication.translate("MainWindow", u"Today", None))
-        self.pushButton_87.setText(QCoreApplication.translate("MainWindow", u"Week", None))
-        self.pushButton_88.setText(QCoreApplication.translate("MainWindow", u"Month", None))
-        self.pushButton_58.setText("")
-        self.pushButton_62.setText("")
-        self.label_189.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">Orders</span></p></body></html>", None))
-        self.label_190.setText(QCoreApplication.translate("MainWindow", u"From:", None))
+        self.label_231.setText("")
         self.label_188.setText(QCoreApplication.translate("MainWindow", u"To:", None))
+        self.pushButton_58.setText("")
         ___qtablewidgetitem155 = self.tableWidget_22.horizontalHeaderItem(0)
         ___qtablewidgetitem155.setText(QCoreApplication.translate("MainWindow", u"Code", None));
         ___qtablewidgetitem156 = self.tableWidget_22.horizontalHeaderItem(1)
@@ -12065,9 +11638,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem160.setText(QCoreApplication.translate("MainWindow", u"Order date", None));
         ___qtablewidgetitem161 = self.tableWidget_22.horizontalHeaderItem(6)
         ___qtablewidgetitem161.setText(QCoreApplication.translate("MainWindow", u"Due", None));
-        self.pushButton_89.setText(QCoreApplication.translate("MainWindow", u"Today", None))
-        self.pushButton_90.setText(QCoreApplication.translate("MainWindow", u"Week", None))
-        self.pushButton_91.setText(QCoreApplication.translate("MainWindow", u"Month", None))
+        self.label_190.setText(QCoreApplication.translate("MainWindow", u"From:", None))
+        self.label_189.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:26pt;\">Orders</span></p></body></html>", None))
         self.label_173.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; color:#ffffff;\">ASSETS</span></p></body></html>", None))
         self.label_180.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#787878;\">current assets</span></p></body></html>", None))
         self.label_211.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600; color:#787878;\">fixed assets</span></p></body></html>", None))
@@ -12175,10 +11747,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem182 = self.tableWidget_16.horizontalHeaderItem(7)
         ___qtablewidgetitem182.setText(QCoreApplication.translate("MainWindow", u"Remove", None));
         self.label_123.setText("")
-        self.lineEdit_13.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_125.setText(QCoreApplication.translate("MainWindow", u"payment status", None))
         self.label_113.setText(QCoreApplication.translate("MainWindow", u"Grand total", None))
-        self.label_112.setText(QCoreApplication.translate("MainWindow", u"Discount", None))
         self.label_124.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Total</p></body></html>", None))
         self.label_116.setText(QCoreApplication.translate("MainWindow", u"payment type", None))
         self.label_114.setText("")

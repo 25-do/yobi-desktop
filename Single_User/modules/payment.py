@@ -34,7 +34,7 @@ def get_selected_row_details(self):
     ledger_uuid = (''.join(map(str, ledger_uuid)))
 
     paid = float(str(self.ui.lineEdit_17.text()))
-    due = (due_orders - paid)
+    due = round(due_orders - paid, 2)
 
     qdate = self.ui.dateEdit_3.date()
     order_date = qdate.toPython()
@@ -1026,6 +1026,7 @@ def add_coa(self):
                 (4550, 'revenue', 'Shipping  Charges Reimbbursed', 'credit', 0, 1),
                 (4800, 'revenue', 'Sales Returns and Allowances', 'credit', 0, 1),
                 (4900, 'revenue', 'Sales Discounts', 'credit', 0, 1),]
+                #sudo101@PC
                 
         self.c.executemany("INSERT INTO chart_of_accounts VALUES (?,?,?,?,?,?)", rows)
         self.connection.commit()

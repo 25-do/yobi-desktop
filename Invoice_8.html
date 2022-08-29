@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Head -->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Customer Invoice" />
+        <meta name="keywords" content="invoice template" />
+        <meta name="robots" content="index,follow" />
+        <meta name="author" content="John Smith" />
+    <style>
+    /*
+     * Central Element
+     */
+    #central_element {
+        border: solid grey 2px;
+        border-radius: 10px;
+        font-size: 12px;
+        margin: 30px auto;
+        text-align: center;
+        width: 800px;
+    }
+
+    /*
+     * Header Styles
+     */
+    #invoice_header {
+        height: 160px;
+        width: 800px;
+    }
+    
+    #invoice_header #logo {
+        height: 65px;
+        width: 200px;
+    }
+    
+    #invoice_header #invoice_image_area {
+        height: 75px;
+        padding: 10px 10px 0px 10px;
+        text-align: left;
+        width: 800px;
+    }
+    
+    #invoice_header #invoice_text_area {
+        height: 80px;
+        padding: 0px 10px 10px 15px;
+        text-align: left;
+        width: 800px;
+    }
+    
+    #invoice_header #invoice_text_area #company_name {
+        padding-bottom: 15px;
+    }
+    
+    #invoice_header #invoice_text_area #company_details td {
+        width: 220px;
+    }
+
+    /*
+     * Customer Information
+     */
+    #customer_and_order_information {
+        height: 125px;
+        padding: 10px 10px 10px 10px;
+        text-align: left;
+        width: 800px;
+    }
+    
+    #customer_and_order_information #customer_info {
+        float: left;
+        width: 400px;
+    }
+    
+    #customer_and_order_information #order_info {
+        float: right;
+        width: 400px;
+    }
+
+    /*
+     * Order Details
+     */
+    #order_details {
+        padding: 10px 10px 10px 10px;
+        text-align: left;
+        width: 800px;
+    }
+    
+    #order_details_table {
+        border-collapse: collapse;
+    }
+    
+    #order_details_table td,
+    #order_details_table th {
+        padding: 5px;
+    }
+    
+    #order_details_table .requested_service_column {
+        width: 501px;
+    }
+    #order_details_table .hours_column {
+        width: 60px;
+    }
+    #order_details_table .hour_rate_column {
+        width: 100px;
+    }
+    #order_details_table .cost_column {
+        width: 80px;
+    }
+    #order_details_table .odd {
+        background-color: white;
+    }
+    #order_details_table .even {
+        background-color: #cbdaf1;
+    }
+    #order_details_table .align_dollars {
+        padding-right: 10px;
+        text-align: right;
+    }
+
+    /*
+     * Message Centre
+     */
+    #message_content {
+        padding: 10px 10px 10px 10px;
+        text-align: left;
+        width: 800px;
+    }
+
+    /*
+     * Thank You
+     */
+    #thank_you {
+        height: 20px;
+        font-style: italic;
+        width: 800px;
+    }
+    </style>
+        <title>Customer Invoice</title>
+    </head>
+    <body>
+        <div id="central_element">
+             <!-- Document Header -->
+             <div id="invoice_header">
+                 <div id="invoice_text_area">
+                     <div id="company_name">
+                     AVALANCHE
+                     </div>
+                     <table id="company_details">
+                         <tr>
+                             <td>
+                               66464-383
+                             </td>
+                             <td>
+                               AVALANCHE@AVALANCHE..com
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                               Nakuru, kenya
+                             </td>
+                             <td>
+                               +37448484
+                             </td>
+                         </tr>
+                     </table>
+                 </div>
+             </div>
+             <hr />
+             <!-- Customer & Order Information Section -->
+             <div id="customer_and_order_information">
+                 <!-- Customer Information -->
+                 <div id="customer_info">
+                     <table>
+                         <tr>
+                             <th>
+                               Customer Information
+                             </th>
+                             <th>
+                             </th>
+                         </tr>
+                         <!-- Buffer -->
+                         <tr>
+                             <td>&nbsp;</td>
+                             <td>&nbsp;</td>
+                         </tr>
+                         <!-- Client Name -->
+                         <tr>
+                             <td>Name:</td>
+                             <td>eric</td>
+                         </tr>
+                         <!-- Street Address -->
+                         <tr>
+                             <td>Address:</td>
+                             <td>nairobi</td>
+                         </tr>
+                         <!-- City, Province/State, Country -->
+                         <tr>
+                             <td>&nbsp;</td>
+                             <td>67788</td>
+                         </tr>
+                         <!-- Postal Code -->
+                         <tr>
+                             <td>&nbsp;</td>
+                             <td>eric@gmail.co</td>
+                         </tr>
+                         <!-- Account Number is just a number -->
+                         <tr>
+                             <td>Account Number:</td>
+                             <td> </td>
+                         </tr>
+                     </table>
+                 </div>
+                 <!-- Order Information -->
+                 <div id="order_info">
+                     <table>
+                         <tr>
+                             <th>
+                               Order Information
+                             </th>
+                             <th>&nbsp;</th>
+                         </tr>
+                         <!-- Buffer -->
+                         <tr>
+                             <td>&nbsp;</td>
+                             <td>&nbsp;</td>
+                         </tr>
+                         <!-- Order Number is timestamp -->
+                         <tr>
+                             <td>Number:</td>
+                             <td></td>
+                         </tr>
+                         <!-- Order Date -->
+                         <tr>
+                             <td>Date:</td>
+                             <td>2022-08-28</td>
+                         </tr>
+                         <!-- Order Payment Method -->
+                         <tr>
+                             <td>Method:</td>
+                             <td>Electronic Deposit</td>
+                         </tr>
+                     </table>
+                 </div>
+             </div>
+             <hr />
+             <!-- Order Details Section -->
+             <div id="order_details">
+                 <!-- Main Table of Supplied Goods and Services -->
+                 <table id="order_details_table">
+                     <tr>
+                         <th class="requested_service_column">
+                             ITEM DESCRIPTION
+                         </th>
+                         <th class="hours_column">
+                             QUA
+                         </th>
+                         <th class="hour_rate_column">
+                             TOTAL
+                         </th>
+                         <th class="cost_column">
+                             Amount
+                         </th>
+                     </tr>
+                     <tr class="odd">
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                     </tr>
+                     <tr class="even">
+                         <td>books</td>
+                         <td>1</td>
+                         <td>70.00</td>
+                         <td class="align_dollars">$70.00</td>
+                     </tr>
+                     <tr class="odd">
+                         <td>books</td>
+                         <td>1</td>
+                         <td>70.00</td>
+                         <td class="align_dollars">$70.00</td>
+                     </tr>
+                     <!-- Buffer Rows -->
+                     <tr class="even">
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                     </tr>
+                     <!-- Buffer Rows -->
+                     <tr class="odd">
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                     </tr>
+                     <!-- Buffer Rows -->
+                     <tr class="even">
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                     </tr>
+                     <!-- Buffer Rows -->
+                     <tr class="odd">
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                     </tr>
+                     <!-- Buffer Rows -->
+                     <tr class="even">
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                     </tr>
+                     <!-- Buffer Separator -->
+                     <tr class="odd">
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                     </tr>
+                     <!-- Cost Summary Before Tax -->
+                     <tr class="odd">
+                         <th>
+                             &nbsp;
+                         </th>
+                         <th>
+                             &nbsp;
+                         </th>
+                         <th>
+                            Summary
+                         </th>
+                         <th class="align_dollars">
+$140.00
+                         </th>
+                     </tr>
+                     <!-- Taxes -->
+                     <tr class="odd">
+                         <th>
+                             &nbsp;
+                         </th>
+                         <th>
+                             &nbsp;
+                         </th>
+                         <th>
+                            Tax
+                         </th>
+                         <th class="align_dollars">
+$156.80
+                         </th>
+                     </tr>
+                     <!-- Total -->
+                     <tr class="odd">
+                         <th>
+                             &nbsp;
+                         </th>
+                         <th>
+                             &nbsp;
+                         </th>
+                         <th>
+                            Total
+                         </th>
+                         <th class="align_dollars">
+$163.52
+                         </th>
+                     </tr>
+                 </table>
+             </div>
+             <hr />
+             <!-- Additional message content -->
+             <div id="message_content">
+                 <table>
+                     <tr>
+                         <th>Notes</th>
+                     </tr>
+                     <tr>
+                         <td>
+                           AVALANCHEAVALANCHEAVALANCHEAVALANCHE
+                         <td>
+                     </tr>
+                 </table>
+             </div>
+             <hr />
+             <!-- Thank you message -->
+             <div id="thank_you">
+                 <strong>
+                   AVALANCHEAVALANCHEAVALANCHEAVALANCHE
+                 </strong>
+             </div>
+        </div>
+    </body>
+</html>
