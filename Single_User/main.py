@@ -3,6 +3,7 @@
 ##############################################################################
 import json
 # import asyncio
+import traceback
 import logging
 import random
 import re
@@ -17,13 +18,12 @@ import hashlib
 from datetime import datetime as dt
 from datetime import date, timedelta
 import babel.numbers
-from numpy import who
 import requests
 import decimal
 from PySide6 import QtCore, QtGui, QtWidgets, QtPrintSupport
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QTableWidgetItem, QMessageBox, QLineEdit, QVBoxLayout
-from modules import charts, search_table
+from modules import charts
 from modules.frontend.ui_add_ledger import Ui_Dialog_Add_Ledger
 from modules.frontend.ui_bizdetail import Ui_Dialog10
 from modules.frontend.ui_uom import Ui_UOM
@@ -174,12 +174,13 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_3.clicked.connect(self.buttonClick)
         self.ui.pushButton_30.clicked.connect(self.buttonClick)
         self.ui.pushButton_37.clicked.connect(self.buttonClick)
-        self.ui.btn_widgets_2.clicked.connect(self.buttonClick)
+        # self.ui.btn_widgets_2.clicked.connect(self.buttonClick)
+        self.ui.pushButton_127.clicked.connect(self.buttonClick)
         # self.ui.pushButton_127.clicked.connect(self.buttonClick)
         self.ui.btn_logout.clicked.connect(self.buttonClick)
         # self.ui.pushButton_144.clicked.connect(self.buttonClick)
         # self.ui.pushButton_145.clicked.connect(self.buttonClick)
-        self.ui.pushButton_129.clicked.connect(self.buttonClick)
+        # self.ui.pushButton_129.clicked.connect(self.buttonClick)
         self.ui.pushButton_149.clicked.connect(self.buttonClick)
         self.ui.pushButton_63.clicked.connect(self.buttonClick)
         self.ui.pushButton_131.clicked.connect(self.buttonClick)
@@ -195,6 +196,9 @@ class MainWindow(QMainWindow):
         self.ui.ledgers_btn.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_32))
+        self.ui.pushButton_172.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_32))
         self.ui.pushButton_13.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_3))
@@ -206,6 +210,9 @@ class MainWindow(QMainWindow):
                 self.ui.page_28))
     
         self.ui.pushButton.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_3))
+        self.ui.pushButton_144.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_3))
         self.ui.pushButton_69.clicked.connect(
@@ -221,7 +228,13 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_36.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_34))
+        self.ui.pushButton_145.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_34))
         self.ui.pushButton_101.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_37))
+        self.ui.pushButton_171.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_37))
         self.ui.pushButton_82.clicked.connect(
@@ -267,6 +280,10 @@ class MainWindow(QMainWindow):
             lambda: self.ui.stackedWidget.setCurrentWidget(
                 self.ui.page_2))
         self.ui.pushButton_11.clicked.connect(self.delete)
+
+        self.ui.pushButton_105.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentWidget(
+                self.ui.page_21))
  
         self.ui.client_btn.clicked.connect(insert11)
         self.ui.pushButton_2.clicked.connect(insert11)
@@ -366,7 +383,6 @@ class MainWindow(QMainWindow):
         self.gross_profit()
         self.net_profit()
         self.sales_repo()
-        self.sales_btn()
         self.load_ledgers()
         self.addrow()
         self.pay_supplier_button()
@@ -473,7 +489,7 @@ class MainWindow(QMainWindow):
         'Financing',
         'Investing',
         'other'])
-        self.export_table_orders_btn()
+        # self.export_table_orders_btn()
         self.refersh_everything()
         self.clientbtn()
         self.income()
@@ -622,6 +638,14 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(
                 UIFunctions.selectMenu(
                     btn.styleSheet()))  # SELECT MENU
+        if btnName == "pushButton_127":
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_4)  # SET PAGE
+            self.clientdata()
+            # RESET ANOTHERS BUTTONS SELECTED
+            UIFunctions.resetStyle(self, btnName)
+            btn.setStyleSheet(
+                UIFunctions.selectMenu(
+                    btn.styleSheet()))  # SELECT MENU
         if btnName == "pushButton":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_3)  # SET PAGE
             # RESET ANOTHERS BUTTONS SELECTED
@@ -743,6 +767,7 @@ class MainWindow(QMainWindow):
                 'current liability is edited successfully to the database.')
             self.close()
         except Exception:
+            traceback.print_exc()
             QMessageBox.warning(QMessageBox(), 'Error', 'Could not edit.')
 
     def inventory_purchase_reload(self):
@@ -769,7 +794,7 @@ class MainWindow(QMainWindow):
             res = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", ("revenue", "credit")).fetchone()
             res = (''.join(map(str, res)))
             if res == str(None):
-                res = 0.0
+                res = 0.00
             else:
                 res = float(''.join(map(str, res)))
             items = babel.numbers.format_currency(
@@ -780,7 +805,7 @@ class MainWindow(QMainWindow):
             self.ui.label_194.setStyleSheet(
                 "QLabel { color : rgb(203, 203, 203); }")
         except Exception:
-            print("labels income")
+            traceback.print_exc()
 
     def openbtn(self):
         self.ui.pushButton_43.clicked.connect(self.openimage)
@@ -841,9 +866,6 @@ class MainWindow(QMainWindow):
     def sales_repo(self):
         self.ui.pushButton_56.clicked.connect(self.sale_rep)
 
-    def sales_btn(self):
-        self.ui.pushButton_60.clicked.connect(self.sales_print)
-
     def stock_report_btn(self):
         self.ui.pushButton_34.clicked.connect(self.stock_report)
     def department_btn(self):
@@ -864,8 +886,6 @@ class MainWindow(QMainWindow):
     def add_employee_btn(self):
         self.ui.pushButton_133.clicked.connect(self.add_employee)
 
-    def export_table_orders_btn(self):
-        self.ui.pushButton_62.clicked.connect(self.export_table_order)
 
     def sales_return_repo(self):
         accounts.salereturns_report(self)
@@ -878,12 +898,6 @@ class MainWindow(QMainWindow):
 
     def sale_rep(self):
         accounts.sales_reports(self)
-
-    def sales_print(self):
-        accounts.export_table_sales(self)
-
-    def export_table_order(self):
-        accounts.export_table_orders(self)
 
     def stock_report(self):
         accounts.stock_reports(self)
@@ -1219,7 +1233,7 @@ class MainWindow(QMainWindow):
                     self.ui.tableWidget_37.setCellWidget(row_number, 5, btn)
                     btn.clicked.connect(self.update_tx_page)
         except Exception:
-            print("transactions loading")
+            traceback.print_exc()
 
     def jouranal_add_transaction(self):
         try:
@@ -1260,6 +1274,7 @@ class MainWindow(QMainWindow):
             QMessageBox.information(QMessageBox(),'Successfull', "Transaction added Successfully")
             self.jouranal_entry_transaction()
         except Exception:
+            traceback.print_exc()
             print(Exception)
             QMessageBox.warning(
                 QMessageBox(),
@@ -1368,19 +1383,19 @@ class MainWindow(QMainWindow):
                 "SELECT telno FROM clients WHERE name=? ", (c_n,)).fetchone()
             tel = (''.join(map(str, tel)))
         except Exception:
-            print(f"client error")
+            traceback.print_exc()
         try:
             addr = cusr.execute(
                 "SELECT address FROM clients WHERE name=? ", (c_n,)).fetchone()
             addr = (''.join(map(str, addr)))
         except Exception:
-            print(f"client error")
+            traceback.print_exc()
         try:
             e_addr = cusr.execute(
                 "SELECT email FROM clients WHERE name=? ", (c_n,)).fetchone()
             e_addr = (''.join(map(str, e_addr)))
         except Exception:
-            print(f"client error")
+            traceback.print_exc()
         t_a_k = babel.numbers.format_currency(decimal.Decimal(t_a), cash_label)
         s_b_k = babel.numbers.format_currency(decimal.Decimal(s_b), cash_label)
         d_u_k = babel.numbers.format_currency(decimal.Decimal(d_u), cash_label)
@@ -1497,7 +1512,7 @@ class MainWindow(QMainWindow):
                 'Successful',
                 'deleted transaction.')
         except Exception:
-            print("deleted trans")
+            traceback.print_exc()
 
 
     def delete_supplier(self):
@@ -1875,9 +1890,18 @@ class MainWindow(QMainWindow):
         database_connection = sqlite3.connect(
             pathtodb + "\\yobi\\yobi_database.db")
         cusr = database_connection.cursor()
+        amount_due = cusr.execute(
+            "SELECT due FROM orders WHERE code=?", (currentcode,)).fetchone()
+        amount_due = (''.join(map(str, amount_due)))
         result = cusr.execute(
             "SELECT * FROM payment WHERE code=?", (currentcode,)).fetchall()
+        d_u_k = babel.numbers.format_currency(decimal.Decimal(amount_due), cash_label)
+        self.ui.label_404.setText(str(d_u_k))
+        self.ui.label_404.setFont(QFont("Times", 15))
+        self.ui.label_133.setText(str(currentcode))
+        self.ui.label_133.setFont(QFont("Times", 15))
         self.ui.tableWidget_12.setRowCount(0)
+
         for row_number, row_data in enumerate(result):
             self.ui.tableWidget_12.insertRow(row_number)
             for column_number, data in enumerate(row_data):
@@ -1994,32 +2018,32 @@ class MainWindow(QMainWindow):
         total_income = self.c.execute(
             "SELECT SUM(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
-             oyrder_date2, "revenue", "credit")).fetchone()
+             order_date2, "revenue", "credit")).fetchone()
         total_income = (''.join(map(str, total_income)))
         alltb = (''.join(map(str, alltb)))
         if alltb == str(None):
-            alltb = 0
+            alltb = 0.00
         else:
-            alltb = float(''.join(map(str, alltb)))
+            alltb = round(float(''.join(map(str, alltb))), 2)
         if total_income == str(None):
-            total_income = 0
+            total_income = 0.00
         else:
-            total_income = (''.join(map(str, total_income)))
+            total_income = round(float(''.join(map(str, total_income))), 2)
         gross_profit = (total_income - alltb)
         total_revenue = (total_income)
         total_fix_expe = cusr.execute(
             "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
             order_date2,
-            "fixedexpenses"
+            "fixedexpenses",
             "debit"
             )).fetchone()
         total_fix_expe = (''.join(map(str, total_fix_expe)))
         
         if total_fix_expe == str(None):
-            total_fix_expe = 0
+            total_fix_expe = 0.00
         else:
-            total_fix_expe = float(''.join(map(str, total_fix_expe)))
+            total_fix_expe = round(float(''.join(map(str, total_fix_expe))), 2)
         var_a = cusr.execute(
             "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
             (order_date,
@@ -2029,9 +2053,9 @@ class MainWindow(QMainWindow):
             )).fetchone()
         var_a = (''.join(map(str, var_a)))
         if var_a == str(None):
-            var_a = 0
+            var_a = 0.00
         else:
-            var_a = float(''.join(map(str, var_a)))
+            var_a = round(float(''.join(map(str, var_a))), 2)
 
         var_b = cusr.execute(
             "SELECT sum(KSH) FROM transactions WHERE transactionsdate BETWEEN ? AND ? AND coa_id=? AND tx_type=?",
@@ -2042,7 +2066,7 @@ class MainWindow(QMainWindow):
             )).fetchone()
         var_b = (''.join(map(str, var_b)))
         if var_b == str(None):
-            var_b = 0
+            var_b = 0.00
         else:
             var_b = float(''.join(map(str, var_b)))
         var_l = cusr.execute(
@@ -2054,7 +2078,7 @@ class MainWindow(QMainWindow):
             )).fetchone()
         var_l = (''.join(map(str, var_l)))
         if var_l == str(None):
-            var_l = 0
+            var_l = 0.00
         else:
             var_l = float(''.join(map(str, var_l)))
         var_d = cusr.execute(
@@ -2066,7 +2090,7 @@ class MainWindow(QMainWindow):
             )).fetchone()
         var_d = (''.join(map(str, var_d)))
         if var_d == str(None):
-            var_d = 0
+            var_d = 0.00
         else:
             var_d = float(''.join(map(str, var_d)))
         var_e = cusr.execute(
@@ -2078,7 +2102,7 @@ class MainWindow(QMainWindow):
             )).fetchone()
         var_e = (''.join(map(str, var_e)))
         if var_e == str(None):
-            var_e = 0
+            var_e = 0.00
         else:
             var_e = float(''.join(map(str, var_e)))
         total_assets = (var_b + var_l)
@@ -2202,21 +2226,21 @@ class MainWindow(QMainWindow):
             discount = cusr.execute("SELECT SUM(discount) FROM pos_table").fetchone()
             discount = (''.join(map(str, discount)))
             if discount == str(None):
-                discount = 0.0
+                discount = 0.00
             else:
                 discount = float(''.join(map(str, discount)))
             total = cusr.execute(
                             "SELECT SUM(totalvat) FROM pos_table").fetchone()
             total = (''.join(map(str, total)))
             if total == str(None):
-                total = 0.0
+                total = 0.00
             else:
                 total = float(''.join(map(str, total)))
             totalksh = cusr.execute(
                 "SELECT SUM(KSH) FROM pos_table").fetchone()
             totalksh = (''.join(map(str, totalksh))) 
             if totalksh == str(None):
-                totalksh = 0.0
+                totalksh = 0.00
             else:
                 totalksh = float(''.join(map(str, totalksh)))
             grand = (total + totalksh)
@@ -2336,7 +2360,7 @@ class MainWindow(QMainWindow):
                     btn.clicked.connect(self.update_tx_page)
             
         except Exception:
-            print("transactions loading")
+            traceback.print_exc()
     
     def employee_profile_page(self):
         logging.basicConfig(level=logging.INFO)
@@ -2481,114 +2505,120 @@ class MainWindow(QMainWindow):
             edits.setText((var_y))
 
     def update_position(self):
-        logging.basicConfig(level=logging.INFO)
-        with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
-            row = self.ui.tableWidget_38.currentRow()
-            currentcode = (self.ui.tableWidget_38.item(row, 0).text())
-            currentcode = (''.join(map(str, currentcode)))
-            updated = dt.today()   
-            position_code = str(self.ui.lineEdit_75.text())
-            position_name = str(self.ui.lineEdit_76.text())
-            position_level = str(self.ui.comboBox_33.currentText())
-            position_status= str(self.ui.comboBox_34.currentText())
-            position_description = self.ui.plainTextEdit_7.document().toPlainText()
+        try:
+            logging.basicConfig(level=logging.INFO)
+            with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
+                row = self.ui.tableWidget_38.currentRow()
+                currentcode = (self.ui.tableWidget_38.item(row, 0).text())
+                currentcode = (''.join(map(str, currentcode)))
+                updated = dt.today()   
+                position_code = str(self.ui.lineEdit_75.text())
+                position_name = str(self.ui.lineEdit_76.text())
+                position_level = str(self.ui.comboBox_33.currentText())
+                position_status= str(self.ui.comboBox_34.currentText())
+                position_description = self.ui.plainTextEdit_7.document().toPlainText()
 
-            column_list = ["pos_code", "pos_name", "pos_level", "pos_description", "status"]
-            edits = [ 
-                updated,
-                position_code,
-                position_name,
-                position_level,
-                position_description,
-                position_status]
-            for col, ed in zip(column_list, edits):
-                cusr.execute(
-                    "UPDATE positions SET %s=? WHERE pos_code=?" %
-                    (str(
-                        col,)), (ed, currentcode))
-            QMessageBox.information(
-                QMessageBox(),
-                'Successful',
-                'client is updated.')
+                column_list = ["pos_code", "pos_name", "pos_level", "pos_description", "status"]
+                edits = [ 
+                    updated,
+                    position_code,
+                    position_name,
+                    position_level,
+                    position_description,
+                    position_status]
+                for col, ed in zip(column_list, edits):
+                    cusr.execute(
+                        "UPDATE positions SET %s=? WHERE pos_code=?" %
+                        (str(
+                            col,)), (ed, currentcode))
+                QMessageBox.information(
+                    QMessageBox(),
+                    'Successful',
+                    'client is updated.')
                 
-            # except Exception:
-            #     QMessageBox.warning(
-            #         QMessageBox(),
-            #         'Error',
-            #         'Could not update client.')
+        except Exception:
+            traceback.print_exc()
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'Could not update client.')
 
     def update_department(self):
-        logging.basicConfig(level=logging.INFO)
-        with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
-            row = self.ui.tableWidget_39.currentRow()
-            currentcode = (self.ui.tableWidget_39.item(row, 0).text())
-            currentcode = (''.join(map(str, currentcode)))
-            updated = dt.today()   
-            department_code = str(self.ui.lineEdit_72.text())
-            department_name = str(self.ui.lineEdit_71.text())
+        try:
+            logging.basicConfig(level=logging.INFO)
+            with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
+                row = self.ui.tableWidget_39.currentRow()
+                currentcode = (self.ui.tableWidget_39.item(row, 0).text())
+                currentcode = (''.join(map(str, currentcode)))
+                updated = dt.today()   
+                department_code = str(self.ui.lineEdit_72.text())
+                department_name = str(self.ui.lineEdit_71.text())
 
-            department_level = str(self.ui.comboBox_32.currentText())
-            department_status= str(self.ui.comboBox_31.currentText())
-            department_description = self.ui.plainTextEdit_6.document().toPlainText()
+                department_level = str(self.ui.comboBox_32.currentText())
+                department_status= str(self.ui.comboBox_31.currentText())
+                department_description = self.ui.plainTextEdit_6.document().toPlainText()
 
-            column_list = ["updated", "dep_code", "dep_name", "dep_level", "dep_description", "status"]
-            edits = [ 
-                updated,
-                department_code,
-                department_name,
-                department_level,
-                department_description,
-                department_status]
-            for col, ed in zip(column_list, edits):
-                cusr.execute(
-                    "UPDATE department SET %s=? WHERE dep_code=?" %
-                    (str(
-                        col,)), (ed, currentcode))
-            QMessageBox.information(
-                QMessageBox(),
-                'Successful',
-                'client is updated.')
+                column_list = ["updated", "dep_code", "dep_name", "dep_level", "dep_description", "status"]
+                edits = [ 
+                    updated,
+                    department_code,
+                    department_name,
+                    department_level,
+                    department_description,
+                    department_status]
+                for col, ed in zip(column_list, edits):
+                    cusr.execute(
+                        "UPDATE department SET %s=? WHERE dep_code=?" %
+                        (str(
+                            col,)), (ed, currentcode))
+                QMessageBox.information(
+                    QMessageBox(),
+                    'Successful',
+                    'client is updated.')
                 
-            # except Exception:
-            #     QMessageBox.warning(
-            #         QMessageBox(),
-            #         'Error',
-            #         'Could not update client.')
+        except Exception:
+            traceback.print_exc()
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'Could not update client.')
     def update_transactions(self):
-        logging.basicConfig(level=logging.INFO)
-        with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
-            row = self.ui.tableWidget_37.currentRow()
-            currentcode = (self.ui.tableWidget_37.item(row, 0).text())
-            currentcode = (''.join(map(str, currentcode)))
-            updated = dt.today()   
-            amount = str(self.ui.lineEdit_12.text())
-            description = str(self.ui.lineEdit_15.text())
+        try:
+            logging.basicConfig(level=logging.INFO)
+            with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
+                row = self.ui.tableWidget_37.currentRow()
+                currentcode = (self.ui.tableWidget_37.item(row, 0).text())
+                currentcode = (''.join(map(str, currentcode)))
+                updated = dt.today()   
+                amount = str(self.ui.lineEdit_12.text())
+                description = str(self.ui.lineEdit_15.text())
 
-            acc = str(self.ui.comboBox_46.currentText())
-            txtype= str(self.ui.comboBox_47.currentText())
+                acc = str(self.ui.comboBox_46.currentText())
+                txtype= str(self.ui.comboBox_47.currentText())
 
-            column_list = ["name", "tx_type", "KSH", "description", "updated"]
-            edits = [ 
-                acc,
-                txtype,
-                amount,
-                description,
-                updated]
-            for col, ed in zip(column_list, edits):
-                cusr.execute(
-                    "UPDATE transactions SET %s=? WHERE id_4=?" %
-                    (str(
-                        col,)), (ed, currentcode))
-            QMessageBox.information(
-                QMessageBox(),
-                'Successful',
-                'transaction is updated.')
+                column_list = ["name", "tx_type", "KSH", "description", "updated"]
+                edits = [ 
+                    acc,
+                    txtype,
+                    amount,
+                    description,
+                    updated]
+                for col, ed in zip(column_list, edits):
+                    cusr.execute(
+                        "UPDATE transactions SET %s=? WHERE id_4=?" %
+                        (str(
+                            col,)), (ed, currentcode))
+                QMessageBox.information(
+                    QMessageBox(),
+                    'Successful',
+                    'transaction is updated.')
                 
-            # except Exception:
-            #     QMessageBox.warning(
-            #         QMessageBox(),
-            #         'Error',
-            #         'Could not update client.')
+        except Exception:
+            traceback.print_exc()
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'Could not update client.')
     def update_coa(self):
         # logging.basicConfig(level=logging.INFO)
         # with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
@@ -2632,6 +2662,7 @@ class MainWindow(QMainWindow):
                 'account is updated.')
             
         except Exception:
+            traceback.print_exc()
             QMessageBox.warning(
                 QMessageBox(),
                 'Error',
@@ -2639,51 +2670,53 @@ class MainWindow(QMainWindow):
 
 
     def update_employee(self):
-        logging.basicConfig(level=logging.INFO)
-        with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
-            row = self.ui.tableWidget_40.currentRow()
-            currentcode = (self.ui.tableWidget_40.item(row, 0).text())
-            currentcode = (''.join(map(str, currentcode)))
-            updated = dt.today()   
-            qdate = self.ui.dateEdit_21.date()
-            employee_start_date = qdate.toPython()
-            employee_code = str(self.ui.lineEdit_68.text())
-            employee_first_name = str(self.ui.lineEdit_66.text())
-            employee_last_name = str(self.ui.lineEdit_67.text())
-            employee_mobile = str(self.ui.lineEdit_65.text())
-            employee_email = str(self.ui.lineEdit_69.text())
-            employee_addres = str(self.ui.lineEdit_70.text())
-            gender = str(self.ui.comboBox_28.currentText())
-            position = str(self.ui.comboBox_27.currentText())
-            employee_depertment = str(self.ui.comboBox_26.currentText())
-            column_list = ["updated", "emp_code", "first_name", "last_name", "mobile", "email", "address", "gender", "emmp_postion", "department", "joined"]
-            edits = [ 
-                updated,
-                employee_code,
-                employee_first_name,
-                employee_last_name,
-                employee_mobile,
-                employee_email,
-                employee_addres,
-                gender,
-                position,
-                employee_depertment,
-                employee_start_date]
-            for col, ed in zip(column_list, edits):
-                cusr.execute(
-                    "UPDATE employee SET %s=? WHERE emp_code=?" %
-                    (str(
-                        col,)), (ed, currentcode))
+        try:
+            logging.basicConfig(level=logging.INFO)
+            with SQLite_CONTEX_MANAGER(file_name=pathtodb + "\\yobi\\yobi_database.db") as cusr:
+                row = self.ui.tableWidget_40.currentRow()
+                currentcode = (self.ui.tableWidget_40.item(row, 0).text())
+                currentcode = (''.join(map(str, currentcode)))
+                updated = dt.today()   
+                qdate = self.ui.dateEdit_21.date()
+                employee_start_date = qdate.toPython()
+                employee_code = str(self.ui.lineEdit_68.text())
+                employee_first_name = str(self.ui.lineEdit_66.text())
+                employee_last_name = str(self.ui.lineEdit_67.text())
+                employee_mobile = str(self.ui.lineEdit_65.text())
+                employee_email = str(self.ui.lineEdit_69.text())
+                employee_addres = str(self.ui.lineEdit_70.text())
+                gender = str(self.ui.comboBox_28.currentText())
+                position = str(self.ui.comboBox_27.currentText())
+                employee_depertment = str(self.ui.comboBox_26.currentText())
+                column_list = ["updated", "emp_code", "first_name", "last_name", "mobile", "email", "address", "gender", "emmp_postion", "department", "joined"]
+                edits = [ 
+                    updated,
+                    employee_code,
+                    employee_first_name,
+                    employee_last_name,
+                    employee_mobile,
+                    employee_email,
+                    employee_addres,
+                    gender,
+                    position,
+                    employee_depertment,
+                    employee_start_date]
+                for col, ed in zip(column_list, edits):
+                    cusr.execute(
+                        "UPDATE employee SET %s=? WHERE emp_code=?" %
+                        (str(
+                            col,)), (ed, currentcode))
             QMessageBox.information(
                 QMessageBox(),
                 'Successful',
                 'client is updated.')
                 
-            # except Exception:
-            #     QMessageBox.warning(
-            #         QMessageBox(),
-            #         'Error',
-            #         'Could not update client.')
+        except Exception:
+            traceback.print_exc()
+            QMessageBox.warning(
+                QMessageBox(),
+                'Error',
+                'Could not update client.')
 
 
     def purchase_order_view_bill_details(self):
@@ -2822,7 +2855,7 @@ class MainWindow(QMainWindow):
             po_amount_recived = (''.join(map(str, po_amount_recived)))
             print(po_amount_recived)
             if po_amount_recived == str(None):
-                po_amount_recived = 0.0
+                po_amount_recived = 0.00
                 print(po_amount_recived, "@@@@@@@@@@@@@@@@@@@@@@@@@@")
             else:
                 po_amount_recived = float(''.join(map(str, po_amount_recived)))
@@ -2980,7 +3013,7 @@ class MainWindow(QMainWindow):
         else:
             ad_uuidd = cusr.execute("SELECT uuid FROM bill WHERE bill_number=?", (currentcode,)).fetchone()
             ad_uuidd = (''.join(map(str, ad_uuidd)))
-            ledgers = cusr.execute("SELECT id FROM ledgers WHERE bill_number=?", (currentcode,)).fetchone()
+            ledgers = cusr.execute("SELECT id FROM ledgers WHERE name=?", (currentcode,)).fetchone()
             ledgers = (''.join(map(str, ledgers)))
             amount_d = cusr.execute("SELECT amount_due FROM bill WHERE bill_number=?", (currentcode,)).fetchone()
             amount_d = (''.join(map(str, amount_d)))
@@ -3021,7 +3054,7 @@ class MainWindow(QMainWindow):
             
             else:
 
-                amount_unerned=0.0
+                amount_unerned=0.00
                 print('$$$$$$$$$$$$$$$$$$', amount_unerned)
 
             amount_recivable = cusr.execute("SELECT KSH FROM transactions WHERE coa_id=?", (prepaid_expenses,)).fetchone() # gets amount_recivable amount from transactions using prepaid_expenses variable as Id for querying
@@ -3029,7 +3062,7 @@ class MainWindow(QMainWindow):
             if amount_recivable == str(None):
                 amount_recivable = float(''.join(map(str, amount_recivable)))
             else:
-                amount_recivable=0.0
+                amount_recivable=0.00
             amount_earned = self.ui.lineEdit_45.text()
 
             paid = self.ui.checkBox_3
@@ -3095,6 +3128,8 @@ class MainWindow(QMainWindow):
                 "credit",
                 created))
             database_connection.commit()
+
+
     def pay_bill(self):
         database_connection = sqlite3.connect(
                 pathtodb + "\\yobi\\yobi_database.db")
@@ -3177,9 +3212,9 @@ class MainWindow(QMainWindow):
                     journal_uuid,
                     currentcode,
                     'accounts payable',
-                    amount_paid,
+                    paid_bill,
                     "paid bill",
-                    "credit",
+                    "debit",
                     paid_date))
             database_connection.commit()
             cusr.execute(
@@ -3191,7 +3226,7 @@ class MainWindow(QMainWindow):
                 journal_uuid,
                 currentcode,
                 'cash and cash equivalents',
-                amount_paid,
+                paid_bill,
                 "paid bill",
                 "credit",
                 paid_date))
@@ -3363,11 +3398,11 @@ class MainWindow(QMainWindow):
             # paid_date_re = (re.sub("[-]", ",", paid_date))
             # print('@@@@@@@@@@@@@@@@@@@@@@@@', paid_date_re)
             if amount_paid == str(None):
-                amount_paid = str(0.0)
+                amount_paid = str(0.00)
             if amount_due == str(None):
-                amount_due = str(0.0)
+                amount_due = str(0.00)
             if external_refrence == str(None):
-                external_refrence = 0.0
+                external_refrence = 0.00
             np = babel.numbers.format_currency(
             decimal.Decimal(amount_paid), cash_label, locale='en_US')
 
@@ -4439,7 +4474,7 @@ class MainWindow(QMainWindow):
                 self.ui.tableWidget_6.setCellWidget(row_number, 7, self.push)
                 self.ui.tableWidget_6.setCellWidget(row_number, 8, deletebtn)
                 self.ui.tableWidget_6.setCellWidget(row_number, 9, rtn)
-                deletebtn.clicked.connect(self.deleteorders)
+                # deletebtn.clicked.connect(self.deleteorders)
                 self.push.clicked.connect(self.update_orders_page)
                 rtn.clicked.connect(self.set_return_orders)
 
@@ -4912,15 +4947,15 @@ class MainWindow(QMainWindow):
         total_amount = (self.total + self.posksh)
 
         discount2 = (discount / 100 * total_amount)
-        discount3 = (discount / 100 * self.posksh)
-        grand_total = (total_amount - discount2)
+        # discount3 = (discount / 100 * self.posksh)
+        grand_total = round(total_amount - discount2, 2)
         print(f"DISCOUNT ON product ---> {discount2}")
         print(f"Grand TOTAL AFTER DEDUCTION OF DISCOUNT ---> {grand_total}")
-        total_no_tax = (self.posksh - discount3)
-        amount_paid = float(str(self.ui.lineEdit_8.text()))
+        # total_no_tax = (self.posksh - discount3)
+        amount_paid = round(float(str(self.ui.lineEdit_8.text())), 2)
         due = round(grand_total - amount_paid, 2)
         print(f"DUE AMOUNT ---> {due}")
-        due2 = round(total_no_tax - amount_paid, 2)
+        # due2 = round(total_no_tax - amount_paid, 2)
         if due < 0:
             QMessageBox.warning(
                 QMessageBox(),
@@ -5011,7 +5046,7 @@ class MainWindow(QMainWindow):
                     journal_uuid,
                     ledger_uuid,
                     'Product Sales',
-                    due2,
+                    grand_total,
                     description,
                     credit,
                     order_date))
@@ -5028,7 +5063,7 @@ class MainWindow(QMainWindow):
                     journal_uuid,
                     ledger_uuid,
                     'Product Sales',
-                    total_no_tax,
+                    grand_total,
                     description2,
                     credit,
                     order_date))
@@ -5148,8 +5183,8 @@ class MainWindow(QMainWindow):
             _float_: _net profit_
         """
         try:
-            if self.total_sales() > self.total_expenses():
-                n_p = self.total_sales() - self.total_expenses()
+            if self.total_revenue() > self.total_expenses():
+                n_p = self.total_revenue() - self.total_expenses()
                 net_profit = babel.numbers.format_currency(
                     decimal.Decimal(n_p), cash_label, locale='en_US')
                 self.ui.label_35.setText(str(net_profit))
@@ -5158,7 +5193,7 @@ class MainWindow(QMainWindow):
                     "QLabel { background-color : rgb(29, 29, 29 ); color : rgb(0, 255, 255); }")
                 return n_p
             else:
-                n_p = self.total_sales() - self.total_expenses()
+                n_p = self.total_revenue() - self.total_expenses()
                 net_profit = babel.numbers.format_currency(
                     decimal.Decimal(n_p), cash_label, locale='en_US')
                 self.ui.label_35.setText(str(net_profit))
@@ -5213,8 +5248,8 @@ class MainWindow(QMainWindow):
 
     def gross_profit(self):
         try:
-            if self.total_sales() > self.sum_var_exp():
-                g_p = round(self.total_sales() - self.sum_var_exp())
+            if self.total_sales() > self.sum_cogs_exp():
+                g_p = round(self.total_sales() - self.sum_cogs_exp(), 2)
                 tp = babel.numbers.format_currency(
                     decimal.Decimal(g_p), cash_label, locale='en_US')
                 self.ui.label_23.setText(str(tp))
@@ -5223,7 +5258,7 @@ class MainWindow(QMainWindow):
                     "QLabel { background-color : rgb(29, 29, 29 ); color : rgb(0, 255, 255); }")
                 return g_p
             else:
-                g_p = self.total_sales() - self.sum_var_exp()
+                g_p = round(self.total_sales() - self.sum_cogs_exp(), 2)
                 tp = babel.numbers.format_currency(
                     decimal.Decimal(g_p), cash_label, locale='en_US')
                 self.ui.label_23.setText(str(tp))
@@ -5249,14 +5284,30 @@ class MainWindow(QMainWindow):
             if total_paid == str(None):
                 total_paid = 0.00
             else:
-                total_paid = float(''.join(map(str, total_paid)))
+                total_paid = round(float(''.join(map(str, total_paid))), 2)
             return total_paid
+        except BaseException:
+            print("total sales error")
+
+    
+    def total_revenue(self):
+        try:
+            database_connection = sqlite3.connect(
+                pathtodb + "\\yobi\\yobi_database.db")
+            cusr = database_connection.cursor()
+            total_rev = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", ("revenue", "credit")).fetchone()
+            total_rev = (''.join(map(str, total_rev)))
+            if total_rev == str(None):
+                total_rev = 0.00
+            else:
+                total_rev = round(float(''.join(map(str, total_rev))), 2)
+            return total_rev
         except BaseException:
             print("total sales error")
 
     def total_expenses(self):
         try:
-            self.z = self.sum_fix_exp() + self.sum_var_exp()
+            self.z = round(self.sum_fix_exp() + self.sum_var_exp(), 2)
             b = babel.numbers.format_currency(
                 decimal.Decimal(self.z), cash_label, locale='en_US')
             self.ui.label_192.setText(str(b))
@@ -5272,7 +5323,7 @@ class MainWindow(QMainWindow):
             _float_: _short term liabilities + long term liabilities_
         """
         try:
-            self.z = self.sum_short_term() + self.sum_long_term()
+            self.z = round(self.sum_short_term() + self.sum_long_term(), 2)
             b = babel.numbers.format_currency(
                 decimal.Decimal(self.z), cash_label, locale='en_US')
             self.ui.label_196.setText(b)
@@ -5290,7 +5341,7 @@ class MainWindow(QMainWindow):
             _float_: _sum of fixed and current asset_
         """
         try:
-            self.z = self.sumCurrent_asset() + self.sumfixed_asset()
+            self.z = round(self.sumCurrent_asset() + self.sumfixed_asset(), 2)
             b = babel.numbers.format_currency(
                 decimal.Decimal(self.z), cash_label, locale='en_US')
             self.ui.label_198.setText(b)
@@ -5316,7 +5367,26 @@ class MainWindow(QMainWindow):
         if var_x == str(None):
             var_x = 0.00
         else:
-            var_x = float(''.join(map(str, var_x)))
+            var_x = round(float(''.join(map(str, var_x))), 2)
+            b = babel.numbers.format_currency(
+                decimal.Decimal(var_x), cash_label, locale='en_US')
+        return var_x
+    def sum_cogs_exp(self):
+        """calculates total variable expenses
+
+        Returns:
+            _float_: _sum variable expense_
+        """
+        database_connection = sqlite3.connect(
+            pathtodb + "\\yobi\\yobi_database.db")
+        cusr = database_connection.cursor()
+        coa_account = "expenses"
+        var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=? AND name=?", (coa_account, "debit", "cost of goods sold")).fetchone()
+        var_x = (''.join(map(str, var_x)))
+        if var_x == str(None):
+            var_x = 0.00
+        else:
+            var_x = round(float(''.join(map(str, var_x))), 2)
             b = babel.numbers.format_currency(
                 decimal.Decimal(var_x), cash_label, locale='en_US')
         return var_x
@@ -5337,7 +5407,7 @@ class MainWindow(QMainWindow):
             if var_x == str(None):
                 var_x = 0.00
             else:
-                var_x = float(''.join(map(str, var_x)))
+                var_x = round(float(''.join(map(str, var_x))), 2)
             return var_x
         except Exception:
             print("sum fix expe error")
@@ -5356,9 +5426,9 @@ class MainWindow(QMainWindow):
             var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "credit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
-                var_x = 0.0
+                var_x = 0.00
             else:
-                var_x = float(''.join(map(str, var_x)))
+                var_x = round(float(''.join(map(str, var_x))), 2)
             return var_x
         except Exception:
             print("sum long term  error")
@@ -5378,9 +5448,9 @@ class MainWindow(QMainWindow):
                 "SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "credit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
-                var_x = 0.0
+                var_x = 0.00
             else:
-                var_x = float(''.join(map(str, var_x)))
+                var_x = round(float(''.join(map(str, var_x))), 2)
             return var_x
         except Exception:
             print("sum short lib error")
@@ -5399,9 +5469,9 @@ class MainWindow(QMainWindow):
             var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "debit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
-                var_x = 0.0
+                var_x = 0.00
             else:
-                var_x = float(''.join(map(str, var_x)))
+                var_x = round(float(''.join(map(str, var_x))), 2)
             return var_x
         except Exception:
             print("sum current asset error")
@@ -5420,9 +5490,9 @@ class MainWindow(QMainWindow):
             var_x = cusr.execute("SELECT SUM(KSH) FROM transactions WHERE coa_id=? AND tx_type=?", (coa_account, "debit")).fetchone()
             var_x = (''.join(map(str, var_x)))
             if var_x == str(None):
-                var_x = 0.0
+                var_x = 0.00
             else:
-                var_x = float(''.join(map(str, var_x)))
+                var_x = round(float(''.join(map(str, var_x))), 2)
             return var_x
         except Exception:
             print("sum fixed asset")
@@ -5470,7 +5540,7 @@ class MainWindow(QMainWindow):
 
     def Netprofit_Margin(self):
         try:
-            d_r = (self.net_profit() / self.total_sales()) * 100
+            d_r = (self.net_profit() / self.total_revenue()) * 100
             d_r = round(d_r, 2)
             progress = CircularProgress()
             progress.width = 100
@@ -5491,7 +5561,7 @@ class MainWindow(QMainWindow):
 
     def working_capital(self):
         try:
-            w_r = round(self.sumCurrent_asset() - self.sum_short_term())
+            w_r = round(self.sumCurrent_asset() - self.sum_short_term(), 2)
             tp = babel.numbers.format_currency(
                 decimal.Decimal(w_r), cash_label, locale='en_US')
             self.ui.label_108.setText(str(tp))
@@ -5503,7 +5573,7 @@ class MainWindow(QMainWindow):
 
     def capital_employed(self):
         try:
-            c_e = round(self.sumfixed_asset() + self.working_capital())
+            c_e = round(self.sumfixed_asset() + self.working_capital(), 2)
             tp = babel.numbers.format_currency(
                 decimal.Decimal(c_e), cash_label, locale='en_US')
             self.ui.label_109.setText(str(tp))
@@ -5515,7 +5585,8 @@ class MainWindow(QMainWindow):
 
     def debt_ratio(self):
         try:
-            d_r = self.total_liability() / self.total_asset()
+            d_r = round(self.total_liability() / self.total_asset(), 1)
+            print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!{d_r}")
             self.ui.label_12.setText(str(round(d_r, 2)))
             self.ui.label_12.setFont(QFont("Times", 20))
             return d_r
@@ -5524,7 +5595,7 @@ class MainWindow(QMainWindow):
 
     def current_ratio(self):
         try:
-            c_r = self.sumCurrent_asset() / self.sum_short_term()
+            c_r = round(self.sumCurrent_asset() / self.sum_short_term(), 1)
             self.ui.label_18.setText(str(round(c_r, 2)))
             self.ui.label_18.setFont(QFont("Times", 20))
             return c_r
@@ -6264,12 +6335,12 @@ class AddBill(QDialog):
             created = dt.today()
             updated = dt.today()
             terms = str(self.ui.comboBox_5.currentText())
-            amount_due = 0.0
-            amount_paid = 0.0
-            amount_recivable = 0.0
-            amount_unerned = 0.0
-            amount_earned = 0.0
-            paid = 0.0
+            amount_due = 0.00
+            amount_paid = 0.00
+            amount_recivable = 0.00
+            amount_unerned = 0.00
+            amount_earned = 0.00
+            paid = 0.00
             paid_date = ' '
             date_1 = date.today()
             d_date = self.ui.dateEdit.date()
@@ -6676,7 +6747,7 @@ class stockAdd(QDialog):
         vat = self.ui.lineEdit_29.text()
         uom = str(self.ui.comboBox.currentText())
         stockdate = date.today()
-        sold = 0.0
+        sold = 0.00
         uuid1 = uuid.uuid4().hex
         uuid2 = uuid.uuid4().hex
         created = dt.today()
@@ -7537,7 +7608,7 @@ class LogoutUser(QDialog):
             # response = requests.post("http://127.0.0.1:8000/apiv1/logout/", json=credentials, headers=headers)
             # print("&&&Status code", response.status_code)
         except Exception:
-            print("succes")
+            traceback.print_exc()
 
     def cancel_logout(self):
         self.close()
@@ -7557,66 +7628,79 @@ class Accounts_login(QMainWindow):
 
     def check_login(self, event):
         if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
-            username = self.ui.username.text()
-            password = self.ui.password.text()
-            database_connection = sqlite3.connect(
-                pathtodb + "\\yobi\\yobi_database.db")
-            cusr = database_connection.cursor()
-            user = cusr.execute("SELECT user_uuid FROM admin").fetchone()
-            user = (''.join(map(str, user)))
-            pass_hash = cusr.execute("SELECT password FROM user_managment WHERE username=?", (username,)).fetchone()
-            pass_hash = (''.join(map(str, pass_hash)))
-            assign = cusr.execute("SELECT assign FROM user_managment WHERE username=?", (username,)).fetchone()
-            assign = (''.join(map(str, assign)))
-            pass_salt = cusr.execute("SELECT salt FROM user_managment WHERE username=?", (username,)).fetchone()
-            pass_salt = (''.join(map(str, pass_salt)))
+            try:
+                username = self.ui.username.text()
+                password = self.ui.password.text()
+                database_connection = sqlite3.connect(
+                    pathtodb + "\\yobi\\yobi_database.db")
+                cusr = database_connection.cursor()
+                user = cusr.execute("SELECT user_uuid FROM admin").fetchone()
+                user = (''.join(map(str, user)))
+                pass_hash = cusr.execute("SELECT password FROM user_managment WHERE username=?", (username,)).fetchone()
+                pass_hash = (''.join(map(str, pass_hash)))
+                assign = cusr.execute("SELECT assign FROM user_managment WHERE username=?", (username,)).fetchone()
+                assign = (''.join(map(str, assign)))
+                pass_salt = cusr.execute("SELECT salt FROM user_managment WHERE username=?", (username,)).fetchone()
+                pass_salt = (''.join(map(str, pass_salt)))
 
-            check_password = str(hashlib.sha512(password.encode('utf-8')+pass_salt.encode('utf-8')).hexdigest())
-            if check_password ==  pass_hash and assign == "Accounts":
-                # database_connection.close()
-                self.close()
-                Entrance().close()
-                
-                who_is_logged.insert(0, assign)
-                who_is_logged.insert(1, user)
-                print(";:::::::::::::", who_is_logged[0])
+                check_password = str(hashlib.sha512(password.encode('utf-8')+pass_salt.encode('utf-8')).hexdigest())
+                if check_password ==  pass_hash and assign == "Accounts":
+                    # database_connection.close()
+                    self.close()
+                    Entrance().close()
+                    
+                    who_is_logged.insert(0, assign)
+                    who_is_logged.insert(1, user)
+                    print(";:::::::::::::", who_is_logged[0])
 
-                MainWindow()
-            elif check_password ==  password and assign == "POS":
-                self.close()
-                Entrance().close()
-                
-                who_is_logged.insert(0, assign)
-                who_is_logged.insert(1, user)
-                print(";:::::::::::::", who_is_logged[0])
-                MainWindow()
-            elif check_password ==  password and assign == "Inventory":
-                self.close()
-                Entrance().close()
-                who_is_logged.insert(0, assign)
-                who_is_logged.insert(1, user)
-                print(";:::::::::::::", who_is_logged[0])
-                MainWindow()
-            elif check_password ==  password and assign == "CRM":
-                self.close()
-                Entrance().close()
-                who_is_logged.insert(0, assign)
-                who_is_logged.insert(1, user)
-                print(";:::::::::::::", who_is_logged[0])
-                MainWindow()
-            elif check_password ==  password and assign == "admin":
-                self.close()
-                Entrance().close()
-                who_is_logged.insert(0, assign)
-                who_is_logged.insert(1, user)
-                print(";:::::::::::::", who_is_logged[0])
-                MainWindow()
-                
-            else:
-                # SET STYLESHEET
-                self.ui.username.setStyleSheet("#username:focus { border: 3px solid rgb(255, 0, 127); }")
-                self.ui.password.setStyleSheet("#password:focus { border: 3px solid rgb(255, 0, 127); }")
+                    MainWindow()
+                elif check_password ==  password and assign == "POS":
+                    self.close()
+                    Entrance().close()
+                    
+                    who_is_logged.insert(0, assign)
+                    who_is_logged.insert(1, user)
+                    print(";:::::::::::::", who_is_logged[0])
+                    MainWindow()
+                elif check_password ==  password and assign == "Inventory":
+                    self.close()
+                    Entrance().close()
+                    who_is_logged.insert(0, assign)
+                    who_is_logged.insert(1, user)
+                    print(";:::::::::::::", who_is_logged[0])
+                    MainWindow()
+                elif check_password ==  password and assign == "CRM":
+                    self.close()
+                    Entrance().close()
+                    who_is_logged.insert(0, assign)
+                    who_is_logged.insert(1, user)
+                    print(";:::::::::::::", who_is_logged[0])
+                    MainWindow()
+                elif check_password ==  password and assign == "admin":
+                    self.close()
+                    Entrance().close()
+                    who_is_logged.insert(0, assign)
+                    who_is_logged.insert(1, user)
+                    print(";:::::::::::::", who_is_logged[0])
+                    MainWindow()
+                    
+                else:
+                    # SET STYLESHEET
+                    self.ui.username.setStyleSheet("#username:focus { border: 3px solid rgb(255, 0, 127); }")
+                    self.ui.password.setStyleSheet("#password:focus { border: 3px solid rgb(255, 0, 127); }")
+                    self.shacke_window()
+            except Exception:
                 self.shacke_window()
+    def shacke_window(self):
+        # SHACKE WINDOW
+        actual_pos = self.pos()
+        QTimer.singleShot(0, lambda: self.move(actual_pos.x() + 1, actual_pos.y()))
+        QTimer.singleShot(50, lambda: self.move(actual_pos.x() + -2, actual_pos.y()))
+        QTimer.singleShot(100, lambda: self.move(actual_pos.x() + 4, actual_pos.y()))
+        QTimer.singleShot(150, lambda: self.move(actual_pos.x() + -5, actual_pos.y()))
+        QTimer.singleShot(200, lambda: self.move(actual_pos.x() + 4, actual_pos.y()))
+        QTimer.singleShot(250, lambda: self.move(actual_pos.x() + -2, actual_pos.y()))
+        QTimer.singleShot(300, lambda: self.move(actual_pos.x(), actual_pos.y()))
 
 class Admin_Login(QMainWindow):
 
@@ -7694,7 +7778,7 @@ class SignUp(QMainWindow):
             username3 = self.ui.username_3.text()
             username2 = self.ui.username_2.text()
             password = self.ui.password.text()
-            reqUrl = "http://localhost:8080/api/v1/register/"
+            reqUrl = "https://yobiserver.herokuapp.com/api/v1/register/"
 
             headersList = {
             "Accept": "*/*",
@@ -7858,7 +7942,7 @@ class LoginWindow(QMainWindow):
                 self.main.show()                
                 self.close()
             
-            reqUrl = "http://localhost:8080/api/v1/login/"
+            reqUrl = "https://yobiserver.herokuapp.com/api/v1/login/"
 
             headersList = {
             "Accept": "*/*",
